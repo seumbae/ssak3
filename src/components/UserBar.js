@@ -8,12 +8,12 @@ function UserBar() {
   return (
     <div className='UserBar'>
       <div className='greetingContainer'>
-        <img className='avatar' src={iconAvatar} alt="버튼 이미지" />
+        <img className='avatar' src={iconAvatar} alt="이미지" />
         <p className='greetingText'>슴배님, 안녕하세요</p>
       </div>
       <div className='imgContainer'>
-        <img className='alarmBell' src={iconAlarmBell} alt="버튼 이미지" />
-        <img className='settings' src={iconSettings} alt="버튼 이미지" />
+        <img className='alarmBell' src={iconAlarmBell} alt="이미지" />
+        <img className='settings' src={iconSettings} alt="이미지" />
       </div>
     </div>
   );

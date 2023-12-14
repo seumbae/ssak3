@@ -1,6 +1,6 @@
 import React from "react";
 import UserBar from "../components/UserBar";
-import Service from "../components/Service"
+import ServiceList from "../components/ServiceList"
 
 function Test() {
     return (
@@ -8,7 +8,7 @@ function Test() {
             <div>    .    </div>
             <UserBar />
             <div>    .    </div>
-            <Service />
+            <ServiceList />
             <div>    .    </div>
         </div>
     )
