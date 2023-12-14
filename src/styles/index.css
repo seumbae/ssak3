@@ -103,14 +103,18 @@ section {
 body {
   line-height: 1;
 }
-ol, ul {
+ol,
+ul {
   list-style: none;
 }
-blockquote, q {
+blockquote,
+q {
   quotes: none;
 }
-blockquote:before, blockquote:after,
-q:before, q:after {
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
   content: '';
   content: none;
 }
@@ -120,39 +124,39 @@ table {
 }
 
 @font-face {
-  font-family: "KBTitleB";
+  font-family: 'KBTitleB';
   font-weight: bold;
-  src: url("../assets/fonts/KBFGDisplayB.ttf") format("truetype");
+  src: url('../assets/fonts/KBFGDisplayB.ttf') format('truetype');
 }
 
 @font-face {
-  font-family: "KBTitleM";
+  font-family: 'KBTitleM';
   font-weight: normal;
-  src: url("../assets/fonts/KBFGDisplayM.ttf") format("truetype");
+  src: url('../assets/fonts/KBFGDisplayM.ttf') format('truetype');
 }
 
 @font-face {
-  font-family: "KBTitleL";
+  font-family: 'KBTitleL';
   font-weight: 100;
-  src: url("../assets/fonts/KBFGDisplayL.ttf") format("truetype");
+  src: url('../assets/fonts/KBFGDisplayL.ttf') format('truetype');
 }
 
 @font-face {
-  font-family: "KBTextB";
+  font-family: 'KBTextB';
   font-weight: 100;
-  src: url("../assets/fonts/KBFGTextB.ttf") format("truetype");
+  src: url('../assets/fonts/KBFGTextB.ttf') format('truetype');
 }
 
 @font-face {
-  font-family: "KBTextM";
+  font-family: 'KBTextM';
   font-weight: 100;
-  src: url("../assets/fonts/KBFGTextM.ttf") format("truetype");
+  src: url('../assets/fonts/KBFGTextM.ttf') format('truetype');
 }
 
 @font-face {
-  font-family: "KBTextL";
+  font-family: 'KBTextL';
   font-weight: 100;
-  src: url("../assets/fonts/KBFGTextL.ttf") format("truetype");
+  src: url('../assets/fonts/KBFGTextL.ttf') format('truetype');
 }
 
 ol,
