@@ -1,12 +1,13 @@
 import './namu.css';
+import React from 'react'; 
 
-function Namu() {
+const Namu = () => {
   return (
-    <div className="Namu">
-      <header className="">
-      </header>
+    <div className='Namu'>
+      as
     </div>
-  );
+  )
 }
+
 
 export default Namu;
