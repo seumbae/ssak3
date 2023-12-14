@@ -4,3 +4,6 @@
     margin: 0 auto;
     border: 1px solid #000000;
 }
+.root-container {
+    padding: 0px 15px;
+}
