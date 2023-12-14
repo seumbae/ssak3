@@ -1,3 +1,4 @@
+
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -22,9 +23,55 @@ article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
     display: block;
 }
-body {
-    line-height: 1;
+
+@font-face {
+  font-family: "KBTitleB";
+  font-weight: bold;
+  src: url("./fonts/KBFGDisplayB.ttf") format("truetype");
 }
+
+@font-face {
+  font-family: "KBTitleM";
+  font-weight: normal;
+  src: url("./fonts/KBFGDisplayM.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "KBTitleL";
+  font-weight: 100;
+  src: url("./fonts/KBFGDisplayL.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "KBTextB";
+  font-weight: 100;
+  src: url("./fonts/KBFGTextB.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "KBTextM";
+  font-weight: 100;
+  src: url("./fonts/KBFGTextM.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "KBTextL";
+  font-weight: 100;
+  src: url("./fonts/KBFGTextL.ttf") format("truetype");
+}
+
+body {
+  line-height: 1;
+
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', 
+    'KBTitleB', 'KBTitleM', 'KBTitleL', 'KBTextB', 'KBTextM', 'KBTextL', 
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 ol, ul {
     list-style: none;
 }
