@@ -1,27 +1,103 @@
-
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-size: 100%;
-    font: inherit;
-    vertical-align: baseline;
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
 }
-article, aside, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section {
-    display: block;
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
 }
 
 body {
@@ -44,9 +120,73 @@ table {
 }
 
 @font-face {
+  font-family: 'KBTitleB';
+  font-weight: bold;
+  src: url('./fonts/KBFGDisplayB.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'KBTitleM';
+  font-weight: normal;
+  src: url('./fonts/KBFGDisplayM.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'KBTitleL';
+  font-weight: 100;
+  src: url('./fonts/KBFGDisplayL.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'KBTextB';
+  font-weight: 100;
+  src: url('./fonts/KBFGTextB.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'KBTextM';
+  font-weight: 100;
+  src: url('./fonts/KBFGTextM.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'KBTextL';
+  font-weight: 100;
+  src: url('./fonts/KBFGTextL.ttf') format('truetype');
+}
+
+@font-face {
   font-family: "KBTitleB";
   font-weight: bold;
   src: url("./fonts/KBFGDisplayB.ttf") format("truetype");
+}
+
+
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+    'Droid Sans', 'Helvetica Neue', 'KBTitleB', 'KBTitleM', 'KBTitleL', 'KBTextB', 'KBTextM', 'KBTextL', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
 }
 
 @font-face {
@@ -79,38 +219,3 @@ table {
   src: url("./fonts/KBFGTextL.ttf") format("truetype");
 }
 
-@font-face {
-  font-family: "KBTitleB";
-  font-weight: bold;
-  src: url("./fonts/KBFGDisplayB.ttf") format("truetype");
-}
-
-@font-face {
-  font-family: "KBTitleM";
-  font-weight: normal;
-  src: url("./fonts/KBFGDisplayM.ttf") format("truetype");
-}
-
-@font-face {
-  font-family: "KBTitleL";
-  font-weight: 100;
-  src: url("./fonts/KBFGDisplayL.ttf") format("truetype");
-}
-
-@font-face {
-  font-family: "KBTextB";
-  font-weight: 100;
-  src: url("./fonts/KBFGTextB.ttf") format("truetype");
-}
-
-@font-face {
-  font-family: "KBTextM";
-  font-weight: 100;
-  src: url("./fonts/KBFGTextM.ttf") format("truetype");
-}
-
-@font-face {
-  font-family: "KBTextL";
-  font-weight: 100;
-  src: url("./fonts/KBFGTextL.ttf") format("truetype");
-}
