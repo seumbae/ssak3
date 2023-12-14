@@ -1,8 +1,12 @@
 import React from "react";
+import UserBar from "../components/UserBar";
 
 function Test() {
     return (
-        <div>테스트 입니다.</div>
+        <div>
+            <UserBar />
+            <div>테스트 입니다.</div>
+        </div>
     )
 }
 
