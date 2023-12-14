@@ -1,11 +1,15 @@
 import React from "react";
 import UserBar from "../components/UserBar";
+import Service from "../components/Service"
 
 function Test() {
     return (
         <div>
+            <div>    .    </div>
             <UserBar />
-            <div>테스트 입니다.</div>
+            <div>    .    </div>
+            <Service />
+            <div>    .    </div>
         </div>
     )
 }
