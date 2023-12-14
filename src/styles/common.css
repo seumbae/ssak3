@@ -7,3 +7,18 @@
 .root-container {
     padding: 0px 15px;
 }
+
+.back {
+    margin-right: 15px;
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    font-family: 'KBTitleL';
+    margin-bottom: 10px;
+}
