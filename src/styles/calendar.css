@@ -1,0 +1,103 @@
+.react-calendar {
+  margin: auto;
+  font-family: 'KBTextM';
+}
+.react-calendar__navigation {
+  background: white;
+  /* border-bottom: 4px solid brown; */
+  height: 32px;
+  border-radius: 20px 20px 0 0;
+  margin: 0px;
+  flex-direction: row;
+  flex: 0 0 0 0;
+  align-content: flex-start;
+  margin-right: auto;
+  justify-content: flex-start;
+  text-align: left;
+  span {
+    font-family: 'KBFGDisplayM';
+    font-size: 24px;
+    font-weight: 800;
+    color: brown;
+    text-align: left;
+    margin-right: auto;
+  }
+}
+
+.react-calendar__navigation button {
+  min-width: 0px;
+}
+
+.react-calendar__navigation__label {
+  flex-grow: 0 !important;
+}
+.react-calendar__navigation__label__labelText {
+  font-family: 'KBTitleM';
+  font-size: 16px;
+  font-weight: 800;
+}
+/* .react-calendar__navigation button:disabled {
+  background-color: pink;
+  border-radius: 20px 20px 0 0;
+}
+
+.react-calendar__navigation button:enabled:hover,
+.react-calendar__navigation button:enabled:focus {
+  background-color: pink;
+  border-radius: 20px 20px 0 0;
+} */
+
+.react-calendar__month-view {
+  /* padding: 12px 32px; */
+  abbr {
+    color: brown;
+    font-size: 16px;
+    font-weight: 500;
+  }
+}
+
+.react-calendar__month-view__weekdays {
+  abbr {
+    font-size: 18px;
+    font-weight: 900;
+  }
+}
+
+.react-calendar__month-view__weekdays {
+  color: #b3b3b3 !important;
+  text-align: center;
+  font-family: 'KBTextM';
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-decoration: none !important;
+}
+
+.react-calendar__tile {
+  text-align: left;
+  height: 60px;
+  display: flex-start;
+  /* display: flex; */
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+/*hover, focus, 선택됐을 시 */
+.react-calendar__tile:enabled:hover,
+.react-calendar__tile:enabled:focus,
+.react-calendar__tile--active {
+  /* background: blue; */
+  border-radius: 14px;
+}
+
+.react-calendar__tile--now {
+  background: black;
+  border-radius: 14px;
+}
+/*hover, focus 시 */
+.react-calendar__tile--now:enabled:hover,
+.react-calendar__tile--now:enabled:focus {
+  background: gray;
+  border-radius: 14px;
+}
