@@ -122,37 +122,37 @@ table {
 @font-face {
   font-family: "KBTitleB";
   font-weight: bold;
-  src: url("./fonts/KBFGDisplayB.ttf") format("truetype");
+  src: url("../assets/fonts/KBFGDisplayB.ttf") format("truetype");
 }
 
 @font-face {
   font-family: "KBTitleM";
   font-weight: normal;
-  src: url("./fonts/KBFGDisplayM.ttf") format("truetype");
+  src: url("../assets/fonts/KBFGDisplayM.ttf") format("truetype");
 }
 
 @font-face {
   font-family: "KBTitleL";
   font-weight: 100;
-  src: url("./fonts/KBFGDisplayL.ttf") format("truetype");
+  src: url("../assets/fonts/KBFGDisplayL.ttf") format("truetype");
 }
 
 @font-face {
   font-family: "KBTextB";
   font-weight: 100;
-  src: url("./fonts/KBFGTextB.ttf") format("truetype");
+  src: url("../assets/fonts/KBFGTextB.ttf") format("truetype");
 }
 
 @font-face {
   font-family: "KBTextM";
   font-weight: 100;
-  src: url("./fonts/KBFGTextM.ttf") format("truetype");
+  src: url("../assets/fonts/KBFGTextM.ttf") format("truetype");
 }
 
 @font-face {
   font-family: "KBTextL";
   font-weight: 100;
-  src: url("./fonts/KBFGTextL.ttf") format("truetype");
+  src: url("../assets/fonts/KBFGTextL.ttf") format("truetype");
 }
 
 ol,
