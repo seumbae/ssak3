@@ -1,4 +1,4 @@
-import ReactCalendar from './components/Calendar.js';
+import ReactCalendar from '../components/Calendar.js';
 import React from 'react';
 
 function Home() {

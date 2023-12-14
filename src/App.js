@@ -3,6 +3,7 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import RootLayout from './components/RootLayout';
 import Test from './pages/TestPage';
 import Home from './pages/Home';
+import NewFNLG from './pages/NewFNLG';
 import './App.css';
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
       <Route element={<RootLayout />}>
         <Route path="/" element={<Test />} />
         <Route path="/home" element={<Home />} />
+        <Route path="/new" element={<NewFNLG />} />
       </Route>
     </Routes>
   );
