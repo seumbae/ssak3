@@ -1,7 +1,6 @@
 import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import RootLayout from './components/RootLayout';
-import Test from './pages/TestPage';
 import Home from './pages/Home';
 import NewFNLG from './pages/NewFNLG';
 import ChartPage from './pages/ChartPage';
@@ -10,7 +9,9 @@ import YourFNLG from './pages/YourFNLG';
 import BadgePage from './pages/BadgePage';
 import SavingsPage from './pages/SavingsPage';
 import FriendPage from './pages/FriendPage';
+import Main from './pages/Main/Main';
 import './App.css';
+import Header from './components/Header';
 
 function App() {
   return (
@@ -23,15 +24,17 @@ function App() {
      */
     <Routes>
       <Route element={<RootLayout />}>
-        <Route path="/" element={<Test />} />
-        <Route path="/home" element={<Home />} />
-        <Route path="/new" element={<NewFNLG />} />
-        <Route path="/chart" element={<ChartPage />} />
-        <Route path="/payment" element={<PaymentPage />} />
-        <Route path="/yours" element={<YourFNLG />} />
-        <Route path="/badge" element={<BadgePage />} />
-        <Route path="/savings" element={<SavingsPage />} />
-        <Route path="/friend" element={<FriendPage />} />
+        <Route path="/" element={<Main />} />
+        <Route element={<Header name="돈기부여" />}>
+          <Route path="/home" element={<Home />} />
+          <Route path="/new" element={<NewFNLG />} />
+          <Route path="/chart" element={<ChartPage />} />
+          <Route path="/payment" element={<PaymentPage />} />
+          <Route path="/yours" element={<YourFNLG />} />
+          <Route path="/badge" element={<BadgePage />} />
+          <Route path="/savings" element={<SavingsPage />} />
+          <Route path="/friend" element={<FriendPage />} />
+        </Route>
       </Route>
     </Routes>
   );

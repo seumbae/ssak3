@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ChevronLeft } from 'react-bootstrap-icons';
 
-function Header({ children }) {
+function Header({ name }) {
   const navigate = useNavigate();
 
   const goBack = () => {
@@ -11,7 +11,7 @@ function Header({ children }) {
   return (
     <div className="header">
       <ChevronLeft className="back" size={25} onClick={goBack} />
-      {children}
+      {name}
     </div>
   );
 }
