@@ -182,3 +182,15 @@ table {
 html {
   font-size: 14px;
 }
+
+:root {
+  --kb-yellow: #ffcc00;
+  --kb-gray: rgba(96, 88, 76, 1);
+  --kb-dark-gray: rgba(84, 80, 69, 1);
+  --card-gray: #D9D9D9;
+  /* figma - 가계부선택에 있는 밝은 회색 글씨 */
+  --font-light-gray: #B3B3B3;
+  /* figma - 약관동의 1 아래 버튼, 글씨 */
+  --box-not-gray: #DDE1E4;
+  --font-not-gray: #AAB0B8;
+}
