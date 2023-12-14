@@ -1,9 +1,11 @@
 import React from 'react'; 
+import Header from './components/header';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
+        <Header/>
         <p className='fontTest'>
           폰트를 테스트 해볼거얌
         </p>

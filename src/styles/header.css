@@ -1,0 +1,7 @@
+.header {
+  display: flex;
+}
+
+.serviceName {
+  font-family: KBTitleM;
+}
