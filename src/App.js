@@ -2,9 +2,9 @@ import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import RootLayout from './components/RootLayout';
 import Test from './pages/TestPage';
-
+import Home from './pages/Home';
 import './App.css';
-import ReactCalendar from './components/Calendar.js';
+
 function App() {
   return (
     /**
