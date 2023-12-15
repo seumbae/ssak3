@@ -25,16 +25,51 @@ function ReactCalendar() {
 
   return (
     <div>
-      <Calendar
-        locale="kor"
-        onChange={onChange}
-        formatDay={(locale, date) => moment(date).format('DD')}
-        value={value}
-        tileContent={addContent}
-        showNeighboringMonth={true}
-        next2Label={null}
-        prev2Label={null}
-      />
+      <div className="toggle-container flex">
+        <input type="checkbox" className="btn-check" id="btn-check-outlined1"></input>
+        <label className="whole-btn btn btn-outline-primary" htmlFor="btn-check-outlined1">
+          전체
+        </label>
+        <div className="divider"></div>
+        <input type="checkbox" className="btn-check btn-check2" id="btn-check-outlined2"></input>
+        <label className="income-btn btn btn-outline-primary" htmlFor="btn-check-outlined2">
+          수입
+        </label>
+        <input type="checkbox" className="btn-check btn-check2" id="btn-check-outlined3"></input>
+        <label className="income-btn btn btn-outline-primary" htmlFor="btn-check-outlined3">
+          지출
+        </label>
+      </div>
+      <div className="triangle"></div>
+      <div className="category-container flex">
+        <div className="cat-btn cat-1">전체</div>
+        <div className="cat-btn cat-2">교통</div>
+        <div className="cat-btn cat-3">쇼핑</div>
+        <div className="cat-btn cat-4">술</div>
+      </div>
+      <div className="calendar-container">
+        <Calendar
+          locale="kor"
+          onChange={onChange}
+          formatDay={(locale, date) => moment(date).format('DD')}
+          value={value}
+          tileContent={addContent}
+          showNeighboringMonth={true}
+          next2Label={null}
+          prev2Label={null}
+        />
+      </div>
+      <div id="outerContainer">
+        <div className="select-left" id="container">
+          <div id="item"></div>
+          <div className="left">
+            <span>월별</span>
+          </div>
+          <div className="right">
+            <span>주별</span>
+          </div>
+        </div>
+      </div>
       <div className="container">
         <div className="record-main-title mt-4 row">
           <div className="col-sm"></div>
@@ -51,7 +86,10 @@ function ReactCalendar() {
         </div>
 
         <div className="record-title-area">
-          <div className="record-title">홈플러스에서 술을 샀다</div>
+          <div className="record-title">
+            <span className="record-title-name">홈플러스에서 술을 샀다</span>
+            <i className="bi bi-receipt"></i>
+          </div>
           <div className="record-price">-30,000원</div>
         </div>
         <div className="line"></div>
@@ -83,6 +121,149 @@ function ReactCalendar() {
       <btn className="more-btn">+ 더보기</btn>
     </div>
   );
+}
+
+var dragItem = document.querySelector('#item');
+var container = document.querySelector('#container');
+
+var active = false;
+var currentX;
+var initialX;
+var itemClick;
+var xOffset = 0;
+
+function isFirefox() {
+  return navigator.userAgent.toLowerCase().indexOf('firefox') > -1;
+}
+
+function dragStart(e) {
+  var xPos = e.pageX - this.getBoundingClientRect().left;
+
+  if (e.type === 'touchstart') {
+    var xPosMobile = e.touches[0].pageX - this.getBoundingClientRect().left;
+    initialX = xPosMobile;
+  } else {
+    initialX = xPos;
+  }
+
+  dragItem.style.transition = 'all .2s cubic-bezier(0.04, 0.46, 0.36, 0.99)';
+
+  if (e.target === dragItem) {
+    active = true;
+  }
+}
+
+function itemDragStart(e) {
+  var xPos = e.pageX - this.getBoundingClientRect().left;
+
+  itemClick = xPos;
+}
+
+function toggleSwitch(e) {
+  if (initialX > 100) {
+    currentX = 0;
+  } else {
+    currentX = 200;
+  }
+}
+
+function dragEnd(e) {
+  initialX = currentX;
+  active = false;
+
+  if (initialX > 100) {
+    currentX = 36;
+    dragItem.style.transition = 'all .2s cubic-bezier(0.04, 0.46, 0.36, 0.99)';
+    container.classList.add('select-right');
+    container.classList.remove('select-left');
+  } else {
+    currentX = 0;
+    dragItem.style.transition = 'all .2s cubic-bezier(0.04, 0.46, 0.36, 0.99)';
+    container.classList.remove('select-right');
+    container.classList.add('select-left');
+  }
+
+  setTranslate(currentX, dragItem);
+}
+
+function drag(e) {
+  var xPos = e.pageX - this.getBoundingClientRect().left;
+
+  if (!(xPos > 400 || xPos < 0)) {
+    if (active) {
+      e.preventDefault();
+
+      if (e.type === 'touchmove') {
+        var xPosMobile = e.touches[0].pageX - this.getBoundingClientRect().left;
+        currentX = xPosMobile - initialX;
+        if (initialX > 200) {
+          currentX = xPosMobile - itemClick;
+        }
+        if (currentX > 200) {
+          currentX = 200;
+          active = false;
+          container.classList.add('select-right');
+          container.classList.remove('select-left');
+        } else if (currentX < 0) {
+          currentX = 0;
+          active = false;
+          container.classList.remove('select-right');
+          container.classList.add('select-left');
+        }
+      } else {
+        currentX = xPos - initialX;
+        if (initialX > 200) {
+          currentX = xPos - itemClick;
+        }
+        if (currentX > 200) {
+          currentX = 200;
+          active = false;
+          container.classList.add('select-right');
+          container.classList.remove('select-left');
+        } else if (currentX < 0) {
+          currentX = 0;
+          active = false;
+          container.classList.remove('select-right');
+          container.classList.add('select-left');
+        }
+      }
+
+      dragItem.style.transition = 'all .05s cubic-bezier(0.04, 0.46, 0.36, 0.99)';
+
+      xOffset = currentX;
+
+      setTranslate(currentX, dragItem);
+    }
+  } else {
+    active = false;
+
+    if (initialX > 200) {
+      dragItem.style.transform = 'translate3d(200px, 0px, 0)';
+    } else {
+      dragItem.style.transform = 'translate3d(0, 0px, 0)';
+    }
+  }
+}
+
+function setTranslate(xPos, el) {
+  el.style.transform = 'translate3d(' + xPos + 'px, 0px, 0)';
+}
+
+if (isFirefox()) {
+  container.addEventListener('mouseup', dragEnd, false);
+  container.addEventListener('click', toggleSwitch, false);
+} else {
+  container.addEventListener('touchstart', dragStart, false);
+  container.addEventListener('touchend', dragEnd, false);
+  container.addEventListener('touchmove', drag, false);
+
+  container.addEventListener('mousedown', dragStart, false);
+  dragItem.addEventListener('mousedown', itemDragStart, false);
+
+  container.addEventListener('mousemove', drag, false);
+
+  container.addEventListener('mouseup', dragEnd, false);
+  container.addEventListener('click', toggleSwitch, false);
 }
 
 export default ReactCalendar;
