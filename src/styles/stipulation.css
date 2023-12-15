@@ -1,0 +1,30 @@
+.body-relative{
+    position: relative;
+    height: calc(100% - 38px);
+}
+
+.flex {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.btn-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 15px 0px;
+}
+
+.img-wrapper {
+    appearance: none;
+    border: none;
+    background: none;
+}
+
+.contents-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    font-family: 'KBTextL';
+}
