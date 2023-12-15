@@ -12,7 +12,7 @@
   flex: 0 0 0 0;
   align-content: flex-start;
   margin-right: auto;
-  justify-content: flex-start;
+  /* justify-content: flex-start; */
   text-align: left;
   span {
     font-family: 'KBFGDisplayM';
@@ -76,7 +76,7 @@
 
 .react-calendar__tile {
   text-align: left;
-  height: 60px;
+  /* height: 60px; */
   display: flex-start;
   /* display: flex; */
   flex-direction: column;
@@ -88,16 +88,51 @@
 .react-calendar__tile:enabled:focus,
 .react-calendar__tile--active {
   /* background: blue; */
-  border-radius: 14px;
+  border-radius: 10px;
 }
 
 .react-calendar__tile--now {
-  background: black;
-  border-radius: 14px;
+  background: black !important;
+  color: white;
+  border-radius: 10px;
+  /* display: flex; */
+
+  width: 14px;
+  height: 40px;
+  justify-items: center;
+  justify-content: center;
+  align-items: center;
 }
 /*hover, focus 시 */
 .react-calendar__tile--now:enabled:hover,
 .react-calendar__tile--now:enabled:focus {
+  background: black !important;
+  color: white !important;
+  border-radius: 10px;
+  width: 14px;
+  height: 40px;
+  justify-content: center;
+  align-items: center;
+}
+.react-calendar__tile--active {
+  background: none !important;
+  color: black;
+}
+.react-calendar__month-view__days__day--weekend {
+  background: none !important;
+  color: #d10000;
+}
+.react-calendar__tile
+  .react-calendar__tile--active
+  .react-calendar__tile--range
+  .react-calendar__tile--rangeStart
+  .react-calendar__tile--rangeEnd
+  .react-calendar__tile--rangeBothEnds
+  .react-calendar__month-view__days__day {
   background: gray;
-  border-radius: 14px;
+  border-radius: 10px;
+  width: 14px;
+  height: 40px;
+  justify-content: center;
+  align-items: center;
 }
