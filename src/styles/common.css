@@ -32,23 +32,35 @@
 }
 
 .next-btn-complete {
+    appearance: none;
+    border: none;
     width: 390px;
     height: 60px;
     background-color: var(--kb-yellow);
+    font-family: 'KBTextB';
     position: absolute;
     bottom: 0;
-    &:hover {
-        cursor: pointer;
-    }
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
 }
 
 .next-btn-incomplete {
     width: 390px;
     height: 60px;
     background-color: #DDE1E4;
+    color: var(--font-not-gray);
+    font-family: 'KBTextB';
     position: absolute;
     bottom: 0;
-    &:hover {
-        cursor: pointer;
-    }
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.horizon-line {
+    width: 100%;
+    height: 1px;
+    background-color: var(--card-gray);
 }
