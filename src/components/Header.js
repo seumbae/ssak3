@@ -11,7 +11,7 @@ function Header() {
   };
 
   return (
-    <div>
+    <>
       <div className="header">
         <div>
           <ChevronLeft className="back" size={25} onClick={goBack} />
@@ -20,7 +20,7 @@ function Header() {
         {path === 'stip' ? <div>취소</div> : null}
       </div>
       <Outlet />
-    </div>
+    </>
   );
 }
 
