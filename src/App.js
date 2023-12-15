@@ -12,7 +12,7 @@ import FriendPage from './pages/FriendPage';
 import Main from './pages/Main/Main';
 import './App.css';
 import Header from './components/Header';
-import Stipulation from './pages/Stipulation/Stipulation';
+import Stipulation from './pages/Stipulation/StipulationMain';
 
 function App() {
   return (
