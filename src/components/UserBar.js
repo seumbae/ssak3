@@ -1,7 +1,7 @@
 import React from 'react';
 import '../styles//UserBar.css'
-import iconAlarmBell from '../assets/iconAlarmBell.png'
-import iconSettings from '../assets/iconSettings.png'
+import iconAlarmBell from '../assets/images/iconAlarmBell.png'
+import iconSettings from '../assets/images/iconSettings.png'
 
 function UserBar(Props) {
   return (

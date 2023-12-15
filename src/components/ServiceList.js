@@ -1,12 +1,12 @@
 import React from 'react';
 import '../styles//ServiceList.css'
 import ServiceItem from './ServiceItem';
-import iconStat from '../assets/iconStat.png'
-import iconYourFNLG from '../assets/iconYourFNLG.png'
-import iconPaymentRecord from '../assets/iconPaymentRecord.png'
-import iconBadge from '../assets/iconBadge.png'
-import iconAd from '../assets/iconAd.png'
-import iconFriend from '../assets/iconFriend.png'
+import iconStat from '../assets/images/iconStat.png'
+import iconYourFNLG from '../assets/images/iconYourFNLG.png'
+import iconPaymentRecord from '../assets/images/iconPaymentRecord.png'
+import iconBadge from '../assets/images/iconBadge.png'
+import iconAd from '../assets/images/iconAd.png'
+import iconFriend from '../assets/images/iconFriend.png'
 
 function ServiceList() {
   return (
