@@ -1,0 +1,39 @@
+.ServiceItem {
+  width: 175px;
+  height: 100px;
+  background-color: #d9d9d9;
+  border-radius: 15px;
+  border-width: 0;
+}
+
+.bottomBox {
+  height: 65px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.imgBox {
+  display: flex;
+  align-items: flex-end;
+  padding: 0 10px 10px 0;
+}
+
+.title {
+  padding-left: 10px;
+  font-family: KBTitleM;
+  font-size: 24px;
+}
+
+.descriptionBox {
+  height: 35px;
+  padding: 10px 0 0 10px;
+  font-family: KBTitleL;
+  font-size: 12px;
+  color: #868686;
+}
+
+.descriptionBox > p {
+  margin: 0;
+  padding: 0;
+  line-height: 110%;
+}
