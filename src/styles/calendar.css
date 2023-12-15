@@ -18,7 +18,7 @@
     font-family: 'KBFGDisplayM';
     font-size: 24px;
     font-weight: 800;
-    color: brown;
+    color: #d10000;
     text-align: left;
     margin-right: auto;
   }
@@ -47,10 +47,16 @@
   border-radius: 20px 20px 0 0;
 } */
 
+.react-calendar__navigation__prev-button:after {
+  content: '<';
+}
+.react-calendar__navigation__next-button:before {
+  content: '>';
+}
 .react-calendar__month-view {
   /* padding: 12px 32px; */
   abbr {
-    color: brown;
+    color: #d10000;
     font-size: 16px;
     font-weight: 500;
   }
@@ -92,13 +98,15 @@
 }
 
 .react-calendar__tile--now {
-  background: black !important;
-  color: white;
+  background: none !important;
+  color: #9647ff !important;
+  font-weight: 900 !important;
+  text-decoration: underline;
   border-radius: 10px;
   /* display: flex; */
 
   width: 14px;
-  height: 40px;
+  /* height: 40px; */
   justify-items: center;
   justify-content: center;
   align-items: center;
@@ -106,11 +114,13 @@
 /*hover, focus 시 */
 .react-calendar__tile--now:enabled:hover,
 .react-calendar__tile--now:enabled:focus {
-  background: black !important;
-  color: white !important;
+  background: none !important;
+  color: #9647ff !important;
+  font-weight: 900 !important;
   border-radius: 10px;
+  text-decoration: underline;
   width: 14px;
-  height: 40px;
+  /* height: 40px; */
   justify-content: center;
   align-items: center;
 }
@@ -129,10 +139,138 @@
   .react-calendar__tile--rangeEnd
   .react-calendar__tile--rangeBothEnds
   .react-calendar__month-view__days__day {
-  background: gray;
+  background: none;
   border-radius: 10px;
   width: 14px;
   height: 40px;
   justify-content: center;
   align-items: center;
+}
+.dot-box {
+  display: flex;
+  justify-content: center;
+  margin-top: 5px;
+}
+
+.dot {
+  height: 8px;
+  width: 8px;
+  background-color: #ffcc00;
+  border-radius: 50%;
+  display: inline-block;
+  justify-content: center;
+}
+
+.today {
+  color: #000;
+  text-align: center;
+  font-family: KBFG Text;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  align-items: center;
+}
+
+.more-record-btn {
+  color: #828181;
+  text-align: right;
+  font-family: KBFG Display;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+
+  /* display: flex; */
+  /* width: 80px;
+  height: 32px; */
+  /* margin: auto; */
+  align-items: flex-end;
+
+  justify-content: center;
+  span {
+    cursor: pointer;
+  }
+}
+.plus {
+  cursor: pointer;
+}
+.record-container {
+  padding-left: 19px;
+  padding-right: 19px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.record-info-area {
+  display: flex;
+  justify-content: space-between;
+}
+.record-info {
+  color: #616161;
+  font-family: KBFG Text;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+.record-cat {
+  border-radius: 3px;
+  background: #fdc453;
+  width: 35.649px;
+  height: 15px;
+  flex-shrink: 0;
+  color: #000;
+  text-align: center;
+  font-family: KBFG Text;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.record-title-area {
+  margin-top: 5px;
+  display: flex;
+  justify-content: space-between;
+  color: #000;
+  font-family: KBFG Text;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+.record-title {
+  color: #000;
+  font-family: KBFG Text;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.line {
+  margin: 10px 0 10px 0;
+  height: 1px;
+  width: 100%;
+  background: black;
+}
+
+.more-btn {
+  color: #828181;
+  text-align: center;
+  font-family: KBFG Display;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  cursor: pointer;
+  display: flex;
+  width: 80px;
+  height: 32px;
+  margin: auto;
+  align-items: center;
+  flex-direction: row;
+  justify-content: center;
+  flex-shrink: 0;
 }
