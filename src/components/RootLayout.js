@@ -1,9 +1,8 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 import '../styles/common.css';
-import Header from './Header';
 
-function Root() {
+export function RootLayout() {
   return (
     <div className="root-layout">
       <div className="root-container">
@@ -13,4 +12,10 @@ function Root() {
   );
 }
 
-export default Root;
+export function Root() {
+    return (
+        <div className="root-layout">
+            <Outlet />
+        </div>
+    )
+}
