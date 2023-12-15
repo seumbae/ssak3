@@ -1,3 +1,32 @@
 .container {
     background-color: var(--kb-yellow);
+    height: -webkit-fill-available;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    font-family: 'KBTitleL';
+}
+
+.title-container {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.title {
+    font-weight: bold;
+    font-size: 46px;
+}
+
+.sub-title {
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.main-btn {
+    appearance: none;
+    border: none;
+    background: none;
+    font-size: 24px;
+    font-weight: bold;
 }
