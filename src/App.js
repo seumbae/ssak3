@@ -9,6 +9,7 @@ import YourFNLG from './pages/YourFNLG';
 import BadgePage from './pages/BadgePage';
 import SavingsPage from './pages/SavingsPage';
 import FriendPage from './pages/FriendPage';
+import TestPage from './pages/TestPage';
 import Main from './pages/Main/Main';
 import './App.css';
 import Header from './components/Header';
@@ -37,6 +38,7 @@ function App() {
             <Route path="/badge" element={<BadgePage />} />
             <Route path="/savings" element={<SavingsPage />} />
             <Route path="/friend" element={<FriendPage />} />
+            <Route path="/test" element={<TestPage />} />
           </Route>
         </Route>
       </Route>
