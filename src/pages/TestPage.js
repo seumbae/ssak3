@@ -17,7 +17,7 @@ function Test() {
             <div className="emptyBox"></div>
             <UserBar userName='슴배' userAvatar={iconAvatar} />
             <div className="emptyBox"></div>
-            <FNLGBar />
+            <FNLGBar list={["전체", "식비", "패션/쇼핑", "카페/간식", "교통/자동차", "취미/여가"]} />
             <div className="emptyBox"></div>
             <BudgetBar use={use} budget={budget} />
             <div className="emptyBox"></div>
