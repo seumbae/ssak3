@@ -1,0 +1,22 @@
+.PredictMotive {
+  width: 360px;
+  height: 100px;
+  background-color: #ffcc00;
+  border-radius: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.motiveMsg {
+  font-family: KBTitleM;
+  margin: 0 0 0 10px;
+  line-height: 120%;
+  font-size: 16px;
+}
+
+.motiveIcon {
+  height: 75px;
+  width: 75px;
+  margin-right: 20px;
+}
