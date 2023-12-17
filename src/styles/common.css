@@ -18,7 +18,7 @@
     }
 }
 
-.header {
+.header-wrapper {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -26,7 +26,7 @@
     font-family: 'KBTitleL';
     margin-bottom: 10px;
 }
-.header div {
+.header-wrapper div {
     display: flex;
     align-items: center;
 }

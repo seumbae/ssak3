@@ -12,7 +12,7 @@ function Header() {
 
   return (
     <>
-      <div className="header">
+      <div className="header-wrapper">
         <div>
           <ChevronLeft className="back" size={25} onClick={goBack} />
           <span>돈기브업</span>
