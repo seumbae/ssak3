@@ -28,3 +28,11 @@
     gap: 20px;
     font-family: 'KBTextL';
 }
+
+.contents-wrapper2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-family: 'KBTextL';
+    height: -webkit-fill-available;
+}
