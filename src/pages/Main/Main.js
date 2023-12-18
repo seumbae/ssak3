@@ -11,8 +11,9 @@ function Main() {
     if (localStorage.getItem('userId') === null) {
       navigate('/stip', {state : {idx : 1}});
     }
-
-    navigate('/home');
+    else {
+      navigate('/home');
+    }
 
   };
 
