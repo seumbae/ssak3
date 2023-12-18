@@ -1,23 +1,23 @@
-apiVersion: apps/v1
 kind: Deployment
+apiVersion: apps/v1
 metadata:
-  name: hellovue
+  name: dont-give-up-client
   labels:
-    app: hellovue
+    app: dont-give-up-client
 spec:
   selector:
     matchLabels:
-      app: hellovue
+      app: dont-give-up-client
   replicas: 1
   template:
     metadata:
-      name: hellovue
+      name: dont-give-up-client
       labels:
-        app: hellovue
+        app: dont-give-up-client
     spec:
       containers:
-        - name: hellovue
-          image: docker.io/hiondal/hellovue:latest
+        - name: dont-give-up-client
+          image: docker.io/ktking813/dont-give-up-client:latest
           imagePullPolicy: Always
           ports:
             - name: port1
@@ -31,39 +31,37 @@ spec:
               memory: 1024Mi
 
 ---
-
 apiVersion: v1
 kind: Service
 metadata:
-  name: hellovue
+  name: dont-give-up-client
 spec:
   type: ClusterIP
   selector:
-    app: hellovue
+    app: dont-give-up-client
   ports:
-    - name: hellovue
+    - name: dont-give-up-client
       port: 8080
       targetPort: 80
 
 ---
-
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: hellovue
+  name: dont-give-up-client
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /$1
-    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/ssl-redirect: 'false'
 spec:
   ingressClassName: nginx
   rules:
-    - host: hellovue-u00.165.192.105.60.nip.io
+    - host: dont-give-up-client.165.192.105.60.nip.io
       http:
         paths:
           - path: /(.*)
             pathType: Prefix
             backend:
               service:
-                name: hellovue
-                port: 
+                name: dont-give-up-client
+                port:
                   number: 8080
