@@ -1,4 +1,85 @@
 .FNLGBar {
-  border: 100px;
-  border: solid;
+  width: 360px;
+  height: 40px;
+  padding-bottom: 10px;
+  border-width: 0 0 2px;
+  border-style: solid;
+  border-color: #9d9d9d;
+  display: flex;
+  justify-content: space-between;
+}
+
+.selectFNLG {
+  width: 150px;
+  height: 28px;
+  padding: 0 5px 0 10px;
+  background-color: white;
+  border-width: 1.5px;
+  border-style: solid;
+  border-color: black;
+  border-radius: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.selectFNLG p {
+  font: #123123;
+  font-family: KBTextM;
+  margin: 0;
+}
+
+.iconAddFNLG {
+  margin: 2.5px 5px 0 0;
+  width: 25px;
+  height: 25px;
+}
+
+.iconUnderArrow {
+  width: 15px;
+  height: 15px;
+}
+
+.Offcanvas {
+  min-height: 300px;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+.selectTitle {
+  font-family: KBTitleB;
+  font-size: 24px;
+  height: 60px;
+  line-height: 60px;
+  padding: 0 15px;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.selectList {
+  height: 180px;
+}
+
+.selectCheck { 
+  background-color: #ffcc00;
+  height: 60px;
+  line-height: 60px;
+  font-family: KBTextB;
+  font-size: 24px;
+  text-align: center;
+}
+
+.OffcanvasContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.closeBtn {
+  border: none;
+  background-color: white;
+  align-items: center;
+  padding: 0;
 }

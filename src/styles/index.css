@@ -123,6 +123,10 @@ table {
   border-spacing: 0;
 }
 
+.paddingBox {
+  padding: 0px 15px;
+}
+
 @font-face {
   font-family: 'KBTitleB';
   font-weight: bold;
