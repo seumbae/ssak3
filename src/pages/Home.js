@@ -1,11 +1,11 @@
-import React, { useState } from "react";
-import ReactCalendar from '../components/Calendar.js';
-import UserBar from "../components/UserBar";
-import FNLGBar from "../components/FNLGBar"
-import BudgetBar from "../components/BudgetBar";
-import PredictMotive from "../components/PredictMotive"
-import ServiceList from "../components/ServiceList"
-import iconAvatar from '../assets/images/iconAvatar.png'
+import React, { useState } from 'react';
+import ReactCalendar from '../components/Calendar';
+import UserBar from '../components/UserBar';
+import FNLGBar from '../components/FNLGBar';
+import BudgetBar from '../components/BudgetBar';
+import PredictMotive from '../components/PredictMotive';
+import ServiceList from '../components/ServiceList';
+import iconAvatar from '../assets/images/iconAvatar.png';
 
 import { getUsers } from '../services/service';
 
