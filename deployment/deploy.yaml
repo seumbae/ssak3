@@ -48,20 +48,20 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: dont-give-up
+  name: dont-give-up-client
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /$1
-    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/ssl-redirect: 'false'
 spec:
   ingressClassName: nginx
   rules:
-    - host: dont-give-up.165.192.105.60.nip.io
+    - host: dont-give-up-client.165.192.105.60.nip.io
       http:
         paths:
           - path: /(.*)
             pathType: Prefix
             backend:
               service:
-                name: dont-give-up
+                name: dont-give-up-client
                 port:
                   number: 8080
