@@ -19,9 +19,11 @@ function NewFNLGGoal({ setGoalShow, setThemeShow }) {
 
   return (
     <div className="NewFNLGGoalDiv">
-      <div>
+      <div className="NewFNLGGoalTitleWrapper">
         <div className="NewFNLGGoalTitle">목표를 입력해주세요!</div>
         <div className="NewFNLGGoalText">해당 목표는 가계부의 제목으로 설정됩니다</div>
+      </div>
+      <div>
         <input
           className="customGoalInput"
           name="goalInput"
@@ -30,8 +32,8 @@ function NewFNLGGoal({ setGoalShow, setThemeShow }) {
           onChange={handleInputChange} // 입력 변경 이벤트
         ></input>
         {/* <input className="customGoalInput" name="goalInput" ref={goalInput} placeholder="ex) 삿포로 노천탕"></input> */}
-        <img src={newlamu} alt="newlamu"></img>
       </div>
+      <img src={newlamu} alt="newlamu"></img>
       {!goalNextBtnShow && (
         <button className="next-btn-incomplete fs-2" onClick={goalNextClick}>
           다음

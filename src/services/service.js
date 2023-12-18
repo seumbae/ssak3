@@ -16,6 +16,8 @@ export const createUser = async (data) => await API.post('/user/create', null, {
 
 // Ledger(임시)
 
+// parameters : None, 테마 목록 조회(가계부 생성 시)
+export const getThemeList = async () => await API.get('/ledger/theme/list');
 // parameters : userId(Integer), 나의 가계부 목록 조회
 export const getMyList = async (data) => await API.get('/ledger/my-list', data);
 // parameters : userId(Integer), 나를 제외한 모든 사용자의 가계부 목록 조회

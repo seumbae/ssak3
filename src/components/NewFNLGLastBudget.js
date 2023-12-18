@@ -18,8 +18,8 @@ function NewFNLGLastBudget({ setLastBudgetShow, setBudgetShow }) {
       <div>
         <div className="NewFNLGBudgetTitle">{formatNumber(400500)}원</div>
         <div className="NewFNLGBudgetText">지난 달 패션/쇼핑에 소비하신 금액이에요</div>
-        <img src={newlamu} alt="newlamu"></img>
       </div>
+      <img src={newlamu} alt="newlamu"></img>
       <button className="next-btn-complete fs-2" onClick={lastBudgetNextClick}>
         다음
       </button>
