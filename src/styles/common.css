@@ -52,6 +52,8 @@
 }
 
 .next-btn-incomplete {
+    appearance: none;
+    border: none;
     width: 390px;
     height: 60px;
     background-color: #DDE1E4;
