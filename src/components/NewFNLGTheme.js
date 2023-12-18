@@ -1,9 +1,21 @@
 import React, { useState } from 'react';
 import newcoli from '../assets/newcoli.png';
 import newarrow from '../assets/newarrow.png';
+import NextBtnInComplete from './NextBtnIncomplete';
+import NextBtnComplete from './NextBtnComplete';
 
-function NewFNLGTheme() {
-  const [value, onChange] = useState(new Date());
+function NewFNLGTheme({ setThemeShow, setLastBudgetShow }) {
+  const [nextBtnShow, setNextBtnShow] = useState(false);
+
+  const handleNextClick = () => {
+    setNextBtnShow(true);
+    setThemeShow(false);
+    setLastBudgetShow(true);
+  };
+
+  const handleEditClick = () => {
+    setNextBtnShow((prevState) => !prevState);
+  };
 
   return (
     <div className="NewFNLGThemeDiv">
@@ -15,7 +27,6 @@ function NewFNLGTheme() {
         <div className="NewFNLGThemeSelect">
           <div></div>
           <div>전체</div>
-          <img src={newarrow} alt="newarrow"></img>
         </div>
 
         <div className="NewFNLGThemeText">
@@ -24,6 +35,17 @@ function NewFNLGTheme() {
           <img src={newcoli} alt="newcoli"></img>
         </div>
       </div>
+      {nextBtnShow ? (
+        <button className="next-btn-complete fs-2" onClick={handleNextClick}>
+          확인
+        </button>
+      ) : (
+        // <NextBtnInComplete onClick={handleNextClick}>확인</NextBtnInComplete>
+        <button className="next-btn-incomplete fs-2" onClick={handleEditClick}>
+          다음
+        </button>
+        // <NextBtnComplete onClick={handleEditClick}>다음</NextBtnComplete>
+      )}
     </div>
   );
 }

@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 import newlamu from '../assets/newlamu.png';
 import NextBtnComplete from './NextBtnComplete';
 
-function NewFNLGBudget() {
+function NewFNLGBudget({ setBudgetShow, setGoalShow }) {
   const budgetInput = useRef(350000);
   const [budgetInputShow, setBudgetInputShow] = useState(false);
   const [currentBudget, setCurrentBudget] = useState(budgetInput.current);
@@ -28,17 +28,24 @@ function NewFNLGBudget() {
     return Number(num).toLocaleString();
   };
 
-  const handleNextClick = () => {
-    setBudgetInputShow(false);
+  const [nextInputShow, setNextInputShow] = useState(false);
+
+  const budgetNextClick = () => {
+    if (nextInputShow) {
+      setBudgetShow(false);
+      setGoalShow(true);
+    } else {
+      setNextInputShow(true);
+    }
   };
 
   return (
-    <div className="body-relative flex">
-      <div>
+    <div className="NewFNLGGoalDiv">
+      {/* <div>
         <div className="NewFNLGBudgetTitle">{formatNumber(400500)}원</div>
         <div className="NewFNLGBudgetText">지난 달 패션/쇼핑에 소비하신 금액이에요</div>
         <img src={newlamu} alt="newlamu"></img>
-      </div>
+      </div> */}
 
       <div>
         <div className="NewFNLGBudgetTop">
@@ -68,7 +75,9 @@ function NewFNLGBudget() {
           <img src={newlamu} alt="newlamu" width="217" height="245"></img>
         </div>
       </div>
-      <NextBtnComplete handleNextClick={handleNextClick}>다음</NextBtnComplete>
+      <button className="next-btn-complete fs-2" onClick={budgetNextClick}>
+        다음
+      </button>
     </div>
   );
 }
