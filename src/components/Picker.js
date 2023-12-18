@@ -1,35 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import '../styles/FNLGBar.css';
 import styled from "@emotion/styled";
-
-const List = styled.ul`
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  width: 100%;
-  height: 150px;
-  overflow-y: scroll;
-  position: relative;
-`;
-
-const ListCenter = styled.div`
-  box-sizing: border-box;
-  border-top: 1.3px solid black;
-  border-bottom: 1.3px solid black;
-  height: 50px;
-  position: sticky;
-  top: 50px;
-`;
-
-const ListItem = styled.li`
-  height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: ${({ isSelected }) => isSelected && "bold"};
-  opacity: ${({ isSelected }) => (isSelected ? 1 : 0.4)};
-`;
 
 function Picker({ list, getSelected }) {
   const SCROLL_DEBOUNCE_TIME = 100;
@@ -82,5 +52,36 @@ function Picker({ list, getSelected }) {
     </List>
   );
 }
+
+const List = styled.ul`
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  width: 100%;
+  height: 150px;
+  overflow-y: scroll;
+  position: relative;
+`;
+
+const ListCenter = styled.div`
+  box-sizing: border-box;
+  border-top: 1.3px solid black;
+  border-bottom: 1.3px solid black;
+  height: 50px;
+  position: sticky;
+  top: 50px;
+`;
+
+const ListItem = styled.li`
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: KBTitleL;
+  font-size: 16px;
+  font-weight: ${({ isSelected }) => isSelected && "bold"};
+  opacity: ${({ isSelected }) => (isSelected ? 1 : 0.4)};
+`;
 
 export default Picker;
