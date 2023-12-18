@@ -1,6 +1,66 @@
 .root-layout {
     width: 390px;
-    height: 100%;
+    height: 844px;
     margin: 0 auto;
     border: 1px solid #000000;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+.body-container {
+    padding: 0px 15px;
+    height: inherit
+}
+
+.back {
+    margin-right: 10px;
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.header-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 18px;
+    font-family: 'KBTitleL';
+    margin-bottom: 10px;
+}
+.header-wrapper div {
+    display: flex;
+    align-items: center;
+}
+
+.next-btn-complete {
+    appearance: none;
+    border: none;
+    width: 390px;
+    height: 60px;
+    background-color: var(--kb-yellow);
+    font-family: 'KBTextB';
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.next-btn-incomplete {
+    width: 390px;
+    height: 60px;
+    background-color: #DDE1E4;
+    color: var(--font-not-gray);
+    font-family: 'KBTextB';
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.horizon-line {
+    width: 100%;
+    height: 1px;
+    background-color: var(--card-gray);
 }

@@ -1,0 +1,37 @@
+.UserBar {
+  width: 360px;
+  height: 40px;
+  background-color: #f1f1f1;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.imgContainer {
+  display: flex;
+  align-items: center;
+}
+
+.greetingContainer {
+  display: flex;
+  align-items: center;
+}
+
+.avatar {
+  margin: 0 10px;
+  width: 28px;
+  height: 28px;
+}
+
+.alarmBell {
+  margin: 0 5px 0 5px;
+}
+
+.settings {
+  margin: 0 10px 0 5px;
+}
+
+.greetingText {
+  font-family: KBTitleB;
+  margin: 0;
+}

@@ -1,0 +1,60 @@
+:root {
+  --progWidth: 0%;
+}
+
+.BudgetBar {
+  width: 360px;
+  height: 66px;
+  background-color: #f1f1f1;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.leftBox {
+  width: 40px;
+  height: 66px;
+  background-color: #c5c5c5;
+  border-radius: 10px;
+  font-family: KBTitleB;
+  font-size: 16px;
+  margin: 0;
+  padding-top: 5px;
+  text-align: center;
+  line-height: 28px;
+}
+
+.rightBox {
+  width: 310px;
+  height: 66px;
+}
+
+.goal {
+  width: 300px;
+  height: 30px;
+  padding-top: 10px;
+  font-size: 16px;
+  font-family: KBTitleB;
+}
+
+.progStat {
+  width: 300px;
+  height: 15px;
+  font-size: 10px;
+  font-family: KBTitleB;
+  text-align: right;
+}
+
+.progBar {
+  width: 300px;
+  height: 10px;
+  background-color: #d9d9d9;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.prog {
+  height: 10px;
+  width: var(--progWidth);
+  background-color: #ff5454;
+}
