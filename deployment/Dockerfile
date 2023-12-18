@@ -2,7 +2,7 @@ FROM node:alpine as builder
 
 WORKDIR /app
 COPY . ./
-RUN npm install && npm run build 
+RUN yarn install && yarn build && npm install && npm run build 
 
 ## 빌드 결과를 nginx에 배포한다.
 FROM nginx:latest
