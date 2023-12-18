@@ -13,14 +13,12 @@ function Forth() {
     if (localStorage.getItem('userId') === null) {
       try {
         createUser({ isNewUser: true }).then((res) => {
-          if (res.status === 200) {
             localStorage.setItem('userId', res.data.userId);
             localStorage.setItem('kbPIN', res.data.kbPIN);
             localStorage.setItem('userName', res.data.userName);
             localStorage.setItem('age', res.data.age);
             localStorage.setItem('income', res.data.income);
             navigate('/new');
-          }
 
           if (res.status === 404) {
             throw new Error('서버와의 연결이 원활하지 않습니다.');
