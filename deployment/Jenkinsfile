@@ -1,5 +1,5 @@
 
-def label = "hellovue-u00-${env.BUILD_NUMBER}"
+def label = "dont-give-up-client-ssak3-${env.BUILD_NUMBER}"
 
 /* -------- functions ---------- */
 def notifySlack(STATUS, COLOR) {
@@ -14,14 +14,13 @@ podTemplate(
 		containerTemplate(name: "trivy", image: "aquasec/trivy", ttyEnabled: true, command: "cat"),
 		containerTemplate(name: "kubectl", image: "lachlanevenson/k8s-kubectl", command: "cat", ttyEnabled: true),
 		containerTemplate(name: 'podman', image: 'mgoltzsche/podman', ttyEnabled: true, command: 'cat', privileged: true)
-	],
-
+	]
 ) 
 
 {
 	node(label) {
 		stage("Get Source") {
-			git branch: 'main', url: 'https://github.com/happykubepia/hellovue.git'
+			git branch: 'main', url: 'https://github.com/seumbae/ssak3.git'
         } 
 
 		//-- Read pipeline.properties and setting variables
@@ -47,7 +46,7 @@ podTemplate(
 						)]) {
 						    sh 'echo user "$USER" pasword "$PASSWORD"'
 						    sh "podman login ${registry} --username ${USER} --password ${PASSWORD}"
-							sh "podman build -f ./deployment/Dockerfile -t ${registry}/${organization}/${repository}:${tag} --build-arg ARTIFACTORY_FILE=${repository}.jar ."
+							sh "podman build -f ./deployment/Dockerfile -t ${registry}/${organization}/${repository}:${tag} ."
 							sh "sleep 2"
 							sh "podman push ${registry}/${organization}/${repository}:${tag}"
 							sh "podman tag ${registry}/${organization}/${repository}:${tag} ${registry}/${organization}/${repository}:latest"

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { ChevronLeft } from 'react-bootstrap-icons';
+import CancleBtn from './Cancle';
 
 function Header() {
   const navigate = useNavigate();
@@ -17,7 +18,7 @@ function Header() {
           <ChevronLeft className="back" size={25} onClick={goBack} />
           <span>돈기브업</span>
         </div>
-        {path === 'stip' ? <div>취소</div> : null}
+        {path === 'stip' ? <CancleBtn /> : null}
       </div>
       <Outlet />
     </>

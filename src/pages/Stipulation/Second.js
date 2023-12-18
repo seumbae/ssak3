@@ -1,8 +1,8 @@
 import React from 'react';
 import Step2 from '../../assets/images/stipulationStep2.png';
 import NextBtnComplete from '../../components/NextBtnComplete';
-import '../../styles/stipulation.css';
 import { useNavigate } from 'react-router-dom';
+import styles from '../../styles/stipuldation.module.css';
 
 function Second() {
   const navigate = useNavigate();
@@ -12,11 +12,11 @@ function Second() {
   };
 
   return (
-    <div className="body-relative flex">
+    <div className={`${styles.body_relative} ${styles.flex}`}>
       <div className="body-container">
         <img src={Step2} alt="step2" />
-        <div className="fs-2 fw-bold mt-5 mb-5">돈기브업은?</div>
-        <div className="fs-5 contents-wrapper">
+        <div className="fs-1 fw-bold mt-5 mb-3">돈기브업은?</div>
+        <div className={`${styles.contents_wrapper} fs-5`}>
           <div>
             <div>오직 하나의 분야를 정해</div>
             <div>작은 것부터 시작할 수 있는</div>
