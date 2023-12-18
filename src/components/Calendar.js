@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
-import '../styles/calendar.css';
+import styles from '../styles/calendar.css';
 import moment from 'moment';
 import Record from './Record';
 
@@ -23,21 +23,49 @@ function addContent({ date }) {
 
 function ReactCalendar() {
   const [value, onChange] = useState(new Date()); // 초기값은 현재 날짜
+  const [checked, setChecked] = useState('전체');
+  const activeBtn = checked == '전체' ? styles.all : styles.one;
+
+  const handleChecked = () => {
+    if (checked == '전체') {
+      console.log('전체');
+    } else if (checked == '수입') {
+      console.log('수입');
+    } else if (checked == '지출') {
+      console.log('지출');
+    }
+  };
+  console.log(checked);
 
   return (
     <div>
       <div className="toggle-container">
-        <input type="checkbox" className="btn-check" id="btn-check-outlined1"></input>
-        <label className="whole-btn" htmlFor="btn-check-outlined1">
+        <input
+          type="checkbox"
+          className={`btn-check`}
+          id="btn-check-outlined1"
+          onClick={() => setChecked('전체')}
+        ></input>
+        <label className={`whole-btn ${checked == '전체' ? 'active1' : ''}`} htmlFor="btn-check-outlined1">
           전체
         </label>
         <div className="divider"></div>
-        <input type="checkbox" className="btn-check btn-check2" id="btn-check-outlined2"></input>
-        <label className="income-btn " htmlFor="btn-check-outlined2">
+        <input
+          type="checkbox"
+          className="btn-check btn-check2"
+          id="btn-check-outlined2"
+          onClick={() => setChecked('수입')}
+        ></input>
+        <label className={`income-btn ${checked == '수입' ? 'active2' : ''}`} htmlFor="btn-check-outlined2">
           수입
         </label>
-        <input type="checkbox" className="btn-check btn-check2" id="btn-check-outlined3"></input>
-        <label className="income-btn " htmlFor="btn-check-outlined3">
+        <input
+          type="checkbox"
+          className="btn-check btn-check2"
+          id="btn-check-outlined3"
+          onClick={() => setChecked('지출')}
+        ></input>
+        <label className={`income-btn ${checked == '지출' ? 'active3' : ''}`} htmlFor="btn-check-outlined3">
           지출
         </label>
       </div>
@@ -72,6 +100,7 @@ function ReactCalendar() {
           </div>
         </div>
       </div> */}
+
       <Record value={value} />
     </div>
   );
