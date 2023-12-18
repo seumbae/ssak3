@@ -22,13 +22,7 @@ function addContent({ date }) {
 
 function ReactCalendar() {
   const [value, onChange] = useState(new Date()); // 초기값은 현재 날짜
-  const EventState = {
-    events: [
-      { title: 'Meeting', date: '2023-12-18', time: '10:00 AM' },
-      { title: 'Lunch', date: '2023-12-20', time: '12:30 PM' },
-      // Add more events
-    ],
-  };
+
   return (
     <div>
       <div className="toggle-container flex">
@@ -76,14 +70,6 @@ function ReactCalendar() {
           // prev2Label={null}
           oneWeekCalendar={true}
         />
-
-        {/* <Calendar
-          onChange={onChange}
-          value={value}
-          calendarType="US"
-          formatShortWeekday={(locale, date) => ['S', 'M', 'T', 'W', 'T', 'F', 'S'][date.getDay()]}
-          oneWeekCalendar={true}
-        /> */}
       </div>
       <div id="outerContainer">
         <div className="select-left" id="container">
