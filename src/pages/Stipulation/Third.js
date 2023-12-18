@@ -15,7 +15,7 @@ function Third() {
     <div className="body-relative flex">
       <div className="body-container">
         <img src={Step3} alt="step1" />
-        <div className="fs-2 fw-bold mt-5 mb-5">테마란?</div>
+        <div className="fs-1 fw-bold mt-5 mb-3">테마란?</div>
         <div className="fs-5 contents-wrapper">
           <div>
             <div>기록하고 싶은 지출 분야를 말해요.</div>
