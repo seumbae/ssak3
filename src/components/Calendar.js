@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-//import Calendar from 'react-calendar';
+import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
-import Calendar from 'short-react-calendar';
 import '../styles/calendar.css';
 import moment from 'moment';
 
@@ -23,7 +22,13 @@ function addContent({ date }) {
 
 function ReactCalendar() {
   const [value, onChange] = useState(new Date()); // 초기값은 현재 날짜
-
+  const EventState = {
+    events: [
+      { title: 'Meeting', date: '2023-12-18', time: '10:00 AM' },
+      { title: 'Lunch', date: '2023-12-20', time: '12:30 PM' },
+      // Add more events
+    ],
+  };
   return (
     <div>
       <div className="toggle-container flex">
@@ -49,7 +54,7 @@ function ReactCalendar() {
         <div className="cat-btn cat-4">술</div>
       </div>
       <div className="calendar-container">
-        <Calendar
+        {/* <Calendar
           locale="kor"
           onChange={onChange}
           formatDay={(locale, date) => moment(date).format('DD')}
@@ -58,14 +63,27 @@ function ReactCalendar() {
           showNeighboringMonth={true}
           next2Label={null}
           prev2Label={null}
-        />
+        /> */}
         <Calendar
+          locale="kor"
+          onChange={onChange}
+          formatDay={(locale, date) => moment(date).format('DD')}
+          // formatShortWeekday={(locale, date) => moment(date).format('DD')}
+          value={value}
+          tileContent={addContent}
+          showNeighboringMonth={true}
+          // next2Label={null}
+          // prev2Label={null}
+          oneWeekCalendar={true}
+        />
+
+        {/* <Calendar
           onChange={onChange}
           value={value}
           calendarType="US"
           formatShortWeekday={(locale, date) => ['S', 'M', 'T', 'W', 'T', 'F', 'S'][date.getDay()]}
-          onWeekCalendar={true}
-        />
+          oneWeekCalendar={true}
+        /> */}
       </div>
       <div id="outerContainer">
         <div className="select-left" id="container">
