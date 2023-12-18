@@ -3,8 +3,9 @@
   margin-right: 5px;
   margin-top: 20px;
   align-items: center;
-  padding-left: 19px;
-  padding-right: 19px;
+  padding-left: 10px;
+  padding-right: 10px;
+  display: flex;
 }
 .whole-btn {
   border-radius: 15px;
@@ -19,6 +20,12 @@
   font-weight: 700;
   line-height: normal;
   margin-right: 5px;
+
+  width: 45px;
+  height: 25px;
+  line-height: 25px;
+  flex-shrink: 0;
+  align-items: center;
 }
 
 .whole-btn:hover {
@@ -31,6 +38,7 @@
   font-size: 12px;
   font-style: normal;
   font-weight: 700;
+  cursor: pointer;
 }
 
 .btn-check:checked + .btn,
@@ -67,7 +75,7 @@
 
 .divider {
   width: 1px;
-  height: 32px;
+  height: 25px;
   background-color: #000;
   margin-right: 5px;
 }
@@ -95,6 +103,14 @@
   font-weight: 700;
   line-height: normal;
   margin-right: 5px;
+
+  cursor: pointer;
+
+  width: 45px;
+  height: 25px;
+  line-height: 25px;
+  flex-shrink: 0;
+  align-items: center;
 }
 
 .income-btn:hover {
@@ -117,6 +133,7 @@
   flex-shrink: 0;
   margin: 7px 0 12px 0;
   z-index: 1;
+  display: flex;
 }
 
 .cat-btn {
@@ -158,7 +175,7 @@
   transform: rotate(135deg);
   position: relative;
   top: 12px;
-  left: 150px;
+  left: 145px;
   z-index: 2;
 }
 
@@ -181,12 +198,13 @@
   /* justify-content: flex-start; */
   text-align: left;
   span {
-    font-family: 'KBFGDisplayM';
-    font-size: 24px;
-    font-weight: 800;
-    color: #d10000;
-    text-align: left;
-    margin-right: auto;
+    color: #000;
+    text-align: center;
+    font-family: KBFG Display;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
   }
 }
 
@@ -222,15 +240,15 @@
 .react-calendar__month-view {
   /* padding: 12px 32px; */
   abbr {
-    color: #d10000;
-    font-size: 16px;
+    /* color: #d10000; */
+    font-size: 11px;
     font-weight: 500;
   }
 }
 
 .react-calendar__month-view__weekdays {
   abbr {
-    font-size: 18px;
+    font-size: 11px;
     font-weight: 900;
   }
 }
@@ -342,8 +360,8 @@
   display: block;
   width: 100%;
   height: 25px;
-  top: 114px;
-  left: 530px;
+  top: 134px;
+  left: 500px;
   position: absolute;
   /* height: 100vh; */
   /* display: flex;
@@ -358,6 +376,12 @@
   font-weight: 700;
   line-height: normal;
   cursor: pointer;
+}
+
+.title-container {
+  margin: auto;
+  /* display: flex; */
+  width: 100%;
 }
 #container {
   position: relative;
@@ -422,13 +446,13 @@
   user-select: none;
   /* background-color: white; */
   span {
-    font-family: sans-serif;
-    font-size: 16px;
-    pointer-events: none;
-    user-select: none;
-    color: lightblue;
-    transition: all 0.2s ease;
-    font-weight: 500;
+    color: #000;
+    text-align: center;
+    font-family: KBFG Display;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
   }
 }
 
@@ -445,13 +469,13 @@
   user-select: none;
 
   span {
-    font-family: sans-serif;
-    font-size: 16px;
-    pointer-events: none;
-    user-select: none;
-    color: lightblue;
-    transition: all 0.2s ease;
-    font-weight: 500;
+    color: #000;
+    text-align: center;
+    font-family: KBFG Display;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
   }
 }
 
@@ -468,7 +492,7 @@
   font-style: normal;
   font-weight: 700;
   line-height: normal;
-
+  margin-right: 10px;
   /* display: flex; */
   /* width: 80px;
   height: 32px; */
