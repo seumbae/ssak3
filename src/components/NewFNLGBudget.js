@@ -41,42 +41,37 @@ function NewFNLGBudget({ setBudgetShow, setGoalShow }) {
 
   return (
     <div className="NewFNLGGoalDiv">
-      {/* <div>
-        <div className="NewFNLGBudgetTitle">{formatNumber(400500)}원</div>
-        <div className="NewFNLGBudgetText">지난 달 패션/쇼핑에 소비하신 금액이에요</div>
-        <img src={newlamu} alt="newlamu"></img>
-      </div> */}
+      {/* TODO: 왼쪽 padding이 좀 이상하다? */}
+      <div className="NewFNLGBudgetTop">
+        <div className="NewFNLGBudgetTitle">{formatNumber(currentBudget)}원</div>
+        <button className="EditButton" onClick={handleEditClick}>
+          수정
+        </button>
+      </div>
 
-      <div>
-        <div className="NewFNLGBudgetTop">
-          <div className="NewFNLGBudgetTitle">{formatNumber(currentBudget)}원</div>
-          <button className="EditButton" onClick={handleEditClick}>
-            수정
+      {budgetInputShow && (
+        <div className="EditBox">
+          <input
+            className="customBudgetInput"
+            name="budgetInput"
+            ref={budgetInput}
+            value={formatNumber(currentBudget)}
+            onChange={handleInputChange}
+          ></input>
+          <button className="EditButton" onClick={handleCompleteClick}>
+            완료
           </button>
         </div>
+      )}
 
-        {budgetInputShow && (
-          <div className="EditBox">
-            <input
-              className="customBudgetInput"
-              name="budgetInput"
-              ref={budgetInput}
-              value={formatNumber(currentBudget)}
-              onChange={handleInputChange}
-            ></input>
-            <button className="EditButton" onClick={handleCompleteClick}>
-              완료
-            </button>
-          </div>
-        )}
-        <div className="NewFNLGBudgetText">
-          <div>저희가 추천하는 패션/쇼핑 예산이에요</div>
-          <div>지난 달보다 {formatNumber(400500 - currentBudget)}원을 아낄 수 있어요</div>
-          <img src={newlamu} alt="newlamu" width="217" height="245"></img>
-        </div>
+      <div className="NewFNLGBudgetText">
+        <div>저희가 추천하는 패션/쇼핑 예산이에요</div>
+        <div>지난 달보다 {formatNumber(400500 - currentBudget)}원을 아낄 수 있어요</div>
       </div>
+      <img src={newlamu} alt="newlamu" width="217" height="245"></img>
+      {/* TODO: 한글자라도 입력 안되어 있으면 완료 안눌리게끔 색 변경 */}
       <button className="next-btn-complete fs-2" onClick={budgetNextClick}>
-        다음
+        완료
       </button>
     </div>
   );
