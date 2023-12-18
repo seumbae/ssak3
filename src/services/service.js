@@ -8,9 +8,10 @@ const API = axios.create({
 // User
 
 // parameters : userId(Integer), 유저 조회
-export const getUsers = async (data) => await API.post('/user', data);
+// export const getUsers = async (data) => await API.post('/user?userId=1');
+export const getUsers = async (data) => await API.post('/user', null, {params : data});
 // parameters : isNewUser(Boolean), 유저 생성
-export const createUser = async (data) => await API.post('/user/create', data);
+export const createUser = async (data) => await API.post('/user/create', null, {params : data});
 
 
 // Ledger(임시)
@@ -30,6 +31,6 @@ export const modify = async (data) => await API.post('/ledger/remove', data);
 // parameters : categoryId(Integer), 카테고리 삭제(Category Id는 unique함)
 export const removeCategory = async (categoryId) => await API.delete(`/category/${categoryId}`);
 // parameters : ledgerId(Integer), 해당 가계부의 카테고리 목록 조회
-export const getCategories = async (data) => await API.post('/category', data);
+export const getCategories = async (data) => await API.post('/category', null, {params : data});
 // body : {"ledgerId": Integer, "customCategoryName : "string"}, 해당 카테고리 등록
 export const createCategory = async (data) => await API.post('/category/create', data);
