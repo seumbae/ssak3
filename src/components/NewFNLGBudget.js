@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react';
 import newlamu from '../assets/newlamu.png';
+import NextBtnComplete from './NextBtnComplete';
 
 function NewFNLGBudget() {
   const budgetInput = useRef(350000);
@@ -27,8 +28,12 @@ function NewFNLGBudget() {
     return Number(num).toLocaleString();
   };
 
+  const handleNextClick = () => {
+    setBudgetInputShow(false);
+  };
+
   return (
-    <div>
+    <div className="body-relative flex">
       <div>
         <div className="NewFNLGBudgetTitle">{formatNumber(400500)}원</div>
         <div className="NewFNLGBudgetText">지난 달 패션/쇼핑에 소비하신 금액이에요</div>
@@ -63,7 +68,7 @@ function NewFNLGBudget() {
           <img src={newlamu} alt="newlamu" width="217" height="245"></img>
         </div>
       </div>
-      <div>다음버튼</div>
+      <NextBtnComplete handleNextClick={handleNextClick}>다음</NextBtnComplete>
     </div>
   );
 }
