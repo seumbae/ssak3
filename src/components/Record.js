@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import '../styles/record.css';
 import moment from 'moment';
 
@@ -37,25 +37,102 @@ function Record(value) {
           </div>
         </div>
       </div>
-      {records.map((r, i) => (
-        <div className="record-container" key={i}>
-          <div className="record-info-area">
-            <div className="record-info">
-              {r.time} | {r.name}
-            </div>
-            <div className={`record-cat ${getColor(i)}`}>{r.cat}</div>
-          </div>
 
-          <div className="record-title-area">
-            <div className="record-title">
-              <span className="record-title-name">{r.title}</span>
-              <i className="bi bi-receipt"></i>
+      <div className="accordion" id="accordionPanelsStayOpenExample">
+        {records.map((r, i) => (
+          <div className="accordion-item" key={i}>
+            <h2 className="accordion-header" id={`panelsStayOpen-heading${i}`}>
+              <button
+                className="accordion-button record-container"
+                type="button"
+                key={i}
+                data-bs-toggle="collapse"
+                data-bs-target={`#panelsStayOpen-collapse${i}`}
+                aria-expanded="true"
+                aria-controls={`panelsStayOpen-collapse${i}`}
+              >
+                <div className="record-info-area">
+                  <div className="record-info">
+                    {r.time} | {r.name}
+                  </div>
+                  <div className={`record-cat ${getColor(i)}`}>{r.cat}</div>
+                </div>
+
+                <div className="record-title-area">
+                  <div className="record-title">
+                    <span className="record-title-name">{r.title}</span>
+                    <i className="bi bi-receipt"></i>
+                  </div>
+                  <div className="record-price">-{r.price}원</div>
+                </div>
+                {/* <div className="line"></div> */}
+              </button>
+            </h2>
+            <div
+              id={`panelsStayOpen-collapse${i}`}
+              className="accordion-collapse collapse"
+              aria-labelledby={`panelsStayOpen-heading${i}`}
+            >
+              <div className="accordion-body">
+                Placeholder content for this accordion, which is intended to demonstrate the{' '}
+                <code>.accordion-flush</code> className. This is the firsts accordion body.
+              </div>
             </div>
-            <div className="record-price">-{r.price}원</div>
           </div>
-          <div className="line"></div>
+        ))}
+        {/* <div className="accordion-item">
+          <h2 className="accordion-header" id="flush-headingTwo">
+            <button
+              className="accordion-button collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#flush-collapseTwo"
+              aria-expanded="false"
+              aria-controls="flush-collapseTwo"
+            >
+              Accordion Item #2
+            </button>
+          </h2>
+          <div
+            id="flush-collapseTwo"
+            className="accordion-collapse collapse"
+            aria-labelledby="flush-headingTwo"
+            data-bs-parent="#accordionFlushExample"
+          >
+            <div className="accordion-body">
+              Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code>{' '}
+              className. This is the second imagine this being filled with some actual content.
+            </div>
+          </div>
         </div>
-      ))}
+        <div className="accordion-item">
+          <h2 className="accordion-header" id="flush-headingThree">
+            <button
+              className="accordion-button collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#flush-collapseThree"
+              aria-expanded="false"
+              aria-controls="flush-collapseThree"
+            >
+              Accordion Item #3
+            </button>
+          </h2>
+          <div
+            id="flush-collapseThree"
+            className="accordion-collapse collapse"
+            aria-labelledby="flush-headingThree"
+            data-bs-parent="#accordionFlushExample"
+          >
+            <div className="accordion-body">
+              Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code>{' '}
+              class. This is the thirdordion body. Nothing more exciting happening here in terms of content, but just
+              filling up the space to make it look, at least at first glance, a bit more representative of how this
+              would look in a real-world application.
+            </div>
+          </div>
+        </div> */}
+      </div>
 
       <btn className="more-btn">+ 더보기</btn>
     </div>

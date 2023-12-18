@@ -376,6 +376,7 @@
 .dot {
   height: 8px;
   width: 8px;
+  position: relative !important;
   background-color: #ffcc00;
   border-radius: 50%;
   display: inline-block;
