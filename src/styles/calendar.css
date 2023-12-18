@@ -41,6 +41,43 @@
   cursor: pointer;
 }
 
+.active1 {
+  border-radius: 15px;
+  border: 1px solid #000 !important;
+  color: white !important;
+  background-color: #000 !important;
+  text-align: center;
+  font-family: KBFG Text;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.active2 {
+  border-radius: 15px;
+  border: 1px solid #9647ff !important;
+  color: white !important;
+  background-color: #9647ff !important;
+  text-align: center;
+  font-family: KBFG Text;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+}
+
+.active3 {
+  border-radius: 15px;
+  border: 1px solid #9647ff !important;
+  color: white !important;
+  background-color: #9647ff !important;
+  text-align: center;
+  font-family: KBFG Text;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+}
+
 .btn-check:checked + .btn,
 .btn.active,
 .btn.show,
