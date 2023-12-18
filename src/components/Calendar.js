@@ -3,6 +3,7 @@ import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import '../styles/calendar.css';
 import moment from 'moment';
+import Record from './Record';
 
 const dayList = ['2023-12-01', '2023-12-05', '2023-12-07', '2023-12-11', '2023-12-15', '2023-12-23'];
 
@@ -48,27 +49,15 @@ function ReactCalendar() {
         <div className="cat-btn cat-4">술</div>
       </div>
       <div className="calendar-container">
-        {/* <Calendar
-          locale="kor"
-          onChange={onChange}
-          formatDay={(locale, date) => moment(date).format('DD')}
-          value={value}
-          tileContent={addContent}
-          showNeighboringMonth={true}
-          next2Label={null}
-          prev2Label={null}
-        /> */}
         <Calendar
           locale="kor"
           onChange={onChange}
           formatDay={(locale, date) => moment(date).format('DD')}
-          // formatShortWeekday={(locale, date) => moment(date).format('DD')}
           value={value}
           tileContent={addContent}
           showNeighboringMonth={true}
           next2Label={null}
           prev2Label={null}
-          oneWeekCalendar={true}
         />
       </div>
       {/* 월별 주별 토글버튼 */}
@@ -83,55 +72,7 @@ function ReactCalendar() {
           </div>
         </div>
       </div> */}
-      <div className="title-container">
-        <div className="record-main-title mt-4 row">
-          <div className="col-sm"></div>
-          <div className="today col-sm">{moment(value).format('YYYY.MM.DD')}</div>
-          <div className="more-record-btn col-sm">
-            <span className="plus">+ 내역추가</span>
-          </div>
-        </div>
-      </div>
-      <div className="record-container">
-        <div className="record-info-area">
-          <div className="record-info">14:53 | 홈플러스</div>
-          <div className="record-cat">술</div>
-        </div>
-
-        <div className="record-title-area">
-          <div className="record-title">
-            <span className="record-title-name">홈플러스에서 술을 샀다</span>
-            <i className="bi bi-receipt"></i>
-          </div>
-          <div className="record-price">-30,000원</div>
-        </div>
-        <div className="line"></div>
-      </div>
-      <div className="record-container">
-        <div className="record-info-area">
-          <div className="record-info">14:53 | 홈플러스</div>
-          <div className="record-cat">술</div>
-        </div>
-
-        <div className="record-title-area">
-          <div className="record-title">홈플러스에서 술을 샀다</div>
-          <div className="record-price">-30,000원</div>
-        </div>
-        <div className="line"></div>
-      </div>
-      <div className="record-container">
-        <div className="record-info-area">
-          <div className="record-info">14:53 | 홈플러스</div>
-          <div className="record-cat">술</div>
-        </div>
-
-        <div className="record-title-area">
-          <div className="record-title">홈플러스에서 술을 샀다</div>
-          <div className="record-price">-30,000원</div>
-        </div>
-        <div className="line"></div>
-      </div>
-      <btn className="more-btn">+ 더보기</btn>
+      <Record value={value} />
     </div>
   );
 }
