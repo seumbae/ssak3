@@ -71,10 +71,10 @@ function ReactCalendar() {
       </div>
       <div className="triangle"></div>
       <div className="category-container">
-        <div className="cat-btn cat-1">전체</div>
-        <div className="cat-btn cat-2">교통</div>
-        <div className="cat-btn cat-3">쇼핑</div>
-        <div className="cat-btn cat-4">술</div>
+        <div className="cat-btn1 cat-1">전체</div>
+        <div className="cat-btn1 cat-2">교통</div>
+        <div className="cat-btn1 cat-3">쇼핑</div>
+        <div className="cat-btn1 cat-4">술</div>
       </div>
       <div className="calendar-container">
         <Calendar
@@ -100,6 +100,15 @@ function ReactCalendar() {
           </div>
         </div>
       </div> */}
+      <div className="title-container">
+        <div className="record-main-title mt-4 row">
+          <div className="col-sm"></div>
+          <div className="today col-sm">{moment(value).format('YYYY.MM.DD')}</div>
+          <div className="more-record-btn col-sm">
+            <span className="plus">+ 내역추가</span>
+          </div>
+        </div>
+      </div>
 
       <Record value={value} />
     </div>

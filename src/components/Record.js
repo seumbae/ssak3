@@ -1,6 +1,7 @@
 import React from 'react';
 import '../styles/record.css';
 import moment from 'moment';
+import receiptImg from '../assets/images/receipt.jpg';
 
 const records = [
   { time: '14:53', name: '홈플러스', cat: '술', title: '홈플에서 술삼', price: '30000' },
@@ -25,25 +26,16 @@ function getColor(i) {
   }
 }
 
-function Record(value) {
+function Record({ value }) {
+  console.log(moment(value).format('YYYY.MM.DD'));
   return (
     <div>
-      <div className="title-container">
-        <div className="record-main-title mt-4 row">
-          <div className="col-sm"></div>
-          <div className="today col-sm">{moment(value).format('YYYY.MM.DD')}</div>
-          <div className="more-record-btn col-sm">
-            <span className="plus">+ 내역추가</span>
-          </div>
-        </div>
-      </div>
-
-      <div className="accordion" id="accordionPanelsStayOpenExample">
+      <div className="accordion mt-4 mb-4" id="accordionPanelsStayOpenExample">
         {records.map((r, i) => (
           <div className="accordion-item" key={i}>
             <h2 className="accordion-header" id={`panelsStayOpen-heading${i}`}>
               <button
-                className="accordion-button record-container"
+                className="accordion-button"
                 type="button"
                 key={i}
                 data-bs-toggle="collapse"
@@ -51,21 +43,23 @@ function Record(value) {
                 aria-expanded="true"
                 aria-controls={`panelsStayOpen-collapse${i}`}
               >
-                <div className="record-info-area">
-                  <div className="record-info">
-                    {r.time} | {r.name}
+                <div className="record-container">
+                  <div className="record-info-area">
+                    <div className="record-info">
+                      {r.time} | {r.name}
+                    </div>
+                    <div className={`record-cat ${getColor(i)}`}>{r.cat}</div>
                   </div>
-                  <div className={`record-cat ${getColor(i)}`}>{r.cat}</div>
-                </div>
 
-                <div className="record-title-area">
-                  <div className="record-title">
-                    <span className="record-title-name">{r.title}</span>
-                    <i className="bi bi-receipt"></i>
+                  <div className="record-title-area">
+                    <div className="record-title">
+                      <span className="record-title-name">{r.title}</span>
+                      <i className="bi bi-receipt"></i>
+                    </div>
+                    <div className="record-price">-{r.price}원</div>
                   </div>
-                  <div className="record-price">-{r.price}원</div>
+                  {/* <div className="line"></div> */}
                 </div>
-                {/* <div className="line"></div> */}
               </button>
             </h2>
             <div
@@ -74,8 +68,42 @@ function Record(value) {
               aria-labelledby={`panelsStayOpen-heading${i}`}
             >
               <div className="accordion-body">
-                Placeholder content for this accordion, which is intended to demonstrate the{' '}
-                <code>.accordion-flush</code> className. This is the firsts accordion body.
+                <div className="vertical">
+                  <div className="vertical-line"></div>
+                  <div className="vertical-body">
+                    <div className="body-cat">
+                      <div className="vertical-dot"></div>
+                      <div className="cat-btn cat-1">전체</div>
+                      <div className="cat-btn cat-2">교통</div>
+                      <div className="cat-btn cat-3">쇼핑</div>
+                      <div className="cat-btn cat-4">술</div>
+                      <div className="cat-btn cat-plus">+</div>
+                    </div>
+                    <div className="body-content">
+                      <div className="vertical-dot"></div>
+                      <span className="record-title-name">{r.title}</span>
+                    </div>
+                    <div className="body-price">
+                      <div className="vertical-dot"></div>
+                      <span className="record-price">-{r.price}원</span>
+                    </div>
+
+                    <div className="body-receipt">
+                      <div className="vertical-dot"></div>
+                      <img className="receipt-img" src={receiptImg} alt="receipt" />
+                    </div>
+                    <div className="body-time">
+                      <div className="vertical-dot"></div>
+                      <span className="record-info">
+                        {r.time} | {r.name}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div className="btn-container">
+                  <button className="del-btn">삭제</button>
+                  <button className="edit-btn">수정</button>
+                </div>
               </div>
             </div>
           </div>
