@@ -25,6 +25,12 @@
   "rules": {
     "import/no-unresolved": "off",
     "react/prop-types": "off",
-    "import/no-named-as-default": 0
+    "import/no-named-as-default": 0,
+    "jsx-a11y/label-has-associated-control": [
+      2,
+      {
+        "labelAttributes": ["htmlFor"]
+      }
+    ]
   }
 }
