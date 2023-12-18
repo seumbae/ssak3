@@ -15,7 +15,7 @@ function Second() {
     <div className="body-relative flex">
       <div className="body-container">
         <img src={Step2} alt="step2" />
-        <div className="fs-2 fw-bold mt-5 mb-5">돈기브업은?</div>
+        <div className="fs-1 fw-bold mt-5 mb-3">돈기브업은?</div>
         <div className="fs-5 contents-wrapper">
           <div>
             <div>오직 하나의 분야를 정해</div>
