@@ -48,7 +48,7 @@
 .record-cat {
   border-radius: 3px;
   background: #fdc453;
-  width: 35.649px;
+  padding: 0px 6px;
   height: 15px;
   flex-shrink: 0;
   color: #000;
