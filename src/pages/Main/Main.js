@@ -2,10 +2,16 @@ import React from 'react';
 import '../../styles/main.css';
 import mainImage from '../../assets/images/main.png';
 import { useNavigate } from 'react-router-dom';
+import { getUsers } from '../../services/service';
 
 function Main() {
   const navigate = useNavigate();
-  const handleStartClick = () => {
+  const handleStartClick = (e) => {
+    e.preventDefault();
+
+    // getUsers({userId : 1}).then((res) => {
+    //   console.log(res);
+    // }); 
     if (localStorage.getItem('userId') === null) {
       navigate('/stip', {state : {idx : 1}});
     }

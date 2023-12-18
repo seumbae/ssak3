@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import First from './First';
 import Second from './Second';
 import Third from './Third';
+import Forth from './Forth';
 
 function Stipulation(props) {
   const navigate = useNavigate();
@@ -22,6 +23,9 @@ function Stipulation(props) {
   }
   else if(location.state.idx === 3){
     return <Third />
+  }
+  else if(location.state.idx === 4){
+    return <Forth />
   }
 }
 
