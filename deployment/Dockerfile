@@ -2,6 +2,7 @@ FROM node:alpine as builder
 
 WORKDIR /app
 COPY . ./
+RUN npm cache clean --force
 RUN npm install && npm run build 
 
 ## 빌드 결과를 nginx에 배포한다.
