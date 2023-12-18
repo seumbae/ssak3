@@ -7,7 +7,7 @@
   color: #828181;
   text-align: right;
   font-family: KBFG Display;
-  font-size: 16px;
+  font-size: 14px;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
@@ -47,8 +47,8 @@
 }
 .record-cat {
   border-radius: 3px;
-  background: #fdc453;
-  padding: 0px 6px;
+
+  width: 35.649px;
   height: 15px;
   flex-shrink: 0;
   color: #000;
@@ -58,6 +58,25 @@
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+}
+
+.cat1 {
+  background: #fdc453;
+}
+.cat2 {
+  background: #f886a8;
+}
+.cat3 {
+  background: #fe8d6f;
+}
+.cat4 {
+  background: #a0dde0;
+}
+.cat5 {
+  background: #dfdd6c;
+}
+.cat6 {
+  background: #9adbc5;
 }
 
 .record-title-area {
