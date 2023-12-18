@@ -1,10 +1,9 @@
 /* toggle btns */
 .toggle-container {
   margin-right: 5px;
-  margin-top: 20px;
+  margin-top: 5px;
   align-items: center;
-  padding-left: 10px;
-  padding-right: 10px;
+
   display: flex;
 }
 .whole-btn {
@@ -173,7 +172,7 @@
   display: flex;
 }
 
-.cat-btn {
+.cat-btn1 {
   border-radius: 3px;
   width: 35.649px;
   height: 15px;
