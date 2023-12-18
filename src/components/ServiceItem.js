@@ -1,23 +1,20 @@
 import React from 'react';
 import '../styles//ServiceItem.css';
-import { useNavigate } from 'react-router-dom';
 
 function ServiceItem(props) {
-  const navigate = useNavigate();
-  const handleCardClick = () => {
-    navigate('/chart');
-  };
   return (
-    <div className="ServiceItem" onClick={handleCardClick} onKeyDown={(e) => console.log(e.key)} role="presentation">
+    <div className="ServiceItem">
       <div className="descriptionBox">
-        <p>
+        <div>
           {props.desTop}
           <br />
           {props.desBottom}
-        </p>
+        </div>
       </div>
       <div className="bottomBox">
-        <div className="title">{props.title}</div>
+        <button onClick={props.handleCardClick} className="title">
+          {props.title}
+        </button>
         <div className="imgBox">
           <img src={props.image} alt="이미지" />
         </div>
