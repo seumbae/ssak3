@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import '../styles/record.css';
 import moment from 'moment';
 import receiptImg from '../assets/images/receipt.jpg';
@@ -6,6 +6,9 @@ import receiptImg from '../assets/images/receipt.jpg';
 const records = [
   { time: '14:53', name: '홈플러스', cat: '술', title: '홈플에서 술삼', price: '30000' },
   { time: '16:53', name: '라공방', cat: '식사', title: '마라탕 먹음', price: '10000' },
+  { time: '20:53', name: '다이소', cat: '장갑', title: '추워서 장갑삼', price: '2000' },
+  { time: '20:53', name: '다이소', cat: '장갑', title: '추워서 장갑삼', price: '2000' },
+
   { time: '20:53', name: '다이소', cat: '장갑', title: '추워서 장갑삼', price: '2000' },
 ];
 
@@ -27,7 +30,10 @@ function getColor(i) {
 }
 
 function Record({ value }) {
-  console.log(moment(value).format('YYYY.MM.DD'));
+  const [recordList, setRecordList] = useState([]);
+  const [curList, setCurList] = useState(3);
+  const listCount = records.length;
+  console.log(listCount);
   return (
     <div>
       <div className="accordion mt-4 mb-4" id="accordionPanelsStayOpenExample">
@@ -108,6 +114,17 @@ function Record({ value }) {
             </div>
           </div>
         ))}
+
+        {listCount > 3 && listCount >= curList && (
+          <btn className="more-btn" onClick={() => setCurList(records.current + 1)}>
+            + 더보기
+          </btn>
+        )}
+        {records?.total > 3 && records.total <= records.current && (
+          <btn className="more-btn" onClick={() => setCurList(0)}>
+            - 접기
+          </btn>
+        )}
         {/* <div className="accordion-item">
           <h2 className="accordion-header" id="flush-headingTwo">
             <button
@@ -161,8 +178,6 @@ function Record({ value }) {
           </div>
         </div> */}
       </div>
-
-      <btn className="more-btn">+ 더보기</btn>
     </div>
   );
 }
