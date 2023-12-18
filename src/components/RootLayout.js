@@ -5,9 +5,7 @@ import '../styles/common.css';
 export function RootLayout() {
   return (
     <div className="root-layout">
-      <div className="root-container">
         <Outlet />
-      </div>
     </div>
   );
 }
