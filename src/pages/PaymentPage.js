@@ -1,7 +1,11 @@
 import React from 'react';
-
+import payment from '../assets/images/payments.png';
 function PaymentPage() {
-  return <div>결제내역 화면 입니다.</div>;
+  return (
+    <div className="body-container">
+      <img src={payment} alt="chart" />
+    </div>
+  );
 }
 
 export default PaymentPage;

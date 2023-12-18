@@ -1,7 +1,12 @@
 import React from 'react';
+import yours from '../assets/images/yours.png';
 
 function YourFNLG() {
-  return <div>너의 적금화면 입니다.</div>;
+  return (
+    <div className="body-container">
+      <img src={yours} alt="chart" />
+    </div>
+  );
 }
 
 export default YourFNLG;

@@ -1,7 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import chartImg from '../assets/images/chart.png';
 
 function ChartPage() {
-  return <div>통계화면 입니다.</div>;
+  return (
+    <div className="body-container">
+      <img src={chartImg} alt="chart" />
+    </div>
+  );
 }
 
 export default ChartPage;

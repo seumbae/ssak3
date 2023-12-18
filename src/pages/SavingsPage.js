@@ -1,7 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import saving from '../assets/images/saving.png';
 
 function SavingsPage() {
-  return <div> 적금 화면 입니다.</div>;
+  return (
+    <div className="body-container">
+      <img src={saving} alt="chart" />
+    </div>
+  );
 }
 
 export default SavingsPage;

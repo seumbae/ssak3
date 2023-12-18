@@ -19,6 +19,9 @@
 }
 
 .bottomBox .title {
+  appearance: none;
+  border: none;
+  background : none;
   padding-left: 10px;
   font-family: KBTitleM;
   font-size: 24px;
