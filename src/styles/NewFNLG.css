@@ -132,7 +132,7 @@
 .EditBox {
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .customBudgetInput {
@@ -150,4 +150,48 @@
 
 .FNLG-downIcon {
   cursor: pointer;
+}
+
+.Offcanvas {
+  min-height: 300px;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+.OffcanvasContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.selectTitle {
+  font-family: KBTitleB;
+  font-size: 24px;
+  height: 60px;
+  line-height: 60px;
+  padding: 0 15px;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  display: flex;
+  justify-content: space-between;
+  button {
+    border: none;
+    background-color: white;
+    align-items: center;
+    padding: 0;
+  }
+}
+
+.selectList{
+  height: 180px;
+  padding-top: 15px;
+}
+
+.selectCheck{
+  background-color: #ffcc00;
+  height: 60px;
+  line-height: 60px;
+  font-family: KBTextB;
+  font-size: 24px;
+  text-align: center;
 }
