@@ -2,6 +2,9 @@ import axios from "axios";
 
 const API = axios.create({
     baseURL: process.env.REACT_APP_API_SERVER_BASEURL,
+    headers: {
+        "Content-Type": "application/json",
+      },
 })
 
  /* 임시 */
@@ -9,9 +12,9 @@ const API = axios.create({
 
 // parameters : userId(Integer), 유저 조회
 // export const getUsers = async (data) => await API.post('/user?userId=1');
-export const getUsers = async (data) => await API.post('/user', null, {params : data});
+export const getUsers = async (data) => await API.post('/user', data);
 // parameters : isNewUser(Boolean), 유저 생성
-export const createUser = async (data) => await API.post('/user/create', null, {params : data});
+export const createUser = async (data) => await API.post('/user/create', data);
 
 
 // Ledger(임시)
@@ -23,10 +26,11 @@ export const getMyList = async (data) => await API.get('/ledger/my-list', data);
 // parameters : userId(Integer), 나를 제외한 모든 사용자의 가계부 목록 조회
 export const getOthersList = async (data) => await API.get('/ledger/others-list', data);
 // parameters : ledgerId(Integer), 기존 가계부 삭제
-export const remove = async (data) => await API.post('/ledger/remove', data);
+export const removeLedger = async (data) => await API.post('/ledger/remove', data);
 // parameters : ledgerId(Integer), 기존 가계부 편집
-export const modify = async (data) => await API.post('/ledger/remove', data);
-
+export const modifyLedger = async (data) => await API.post('/ledger/modify', data);
+// parameters : body, 가계부 생성
+export const addLedger = async (data) => await API.post('/ledger/add', data);
 
 // Category
 
