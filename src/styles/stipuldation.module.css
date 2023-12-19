@@ -41,9 +41,21 @@
 }
 
 .records_wrapper {
-    padding-top: 150px;
-
+    margin-top: 200px;
+    display: flex;
+    flex-direction: column;
 }
+
+.records_wrapper > div:first-child {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.records_wrapper > div:last-child {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
 
 .inactive_text {
     color : var(--font-not-gray);
@@ -51,4 +63,80 @@
 
 .inactive_bg {
     background-color: var(--font-not-gray);
+}
+
+.record_container {
+    padding: 0px;
+    width: 100%;
+    border : 1px solid #e0e0e0;
+    padding: 10px;
+    
+}
+
+.record_info_area {
+    display: flex;
+    justify-content: space-between;
+}
+
+.record_info {
+    color: #616161;
+    font-family: KBFG Text;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+.record_cat {
+    border-radius: 3px;
+    width: 35.649px;
+    height: 15px;
+    flex-shrink: 0;
+    color: #000;
+    text-align: center;
+    font-family: KBFG Text;
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.cat1 {
+background: #fdc453;
+}
+.cat2 {
+  background: #f886a8;
+}
+.cat3 {
+  background: #fe8d6f;
+}
+
+.record_title_area {
+  margin-top: 5px;
+  display: flex;
+  justify-content: space-between;
+  color: #000;
+  font-family: KBFG Text;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+.record_title {
+  color: #000;
+  font-family: KBFG Text;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.record_title_name {
+    margin-right: 10px;
+}
+.record_price {
+    color: #000;
+    font-family: KBFG Text;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
 }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Step3 from '../../assets/images/stipulationStep3.png';
 import NextBtnComplete from '../../components/NextBtnComplete';
 import { useNavigate } from 'react-router-dom';
@@ -10,6 +10,14 @@ function Third() {
   const handleNextClick = () => {
     navigate('/stip', { state: { idx: 4 } });
   };
+
+  const records = [
+    { time: '14:53', name: '홈플러스', cat: '술', title: '홈플에서 술삼', price: '30000' },
+    { time: '16:53', name: '라공방', cat: '식사', title: '마라탕 먹음', price: '10000' },
+    { time: '20:53', name: '다이소', cat: '장갑', title: '추워서 장갑삼', price: '2000' },
+  ];
+
+  const catClasses = [`${styles.cat1}`, `${styles.cat2}`, `${styles.cat3}`];
 
   return (
     <div className={`${styles.body_relative} ${styles.flex}`}>
@@ -29,49 +37,28 @@ function Third() {
             <div>식비 지출만 관리할 수 있도록 도와줄게요.</div>
           </div>
         </div>
-      </div>
       <div className={styles.records_wrapper}>
-        <div className="record-container">
-          <div className="record-info-area">
-            <div className="record-info">14:53 | 맥도날드</div>
-            <div className="record-cat">점심</div>
-          </div>
-
-          <div className="record-title-area">
-            <div className="record-title">
-              <span className="record-title-name">맥도날드</span>
-              <i className="bi bi-receipt"></i>
+        {records.map((r, i) => (
+          <div className={styles.record_container} key={i}>
+            <div className={styles.record_info_area}>
+              <div className={styles.record_info}>
+                {r.time} | {r.name}
+              </div>
+              <div className={`${styles.record_cat} ${catClasses[i]}`}>{r.cat}</div>
             </div>
-            <div className="record-price">-14,300원</div>
-          </div>
-          <div className="line"></div>
-        </div>
-        <div className="record-container">
-          <div className="record-info-area">
-            <div className={`record-info ${styles.inactive_text}`}>16:27 | IFC몰</div>
-            <div className={`record-cat ${styles.inactive_bg}`}>쇼핑</div>
-          </div>
-          <div>
-            <div className="record-title-area">
-              <div className={`${styles.inactive_text} record-title`}>자라</div>
-              <div className={`${styles.inactive_text} record-price`}>-110,200원</div>
-            </div>
-            <div className="line"></div>
-          </div>
-        </div>
-        <div className="record-container">
-          <div className="record-info-area">
-            <div className="record-info">19:33 | 타코야끼</div>
-            <div className="record-cat">간식</div>
-          </div>
 
-          <div className="record-title-area">
-            <div className="record-title">타코야끼 전문점</div>
-            <div className="record-price">-11,000원</div>
+            <div className={styles.record_title_area}>
+              <div className={styles.record_title}>
+                <span className={styles.record_title_name}>{r.title}</span>
+                <i className="bi bi-receipt"></i>
+              </div>
+              <div className={styles.record_price}>-{r.price}원</div>
+            </div>
           </div>
-          <div className="line"></div>
-        </div>
+        ))}
       </div>
+      </div>
+
       <NextBtnComplete handleNextClick={handleNextClick}>다음</NextBtnComplete>
     </div>
   );
