@@ -1,8 +1,7 @@
 import React, { useRef, useState } from 'react';
 import newlamu from '../assets/newlamu.png';
-import NextBtnComplete from './NextBtnComplete';
 
-function NewFNLGBudget({ setBudgetShow, setGoalShow }) {
+function NewFNLGBudget({ setBudgetShow, setGoalShow, setMonthBudget }) {
   const budgetInput = useRef(350000);
   const [budgetInputShow, setBudgetInputShow] = useState(false);
   const [currentBudget, setCurrentBudget] = useState(budgetInput.current);
@@ -27,29 +26,25 @@ function NewFNLGBudget({ setBudgetShow, setGoalShow }) {
   const formatNumber = (num) => {
     return Number(num).toLocaleString();
   };
-
-  const [nextInputShow, setNextInputShow] = useState(false);
-
   const budgetNextClick = () => {
-    if (nextInputShow) {
-      setBudgetShow(false);
-      setGoalShow(true);
-    } else {
-      setNextInputShow(true);
+    setMonthBudget(currentBudget);
+    if(budgetInputShow) {
+      setBudgetInputShow(false);
     }
+    setBudgetShow(false);
+    setGoalShow(true);
   };
 
   return (
     <div className="NewFNLGGoalDiv">
-      {/* TODO: 왼쪽 padding이 좀 이상하다? */}
-      <div className="NewFNLGBudgetTop">
-        <div className="NewFNLGBudgetTitle">{formatNumber(currentBudget)}원</div>
-        <button className="EditButton" onClick={handleEditClick}>
-          수정
-        </button>
-      </div>
-
-      {budgetInputShow && (
+      <div>
+        <div className='NewFNLGBudgetTop'>
+          <div className="NewFNLGBudgetTitle">{formatNumber(currentBudget)}원</div>
+          <button className="EditButton" onClick={handleEditClick}>
+            수정
+          </button>
+        </div>
+        {budgetInputShow && (
         <div className="EditBox">
           <input
             className="customBudgetInput"
@@ -63,15 +58,14 @@ function NewFNLGBudget({ setBudgetShow, setGoalShow }) {
           </button>
         </div>
       )}
-
-      <div className="NewFNLGBudgetText">
-        <div>저희가 추천하는 패션/쇼핑 예산이에요</div>
-        <div>지난 달보다 {formatNumber(400500 - currentBudget)}원을 아낄 수 있어요</div>
+        <div className="NewFNLGBudgetText">
+          <div>저희가 추천하는 패션/쇼핑 예산이에요</div>
+          <div>지난 달보다 {formatNumber(400500 - currentBudget)}원을 아낄 수 있어요</div>
+        </div>
       </div>
       <img src={newlamu} alt="newlamu" width="217" height="245"></img>
-      {/* TODO: 한글자라도 입력 안되어 있으면 완료 안눌리게끔 색 변경 */}
       <button className="next-btn-complete fs-2" onClick={budgetNextClick}>
-        완료
+        다음
       </button>
     </div>
   );
