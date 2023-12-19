@@ -90,6 +90,10 @@ function Record({ value }) {
                           <div className="vertical-dot"></div>
 
                           <div className="my-btn">
+                            <input type="button" onClick={handleCatBtn} className="cat-btn cat-4" value="술"></input>
+                          </div>
+                          {/*
+                          <div className="my-btn">
                             <input type="button" onClick={handleCatBtn} className="cat-btn cat-1" value="전체"></input>
                             {checkCatBtn === '전체' ? <i className="bi bi-check"></i> : ''}
                           </div>
@@ -114,7 +118,7 @@ function Record({ value }) {
                               className="cat-plus"
                               value="+"
                             ></input>
-                            {isModalOpen == true ? (
+                             {isModalOpen == true ? (
                               <CheckModal
                                 isOpen={isModalOpen}
                                 modalClose={() => setIsModalOpen(false)}
@@ -125,8 +129,8 @@ function Record({ value }) {
                               />
                             ) : (
                               ''
-                            )}
-                          </div>
+                            )} 
+                            </div> */}
                         </div>
                         <div className="body-content">
                           <div className="vertical-dot"></div>
