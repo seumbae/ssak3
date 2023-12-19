@@ -1,8 +1,7 @@
 import React, { useRef, useState } from 'react';
 import newlamu from '../assets/newlamu.png';
-import NextBtnComplete from './NextBtnComplete';
 
-function NewFNLGBudget({ setBudgetShow, setGoalShow }) {
+function NewFNLGBudget({ setBudgetShow, setGoalShow, setMonthBudget }) {
   const budgetInput = useRef(350000);
   const [budgetInputShow, setBudgetInputShow] = useState(false);
   const [currentBudget, setCurrentBudget] = useState(budgetInput.current);
@@ -27,54 +26,44 @@ function NewFNLGBudget({ setBudgetShow, setGoalShow }) {
   const formatNumber = (num) => {
     return Number(num).toLocaleString();
   };
-
-  const [nextInputShow, setNextInputShow] = useState(false);
-
   const budgetNextClick = () => {
-    if (nextInputShow) {
-      setBudgetShow(false);
-      setGoalShow(true);
-    } else {
-      setNextInputShow(true);
+    setMonthBudget(currentBudget);
+    if(budgetInputShow) {
+      setBudgetInputShow(false);
     }
+    setBudgetShow(false);
+    setGoalShow(true);
   };
 
   return (
     <div className="NewFNLGGoalDiv">
-      {/* <div>
-        <div className="NewFNLGBudgetTitle">{formatNumber(400500)}원</div>
-        <div className="NewFNLGBudgetText">지난 달 패션/쇼핑에 소비하신 금액이에요</div>
-        <img src={newlamu} alt="newlamu"></img>
-      </div> */}
-
       <div>
-        <div className="NewFNLGBudgetTop">
+        <div className='NewFNLGBudgetTop'>
           <div className="NewFNLGBudgetTitle">{formatNumber(currentBudget)}원</div>
           <button className="EditButton" onClick={handleEditClick}>
             수정
           </button>
         </div>
-
         {budgetInputShow && (
-          <div className="EditBox">
-            <input
-              className="customBudgetInput"
-              name="budgetInput"
-              ref={budgetInput}
-              value={formatNumber(currentBudget)}
-              onChange={handleInputChange}
-            ></input>
-            <button className="EditButton" onClick={handleCompleteClick}>
-              완료
-            </button>
-          </div>
-        )}
+        <div className="EditBox">
+          <input
+            className="customBudgetInput"
+            name="budgetInput"
+            ref={budgetInput}
+            value={formatNumber(currentBudget)}
+            onChange={handleInputChange}
+          ></input>
+          <button className="EditButton" onClick={handleCompleteClick}>
+            완료
+          </button>
+        </div>
+      )}
         <div className="NewFNLGBudgetText">
           <div>저희가 추천하는 패션/쇼핑 예산이에요</div>
           <div>지난 달보다 {formatNumber(400500 - currentBudget)}원을 아낄 수 있어요</div>
-          <img src={newlamu} alt="newlamu" width="217" height="245"></img>
         </div>
       </div>
+      <img src={newlamu} alt="newlamu" width="217" height="245"></img>
       <button className="next-btn-complete fs-2" onClick={budgetNextClick}>
         다음
       </button>

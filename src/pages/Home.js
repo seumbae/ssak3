@@ -13,6 +13,27 @@ function Home() {
   const saveMoney = 3000;
   const [FNLG, setFNLG] = useState('식비');
 
+<<<<<<< HEAD
+=======
+  try {
+    getUsers(localStorage.getItem('userId')).then(({data, status}) => {
+      if (status === 200) {
+        localStorage.setItem('userId', data.userId);
+        localStorage.setItem('kbPIN', data.kbPIN);
+        localStorage.setItem('userName', data.userName);
+        localStorage.setItem('age', data.age);
+        localStorage.setItem('income', data.income);
+      }
+
+      if (status === 404) {
+        throw new Error('서버와의 연결이 원활하지 않습니다.');
+      }
+    });
+  } catch (error) {
+    alert('서버와의 연결이 원활하지 않습니다.');
+  }
+
+>>>>>>> 2a8163cf9bd96dfdb984ba6328fb3a95e9764ff8
   return (
     <div className="paddingBox">
       <div className="emptyBox"></div>

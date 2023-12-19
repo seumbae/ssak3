@@ -12,7 +12,7 @@ function Forth() {
   const handleNextClick = () => {
     if (localStorage.getItem('userId') === null) {
       try {
-        createUser({ isNewUser: true }).then((res) => {
+        createUser(true).then((res) => {
             localStorage.setItem('userId', res.data.userId);
             localStorage.setItem('kbPIN', res.data.kbPIN);
             localStorage.setItem('userName', res.data.userName);
