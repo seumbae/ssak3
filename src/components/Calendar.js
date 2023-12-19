@@ -9,34 +9,7 @@ import { getRecordList, createCategory } from '../services/service';
 const dayList = [];
 //const [dayList, setDayList] = useState([]);
 
-function addContent({ date }) {
-  const contents = [];
-  console.log('dayList', dayList);
-  dayList?.forEach((val) => {
-    if (val === moment(date).format('YYYY-MM-DD')) {
-      contents.push(
-        <>
-          <div className="dot-box">
-            <div className="dot"></div>
-          </div>
-        </>,
-      );
-    }
-  });
-  //   if (dayList.find((day) => day === moment(date).format('YYYY-MM-DD'))) {
-  //     contents.push(
-  //       <>
-  //         <div className="dot-box">
-  //           <div className="dot"></div>
-  //         </div>
-  //       </>,
-  //     );
-  //   }
-  console.log('con', contents);
-  return <div>{contents}</div>;
-}
-
-function ReactCalendar() {
+function ReactCalendar({ curledger, recordList }) {
   const [dayList, setDayList] = useState([]);
   const [value, onChange] = useState(new Date()); // 초기값은 현재 날짜
   const [checked, setChecked] = useState('전체');
@@ -55,39 +28,63 @@ function ReactCalendar() {
       console.log('지출');
     }
   };
+
+  function addContent({ date }) {
+    const contents = [];
+    recordList.find((val) => {
+      if (val.tranYmd === moment(date).format('YYYY-MM-DD')) {
+        contents.push(
+          <>
+            <div className="dot-box">
+              <div className="dot"></div>
+            </div>
+          </>,
+        );
+      }
+    });
+    //   if (dayList.find((day) => day === moment(date).format('YYYY-MM-DD'))) {
+    //     contents.push(
+    //       <>
+    //         <div className="dot-box">
+    //           <div className="dot"></div>
+    //         </div>
+    //       </>,
+    //     );
+    //   }
+    return <div>{contents}</div>;
+  }
   // console.log(checked);
   //   console.log(recordData);
+  //   useEffect(() => {
+  //     getRecordList({ ledgerId: '2', yearMonth: '2023-12' })
+  //       .then(({ data, status }) => {
+  //         if (status === 200) {
+  //           console.log(data);
 
-  useEffect(() => {
-    getRecordList({ ledgerId: '2', yearMonth: '2023-12' })
-      .then(({ data, status }) => {
-        if (status === 200) {
-          console.log(data);
+  //   data.recordList.map((val) => {
+  //     setDayList((prev) => [...prev, val.tranYmd]);
+  //     //setDayList((prev) => [...prev, val]);
+  //     //dayList.push(val.tranYmd);
+  //   });
 
-          data.recordList.map((val) => {
-            setDayList((prev) => [...prev, val.tranYmd]);
-            //setDayList((prev) => [...prev, val]);
-            //dayList.push(val.tranYmd);
-          });
+  //           data.recordList.map((val) => {
+  //             if (val.isExpense == '1') {
+  //               //   catList.push(val.categoryName);
+  //               setCatList((prev) => [...prev, val.categoryName]);
+  //             }
+  //           });
+  //           console.log('hey', dayList);
+  //           console.log(catList);
+  //         }
 
-          data.recordList.map((val) => {
-            if (val.isExpense == '1') {
-              //   catList.push(val.categoryName);
-              setCatList((prev) => [...prev, val.categoryName]);
-            }
-          });
-          console.log('hey', dayList);
-          console.log(catList);
-        }
-
-        if (status === 404) {
-          throw new Error('서버와의 연결이 원활하지 않습니다.');
-        }
-      })
-      .catch(() => {
-        console.log('서버와의 연결이 원활하지 않습니다.');
-      });
-  }, []);
+  //         if (status === 404) {
+  //           throw new Error('서버와의 연결이 원활하지 않습니다.');
+  //         }
+  //       })
+  //       .catch(() => {
+  //         console.log('서버와의 연결이 원활하지 않습니다.');
+  //       });
+  //   }, []);
 
   return (
     <div>
