@@ -36,7 +36,6 @@ function ReactCalendar() {
       console.log('지출');
     }
   };
-  console.log(checked);
 
   return (
     <div>

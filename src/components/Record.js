@@ -34,7 +34,6 @@ function Record({ value }) {
   const listCount = records.length;
   const [recordCount, setRecordCount] = useState(3);
   const [checkCatBtn, setCheckCatBtn] = useState([]);
-  console.log(checkCatBtn);
   const handleCatBtn = (e) => {
     setCheckCatBtn(e.target.value);
   };
