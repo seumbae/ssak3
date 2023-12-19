@@ -7,6 +7,7 @@ import NextBtnComplete from './NextBtnComplete';
 import { Offcanvas } from 'react-bootstrap';
 import iconX from '../assets/images/iconX.png';
 import Picker from './Picker';
+import '../styles/NewFNLG.css'
 
 function NewFNLGTheme({ setThemeShow, setLastBudgetShow, themeList, selectedTheme, setSelectedTheme }) {
   const [nextBtnShow, setNextBtnShow] = useState(false);
