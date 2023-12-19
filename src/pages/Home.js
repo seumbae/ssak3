@@ -27,12 +27,13 @@ function Home() {
         setLedgers(res.data);
         setCurledger(res.data[0]);
         setFNLG(res.data[0].theme.themeName);
-        
+
         const date = new Date();
         getRecordList({ ledgerId: res.data[0].ledgerId, yearMonth: moment(date).format('YYYY-MM') }).then((res) => {
           setRecordList(res.data.recordList);
         });
-
+      })
+      .then(() => {
         setLoading(false);
       })
       .catch(() => {
@@ -42,30 +43,36 @@ function Home() {
       });
   }, []);
 
-  if (loading) {
-    return <Loading />;
-  }
+  // if (loading) {
+  //   return <Loading />;
+  // }
 
   return (
-    <div className="paddingBox">
-      <div className="emptyBox"></div>
-      <UserBar userName={curledger.user.userName} userAvatar={iconAvatar} />
-      <div className="emptyBox"></div>
-      <FNLGBar
-        FNLGList={ledgers.map((ledger) => ledger.theme.themeName)}
-        getFNLG={(goal) => setFNLG(goal)}
-        defaultGoal={FNLG}
-        setCurledger={setCurledger}
-        ledgers={ledgers}
-      />
-      <div className="emptyBox"></div>
-      <BudgetBar use={curledger.monthExpense} budget={curledger.monthBudget} curledger={curledger} />
-      <div className="emptyBox"></div>
-      <ReactCalendar curledger={curledger} recordList={recordList}/>
-      <div className="emptyBox"></div>
-      <PredictMotive saveMoney={saveMoney} />
-      <ServiceList />
-    </div>
+    <>
+      {loading ? (
+        <Loading />
+      ) : (
+        <div className="paddingBox">
+          <div className="emptyBox"></div>
+          <UserBar userName={curledger.user.userName} userAvatar={iconAvatar} />
+          <div className="emptyBox"></div>
+          <FNLGBar
+            FNLGList={ledgers.map((ledger) => ledger.theme.themeName)}
+            getFNLG={(goal) => setFNLG(goal)}
+            defaultGoal={FNLG}
+            setCurledger={setCurledger}
+            ledgers={ledgers}
+          />
+          <div className="emptyBox"></div>
+          <BudgetBar use={curledger.monthExpense} budget={curledger.monthBudget} curledger={curledger} />
+          <div className="emptyBox"></div>
+          <ReactCalendar curledger={curledger} recordList={recordList} />
+          <div className="emptyBox"></div>
+          <PredictMotive saveMoney={saveMoney} />
+          <ServiceList />
+        </div>
+      )}
+    </>
   );
 }
 
