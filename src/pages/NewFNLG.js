@@ -12,8 +12,11 @@ function NewFNLG() {
   const [budgetShow, setBudgetShow] = useState(false);
   const [goalShow, setGoalShow] = useState(false);
 
+  const [monthBudget, setMonthBudget] = useState(0); // 월 예산
+  const [monthExpense, setMonthExpense] = useState(0); // 월 사용 금액
+  const [isPublic, setIsPublic] = useState('1'); // 공개 여부
   const [themeList, setThemeList] = useState([]);
-  const [selectedTheme, setSelectedTheme] = useState({ themeId: 0, themeName: '전체' });
+  const [selectedTheme, setSelectedTheme] = useState({ themeId: 1, themeName: '전체' });
 
   useEffect(() => {
     getThemeList().then((res) => {
@@ -37,10 +40,22 @@ function NewFNLG() {
           setLastBudgetShow={setLastBudgetShow}
           setBudgetShow={setBudgetShow}
           selectedTheme={selectedTheme}
+          setMonthExpense={setMonthExpense}
         />
       )}
-      {budgetShow && <NewFNLGBudget setBudgetShow={setBudgetShow} setGoalShow={setGoalShow} />}
-      {goalShow && <NewFNLGGoal setGoalShow={setGoalShow} setThemeShow={setThemeShow} />}
+      {budgetShow && (
+        <NewFNLGBudget setBudgetShow={setBudgetShow} setGoalShow={setGoalShow} setMonthBudget={setMonthBudget} />
+      )}
+      {goalShow && (
+        <NewFNLGGoal
+          setGoalShow={setGoalShow}
+          setThemeShow={setThemeShow}
+          selectedTheme={selectedTheme}
+          monthBudget={monthBudget}
+          monthExpense={monthExpense}
+          isPublic={isPublic}
+        />
+      )}
     </>
   );
 }
