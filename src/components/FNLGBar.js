@@ -20,7 +20,7 @@ function FNLGBar({ FNLGList, getFNLG, defaultGoal }) {
 
   return (
     <FNLGBarDiv>
-      <SelectButton onClick={handleShow} onKeyDown={(e) => console.log(e.key)} role='presentation'>
+      <SelectButton onClick={handleShow} role='presentation'>
         <p>{defaultGoal}</p>
         <IconUnderArrow src={iconUnderArrow} alt="이미지" />
       </SelectButton>
@@ -35,7 +35,7 @@ function FNLGBar({ FNLGList, getFNLG, defaultGoal }) {
           <SelectList>
             <Picker list={FNLGList} getSelected={(selected) => setSelected(selected) } />
           </SelectList>
-          <SelectCheck onClick={handleCheck} onKeyDown={(e) => console.log(e.key)} role='presentation'>
+          <SelectCheck onClick={handleCheck} role='presentation'>
             확인
           </SelectCheck>
         </OffcanvasContainer>

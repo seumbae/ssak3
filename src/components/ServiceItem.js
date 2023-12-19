@@ -4,7 +4,7 @@ import styled from "@emotion/styled";
 
 function ServiceItem({title, desTop, desBottom, image}) {
   return (
-    <ServiceItemDiv className='ServiceItem' onClick={console.log()} onKeyDown={(e) => console.log(e.key)} role='presentation'>
+    <ServiceItemDiv className='ServiceItem' onClick={console.log()} role='presentation'>
       <DescriptionBox>
         <p>{desTop}<br />
         {desBottom}</p>

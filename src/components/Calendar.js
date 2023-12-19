@@ -87,7 +87,6 @@ function ReactCalendar() {
           next2Label={null}
           prev2Label={null}
         />
-      </div>
       {/* 월별 주별 토글버튼 */}
       {/* <div id="outerContainer">
         <div className="select-left" id="container">
@@ -100,6 +99,7 @@ function ReactCalendar() {
           </div>
         </div>
       </div> */}
+      </div>
       <div className="title-container">
         <div className="record-main-title mt-4 row">
           <div className="col-sm"></div>
