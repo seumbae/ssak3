@@ -4,6 +4,7 @@ import 'react-calendar/dist/Calendar.css';
 import styles from '../styles/calendar.css';
 import moment from 'moment';
 import Record from './Record';
+import { getRecordList } from '../services/service';
 
 const dayList = ['2023-12-01', '2023-12-05', '2023-12-07', '2023-12-11', '2023-12-15', '2023-12-23'];
 
@@ -38,6 +39,19 @@ function ReactCalendar() {
   // };
   // console.log(checked);
 
+  try {
+    getRecordList({ ledgerId: '2', yearMonth: '2023-12' }).then(({ data, status }) => {
+      if (status === 200) {
+        console.log(data);
+      }
+
+      if (status === 404) {
+        throw new Error('서버와의 연결이 원활하지 않습니다.');
+      }
+    });
+  } catch (error) {
+    alert('서버와의 연결이 원활하지 않습니다.');
+  }
   return (
     <div>
       <div className="toggle-container">

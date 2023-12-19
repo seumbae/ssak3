@@ -1,13 +1,13 @@
-import axios from "axios";
+import axios from 'axios';
 
 const API = axios.create({
-    baseURL: process.env.REACT_APP_API_SERVER_BASEURL,
-    headers: {
-        "Content-Type": "application/json",
-      },
-})
+  baseURL: process.env.REACT_APP_API_SERVER_BASEURL,
+  headers: {
+    'Content-Type': 'application/json',
+  },
+});
 
- /* 임시 */
+/* 임시 */
 // User
 
 // parameters : userId(Integer), 유저 조회
@@ -15,7 +15,6 @@ const API = axios.create({
 export const getUsers = async (data) => await API.post('/user', data);
 // parameters : isNewUser(Boolean), 유저 생성
 export const createUser = async (data) => await API.post('/user/create', data);
-
 
 // Ledger(임시)
 
@@ -31,12 +30,14 @@ export const removeLedger = async (data) => await API.post('/ledger/remove', dat
 export const modifyLedger = async (data) => await API.post('/ledger/modify', data);
 // parameters : body, 가계부 생성
 export const addLedger = async (data) => await API.post('/ledger/add', data);
+// parameters : ledgerId(integer), yearMonth("YYYY-MM") 가계부 내역 목록 조회
+export const getRecordList = async (data) => await API.post('/record/list', data);
 
 // Category
 
 // parameters : categoryId(Integer), 카테고리 삭제(Category Id는 unique함)
 export const removeCategory = async (categoryId) => await API.delete(`/category/${categoryId}`);
 // parameters : ledgerId(Integer), 해당 가계부의 카테고리 목록 조회
-export const getCategories = async (data) => await API.post('/category', null, {params : data});
+export const getCategories = async (data) => await API.post('/category', null, { params: data });
 // body : {"ledgerId": Integer, "customCategoryName : "string"}, 해당 카테고리 등록
 export const createCategory = async (data) => await API.post('/category/create', data);
