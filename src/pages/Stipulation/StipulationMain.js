@@ -9,7 +9,9 @@ function Stipulation(props) {
   const navigate = useNavigate();
   const location = useLocation();
 
-
+  if(location.state === undefined){
+    navigate('/stip', { state: { idx: 1 } });
+  }
   
   if (location.state.idx === 1) {
     return (
