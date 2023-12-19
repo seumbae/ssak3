@@ -1,22 +1,20 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-function CheckModal({ isOpen, modalClose, title, content, cancelMsg, acceptMsg }) {
+function CheckModal({ cancelFunc, acceptFunc, title, content, cancelMsg, acceptMsg }) {
   return (
-    isOpen && (
-      <CheckModalDiv>
-        <ModalArea>
-          <TitleBox>{title}</TitleBox>
-          <ContentBox>{content}</ContentBox>
-          <ButtonBox>
-            <CancelMsg onClick={modalClose} role="presentation">
-              {cancelMsg}
-            </CancelMsg>
-            <AcceptMsg onClick={modalClose}>{acceptMsg}</AcceptMsg>
-          </ButtonBox>
-        </ModalArea>
-      </CheckModalDiv>
-    )
+    <CheckModalDiv>
+      <ModalArea>
+        <TitleBox>{title}</TitleBox>
+        <ContentBox>{content}</ContentBox>
+        <ButtonBox>
+          <CancelMsg onClick={cancelFunc} role="presentation">
+            {cancelMsg}
+          </CancelMsg>
+          <AcceptMsg onClick={acceptFunc}>{acceptMsg}</AcceptMsg>
+        </ButtonBox>
+      </ModalArea>
+    </CheckModalDiv>
   );
 }
 

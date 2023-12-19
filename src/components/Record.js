@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState } from 'react';
 import '../styles/record.css';
 import receiptImg from '../assets/images/receipt.jpg';
 import CheckModal from '../components/CheckModal';
@@ -8,9 +8,7 @@ const records = [
   { time: '16:53', name: '라공방', cat: '식사', title: '마라탕 먹음', price: '10000' },
   { time: '20:53', name: '다이소', cat: '장갑', title: '추워서 장갑삼', price: '2000' },
   { time: '20:53', name: '다이소', cat: '장갑', title: '추워서 장갑삼', price: '2000' },
-
   { time: '20:53', name: '다이소', cat: '장갑', title: '추워서 장갑삼', price: '2000' },
-
   { time: '20:53', name: '다이소', cat: '장갑', title: '추워서 장갑삼', price: '2000' },
 ];
 
@@ -160,18 +158,15 @@ function Record({ value }) {
                       >
                         삭제
                       </button>
-                      {isDelModalOpen == true ? (
+                      {isDelModalOpen && (
                         <CheckModal
-                          isOpen={isDelModalOpen}
-                          modalClose={() => setIsDelModalOpen(false)}
+                          cancelFunc={() => setIsDelModalOpen(false)}
+                          acceptFunc={() => setIsDelModalOpen(false)}
                           title="삭제하시겠습니까?"
                           content="삭제하시면 가계부에서 거래내역이 보이지 않습니다."
                           cancelMsg="취소"
                           acceptMsg="삭제"
-                        />
-                      ) : (
-                        ''
-                      )}
+                        />)}
                       <button
                         className="edit-btn"
                         onClick={() => {
