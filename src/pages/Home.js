@@ -16,7 +16,7 @@ function Home() {
   const [FNLG, setFNLG] = useState('식비');
 
   try {
-    getUsers({ userId: 1 }).then(({data, status}) => {
+    getUsers(localStorage.getItem('userId')).then(({data, status}) => {
       if (status === 200) {
         localStorage.setItem('userId', data.userId);
         localStorage.setItem('kbPIN', data.kbPIN);
