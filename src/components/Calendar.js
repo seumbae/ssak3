@@ -27,16 +27,16 @@ function ReactCalendar() {
   const [checked, setChecked] = useState('전체');
   const activeBtn = checked == '전체' ? styles.all : styles.one;
 
-  const handleChecked = () => {
-    if (checked == '전체') {
-      console.log('전체');
-    } else if (checked == '수입') {
-      console.log('수입');
-    } else if (checked == '지출') {
-      console.log('지출');
-    }
-  };
-  console.log(checked);
+  // const handleChecked = () => {
+  //   if (checked == '전체') {
+  //     console.log('전체');
+  //   } else if (checked == '수입') {
+  //     console.log('수입');
+  //   } else if (checked == '지출') {
+  //     console.log('지출');
+  //   }
+  // };
+  // console.log(checked);
 
   return (
     <div>
@@ -88,8 +88,8 @@ function ReactCalendar() {
           next2Label={null}
           prev2Label={null}
         />
-      {/* 월별 주별 토글버튼 */}
-      {/* <div id="outerContainer">
+        {/* 월별 주별 토글버튼 */}
+        {/* <div id="outerContainer">
         <div className="select-left" id="container">
           <div id="item"></div>
           <div className="left">
