@@ -33,6 +33,11 @@ function getColor(i) {
 function Record({ value }) {
   const listCount = records.length;
   const [recordCount, setRecordCount] = useState(3);
+  const [checkCatBtn, setCheckCatBtn] = useState([]);
+  console.log(checkCatBtn);
+  const handleCatBtn = (e) => {
+    setCheckCatBtn(e.target.value);
+  };
 
   return (
     <div>
@@ -81,11 +86,50 @@ function Record({ value }) {
                       <div className="vertical-body">
                         <div className="body-cat">
                           <div className="vertical-dot"></div>
-                          <div className="cat-btn cat-1">전체</div>
-                          <div className="cat-btn cat-2">교통</div>
-                          <div className="cat-btn cat-3">쇼핑</div>
-                          <div className="cat-btn cat-4">술</div>
-                          <div className="cat-btn cat-plus">+</div>
+
+                          <div className="my-btn">
+                            <input
+                              type="button"
+                              checked={checkCatBtn === '전체'}
+                              onChange={handleCatBtn}
+                              className="cat-btn cat-1"
+                              value="전체"
+                            ></input>
+                            <i className="bi bi-check"></i>
+                          </div>
+                          <div className="my-btn">
+                            <input
+                              type="button"
+                              checked={checkCatBtn === '교통'}
+                              onChange={handleCatBtn}
+                              className="cat-btn cat-2"
+                              value="교통"
+                            ></input>
+                            <i className="bi bi-check"></i>
+                          </div>
+                          <div className="my-btn">
+                            <input
+                              type="button"
+                              checked={checkCatBtn === '쇼핑'}
+                              onChange={handleCatBtn}
+                              className="cat-btn cat-3"
+                              value="쇼핑"
+                            ></input>
+                            <i className="bi bi-check"></i>
+                          </div>
+                          <div className="my-btn">
+                            <input
+                              type="button"
+                              checked={checkCatBtn === '술'}
+                              onChange={handleCatBtn}
+                              className="cat-btn cat-4"
+                              value="술"
+                            ></input>
+                            <i className="bi bi-check"></i>
+                          </div>
+                          <div className="my-btn">
+                            <input type="button" className="cat-btn cat-plus" value="+"></input>
+                          </div>
                         </div>
                         <div className="body-content">
                           <div className="vertical-dot"></div>

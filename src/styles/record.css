@@ -75,21 +75,27 @@
 
 .cat1 {
   background: #fdc453;
+  border: none;
 }
 .cat2 {
   background: #f886a8;
+  border: none;
 }
 .cat3 {
   background: #fe8d6f;
+  border: none;
 }
 .cat4 {
   background: #a0dde0;
+  border: none;
 }
 .cat5 {
   background: #dfdd6c;
+  border: none;
 }
 .cat6 {
   background: #9adbc5;
+  border: none;
 }
 
 .record-title-area {
@@ -131,6 +137,32 @@
   font-weight: 700;
   line-height: normal;
   align-items: center;
+}
+
+.my-btn {
+  position: relative;
+  display: inline-block;
+}
+.buttoner {
+  background-color: #66bb6a;
+  border: none;
+  cursor: pointer;
+  height: 48px;
+  border-radius: 3px;
+  width: 120px;
+  text-align: center;
+  color: white;
+  line-height: 48px;
+  font-size: 14px;
+  font-weight: bold;
+}
+.my-btn .bi-check {
+  position: absolute;
+  top: -14px;
+  right: -2px;
+  color: red;
+  font-weight: 900;
+  font-size: 25px;
 }
 
 .more-btn {
@@ -187,7 +219,7 @@
   height: 30px;
   flex-shrink: 0;
   margin: 7px 0 30px 0;
-  z-index: 1;
+  z-index: auto;
   display: flex;
 }
 
@@ -214,6 +246,18 @@
 
 .cat-plus {
   border: dotted 1px #000;
+  border-radius: 3px;
+  width: 35.649px;
+  height: 15px;
+  flex-shrink: 0;
+  color: #000;
+  text-align: center;
+  font-family: KBFG Text;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 15px;
+  margin-right: 7px;
 }
 
 .cat-btn {
@@ -227,8 +271,9 @@
   font-size: 11px;
   font-style: normal;
   font-weight: 500;
-  line-height: normal;
+  line-height: 15px;
   margin-right: 7px;
+  border: none;
 }
 .record-title-name {
   color: #000;

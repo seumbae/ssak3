@@ -168,7 +168,7 @@
   height: 30px;
   flex-shrink: 0;
   margin: 7px 0 12px 0;
-  z-index: 1;
+  z-index: auto;
   display: flex;
 }
 
@@ -211,8 +211,8 @@
   transform: rotate(135deg);
   position: relative;
   top: 12px;
-  left: 135px;
-  z-index: 2;
+  left: 125px;
+  z-index: auto;
 }
 
 .react-calendar {
@@ -380,6 +380,7 @@
   border-radius: 50%;
   display: inline-block;
   justify-content: center;
+  z-index: auto;
 }
 
 #outerContainer {
