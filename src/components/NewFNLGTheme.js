@@ -28,7 +28,6 @@ function NewFNLGTheme({ setThemeShow, setLastBudgetShow, themeList, selectedThem
     setSelectedTheme(themeList.find(obj => obj.themeName === selected));
     handleClose();
     setChecked(true);
-    console.log(selected);
   };
 
   return (
