@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import ReactCalendar from '../components/Calendar';
+import ReactCalendar from '../components/Calender';
 import UserBar from '../components/UserBar';
 import FNLGBar from '../components/FNLGBar';
 import BudgetBar from '../components/BudgetBar';
