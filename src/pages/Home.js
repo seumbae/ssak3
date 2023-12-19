@@ -6,9 +6,10 @@ import BudgetBar from '../components/BudgetBar';
 import PredictMotive from '../components/PredictMotive';
 import ServiceList from '../components/ServiceList';
 import iconAvatar from '../assets/images/iconAvatar.png';
-import { getMyList, getUsers } from '../services/service';
+import { getMyList, getRecordList, getUsers } from '../services/service';
 import { useNavigate } from 'react-router-dom';
 import Loading from '../components/Loading';
+import moment from 'moment';
 
 function Home() {
   const budget = 1000000;
@@ -18,6 +19,7 @@ function Home() {
   const [ledgers, setLedgers] = useState([]);
   const [curledger, setCurledger] = useState({});
   const [FNLG, setFNLG] = useState('');
+  const [recordList, setRecordList] = useState([]);
 
   useEffect(() => {
     getMyList({ userId: localStorage.getItem('userId') })
@@ -25,7 +27,12 @@ function Home() {
         setLedgers(res.data);
         setCurledger(res.data[0]);
         setFNLG(res.data[0].theme.themeName);
-        console.log(res.data);
+        
+        const date = new Date();
+        getRecordList({ ledgerId: res.data[0].ledgerId, yearMonth: moment(date).format('YYYY-MM') }).then((res) => {
+          setRecordList(res.data.recordList);
+        });
+
         setLoading(false);
       })
       .catch(() => {
@@ -52,9 +59,9 @@ function Home() {
         ledgers={ledgers}
       />
       <div className="emptyBox"></div>
-      <BudgetBar use={curledger.monthExpense} budget={curledger.monthBudget} curledger={curledger}/>
+      <BudgetBar use={curledger.monthExpense} budget={curledger.monthBudget} curledger={curledger} />
       <div className="emptyBox"></div>
-      <ReactCalendar curledger={curledger}/>
+      <ReactCalendar curledger={curledger} recordList={recordList}/>
       <div className="emptyBox"></div>
       <PredictMotive saveMoney={saveMoney} />
       <ServiceList />
