@@ -31,14 +31,14 @@ function getColor(i) {
   }
 }
 
-function Record({ value }) {
+function Record({ value, recordList }) {
   const listCount = records.length;
   const [recordCount, setRecordCount] = useState(3);
   const [checkCatBtn, setCheckCatBtn] = useState('술');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isDelModalOpen, setIsDelModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
-
+  console.log('나는 레코드에서온레코드리스트', recordList);
   const handleCatBtn = (e) => {
     setCheckCatBtn(e.target.value);
   };

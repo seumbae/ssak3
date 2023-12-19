@@ -29,7 +29,8 @@ function Home() {
         setFNLG(res.data[0].theme.themeName);
 
         const date = new Date();
-        getRecordList({ ledgerId: res.data[0].ledgerId, yearMonth: moment(date).format('YYYY-MM') }).then((res) => {
+        // res.data[0].ledgerId
+        getRecordList({ ledgerId: 15, yearMonth: moment(date).format('YYYY-MM') }).then((res) => {
           setRecordList(res.data.recordList);
         });
       })

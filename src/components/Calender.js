@@ -48,13 +48,22 @@ function ReactCalendar({ curledger, recordList }) {
   }
   // useEffect(() => {
   recordList.map((val) => {
+    var tempList = [];
     if (val.isExpense == '1') {
       //   catList.push(val.categoryName);
-      if (!catList.includes(val.categoryName)) {
-        setCatList((prev) => [...prev, val.categoryName]);
-      }
+      // if (catList.includes(val.categoryName) === false) {
+      //   console.log('include', val.categoryName);
+      tempList.push(val.categoryName);
+      //   setCatList((prev) => [...prev, val.categoryName]);
+      // }
     }
+    const temp2List = tempList.filter((element, index) => {
+      return tempList.indexOf(element) === index;
+    });
+    console.log(temp2List);
+    //  setCatList(temp2List);
   });
+
   console.log(catList);
   // }, []);
 
@@ -149,7 +158,7 @@ function ReactCalendar({ curledger, recordList }) {
         </div>
       </div>
 
-      <Record value={value} />
+      <Record value={value} recordList={recordList} />
     </div>
   );
 }
