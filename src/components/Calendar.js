@@ -13,11 +13,12 @@ function addContent({ date }) {
     contents.push(
       <>
         <div className="dot-box">
-          <div className="dot" style={{ position: 'absolute' }}></div>
+          <div className="dot"></div>
         </div>
       </>,
     );
   }
+
   return <div>{contents}</div>;
 }
 
