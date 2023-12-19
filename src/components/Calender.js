@@ -28,7 +28,6 @@ function ReactCalendar({ curledger, recordList }) {
   //     console.log('지출');
   //   }
   // };
-
   function addContent({ date }) {
     const contents = [];
 
@@ -44,29 +43,25 @@ function ReactCalendar({ curledger, recordList }) {
       }
     });
 
+    console.log('contents: ', moment(date).format('YYYY-MM-DD'), contents);
     return <div>{contents}</div>;
   }
-  // useEffect(() => {
-  recordList.map((val) => {
+
+  function makeCatList() {
     var tempList = [];
-    if (val.isExpense == '1') {
-      //   catList.push(val.categoryName);
-      // if (catList.includes(val.categoryName) === false) {
-      //   console.log('include', val.categoryName);
-      tempList.push(val.categoryName);
-      //   setCatList((prev) => [...prev, val.categoryName]);
-      // }
-    }
-    const temp2List = tempList.filter((element, index) => {
-      return tempList.indexOf(element) === index;
+    recordList.map((val) => {
+      if (val.isExpense == '1') {
+        tempList.push(val.categoryName);
+      }
     });
-    console.log(temp2List);
-    //  setCatList(temp2List);
-  });
+    setCatList([new Set(tempList)]);
+  }
 
   console.log(catList);
-  // }, []);
 
+  useEffect(() => {
+    makeCatList();
+  }, []);
   return (
     <div>
       <div className="toggle-container">
