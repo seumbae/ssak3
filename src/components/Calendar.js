@@ -1,57 +1,94 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import styles from '../styles/calendar.css';
 import moment from 'moment';
 import Record from './Record';
-import { getRecordList } from '../services/service';
+import { getRecordList, createCategory } from '../services/service';
 
-const dayList = ['2023-12-01', '2023-12-05', '2023-12-07', '2023-12-11', '2023-12-15', '2023-12-23'];
+const dayList = [];
+//const [dayList, setDayList] = useState([]);
 
 function addContent({ date }) {
   const contents = [];
-  if (dayList.find((day) => day === moment(date).format('YYYY-MM-DD'))) {
-    contents.push(
-      <>
-        <div className="dot-box">
-          <div className="dot"></div>
-        </div>
-      </>,
-    );
-  }
-
+  console.log('dayList', dayList);
+  dayList?.forEach((val) => {
+    if (val === moment(date).format('YYYY-MM-DD')) {
+      contents.push(
+        <>
+          <div className="dot-box">
+            <div className="dot"></div>
+          </div>
+        </>,
+      );
+    }
+  });
+  //   if (dayList.find((day) => day === moment(date).format('YYYY-MM-DD'))) {
+  //     contents.push(
+  //       <>
+  //         <div className="dot-box">
+  //           <div className="dot"></div>
+  //         </div>
+  //       </>,
+  //     );
+  //   }
+  console.log('con', contents);
   return <div>{contents}</div>;
 }
 
 function ReactCalendar() {
+  const [dayList, setDayList] = useState([]);
   const [value, onChange] = useState(new Date()); // 초기값은 현재 날짜
   const [checked, setChecked] = useState('전체');
+  const [catList, setCatList] = useState([]);
+  const [expenseOpen, setExpenseOpen] = useState(false);
   const activeBtn = checked == '전체' ? styles.all : styles.one;
+  const [recordData, setRecordData] = useState([]);
 
-  // const handleChecked = () => {
-  //   if (checked == '전체') {
-  //     console.log('전체');
-  //   } else if (checked == '수입') {
-  //     console.log('수입');
-  //   } else if (checked == '지출') {
-  //     console.log('지출');
-  //   }
-  // };
+  const handleChecked = () => {
+    if (checked == '전체') {
+      console.log('전체');
+    } else if (checked == '수입') {
+      console.log('수입');
+    } else if (checked == '지출') {
+      setExpenseOpen(true);
+      console.log('지출');
+    }
+  };
   // console.log(checked);
+  //   console.log(recordData);
 
-  try {
-    getRecordList({ ledgerId: '2', yearMonth: '2023-12' }).then(({ data, status }) => {
-      if (status === 200) {
-        console.log(data);
-      }
+  useEffect(() => {
+    getRecordList({ ledgerId: '2', yearMonth: '2023-12' })
+      .then(({ data, status }) => {
+        if (status === 200) {
+          console.log(data);
 
-      if (status === 404) {
-        throw new Error('서버와의 연결이 원활하지 않습니다.');
-      }
-    });
-  } catch (error) {
-    alert('서버와의 연결이 원활하지 않습니다.');
-  }
+          data.recordList.map((val) => {
+            setDayList((prev) => [...prev, val.tranYmd]);
+            //setDayList((prev) => [...prev, val]);
+            //dayList.push(val.tranYmd);
+          });
+
+          data.recordList.map((val) => {
+            if (val.isExpense == '1') {
+              //   catList.push(val.categoryName);
+              setCatList((prev) => [...prev, val.categoryName]);
+            }
+          });
+          console.log('hey', dayList);
+          console.log(catList);
+        }
+
+        if (status === 404) {
+          throw new Error('서버와의 연결이 원활하지 않습니다.');
+        }
+      })
+      .catch(() => {
+        console.log('서버와의 연결이 원활하지 않습니다.');
+      });
+  }, []);
+
   return (
     <div>
       <div className="toggle-container">
@@ -86,10 +123,18 @@ function ReactCalendar() {
       </div>
       <div className="triangle"></div>
       <div className="category-container">
-        <div className="cat-btn1 cat-1">전체</div>
+        {catList.length > 0 &&
+          catList.map((val, i) => (
+            <div key={i}>
+              <div key={i} className={`cat-btn1 cat-${i + 1}`}>
+                {val}
+              </div>
+            </div>
+          ))}
+        {/* <div className="cat-btn1 cat-1">전체</div>
         <div className="cat-btn1 cat-2">교통</div>
         <div className="cat-btn1 cat-3">쇼핑</div>
-        <div className="cat-btn1 cat-4">술</div>
+        <div className="cat-btn1 cat-4">술</div> */}
       </div>
       <div className="calendar-container">
         <Calendar
