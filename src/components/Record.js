@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import '../styles/record.css';
 import receiptImg from '../assets/images/receipt.jpg';
 import CheckModal from '../components/CheckModal';
+import moment from 'moment/moment';
 
 const records = [
   { time: '14:53', name: '홈플러스', cat: '술', title: '홈플에서 술삼', price: '30000' },
@@ -14,25 +15,27 @@ const records = [
   { time: '20:53', name: '다이소', cat: '장갑', title: '추워서 장갑삼', price: '2000' },
 ];
 
-function getColor(i) {
-  switch (i) {
-    case 0:
+function getColor(val) {
+  switch (val) {
+    case '외식':
       return 'cat1';
-    case 1:
+    case '배달':
       return 'cat2';
-    case 2:
+    case '배달음식':
       return 'cat3';
-    case 3:
+    case '점심':
       return 'cat4';
-    case 4:
+    case '저녁':
       return 'cat5';
-    case 5:
+    case '야식':
+      return 'cat6';
+    default:
       return 'cat6';
   }
 }
 
 function Record({ value, recordList }) {
-  const listCount = records.length;
+  const listCount = recordList.length;
   const [recordCount, setRecordCount] = useState(3);
   const [checkCatBtn, setCheckCatBtn] = useState('술');
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -43,11 +46,14 @@ function Record({ value, recordList }) {
     setCheckCatBtn(e.target.value);
   };
 
+  console.log('value', value);
+  console.log('record', recordList);
   return (
     <div>
       <div className="accordion mt-4 mb-4" id="accordionPanelsStayOpenExample">
         {listCount >= 3 &&
-          records
+          recordList
+            .filter((record) => record.tranYmd === moment(value).format('YYYY-MM-DD'))
             .map((r, i) => (
               <div className="accordion-item" key={i}>
                 <h2 className="accordion-header" id={`panelsStayOpen-heading${i}`}>
@@ -63,17 +69,17 @@ function Record({ value, recordList }) {
                     <div className="record-container">
                       <div className="record-info-area">
                         <div className="record-info">
-                          {r.time} | {r.name}
+                          {r.tranTime} | {r.tranPlace}
                         </div>
-                        <div className={`record-cat ${getColor(i)}`}>{r.cat}</div>
+                        <div className={`record-cat ${getColor(r.categoryName)}`}>{r.categoryName}</div>
                       </div>
 
                       <div className="record-title-area">
                         <div className="record-title">
-                          <span className="record-title-name">{r.title}</span>
+                          <span className="record-title-name">{r.tranName}</span>
                           <i className="bi bi-receipt"></i>
                         </div>
-                        <div className="record-price">-{r.price}원</div>
+                        <div className="record-price">-{r.tranAmount}원</div>
                       </div>
                       {/* <div className="line"></div> */}
                     </div>
@@ -92,7 +98,12 @@ function Record({ value, recordList }) {
                           <div className="vertical-dot"></div>
 
                           <div className="my-btn">
-                            <input type="button" onClick={handleCatBtn} className="cat-btn cat-4" value="술"></input>
+                            <input
+                              type="button"
+                              onClick={handleCatBtn}
+                              className={`cat-btn record-cat ${getColor(r.categoryName)}`}
+                              value={r.categoryName}
+                            ></input>
                           </div>
                           {/*
                           <div className="my-btn">
@@ -136,11 +147,11 @@ function Record({ value, recordList }) {
                         </div>
                         <div className="body-content">
                           <div className="vertical-dot"></div>
-                          <span className="record-title-name">{r.title}</span>
+                          <span className="record-title-name">{r.tranName}</span>
                         </div>
                         <div className="body-price">
                           <div className="vertical-dot"></div>
-                          <span className="record-price">-{r.price}원</span>
+                          <span className="record-price">-{r.tranAmount}원</span>
                         </div>
 
                         <div className="body-receipt">
@@ -150,7 +161,7 @@ function Record({ value, recordList }) {
                         <div className="body-time">
                           <div className="vertical-dot"></div>
                           <span className="record-info">
-                            {r.time} | {r.name}
+                            {r.tranTime} | {r.tranPlace}
                           </span>
                         </div>
                       </div>
@@ -191,16 +202,18 @@ function Record({ value, recordList }) {
             ))
             .slice(0, recordCount)}
         {/* <CheckModal /> */}
-        {listCount > 3 && recordCount < records.length && (
-          <button className="more-btn" onClick={() => setRecordCount(recordCount + 3)}>
-            + 더보기
-          </button>
-        )}
-        {listCount > 3 && recordCount > 3 && (
-          <button className="more-btn" onClick={() => setRecordCount(3)}>
-            - 접기
-          </button>
-        )}
+        {recordList.filter((record) => record.tranYmd === moment(value).format('YYYY-MM-DD')).length > 3 > 3 &&
+          recordCount < records.length && (
+            <button className="more-btn" onClick={() => setRecordCount(recordList.length)}>
+              + 더보기
+            </button>
+          )}
+        {recordList.filter((record) => record.tranYmd === moment(value).format('YYYY-MM-DD')).length > 3 &&
+          recordCount > 3 && (
+            <button className="more-btn" onClick={() => setRecordCount(3)}>
+              - 접기
+            </button>
+          )}
       </div>
     </div>
   );
