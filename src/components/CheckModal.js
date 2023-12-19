@@ -3,27 +3,22 @@ import styled from '@emotion/styled';
 
 function CheckModal({ isOpen, modalClose, title, content, cancelMsg, acceptMsg }) {
   return (
-    isOpen && <CheckModalDiv>
-      <ModalArea>
-          <TitleBox>
-            {title}
-          </TitleBox>
-          <ContentBox>
-            {content}
-          </ContentBox>
-        <ButtonBox>
-          <CancelMsg onClick={modalClose} role='presentation'>
-            {cancelMsg}
-          </CancelMsg>
-          <AcceptMsg onClick={modalClose}>
-            {acceptMsg}
-          </AcceptMsg>
-        </ButtonBox>
-      </ModalArea>
-    </CheckModalDiv>
+    isOpen && (
+      <CheckModalDiv>
+        <ModalArea>
+          <TitleBox>{title}</TitleBox>
+          <ContentBox>{content}</ContentBox>
+          <ButtonBox>
+            <CancelMsg onClick={modalClose} role="presentation">
+              {cancelMsg}
+            </CancelMsg>
+            <AcceptMsg onClick={modalClose}>{acceptMsg}</AcceptMsg>
+          </ButtonBox>
+        </ModalArea>
+      </CheckModalDiv>
+    )
   );
-};
-
+}
 
 const AcceptMsg = styled.div`
   background-color: #ffcc00;
@@ -33,7 +28,7 @@ const AcceptMsg = styled.div`
   font-family: KBTextB;
   font-size: 20px;
   text-align: center;
-`
+`;
 const CancelMsg = styled.div`
   background-color: #d9d9d9;
   width: 150px;
@@ -42,27 +37,27 @@ const CancelMsg = styled.div`
   font-family: KBTextB;
   font-size: 20px;
   text-align: center;
-`
+`;
 const TitleBox = styled.div`
   font-family: KBTextB;
   font-size: 18px;
   height: 60px;
   justify-content: center;
   align-items: end;
-  padding: 30px 0 0 20px;
-  `
+  padding: 30px 30px 20px 20px;
+`;
 const ContentBox = styled.div`
   font-family: KBTextL;
-  font-size: 14px;
+  font-size: 12px;
   height: 70px;
   justify-content: center;
   align-items: end;
-  padding: 20px 0 0 20px;
-  `
+  padding: 20px 20px 10px 20px;
+`;
 
 const ButtonBox = styled.div`
   display: flex;
-`
+`;
 
 const CheckModalDiv = styled.div`
   background: rgba(0, 0, 0, 0.5);
@@ -71,12 +66,13 @@ const CheckModalDiv = styled.div`
   right: 0;
   bottom: 0;
   left: 0;
-`
+  z-index: 1000;
+`;
 const ModalArea = styled.div`
   background: #fff;
   height: 180px;
   width: 300px;
   margin: 100px auto;
-`
+`;
 
 export default CheckModal;

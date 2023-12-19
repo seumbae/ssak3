@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import '../styles/record.css';
 import receiptImg from '../assets/images/receipt.jpg';
+import CheckModal from '../components/CheckModal';
 
 const records = [
   { time: '14:53', name: '홈플러스', cat: '술', title: '홈플에서 술삼', price: '30000' },
@@ -33,8 +34,11 @@ function getColor(i) {
 function Record({ value }) {
   const listCount = records.length;
   const [recordCount, setRecordCount] = useState(3);
-  const [checkCatBtn, setCheckCatBtn] = useState([]);
-  console.log(checkCatBtn);
+  const [checkCatBtn, setCheckCatBtn] = useState('술');
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isDelModalOpen, setIsDelModalOpen] = useState(false);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+
   const handleCatBtn = (e) => {
     setCheckCatBtn(e.target.value);
   };
@@ -88,47 +92,42 @@ function Record({ value }) {
                           <div className="vertical-dot"></div>
 
                           <div className="my-btn">
-                            <input
-                              type="button"
-                              checked={checkCatBtn === '전체'}
-                              onChange={handleCatBtn}
-                              className="cat-btn cat-1"
-                              value="전체"
-                            ></input>
-                            <i className="bi bi-check"></i>
+                            <input type="button" onClick={handleCatBtn} className="cat-btn cat-1" value="전체"></input>
+                            {checkCatBtn === '전체' ? <i className="bi bi-check"></i> : ''}
+                          </div>
+                          <div className="my-btn">
+                            <input type="button" onClick={handleCatBtn} className="cat-btn cat-2" value="교통"></input>
+                            {checkCatBtn === '교통' ? <i className="bi bi-check"></i> : ''}
+                          </div>
+                          <div className="my-btn">
+                            <input type="button" onClick={handleCatBtn} className="cat-btn cat-3" value="쇼핑"></input>
+                            {checkCatBtn === '쇼핑' ? <i className="bi bi-check"></i> : ''}
+                          </div>
+                          <div className="my-btn">
+                            <input type="button" onClick={handleCatBtn} className="cat-btn cat-4" value="술"></input>
+                            {checkCatBtn === '술' ? <i className="bi bi-check"></i> : ''}
                           </div>
                           <div className="my-btn">
                             <input
                               type="button"
-                              checked={checkCatBtn === '교통'}
-                              onChange={handleCatBtn}
-                              className="cat-btn cat-2"
-                              value="교통"
+                              onClick={() => {
+                                setIsModalOpen(true);
+                              }}
+                              className="cat-plus"
+                              value="+"
                             ></input>
-                            <i className="bi bi-check"></i>
-                          </div>
-                          <div className="my-btn">
-                            <input
-                              type="button"
-                              checked={checkCatBtn === '쇼핑'}
-                              onChange={handleCatBtn}
-                              className="cat-btn cat-3"
-                              value="쇼핑"
-                            ></input>
-                            <i className="bi bi-check"></i>
-                          </div>
-                          <div className="my-btn">
-                            <input
-                              type="button"
-                              checked={checkCatBtn === '술'}
-                              onChange={handleCatBtn}
-                              className="cat-btn cat-4"
-                              value="술"
-                            ></input>
-                            <i className="bi bi-check"></i>
-                          </div>
-                          <div className="my-btn">
-                            <input type="button" className="cat-btn cat-plus" value="+"></input>
+                            {isModalOpen == true ? (
+                              <CheckModal
+                                isOpen={isModalOpen}
+                                modalClose={() => setIsModalOpen(false)}
+                                title="카테고리 추가"
+                                content="만들어야함"
+                                cancelMsg="취소"
+                                acceptMsg="확인"
+                              />
+                            ) : (
+                              ''
+                            )}
                           </div>
                         </div>
                         <div className="body-content">
@@ -153,14 +152,41 @@ function Record({ value }) {
                       </div>
                     </div>
                     <div className="btn-container">
-                      <button className="del-btn">삭제</button>
-                      <button className="edit-btn">수정</button>
+                      <button
+                        className="del-btn"
+                        onClick={() => {
+                          setIsDelModalOpen(true);
+                        }}
+                      >
+                        삭제
+                      </button>
+                      {isDelModalOpen == true ? (
+                        <CheckModal
+                          isOpen={isDelModalOpen}
+                          modalClose={() => setIsDelModalOpen(false)}
+                          title="삭제하시겠습니까?"
+                          content="삭제하시면 가계부에서 거래내역이 보이지 않습니다."
+                          cancelMsg="취소"
+                          acceptMsg="삭제"
+                        />
+                      ) : (
+                        ''
+                      )}
+                      <button
+                        className="edit-btn"
+                        onClick={() => {
+                          setIsEditModalOpen(true);
+                        }}
+                      >
+                        수정
+                      </button>
                     </div>
                   </div>
                 </div>
               </div>
             ))
             .slice(0, recordCount)}
+        {/* <CheckModal /> */}
         {listCount > 3 && recordCount < records.length && (
           <button className="more-btn" onClick={() => setRecordCount(recordCount + 3)}>
             + 더보기
