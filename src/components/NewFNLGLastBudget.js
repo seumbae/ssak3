@@ -1,14 +1,14 @@
-import React, { useRef, useState } from 'react';
+import React from 'react';
 import newlamu from '../assets/newlamu.png';
-import NextBtnComplete from './NextBtnComplete';
 
-function NewFNLGLastBudget({ setLastBudgetShow, setBudgetShow }) {
+function NewFNLGLastBudget({ setLastBudgetShow, setBudgetShow, setMonthExpense }) {
   // 숫자를 1000단위로 콤마로 구분하는 함수
   const formatNumber = (num) => {
     return Number(num).toLocaleString();
   };
 
   const lastBudgetNextClick = () => {
+    setMonthExpense(400500);
     setLastBudgetShow(false);
     setBudgetShow(true);
   };
