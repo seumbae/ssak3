@@ -78,6 +78,7 @@ function Record({ setCatList, curledger, value, recordList, newDateList, catList
                       name={r.tranPlace}
                       catName={r.categoryName}
                       curledger={curledger}
+                      recordId={r.recordId}
                       setIsEditFalse={() => {
                         setIsEdit(false);
                       }}
