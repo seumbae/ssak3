@@ -5,6 +5,7 @@ import CheckModal from '../components/CheckModal';
 import moment from 'moment/moment';
 import PaymentEdit from './PaymentEdit';
 import PaymentDetail from './PaymentDetail';
+import { getColor } from '../utils/common';
 
 const records = [
   { time: '14:53', name: '홈플러스', cat: '술', title: '홈플에서 술삼', price: '30000' },
@@ -16,25 +17,6 @@ const records = [
 
   { time: '20:53', name: '다이소', cat: '장갑', title: '추워서 장갑삼', price: '2000' },
 ];
-
-function getColor(val) {
-  switch (val) {
-    case '외식':
-      return 'cat1';
-    case '배달':
-      return 'cat2';
-    case '배달음식':
-      return 'cat3';
-    case '점심':
-      return 'cat4';
-    case '저녁':
-      return 'cat5';
-    case '야식':
-      return 'cat6';
-    default:
-      return 'cat6';
-  }
-}
 
 function Record({ value, recordList, newDateList, catList }) {
   const listCount = recordList.length;
@@ -100,116 +82,6 @@ function Record({ value, recordList, newDateList, catList }) {
                   className="accordion-collapse collapse"
                   aria-labelledby={`panelsStayOpen-heading${i}`}
                 >
-                  <div className="accordion-body">
-                    <div className="vertical">
-                      <div className="vertical-line"></div>
-                      <div className="vertical-body">
-                        <div className="body-cat">
-                          <div className="vertical-dot"></div>
-
-                          <div className="my-btn">
-                            <input
-                              type="button"
-                              onClick={handleCatBtn}
-                              className={`cat-btn record-cat ${getColor(r.categoryName)}`}
-                              value={r.categoryName}
-                            ></input>
-                          </div>
-                          {/*
-                    <div className="my-btn">
-                      <input type="button" onClick={handleCatBtn} className="cat-btn cat-1" value="전체"></input>
-                      {checkCatBtn === '전체' ? <i className="bi bi-check"></i> : ''}
-                    </div>
-                    <div className="my-btn">
-                      <input type="button" onClick={handleCatBtn} className="cat-btn cat-2" value="교통"></input>
-                      {checkCatBtn === '교통' ? <i className="bi bi-check"></i> : ''}
-                    </div>
-                    <div className="my-btn">
-                      <input type="button" onClick={handleCatBtn} className="cat-btn cat-3" value="쇼핑"></input>
-                      {checkCatBtn === '쇼핑' ? <i className="bi bi-check"></i> : ''}
-                    </div>
-                    <div className="my-btn">
-                      <input type="button" onClick={handleCatBtn} className="cat-btn cat-4" value="술"></input>
-                      {checkCatBtn === '술' ? <i className="bi bi-check"></i> : ''}
-                    </div>
-                    <div className="my-btn">
-                      <input
-                        type="button"
-                        onClick={() => {
-                          setIsModalOpen(true);
-                        }}
-                        className="cat-plus"
-                        value="+"
-                      ></input>
-                       {isModalOpen == true ? (
-                        <CheckModal
-                          isOpen={isModalOpen}
-                          modalClose={() => setIsModalOpen(false)}
-                          title="카테고리 추가"
-                          content="만들어야함"
-                          cancelMsg="취소"
-                          acceptMsg="확인"
-                        />
-                      ) : (
-                        ''
-                      )} 
-                      </div> */}
-                        </div>
-                        <div className="body-content">
-                          <div className="vertical-dot"></div>
-                          <span className="record-title-name">{r.tranName}</span>
-                        </div>
-                        <div className="body-price">
-                          <div className="vertical-dot"></div>
-                          <span className="record-price">
-                            {r.isExpense === '1' ? '-' + r.tranAmount.toLocaleString() : r.tranAmount.toLocaleString()}
-                            원
-                          </span>
-                        </div>
-
-                        <div className="body-receipt">
-                          <div className="vertical-dot"></div>
-                          <img className="receipt-img" src={receiptImg} alt="receipt" />
-                        </div>
-                        <div className="body-time">
-                          <div className="vertical-dot"></div>
-                          <span className="record-info">
-                            {r.tranTime} | {r.tranPlace}
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="btn-container">
-                      <button
-                        className="del-btn"
-                        onClick={() => {
-                          setIsDelModalOpen(true);
-                        }}
-                      >
-                        삭제
-                      </button>
-                      {isDelModalOpen == true ? (
-                        <CheckModal
-                          isOpen={isDelModalOpen}
-                          modalClose={() => setIsDelModalOpen(false)}
-                          title="삭제하시겠습니까?"
-                          content="삭제하시면 가계부에서 거래내역이 보이지 않습니다."
-                          cancelMsg="취소"
-                          acceptMsg="삭제"
-                        />
-                      ) : (
-                        ''
-                      )}
-                      <button
-                        className="edit-btn"
-                        onClick={() => {
-                          setIsEditModalOpen(true);
-                        }}
-                      >
-                        수정
-                      </button>
-                    </div>
-                  </div>
                   {isEdit ? (
                     <PaymentEdit
                       categoryList={catList}
@@ -224,10 +96,12 @@ function Record({ value, recordList, newDateList, catList }) {
                     />
                   ) : (
                     <PaymentDetail
-                      title={r.title}
-                      price={r.price}
-                      time={r.time}
-                      name={r.name}
+                      title={r.tranName}
+                      price={r.tranAmount}
+                      time={r.tranTime}
+                      name={r.tranPlace}
+                      catName={r.categoryName}
+                      isExpense={r.isExpense}
                       setIsEditTrue={() => {
                         setIsEdit(true);
                       }}
