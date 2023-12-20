@@ -9,7 +9,7 @@ import { getRecordList, createCategory } from '../services/service';
 const dayList = [];
 //const [dayList, setDayList] = useState([]);
 
-function ReactCalendar({ curledger, recordList }) {
+function ReactCalendar({ curledger, recordList, newDateList }) {
   const [dayList, setDayList] = useState([]);
   const [value, onChange] = useState(new Date()); // 초기값은 현재 날짜
   const [checked, setChecked] = useState('전체');
@@ -18,7 +18,6 @@ function ReactCalendar({ curledger, recordList }) {
   const activeBtn = checked == '전체' ? styles.all : styles.one;
   const [recordData, setRecordData] = useState([]);
   console.log('curledger', curledger, recordList);
-  const [newDateList, setNewDateList] = useState([]);
 
   // const handleChecked = () => {
   //   if (checked == '전체') {
@@ -56,15 +55,11 @@ function ReactCalendar({ curledger, recordList }) {
       if (val.isExpense == '1') {
         tempList.push(val.categoryName);
       }
-      console.log(val.tranYmd);
-      setNewDateList((prev) => [...prev, val.tranYmd]);
     });
     setCatList([new Set(tempList)]);
   }
 
-  console.log(catList);
   console.log('nnn', newDateList);
-
   useEffect(() => {
     makeCatList();
   }, []);

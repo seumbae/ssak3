@@ -47,9 +47,7 @@ function Record({ value, recordList, newDateList }) {
   };
 
   const rDate = moment(value).format('YYYY-MM-DD');
-  console.log('value', value);
-  console.log('record', recordList);
-  console.log('newDateList', newDateList);
+
   return (
     <div>
       <div className="accordion mt-4 mb-4" id="accordionPanelsStayOpenExample">
