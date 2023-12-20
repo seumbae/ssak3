@@ -75,7 +75,6 @@ function Home() {
             curDate={curDate}
             setCurDate={setCurDate}
             catList={catList}
-            setCatList={setCatList}
           />
           <div className="emptyBox"></div>
           <PredictMotive saveMoney={saveMoney} />
