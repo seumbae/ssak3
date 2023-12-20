@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import '../styles/PaymentAdd.css';
 import styled from '@emotion/styled'
 import CheckModal from '../components/CheckModal';
+import AccordionCheckModal from '../components/AccordionCheckModal';
 import InputModal from '../components/InputModal';
 import Accordion from 'react-bootstrap/Accordion';
 import { useAccordionButton } from 'react-bootstrap/AccordionButton';
@@ -140,7 +141,7 @@ function PaymentAdd({date, categoryList, addCatList}) {
           <BtnBox>
             <CancelBtn onClick={() => setIsCancelModalOpen(true)}>취소</CancelBtn>
             {isCancelModalOpen && (
-              <CheckModal
+              <AccordionCheckModal
                 cancelFunc={() => setIsCancelModalOpen(false)}
                 acceptFunc={() => {setIsCancelModalOpen(false);}}
                 title="취소하시겠습니까?"
@@ -150,7 +151,7 @@ function PaymentAdd({date, categoryList, addCatList}) {
               />)}
             <AddBtn type="button" onClick={() => setIsAddModalOpen(true)}>작성</AddBtn>
             {isAddModalOpen && (
-              <CheckModal
+              <AccordionCheckModal
                 cancelFunc={() => setIsAddModalOpen(false)}
                 acceptFunc={() => {setIsAddModalOpen(false);}}
                 title="작성하시겠습니까?"

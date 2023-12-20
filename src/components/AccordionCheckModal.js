@@ -1,15 +1,30 @@
 import React from 'react';
 import styled from '@emotion/styled';
+import { useAccordionButton } from 'react-bootstrap/AccordionButton';
 
 function CheckModal({ cancelFunc, acceptFunc, title, content, cancelMsg, acceptMsg }) {
+  function AcceptAccordionBtn({ children, eventKey }) {
+    const decoratedOnClick = useAccordionButton(eventKey);
+    return (
+      <AcceptMsg
+        type="button"
+        onClick={() => {acceptFunc(); decoratedOnClick();}}
+      >
+        {children}
+      </AcceptMsg>
+    );
+  }
+
   return (
     <CheckModalDiv>
       <ModalArea>
         <TitleBox>{title}</TitleBox>
         <ContentBox>{content}</ContentBox>
         <ButtonBox>
-          <CancelMsg onClick={cancelFunc}>{cancelMsg}</CancelMsg>
-          <AcceptMsg onClick={acceptFunc}>{acceptMsg}</AcceptMsg>
+          <CancelMsg onClick={cancelFunc} role="presentation">
+            {cancelMsg}
+          </CancelMsg>
+          <AcceptAccordionBtn eventKey="0">{acceptMsg}</AcceptAccordionBtn>
         </ButtonBox>
       </ModalArea>
     </CheckModalDiv>
