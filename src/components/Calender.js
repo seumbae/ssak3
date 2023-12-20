@@ -10,7 +10,7 @@ import categoryColors from '../constants/cat';
 
 const dayList = [];
 
-function ReactCalendar({ curledger, recordList, newDateList }) {
+function ReactCalendar({ curledger, recordList, newDateList, ledgerId }) {
   const [dayList, setDayList] = useState([]);
   const [value, onChange] = useState(new Date()); // 초기값은 현재 날짜
   const [checked, setChecked] = useState('전체');
@@ -174,7 +174,14 @@ function ReactCalendar({ curledger, recordList, newDateList }) {
         </div>
       </div>
       {/* <PaymentAdd categoryList={['aa']} /> */}
-      <Record value={value} recordList={recordList} newDateList={newDateList} catList={catList} />
+      <Record
+        value={value}
+        recordList={recordList}
+        newDateList={newDateList}
+        catList={catList}
+        ledgerId={ledgerId}
+        curledger={curledger}
+      />
     </div>
   );
 }

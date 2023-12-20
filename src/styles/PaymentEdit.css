@@ -107,7 +107,7 @@
   border: dotted 1px #000;
   border-radius: 3px;
   width: 35.649px;
-  /* height: 17px; */
+  /* height: 15px; */
   flex-shrink: 0;
   color: #000;
   text-align: center;
@@ -115,9 +115,9 @@
   font-size: 11px;
   font-style: normal;
   font-weight: 500;
-  line-height: 15px;
+  line-height: 13px;
   margin-right: 7px;
-  padding: 1px 5px;
+  padding: 0 10px;
 }
 
 .cat-btn {
@@ -134,7 +134,7 @@
   line-height: 15px;
   margin-right: 7px;
   border: none;
-  padding: 1px 5px;
+  padding: 0 10px;
 }
 
 .record-price {

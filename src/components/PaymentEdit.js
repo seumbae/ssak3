@@ -1,24 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../styles/PaymentEdit.css';
 import receiptImg from '../assets/images/receipt.jpg';
 import CheckModal from '../components/CheckModal';
 import InputModal from '../components/InputModal';
 import categoryColors from '../constants/cat';
+import { createCategory } from '../services/service';
 
-function PaymentEdit({ title, price, time, name, setIsEditFalse, categoryList, addCatList }) {
+function PaymentEdit({ curledger, title, price, time, name, setIsEditFalse, catName, categoryList, addCatList }) {
   const [isInputModalOpen, setIsInputModalOpen] = useState(false);
   const [isCancelModalOpen, setIsCancelModalOpen] = useState(false);
 
-  const [checkCatBtn, setCheckCatBtn] = useState('술');
+  const [checkCatBtn, setCheckCatBtn] = useState(catName);
   const [inputTitle, setInputTitle] = useState(title);
   const [inputPrice, setInputPrice] = useState(price);
-
+  const [addCategoryList, setAddCategoryList] = useState([]);
+  const curLedgerId = curledger.ledgerId;
   const handleCatBtn = (e) => {
     setCheckCatBtn(e.target.value);
   };
 
-  console.log('edittttt', categoryList);
-
+  console.log('addCat', curledger.ledgerId);
+  useEffect(() => {
+    setInputTitle(title);
+    setInputPrice(price);
+  }, [title, price]);
   return (
     <div className="accordion-body">
       <div className="vertical">
@@ -32,7 +37,7 @@ function PaymentEdit({ title, price, time, name, setIsEditFalse, categoryList, a
                   type="button"
                   onClick={handleCatBtn}
                   className={`cat-btn`}
-                  style={{ backgroundColor: categoryColors[item] }}
+                  style={{ backgroundColor: categoryColors[item] || '#808080' }}
                   value={item}
                 ></input>
                 {checkCatBtn === item ? <i className="bi bi-check"></i> : ''}
@@ -56,6 +61,17 @@ function PaymentEdit({ title, price, time, name, setIsEditFalse, categoryList, a
                   acceptMsg="확인"
                   acceptFunc={(catItem) => {
                     addCatList(catItem);
+                    createCategory({ ledgerId: curLedgerId, customCategoryName: catItem })
+                      .then((res) => {
+                        console.log('category create success!', res.data);
+                      })
+                      .catch(() => {
+                        alert('서버와의 연결이 원활하지 않습니다.');
+                      });
+                    // console.log(res)
+                    // setRecordList(res.data.recordList);
+                    // setNewDateList(res.data.recordList.map((val) => val.tranYmd));
+
                     setIsInputModalOpen(false);
                   }}
                   cancelFunc={() => setIsInputModalOpen(false)}

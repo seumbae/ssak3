@@ -30,9 +30,9 @@ function Home() {
         setFNLG(res.data[0].theme.themeName);
 
         getRecordList({ ledgerId: res.data[0].ledgerId }).then((res) => {
-          // console.log(res)
+          console.log('ledgerId', res.data);
           setRecordList(res.data.recordList);
-          setNewDateList(res.data.recordList.map((val) => val.tranYmd)); 
+          setNewDateList(res.data.recordList.map((val) => val.tranYmd));
         });
       })
       .then(() => {
@@ -44,7 +44,7 @@ function Home() {
         navigate('/');
       });
   }, []);
-  
+  console.log('123123213213', curledger);
   return (
     <>
       {loading ? (
