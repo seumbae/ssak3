@@ -1,34 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
-import styles from '../styles/calendar.css';
+import '../styles/calendar.css';
 import moment from 'moment';
 import Record from './Record';
-import PaymentAdd from './PaymentAdd';
-import { getRecordList, createCategory } from '../services/service';
 import categoryColors from '../constants/cat';
 
-const dayList = [];
-
-function ReactCalendar({ setCatList, curledger, recordList, newDateList, ledgerId }) {
-  const [dayList, setDayList] = useState([]);
+function ReactCalendar({ curledger, recordList, newDateList, ledgerId, catList, setCatList }) {
   const [value, onChange] = useState(new Date()); // 초기값은 현재 날짜
   const [checked, setChecked] = useState('전체');
-  const [isExpenseOpen, setExpenseOpen] = useState(false);
-  const [incomeOpen, setIncomeOpen] = useState(false);
-  const activeBtn = checked == '전체' ? styles.all : styles.one;
-  const [recordData, setRecordData] = useState(recordList.map((obj) => obj.tranYmd));
-
-  const uniqueIncomeCat = [
-    ...new Set(recordList.filter((list) => list.isExpense === '0').map((list) => list.categoryName)),
-  ];
-  const uniqueExpenseCat = [
-    ...new Set(recordList.filter((list) => list.isExpense === '1').map((list) => list.categoryName)),
-  ];
-  const catList = [...new Set(recordList.map((list) => list.categoryName))];
-
-  console.log('11111111', uniqueExpenseCat);
-  console.log('222222222222222', uniqueIncomeCat);
+  //TODO: 카테고리 선택할 수 있게 하고 handleTileContents에서 해당 카테고리만 보여주기 ㅇㅇ
 
   const handleTileContents = (date) => {
     const formattedDate = moment(date).format('YYYY-MM-DD');
@@ -82,18 +63,6 @@ function ReactCalendar({ setCatList, curledger, recordList, newDateList, ledgerI
     }
   };
 
-  // function makeCatList() {
-  //   var tempList = [];
-  //   recordList.map((val) => {
-  //     if (val.isExpense == '1') {
-  //       tempList.push(val.categoryName);
-  //     }
-  //   });
-  //   setCatList([...new Set(tempList)]);
-  // }
-  // useEffect(() => {
-  //   makeCatList();
-  // }, []);
   return (
     <div>
       <div className="toggle-container">
@@ -102,8 +71,6 @@ function ReactCalendar({ setCatList, curledger, recordList, newDateList, ledgerI
           className={`btn-check`}
           id="btn-check-outlined1"
           onClick={() => {
-            setExpenseOpen(false);
-            setIncomeOpen(false);
             setChecked('전체');
           }}
         ></input>
@@ -116,8 +83,6 @@ function ReactCalendar({ setCatList, curledger, recordList, newDateList, ledgerI
           className="btn-check btn-check2"
           id="btn-check-outlined2"
           onClick={() => {
-            setIncomeOpen(!incomeOpen);
-            setExpenseOpen(false);
             setChecked('수입');
           }}
         ></input>
@@ -130,42 +95,47 @@ function ReactCalendar({ setCatList, curledger, recordList, newDateList, ledgerI
           id="btn-check-outlined3"
           onClick={() => {
             setChecked('지출');
-            setIncomeOpen(false);
-            setExpenseOpen(!isExpenseOpen);
           }}
         ></input>
         <label className={`income-btn ${checked == '지출' ? 'active3' : ''}`} htmlFor="btn-check-outlined3">
           지출
         </label>
       </div>
-      {isExpenseOpen && uniqueExpenseCat.length && (
-        <div>
-          {/* <div className="triangle"></div> */}
-          <div className="category-container">
-            {uniqueExpenseCat.map((val, i) => (
-              <div key={i}>
-                <div key={i} className={`cat-btn1`} style={{ backgroundColor: categoryColors[val] || '#808080' }}>
-                  {val}
+
+      <div>
+        <div className="category-container">
+          {checked === '전체' &&
+            catList.map((val, i) => (
+                <div
+                  key={i}
+                  className="cat-btn1"
+                  style={{ backgroundColor: categoryColors[val.customCategoryName] || '#808080' }}
+                >
+                  {val.customCategoryName}
                 </div>
-              </div>
             ))}
-          </div>
+          {checked === '수입' &&
+            [...new Set(recordList.filter((list) => list.isExpense === '0').map((list) => list.categoryName))].map(
+              (val, i) => (
+                  <div
+                    key={val + i}
+                    className={`cat-btn1`}
+                    style={{ backgroundColor: categoryColors[val] || '#808080' }}
+                  >
+                    {val}
+                  </div>
+              ),
+            )}
+          {checked === '지출' &&
+            [...new Set(recordList.filter((list) => list.isExpense === '1').map((list) => list.categoryName))].map(
+              (val, i) => (
+                  <div key={i} className={`cat-btn1`} style={{ backgroundColor: categoryColors[val] || '#808080' }}>
+                    {val}
+                  </div>
+              ),
+            )}
         </div>
-      )}
-      {/* <div className="triangle"></div> */}
-      {incomeOpen && uniqueIncomeCat.length > 0 && (
-        <div>
-          <div className="category-container">
-            {uniqueIncomeCat.map((val, i) => (
-              <div key={i}>
-                <div key={i} className={`cat-btn1`} style={{ backgroundColor: categoryColors[val] || '#808080' }}>
-                  {val}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
+      </div>
 
       <div className="calendar-container mt-2">
         <Calendar
