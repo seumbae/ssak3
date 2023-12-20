@@ -184,12 +184,10 @@ function ReactCalendar({ curledger, recordList, newDateList }) {
         <div className="record-main-title mt-4 row">
           <div className="col-sm"></div>
           <div className="today col-sm">{moment(value).format('YYYY.MM.DD')}</div>
-          <div className="more-record-btn col-sm">
-            <PaymentAdd categoryList={['aa']} />
-          </div>
+          <div className="more-record-btn col-sm">{/* <PaymentAdd categoryList={['aa']} /> */}</div>
         </div>
       </div>
-
+      {/* <PaymentAdd categoryList={['aa']} /> */}
       <Record value={value} recordList={recordList} newDateList={newDateList} catList={catList} />
     </div>
   );
