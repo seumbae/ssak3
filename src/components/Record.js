@@ -41,76 +41,80 @@ function Record({ value, recordList, newDateList, catList }) {
   return (
     <div>
       <div className="accordion mt-4 mb-4" id="accordionPanelsStayOpenExample">
-        {recordList
-          .filter((record) => record.tranYmd === moment(value).format('YYYY-MM-DD'))
-          .map((r, i) => (
-            <div className="accordion-item" key={i}>
-              <h2 className="accordion-header" id={`panelsStayOpen-heading${i}`}>
-                <button
-                  className="accordion-button"
-                  type="button"
-                  key={i}
-                  data-bs-toggle="collapse"
-                  data-bs-target={`#panelsStayOpen-collapse${i}`}
-                  aria-expanded="true"
-                  aria-controls={`panelsStayOpen-collapse${i}`}
-                >
-                  <div className="record-container">
-                    <div className="record-info-area">
-                      <div className="record-info">
-                        {r.tranTime} | {r.tranPlace}
+        {newDateList.includes(moment(value).format('YYYY-MM-DD')) ? (
+          recordList
+            .filter((record) => record.tranYmd === moment(value).format('YYYY-MM-DD'))
+            .map((r, i) => (
+              <div className="accordion-item" key={i}>
+                <h2 className="accordion-header" id={`panelsStayOpen-heading${i}`}>
+                  <button
+                    className="accordion-button"
+                    type="button"
+                    key={i}
+                    data-bs-toggle="collapse"
+                    data-bs-target={`#panelsStayOpen-collapse${i}`}
+                    aria-expanded="true"
+                    aria-controls={`panelsStayOpen-collapse${i}`}
+                  >
+                    <div className="record-container">
+                      <div className="record-info-area">
+                        <div className="record-info">
+                          {r.tranTime} | {r.tranPlace}
+                        </div>
+                        <div className={`record-cat ${getColor(r.categoryName)}`}>{r.categoryName}</div>
                       </div>
-                      <div className={`record-cat ${getColor(r.categoryName)}`}>{r.categoryName}</div>
-                    </div>
 
-                    <div className="record-title-area">
-                      <div className="record-title">
-                        <span className="record-title-name">{r.tranName}</span>
-                        <i className="bi bi-receipt"></i>
+                      <div className="record-title-area">
+                        <div className="record-title">
+                          <span className="record-title-name">{r.tranName}</span>
+                          <i className="bi bi-receipt"></i>
+                        </div>
+                        <div className="record-price">
+                          {r.isExpense === '1' ? '-' + r.tranAmount.toLocaleString() : r.tranAmount.toLocaleString()}원
+                        </div>
                       </div>
-                      <div className="record-price">
-                        {r.isExpense === '1' ? '-' + r.tranAmount.toLocaleString() : r.tranAmount.toLocaleString()}원
-                      </div>
+                      {/* <div className="line"></div> */}
                     </div>
-                    {/* <div className="line"></div> */}
-                  </div>
-                </button>
-              </h2>
-              <div
-                id={`panelsStayOpen-collapse${i}`}
-                className="accordion-collapse collapse"
-                aria-labelledby={`panelsStayOpen-heading${i}`}
-              >
-                {isEdit ? (
-                  <PaymentEdit
-                    categoryList={catList}
-                    title={r.title}
-                    price={r.price}
-                    time={r.time}
-                    name={r.name}
-                    setIsEditFalse={() => {
-                      setIsEdit(false);
-                    }}
-                    addCatList={(catItem) => addCatList(catItem)}
-                  />
-                ) : (
-                  <PaymentDetail
-                    title={r.tranName}
-                    price={r.tranAmount}
-                    time={r.tranTime}
-                    name={r.tranPlace}
-                    catName={r.categoryName}
-                    isExpense={r.isExpense}
-                    setIsEditTrue={() => {
-                      setIsEdit(true);
-                    }}
-                  />
-                )}
+                  </button>
+                </h2>
+                <div
+                  id={`panelsStayOpen-collapse${i}`}
+                  className="accordion-collapse collapse"
+                  aria-labelledby={`panelsStayOpen-heading${i}`}
+                >
+                  {isEdit ? (
+                    <PaymentEdit
+                      categoryList={catList}
+                      title={r.title}
+                      price={r.price}
+                      time={r.time}
+                      name={r.name}
+                      setIsEditFalse={() => {
+                        setIsEdit(false);
+                      }}
+                      addCatList={(catItem) => addCatList(catItem)}
+                    />
+                  ) : (
+                    <PaymentDetail
+                      title={r.tranName}
+                      price={r.tranAmount}
+                      time={r.tranTime}
+                      name={r.tranPlace}
+                      catName={r.categoryName}
+                      isExpense={r.isExpense}
+                      setIsEditTrue={() => {
+                        setIsEdit(true);
+                      }}
+                    />
+                  )}
+                </div>
               </div>
-            </div>
-          ))
-          .slice(0, recordCount)}
-        : (<div className="none-info">해당 내역이 없습니다</div>){/* <CheckModal /> */}
+            ))
+            .slice(0, recordCount)
+        ) : (
+          <div className="none-info">해당 내역이 없습니다</div>
+        )}
+        {/* <CheckModal /> */}
         {recordList.filter((record) => record.tranYmd === moment(value).format('YYYY-MM-DD')).length > 3 &&
           recordCount < records.length && (
             <button className="more-btn" onClick={() => setRecordCount(recordList.length)}>
