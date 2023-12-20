@@ -5,8 +5,10 @@ import iconAddFNLG from '../assets/images/iconAddFNLG.png';
 import iconUnderArrow from '../assets/images/iconUnderArrow.png';
 import iconX from '../assets/images/iconX.png';
 import Picker from "./Picker";
+import { useNavigate } from 'react-router-dom';
 
-function FNLGBar({ FNLGList, getFNLG, defaultGoal }) {
+function FNLGBar({ FNLGList, getFNLG, defaultGoal, setCurledger, ledgers }) {
+  const navigate = useNavigate(); 
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -15,9 +17,13 @@ function FNLGBar({ FNLGList, getFNLG, defaultGoal }) {
 
   const handleCheck = () => {
     getFNLG && getFNLG(selected);
+    setCurledger(ledgers.find((ledger) => ledger.theme.themeName === selected))
     handleClose();
   }
 
+  const handleAddIconClick = () =>{
+    navigate('/new');
+  }
   return (
     <FNLGBarDiv>
       <SelectButton onClick={handleShow} role='presentation'>
@@ -40,10 +46,18 @@ function FNLGBar({ FNLGList, getFNLG, defaultGoal }) {
           </SelectCheck>
         </OffcanvasContainer>
       </StyledOffcanvas>
-      <IconAddFNLG src={iconAddFNLG} alt="이미지" />
+      <AddBtn>
+        <IconAddFNLG src={iconAddFNLG} alt="이미지" onClick={handleAddIconClick} />
+      </AddBtn>
     </FNLGBarDiv>
   );
 }
+
+const AddBtn = styled.button`
+  appearance: none;
+  border: none;
+  background-color: white;
+`
 
 const FNLGBarDiv = styled.div`
   width: 360px;

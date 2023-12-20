@@ -9,7 +9,7 @@ function BudgetBar(props) {
         목표<br />예산
       </div>
       <div className='rightBox'>
-        <div className='goal'>3년 안에 내 집 마련 가보자고!</div>
+        <div className='goal'>{props.curledger.goal}</div>
         <div className='progStat'>{props.use.toLocaleString()}/{props.budget.toLocaleString()}</div>
         <div className='progBar'>
           <div className='prog'></div>

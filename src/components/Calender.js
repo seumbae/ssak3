@@ -1,57 +1,67 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import styles from '../styles/calendar.css';
 import moment from 'moment';
 import Record from './Record';
-import { getRecordList } from '../services/service';
+import { getRecordList, createCategory } from '../services/service';
 
-const dayList = ['2023-12-01', '2023-12-05', '2023-12-07', '2023-12-11', '2023-12-15', '2023-12-23'];
+const dayList = [];
+//const [dayList, setDayList] = useState([]);
 
-function addContent({ date }) {
-  const contents = [];
-  if (dayList.find((day) => day === moment(date).format('YYYY-MM-DD'))) {
-    contents.push(
-      <>
-        <div className="dot-box">
-          <div className="dot"></div>
-        </div>
-      </>,
-    );
-  }
-
-  return <div>{contents}</div>;
-}
-
-function ReactCalendar() {
+function ReactCalendar({ curledger, recordList }) {
+  const [dayList, setDayList] = useState([]);
   const [value, onChange] = useState(new Date()); // 초기값은 현재 날짜
   const [checked, setChecked] = useState('전체');
+  const [catList, setCatList] = useState([]);
+  const [isExpenseOpen, setExpenseOpen] = useState(false);
   const activeBtn = checked == '전체' ? styles.all : styles.one;
-
+  const [recordData, setRecordData] = useState([]);
+  console.log('curledger', curledger, recordList);
   // const handleChecked = () => {
   //   if (checked == '전체') {
   //     console.log('전체');
   //   } else if (checked == '수입') {
   //     console.log('수입');
   //   } else if (checked == '지출') {
+  //     setExpenseOpen(true);
   //     console.log('지출');
   //   }
   // };
-  // console.log(checked);
+  function addContent({ date }) {
+    const contents = [];
 
-  try {
-    getRecordList({ ledgerId: '2', yearMonth: '2023-12' }).then(({ data, status }) => {
-      if (status === 200) {
-        console.log(data);
-      }
-
-      if (status === 404) {
-        throw new Error('서버와의 연결이 원활하지 않습니다.');
+    recordList.find((val, i) => {
+      if (val.tranYmd === moment(date).format('YYYY-MM-DD')) {
+        contents.push(
+          <>
+            <div className="dot-box">
+              <div className={`dot cat-${i + 1}`}></div>
+            </div>
+          </>,
+        );
       }
     });
-  } catch (error) {
-    alert('서버와의 연결이 원활하지 않습니다.');
+
+    console.log('contents: ', moment(date).format('YYYY-MM-DD'), contents);
+    return <div>{contents}</div>;
   }
+
+  function makeCatList() {
+    var tempList = [];
+    recordList.map((val) => {
+      if (val.isExpense == '1') {
+        tempList.push(val.categoryName);
+      }
+    });
+    setCatList([new Set(tempList)]);
+  }
+
+  console.log(catList);
+
+  useEffect(() => {
+    makeCatList();
+  }, []);
   return (
     <div>
       <div className="toggle-container">
@@ -59,7 +69,10 @@ function ReactCalendar() {
           type="checkbox"
           className={`btn-check`}
           id="btn-check-outlined1"
-          onClick={() => setChecked('전체')}
+          onClick={() => {
+            setExpenseOpen(false);
+            setChecked('전체');
+          }}
         ></input>
         <label className={`whole-btn ${checked == '전체' ? 'active1' : ''}`} htmlFor="btn-check-outlined1">
           전체
@@ -69,7 +82,10 @@ function ReactCalendar() {
           type="checkbox"
           className="btn-check btn-check2"
           id="btn-check-outlined2"
-          onClick={() => setChecked('수입')}
+          onClick={() => {
+            setExpenseOpen(false);
+            setChecked('수입');
+          }}
         ></input>
         <label className={`income-btn ${checked == '수입' ? 'active2' : ''}`} htmlFor="btn-check-outlined2">
           수입
@@ -78,20 +94,32 @@ function ReactCalendar() {
           type="checkbox"
           className="btn-check btn-check2"
           id="btn-check-outlined3"
-          onClick={() => setChecked('지출')}
+          onClick={() => {
+            setChecked('지출');
+            setExpenseOpen(!isExpenseOpen);
+          }}
         ></input>
         <label className={`income-btn ${checked == '지출' ? 'active3' : ''}`} htmlFor="btn-check-outlined3">
           지출
         </label>
       </div>
-      <div className="triangle"></div>
-      <div className="category-container">
-        <div className="cat-btn1 cat-1">전체</div>
-        <div className="cat-btn1 cat-2">교통</div>
-        <div className="cat-btn1 cat-3">쇼핑</div>
-        <div className="cat-btn1 cat-4">술</div>
-      </div>
-      <div className="calendar-container">
+      {isExpenseOpen && (
+        <div>
+          <div className="triangle"></div>
+          <div className="category-container">
+            {catList &&
+              catList.map((val, i) => (
+                <div key={i}>
+                  <div key={i} className={`cat-btn1 cat-${i + 1}`}>
+                    {val}
+                  </div>
+                </div>
+              ))}
+          </div>
+        </div>
+      )}
+
+      <div className="calendar-container mt-2">
         <Calendar
           locale="kor"
           onChange={onChange}
@@ -125,7 +153,7 @@ function ReactCalendar() {
         </div>
       </div>
 
-      <Record value={value} />
+      <Record value={value} recordList={recordList} />
     </div>
   );
 }
