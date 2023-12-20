@@ -6,7 +6,7 @@ import BudgetBar from '../components/BudgetBar';
 import PredictMotive from '../components/PredictMotive';
 import ServiceList from '../components/ServiceList';
 import iconAvatar from '../assets/images/iconAvatar.png';
-import { getMyList, getRecordList, getUsers } from '../services/service';
+import { getCategories, getMyList, getRecordList, getUsers } from '../services/service';
 import { useNavigate } from 'react-router-dom';
 import Loading from '../components/Loading';
 
@@ -31,12 +31,14 @@ function Home() {
         setFNLG(res.data[0].theme.themeName);
 
         getRecordList({ ledgerId: res.data[0].ledgerId }).then((res) => {
-          console.log(res);
-          console.log('ledgerId', res.data);
           setRecordList(res.data.recordList);
           setNewDateList(res.data.recordList.map((val) => val.tranYmd));
           setNewDateList(res.data.recordList.map((val) => val.tranYmd));
+          
         });
+        getCategories(res.data[0].ledgerId).then((res) => {
+          setCatList(res.data.categoryList);
+        })
       })
       .then(() => {
         setLoading(false);
