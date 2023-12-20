@@ -41,28 +41,27 @@ function Record({ value, recordList, newDateList, catList }) {
   return (
     <div>
       <div className="accordion mt-4 mb-4" id="accordionPanelsStayOpenExample">
-        {listCount >= 3 && newDateList.includes(moment(value).format('YYYY-MM-DD')) ? (
-          recordList
-            .filter((record) => record.tranYmd === rDate)
-            .map((r, i) => (
-              <div className="accordion-item" key={i}>
-                <h2 className="accordion-header" id={`panelsStayOpen-heading${i}`}>
-                  <button
-                    className="accordion-button"
-                    type="button"
-                    key={i}
-                    data-bs-toggle="collapse"
-                    data-bs-target={`#panelsStayOpen-collapse${i}`}
-                    aria-expanded="true"
-                    aria-controls={`panelsStayOpen-collapse${i}`}
-                  >
-                    <div className="record-container">
-                      <div className="record-info-area">
-                        <div className="record-info">
-                          {r.tranTime} | {r.tranPlace}
-                        </div>
-                        <div className={`record-cat ${getColor(r.categoryName)}`}>{r.categoryName}</div>
+        {recordList
+          .filter((record) => record.tranYmd === moment(value).format('YYYY-MM-DD'))
+          .map((r, i) => (
+            <div className="accordion-item" key={i}>
+              <h2 className="accordion-header" id={`panelsStayOpen-heading${i}`}>
+                <button
+                  className="accordion-button"
+                  type="button"
+                  key={i}
+                  data-bs-toggle="collapse"
+                  data-bs-target={`#panelsStayOpen-collapse${i}`}
+                  aria-expanded="true"
+                  aria-controls={`panelsStayOpen-collapse${i}`}
+                >
+                  <div className="record-container">
+                    <div className="record-info-area">
+                      <div className="record-info">
+                        {r.tranTime} | {r.tranPlace}
                       </div>
+                      <div className={`record-cat ${getColor(r.categoryName)}`}>{r.categoryName}</div>
+                    </div>
 
                       <div className="record-title-area">
                         <div className="record-title">
