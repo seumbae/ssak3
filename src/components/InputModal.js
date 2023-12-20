@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from '@emotion/styled';
 
-function InputModal({ cancelFunc, acceptFunc, title, content, cancelMsg, acceptMsg }) {
+function InputModal({ cancelFunc, acceptFunc, title, cancelMsg, acceptMsg }) {
   const [inputCat, setInputCat] = useState('');
 
   return (

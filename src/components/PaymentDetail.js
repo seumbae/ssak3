@@ -4,13 +4,7 @@ import receiptImg from '../assets/images/receipt.jpg';
 import CheckModal from '../components/CheckModal';
 
 function PaymentDetail({title, price, time, name, setIsEditTrue}) {
-  const [checkCatBtn, setCheckCatBtn] = useState('술');
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [isDelModalOpen, setIsDelModalOpen] = useState(false);
-
-  const handleCatBtn = (e) => {
-    setCheckCatBtn(e.target.value);
-  };
 
   return (
     <div className="accordion-body">
@@ -20,7 +14,7 @@ function PaymentDetail({title, price, time, name, setIsEditTrue}) {
           <div className="body-cat">
             <div className="vertical-dot"></div>
             <div className="my-btn">
-              <input type="button" onClick={handleCatBtn} className="cat-btn cat-4" value="술"></input>
+              <input type="button" className="cat-btn cat-4" value="술"></input>
             </div>
           </div>
           <div className="body-content">
