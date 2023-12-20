@@ -63,58 +63,54 @@ function Record({ value, recordList, newDateList, catList }) {
                       <div className={`record-cat ${getColor(r.categoryName)}`}>{r.categoryName}</div>
                     </div>
 
-                      <div className="record-title-area">
-                        <div className="record-title">
-                          <span className="record-title-name">{r.tranName}</span>
-                          <i className="bi bi-receipt"></i>
-                        </div>
-                        <div className="record-price">
-                          {r.isExpense === '1' ? '-' + r.tranAmount.toLocaleString() : r.tranAmount.toLocaleString()}원
-                        </div>
+                    <div className="record-title-area">
+                      <div className="record-title">
+                        <span className="record-title-name">{r.tranName}</span>
+                        <i className="bi bi-receipt"></i>
                       </div>
-                      {/* <div className="line"></div> */}
+                      <div className="record-price">
+                        {r.isExpense === '1' ? '-' + r.tranAmount.toLocaleString() : r.tranAmount.toLocaleString()}원
+                      </div>
                     </div>
-                  </button>
-                </h2>
-                <div
-                  id={`panelsStayOpen-collapse${i}`}
-                  className="accordion-collapse collapse"
-                  aria-labelledby={`panelsStayOpen-heading${i}`}
-                >
-                  {isEdit ? (
-                    <PaymentEdit
-                      categoryList={catList}
-                      title={r.title}
-                      price={r.price}
-                      time={r.time}
-                      name={r.name}
-                      setIsEditFalse={() => {
-                        setIsEdit(false);
-                      }}
-                      addCatList={(catItem) => addCatList(catItem)}
-                    />
-                  ) : (
-                    <PaymentDetail
-                      title={r.tranName}
-                      price={r.tranAmount}
-                      time={r.tranTime}
-                      name={r.tranPlace}
-                      catName={r.categoryName}
-                      isExpense={r.isExpense}
-                      setIsEditTrue={() => {
-                        setIsEdit(true);
-                      }}
-                    />
-                  )}
-                </div>
+                    {/* <div className="line"></div> */}
+                  </div>
+                </button>
+              </h2>
+              <div
+                id={`panelsStayOpen-collapse${i}`}
+                className="accordion-collapse collapse"
+                aria-labelledby={`panelsStayOpen-heading${i}`}
+              >
+                {isEdit ? (
+                  <PaymentEdit
+                    categoryList={catList}
+                    title={r.title}
+                    price={r.price}
+                    time={r.time}
+                    name={r.name}
+                    setIsEditFalse={() => {
+                      setIsEdit(false);
+                    }}
+                    addCatList={(catItem) => addCatList(catItem)}
+                  />
+                ) : (
+                  <PaymentDetail
+                    title={r.tranName}
+                    price={r.tranAmount}
+                    time={r.tranTime}
+                    name={r.tranPlace}
+                    catName={r.categoryName}
+                    isExpense={r.isExpense}
+                    setIsEditTrue={() => {
+                      setIsEdit(true);
+                    }}
+                  />
+                )}
               </div>
-            ))
-            .slice(0, recordCount)
-        ) : (
-          <div className="none-info">해당 내역이 없습니다</div>
-        )}
-
-        {/* <CheckModal /> */}
+            </div>
+          ))
+          .slice(0, recordCount)}
+        : (<div className="none-info">해당 내역이 없습니다</div>){/* <CheckModal /> */}
         {recordList.filter((record) => record.tranYmd === moment(value).format('YYYY-MM-DD')).length > 3 &&
           recordCount < records.length && (
             <button className="more-btn" onClick={() => setRecordCount(recordList.length)}>
