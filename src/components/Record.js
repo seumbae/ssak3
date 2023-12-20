@@ -62,7 +62,7 @@ function Record({ value, recordList, newDateList, catList }) {
                         <div className="record-info">
                           {r.tranTime} | {r.tranPlace}
                         </div>
-                        <div className={`record-cat`} style={{ backgroundColor: categoryColors[r.categoryName] }}>
+                        <div className={`record-cat`} style={{ backgroundColor: categoryColors[r.categoryName] || '#808080' }}>
                           {r.categoryName}
                         </div>
                       </div>
