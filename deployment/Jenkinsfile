@@ -20,7 +20,7 @@ podTemplate(
 {
 	node(label) {
 		stage("Get Source") {
-			git branch: 'main', url: 'https://github.com/seumbae/ssak3.git'
+			git branch: 'deployment', url: 'https://github.com/seumbae/ssak3.git'
         } 
 
 		//-- Read pipeline.properties and setting variables
