@@ -43,7 +43,11 @@ function ReactCalendar({ curledger, recordList, newDateList }) {
           <div className="dot-box">
             {categories.map((category, i) => {
               return (
-                <div key={category + i} className="dot" style={{ backgroundColor: categoryColors[category] || '#808080' }}></div>
+                <div
+                  key={category + i}
+                  className="dot"
+                  style={{ backgroundColor: categoryColors[category] || '#808080' }}
+                ></div>
               );
             })}
           </div>
@@ -69,7 +73,7 @@ function ReactCalendar({ curledger, recordList, newDateList }) {
         tempList.push(val.categoryName);
       }
     });
-    setCatList([new Set(tempList)]);
+    setCatList([...new Set(tempList)]);
   }
   useEffect(() => {
     makeCatList();
@@ -162,7 +166,7 @@ function ReactCalendar({ curledger, recordList, newDateList }) {
           <div className="col-sm"></div>
           <div className="today col-sm">{moment(value).format('YYYY.MM.DD')}</div>
           <div className="more-record-btn col-sm">
-            <PaymentAdd categoryList={['aa']}/>
+            <PaymentAdd categoryList={['aa']} />
           </div>
         </div>
       </div>

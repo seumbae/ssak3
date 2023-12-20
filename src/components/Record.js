@@ -6,6 +6,7 @@ import moment from 'moment/moment';
 import PaymentEdit from './PaymentEdit';
 import PaymentDetail from './PaymentDetail';
 import { getColor } from '../utils/common';
+import categoryColors from '../constants/cat';
 
 const records = [
   { time: '14:53', name: '홈플러스', cat: '술', title: '홈플에서 술삼', price: '30000' },
@@ -61,7 +62,9 @@ function Record({ value, recordList, newDateList, catList }) {
                         <div className="record-info">
                           {r.tranTime} | {r.tranPlace}
                         </div>
-                        <div className={`record-cat ${getColor(r.categoryName)}`}>{r.categoryName}</div>
+                        <div className={`record-cat`} style={{ backgroundColor: categoryColors[r.categoryName] }}>
+                          {r.categoryName}
+                        </div>
                       </div>
 
                       <div className="record-title-area">
@@ -85,10 +88,10 @@ function Record({ value, recordList, newDateList, catList }) {
                   {isEdit ? (
                     <PaymentEdit
                       categoryList={catList}
-                      title={r.title}
-                      price={r.price}
-                      time={r.time}
-                      name={r.name}
+                      title={r.tranName}
+                      price={r.tranAmount}
+                      time={r.tranTime}
+                      name={r.tranPlace}
                       setIsEditFalse={() => {
                         setIsEdit(false);
                       }}
