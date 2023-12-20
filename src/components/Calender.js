@@ -35,13 +35,14 @@ function ReactCalendar({ curledger, recordList, newDateList }) {
       .filter((val) => val.tranYmd === formattedDate)
       .map((val) => val.categoryName)
       .slice(0, 2);
+
     if (occurrences >= 2) {
       return (
         <>
           <div className="dot-box">
             {categories.map((category, i) => {
               return (
-                <div key={category + i} className="dot" style={{ backgroundColor: categoryColors[category] }}></div>
+                <div key={category + i} className="dot" style={{ backgroundColor: categoryColors[category] || '#808080' }}></div>
               );
             })}
           </div>
@@ -91,6 +92,7 @@ function ReactCalendar({ curledger, recordList, newDateList }) {
   useEffect(() => {
     makeCatList();
   }, []);
+
   return (
     <div>
       <div className="toggle-container">
@@ -136,6 +138,7 @@ function ReactCalendar({ curledger, recordList, newDateList }) {
         <div>
           <div className="triangle"></div>
           <div className="category-container">
+            {/* TODO: 무언가해야함 */}
             {catList &&
               catList.map((val, i) => (
                 <div key={i}>
