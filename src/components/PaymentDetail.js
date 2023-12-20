@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import '../styles/record.css';
 import receiptImg from '../assets/images/receipt.jpg';
 import CheckModal from '../components/CheckModal';
+import { getColor } from '../utils/common';
 
-function PaymentDetail({title, price, time, name, setIsEditTrue}) {
+function PaymentDetail({ title, price, time, name, isExpense, catName, setIsEditTrue }) {
   const [checkCatBtn, setCheckCatBtn] = useState('술');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isDelModalOpen, setIsDelModalOpen] = useState(false);
@@ -12,6 +13,8 @@ function PaymentDetail({title, price, time, name, setIsEditTrue}) {
     setCheckCatBtn(e.target.value);
   };
 
+  console.log('paymenttttt', catName);
+
   return (
     <div className="accordion-body">
       <div className="vertical">
@@ -19,8 +22,14 @@ function PaymentDetail({title, price, time, name, setIsEditTrue}) {
         <div className="vertical-body">
           <div className="body-cat">
             <div className="vertical-dot"></div>
+
             <div className="my-btn">
-              <input type="button" onClick={handleCatBtn} className="cat-btn cat-4" value="술"></input>
+              <input
+                type="button"
+                onClick={handleCatBtn}
+                className={`record-cat ${getColor(catName)}`}
+                value={catName}
+              ></input>
             </div>
           </div>
           <div className="body-content">
@@ -29,7 +38,9 @@ function PaymentDetail({title, price, time, name, setIsEditTrue}) {
           </div>
           <div className="body-price">
             <div className="vertical-dot"></div>
-            <span className="record-price">-{price}원</span>
+            <span className="record-price">
+              {isExpense === '1' ? '-' + price.toLocaleString() : price.toLocaleString()}원
+            </span>
           </div>
 
           <div className="body-receipt">
@@ -45,7 +56,12 @@ function PaymentDetail({title, price, time, name, setIsEditTrue}) {
         </div>
       </div>
       <div className="btn-container">
-        <button className="del-btn" onClick={() => setIsDelModalOpen(true)}>
+        <button
+          className="del-btn"
+          onClick={() => {
+            setIsDelModalOpen(true);
+          }}
+        >
           삭제
         </button>
         {isDelModalOpen && (
@@ -56,11 +72,15 @@ function PaymentDetail({title, price, time, name, setIsEditTrue}) {
             content="삭제하시면 가계부에서 거래내역이 보이지 않습니다."
             cancelMsg="취소"
             acceptMsg="삭제"
-          />)}
-        <button className="edit-btn" onClick={setIsEditTrue}> 수정 </button>
+          />
+        )}
+        <button className="edit-btn" onClick={setIsEditTrue}>
+          {' '}
+          수정{' '}
+        </button>
       </div>
     </div>
-  )
+  );
 }
 
 export default PaymentDetail;

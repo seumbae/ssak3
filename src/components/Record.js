@@ -1,45 +1,42 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import '../styles/record.css';
+import receiptImg from '../assets/images/receipt.jpg';
+import CheckModal from '../components/CheckModal';
 import moment from 'moment/moment';
 import PaymentEdit from './PaymentEdit';
 import PaymentDetail from './PaymentDetail';
+import { getColor } from '../utils/common';
 
 const records = [
   { time: '14:53', name: '홈플러스', cat: '술', title: '홈플에서 술삼', price: '30000' },
   { time: '16:53', name: '라공방', cat: '식사', title: '마라탕 먹음', price: '10000' },
   { time: '20:53', name: '다이소', cat: '장갑', title: '추워서 장갑삼', price: '2000' },
   { time: '20:53', name: '다이소', cat: '장갑', title: '추워서 장갑삼', price: '2000' },
+
   { time: '20:53', name: '다이소', cat: '장갑', title: '추워서 장갑삼', price: '2000' },
+
   { time: '20:53', name: '다이소', cat: '장갑', title: '추워서 장갑삼', price: '2000' },
 ];
 
-function getColor(val) {
-  switch (val) {
-    case '외식':
-      return 'cat1';
-    case '배달':
-      return 'cat2';
-    case '배달음식':
-      return 'cat3';
-    case '점심':
-      return 'cat4';
-    case '저녁':
-      return 'cat5';
-    case '야식':
-      return 'cat6';
-    default:
-      return 'cat6';
-  }
-}
-
-function Record({ value, recordList }) {
+function Record({ value, recordList, newDateList, catList }) {
+  const listCount = recordList.length;
   const [recordCount, setRecordCount] = useState(3);
+  const [checkCatBtn, setCheckCatBtn] = useState('술');
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isDelModalOpen, setIsDelModalOpen] = useState(false);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
-  const catList = ['술', '야식', '과자'];
+  const newCatList = catList;
 
   const addCatList = (catItem) => {
-    catList.push(catItem);
+    newCatList.push(catItem);
   };
+
+  const handleCatBtn = (e) => {
+    setCheckCatBtn(e.target.value);
+  };
+
+  const rDate = moment(value).format('YYYY-MM-DD');
 
   return (
     <div>
@@ -71,8 +68,11 @@ function Record({ value, recordList }) {
                         <span className="record-title-name">{r.tranName}</span>
                         <i className="bi bi-receipt"></i>
                       </div>
-                      <div className="record-price">-{r.tranAmount}원</div>
+                      <div className="record-price">
+                        {r.isExpense === '1' ? '-' + r.tranAmount.toLocaleString() : r.tranAmount.toLocaleString()}원
+                      </div>
                     </div>
+                    {/* <div className="line"></div> */}
                   </div>
                 </button>
               </h2>
@@ -95,10 +95,12 @@ function Record({ value, recordList }) {
                   />
                 ) : (
                   <PaymentDetail
-                    title={r.title}
-                    price={r.price}
-                    time={r.time}
-                    name={r.name}
+                    title={r.tranName}
+                    price={r.tranAmount}
+                    time={r.tranTime}
+                    name={r.tranPlace}
+                    catName={r.categoryName}
+                    isExpense={r.isExpense}
                     setIsEditTrue={() => {
                       setIsEdit(true);
                     }}
@@ -108,7 +110,8 @@ function Record({ value, recordList }) {
             </div>
           ))
           .slice(0, recordCount)}
-        {recordList.filter((record) => record.tranYmd === moment(value).format('YYYY-MM-DD')).length > 3 > 3 &&
+        : (<div className="none-info">해당 내역이 없습니다</div>){/* <CheckModal /> */}
+        {recordList.filter((record) => record.tranYmd === moment(value).format('YYYY-MM-DD')).length > 3 &&
           recordCount < records.length && (
             <button className="more-btn" onClick={() => setRecordCount(recordList.length)}>
               + 더보기

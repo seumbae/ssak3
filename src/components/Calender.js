@@ -9,7 +9,7 @@ import categoryColors from '../constants/cat';
 
 const dayList = [];
 
-function ReactCalendar({ curledger, recordList }) {
+function ReactCalendar({ curledger, recordList, newDateList }) {
   const [dayList, setDayList] = useState([]);
   const [value, onChange] = useState(new Date()); // 초기값은 현재 날짜
   const [checked, setChecked] = useState('전체');
@@ -59,6 +59,26 @@ function ReactCalendar({ curledger, recordList }) {
       return <></>;
     }
   };
+  function addContent({ date }) {
+    const contents = [];
+
+    recordList.find((val, i) => {
+      if (val.tranYmd === moment(date).format('YYYY-MM-DD')) {
+        contents.push(
+          <>
+            <div className="dot-box">
+              <div className={`dot cat-${i + 1}`}></div>
+            </div>
+          </>,
+        );
+      }
+    });
+
+    // console.log('contents: ', moment(date).format('YYYY-MM-DD'), contents);\
+
+    return <div>{contents}</div>;
+  }
+
   function makeCatList() {
     var tempList = [];
     recordList.map((val) => {
@@ -162,7 +182,7 @@ function ReactCalendar({ curledger, recordList }) {
         </div>
       </div>
 
-      <Record value={value} recordList={recordList} />
+      <Record value={value} recordList={recordList} newDateList={newDateList} catList={catList} />
     </div>
   );
 }

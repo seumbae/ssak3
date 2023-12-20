@@ -337,3 +337,17 @@
   align-items: center;
   justify-content: center;
 }
+
+.none-info {
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #828181;
+  text-align: center;
+  font-family: KBFG Display;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
