@@ -18,24 +18,29 @@ function ReactCalendar({ curledger, recordList, newDateList }) {
   const [isExpenseOpen, setExpenseOpen] = useState(false);
   const activeBtn = checked == '전체' ? styles.all : styles.one;
   const [recordData, setRecordData] = useState(recordList.map((obj) => obj.tranYmd));
-  // const handleChecked = () => {
-  //   if (checked == '전체') {
-  //     console.log('전체');
-  //   } else if (checked == '수입') {
-  //     console.log('수입');
-  //   } else if (checked == '지출') {
-  //     setExpenseOpen(true);
-  //     console.log('지출');
-  //   }
-  // };
 
   const handleTileContents = (date) => {
     const formattedDate = moment(date).format('YYYY-MM-DD');
     const occurrences = recordList.filter((val) => val.tranYmd === formattedDate).length;
-    const categories = recordList
-      .filter((val) => val.tranYmd === formattedDate)
-      .map((val) => val.categoryName)
-      .slice(0, 2);
+    let categories;
+    if (checked === '전체') {
+      categories = recordList
+        .filter((val) => val.tranYmd === formattedDate)
+        .map((val) => val.categoryName)
+        .slice(0, 2);
+    } else if (checked === '수입') {
+      categories = recordList
+        .filter((val) => val.isExpense === '0')
+        .filter((val) => val.tranYmd === formattedDate)
+        .map((val) => val.categoryName)
+        .slice(0, 2);
+    } else if (checked === '지출') {
+      categories = recordList
+        .filter((val) => val.isExpense === '1')
+        .filter((val) => val.tranYmd === formattedDate)
+        .map((val) => val.categoryName)
+        .slice(0, 2);
+    }
 
     if (occurrences >= 2) {
       return (
@@ -65,39 +70,19 @@ function ReactCalendar({ curledger, recordList, newDateList }) {
       return <></>;
     }
   };
-  function addContent({ date }) {
-    const contents = [];
 
-    recordList.find((val, i) => {
-      if (val.tranYmd === moment(date).format('YYYY-MM-DD')) {
-        contents.push(
-          <>
-            <div className="dot-box">
-              <div className={`dot cat-${i + 1}`}></div>
-            </div>
-          </>,
-        );
-      }
-    });
-
-    // console.log('contents: ', moment(date).format('YYYY-MM-DD'), contents);\
-
-    return <div>{contents}</div>;
-  }
-
-  function makeCatList() {
-    var tempList = [];
-    recordList.map((val) => {
-      if (val.isExpense == '1') {
-        tempList.push(val.categoryName);
-      }
-    });
-    setCatList([...new Set(tempList)]);
-  }
-  useEffect(() => {
-    makeCatList();
-  }, []);
-
+  // function makeCatList() {
+  //   var tempList = [];
+  //   recordList.map((val) => {
+  //     if (val.isExpense == '1') {
+  //       tempList.push(val.categoryName);
+  //     }
+  //   });
+  //   setCatList([...new Set(tempList)]);
+  // }
+  // useEffect(() => {
+  //   makeCatList();
+  // }, []);
   return (
     <div>
       <div className="toggle-container">
@@ -120,6 +105,7 @@ function ReactCalendar({ curledger, recordList, newDateList }) {
           id="btn-check-outlined2"
           onClick={() => {
             setExpenseOpen(false);
+            setCatList(recordList.filter((obj) => obj.isExpense === '0').map((obj) => obj.categoryName));
             setChecked('수입');
           }}
         ></input>
@@ -132,6 +118,7 @@ function ReactCalendar({ curledger, recordList, newDateList }) {
           id="btn-check-outlined3"
           onClick={() => {
             setChecked('지출');
+            setCatList(recordList.filter((obj) => obj.isExpense === '1').map((obj) => obj.categoryName));
             setExpenseOpen(!isExpenseOpen);
           }}
         ></input>
@@ -143,11 +130,10 @@ function ReactCalendar({ curledger, recordList, newDateList }) {
         <div>
           <div className="triangle"></div>
           <div className="category-container">
-            {/* TODO: 무언가해야함 */}
             {catList &&
               catList.map((val, i) => (
                 <div key={i}>
-                  <div key={i} className={`cat-btn1 cat-${i + 1}`}>
+                  <div key={i} className={`cat-btn1`} style={{ backgroundColor: categoryColors[val] || '#808080' }}>
                     {val}
                   </div>
                 </div>
