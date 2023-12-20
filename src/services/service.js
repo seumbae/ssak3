@@ -21,7 +21,7 @@ export const createUser = async (data) => await API.post('/user/create', data);
 // parameters : None, 테마 목록 조회(가계부 생성 시)
 export const getThemeList = async () => await API.get('/ledger/theme/list');
 // parameters : userId(Integer), 나의 가계부 목록 조회
-export const getMyList = async (data) => await API.get('/ledger/my-list', {params : data});
+export const getMyList = async (data) => await API.get('/ledger/my-list', { params: data });
 // parameters : userId(Integer), 나를 제외한 모든 사용자의 가계부 목록 조회
 export const getOthersList = async (data) => await API.get('/ledger/others-list', data);
 // parameters : ledgerId(Integer), 기존 가계부 삭제
@@ -30,8 +30,10 @@ export const removeLedger = async (data) => await API.post('/ledger/remove', dat
 export const modifyLedger = async (data) => await API.post('/ledger/modify', data);
 // parameters : body, 가계부 생성
 export const addLedger = async (data) => await API.post('/ledger/add', data);
-// parameters : ledgerId(integer), yearMonth("YYYY-MM") 가계부 내역 목록 조회
+// parameters : ledgerId(integer) 가계부 내역 목록 조회
 export const getRecordList = async (data) => await API.post('/record/list', data);
+// parameters : recordId, categoryId, categoryname, tranName, tranAmount 가계부 내역 수정
+export const editRecordList = async (data) => await API.post('/record/list', data);
 
 // Category
 

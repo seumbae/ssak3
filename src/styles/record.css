@@ -60,7 +60,7 @@
 }
 .record-cat {
   border-radius: 3px;
-  padding: 1px 5px;
+  padding: 0 10px;
   height: 15px;
   flex-shrink: 0;
   color: #000;
@@ -70,6 +70,7 @@
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+  border: none;
 }
 
 .cat1 {
@@ -244,25 +245,9 @@
   margin: 12px 0 30px 0;
 }
 
-.cat-plus {
-  border: dotted 1px #000;
-  border-radius: 3px;
-  width: 35.649px;
-  height: 15px;
-  flex-shrink: 0;
-  color: #000;
-  text-align: center;
-  font-family: KBFG Text;
-  font-size: 11px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 15px;
-  margin-right: 7px;
-}
-
 .cat-btn {
   border-radius: 3px;
-  width: 35.649px;
+  /* width: 35.649px; */
   /* height: 15px; */
   flex-shrink: 0;
   color: #000;
@@ -274,6 +259,7 @@
   line-height: 15px;
   margin-right: 7px;
   border: none;
+  padding: 0 10px;
 }
 .record-title-name {
   color: #000;
@@ -339,7 +325,7 @@
 }
 
 .none-info {
-  height: 200px;
+  height: 100px;
   display: flex;
   align-items: center;
   justify-content: center;

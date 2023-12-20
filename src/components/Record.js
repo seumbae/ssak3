@@ -6,6 +6,7 @@ import moment from 'moment/moment';
 import PaymentEdit from './PaymentEdit';
 import PaymentDetail from './PaymentDetail';
 import { getColor } from '../utils/common';
+import categoryColors from '../constants/cat';
 
 const records = [
   { time: '14:53', name: '홈플러스', cat: '술', title: '홈플에서 술삼', price: '30000' },
@@ -18,7 +19,7 @@ const records = [
   { time: '20:53', name: '다이소', cat: '장갑', title: '추워서 장갑삼', price: '2000' },
 ];
 
-function Record({ value, recordList, newDateList, catList }) {
+function Record({ setCatList, curledger, value, recordList, newDateList, catList, ledgerId }) {
   const listCount = recordList.length;
   const [recordCount, setRecordCount] = useState(3);
   const [checkCatBtn, setCheckCatBtn] = useState('술');
@@ -37,7 +38,7 @@ function Record({ value, recordList, newDateList, catList }) {
   };
 
   const rDate = moment(value).format('YYYY-MM-DD');
-
+  console.log('record', catList);
   return (
     <div>
       <div className="accordion mt-4 mb-4" id="accordionPanelsStayOpenExample">
@@ -61,7 +62,12 @@ function Record({ value, recordList, newDateList, catList }) {
                         <div className="record-info">
                           {r.tranTime} | {r.tranPlace}
                         </div>
-                        <div className={`record-cat ${getColor(r.categoryName)}`}>{r.categoryName}</div>
+                        <div
+                          className={`record-cat`}
+                          style={{ backgroundColor: categoryColors[r.categoryName] || '#808080' }}
+                        >
+                          {r.categoryName}
+                        </div>
                       </div>
 
                       <div className="record-title-area">
@@ -85,14 +91,17 @@ function Record({ value, recordList, newDateList, catList }) {
                   {isEdit ? (
                     <PaymentEdit
                       categoryList={catList}
-                      title={r.title}
-                      price={r.price}
-                      time={r.time}
-                      name={r.name}
+                      title={r.tranName}
+                      price={r.tranAmount}
+                      time={r.tranTime}
+                      name={r.tranPlace}
+                      catName={r.categoryName}
+                      curledger={curledger}
                       setIsEditFalse={() => {
                         setIsEdit(false);
                       }}
                       addCatList={(catItem) => addCatList(catItem)}
+                      setCatList={setCatList}
                     />
                   ) : (
                     <PaymentDetail

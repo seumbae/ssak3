@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import Offcanvas from 'react-bootstrap/Offcanvas';
-import styled from "@emotion/styled";
+import styled from '@emotion/styled';
 import iconAddFNLG from '../assets/images/iconAddFNLG.png';
 import iconUnderArrow from '../assets/images/iconUnderArrow.png';
 import iconX from '../assets/images/iconX.png';
-import Picker from "./Picker";
+import Picker from './Picker';
 import { useNavigate } from 'react-router-dom';
 import { getRecordList } from '../services/service';
 
-function FNLGBar({ FNLGList, getFNLG, defaultGoal, setCurledger, ledgers, setRecordList }) {
-  const navigate = useNavigate(); 
+function FNLGBar({ FNLGList, getFNLG, defaultGoal, setCurledger, ledgers, setRecordList, setNewDateList }) {
+  const navigate = useNavigate();
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -19,36 +19,38 @@ function FNLGBar({ FNLGList, getFNLG, defaultGoal, setCurledger, ledgers, setRec
   const handleCheck = () => {
     getFNLG && getFNLG(selected);
     const curLedger = ledgers.find((ledger) => ledger.theme.themeName === selected);
-    setCurledger(curLedger)
-    
+    setCurledger(curLedger);
+
+    // 테마 변경으로 인한 ledger ID로 recordList 다시 받아오기, newDateList도 업데이트
     getRecordList({ ledgerId: curLedger.ledgerId }).then((res) => {
       setRecordList(res.data.recordList);
+      setNewDateList(res.data.recordList.map((val) => val.tranYmd));
     });
 
     handleClose();
-  }
+  };
 
-  const handleAddIconClick = () =>{
+  const handleAddIconClick = () => {
     navigate('/new');
-  }
+  };
   return (
     <FNLGBarDiv>
-      <SelectButton onClick={handleShow} role='presentation'>
+      <SelectButton onClick={handleShow} role="presentation">
         <p>{defaultGoal}</p>
         <IconUnderArrow src={iconUnderArrow} alt="이미지" />
       </SelectButton>
-      <StyledOffcanvas className="Offcanvas" show={show} onHide={handleClose} placement='bottom'>
+      <StyledOffcanvas className="Offcanvas" show={show} onHide={handleClose} placement="bottom">
         <OffcanvasContainer>
           <SelectTitle>
             <p>가계부 선택</p>
-            <button className='closeBtn' onClick={handleClose}>
+            <button className="closeBtn" onClick={handleClose}>
               <img src={iconX} alt="이미지" />
             </button>
           </SelectTitle>
           <SelectList>
-            <Picker list={FNLGList} getSelected={(selected) => setSelected(selected) } />
+            <Picker list={FNLGList} getSelected={(selected) => setSelected(selected)} />
           </SelectList>
-          <SelectCheck onClick={handleCheck} role='presentation'>
+          <SelectCheck onClick={handleCheck} role="presentation">
             확인
           </SelectCheck>
         </OffcanvasContainer>
@@ -64,7 +66,7 @@ const AddBtn = styled.button`
   appearance: none;
   border: none;
   background-color: white;
-`
+`;
 
 const FNLGBarDiv = styled.div`
   width: 360px;
@@ -75,7 +77,7 @@ const FNLGBarDiv = styled.div`
   border-color: #9d9d9d;
   display: flex;
   justify-content: space-between;
-`
+`;
 
 const SelectButton = styled.div`
   width: 150px;
@@ -94,19 +96,19 @@ const SelectButton = styled.div`
     font-family: KBTextM;
     margin: 0;
   }
-`
+`;
 
 const StyledOffcanvas = styled(Offcanvas)`
   min-height: 300px;
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
-`
+`;
 
 const OffcanvasContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-`
+`;
 
 const SelectTitle = styled.div`
   font-family: KBTitleB;
@@ -124,22 +126,22 @@ const SelectTitle = styled.div`
     align-items: center;
     padding: 0;
   }
-`
+`;
 
 const SelectList = styled.div`
   height: 180px;
   padding-top: 15px;
-`
+`;
 
 const IconAddFNLG = styled.img`
   margin: 2.5px 5px 0 0;
   width: 25px;
   height: 25px;
-`
+`;
 const IconUnderArrow = styled.img`
   width: 15px;
   height: 15px;
-`
+`;
 const SelectCheck = styled.div`
   background-color: #ffcc00;
   height: 60px;
@@ -147,6 +149,6 @@ const SelectCheck = styled.div`
   font-family: KBTextB;
   font-size: 24px;
   text-align: center;
-`
+`;
 
 export default FNLGBar;
