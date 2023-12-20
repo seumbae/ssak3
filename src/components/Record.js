@@ -33,6 +33,11 @@ function Record({ value }) {
   const listCount = records.length;
   const [recordCount, setRecordCount] = useState(3);
   const [isEdit, setIsEdit] = useState(false);
+  const catList = ['술', '야식', '과자'];
+
+  const addCatList = (catItem) => {
+    catList.push(catItem);
+  }
 
   return (
     <div>
@@ -74,7 +79,7 @@ function Record({ value }) {
                   className="accordion-collapse collapse"
                   aria-labelledby={`panelsStayOpen-heading${i}`}
                 >
-                  { isEdit? <PaymentEdit categoryList={['술', '야식', '과자']} title={r.title} price={r.price} time={r.time} name={r.name} setIsEditFalse={() => {setIsEdit(false)}} /> :
+                  { isEdit? <PaymentEdit categoryList={catList} title={r.title} price={r.price} time={r.time} name={r.name} setIsEditFalse={() => {setIsEdit(false)}} addCatList={(catItem) => addCatList(catItem)} /> :
                     <PaymentDetail title={r.title} price={r.price} time={r.time} name={r.name} setIsEditTrue={() => {setIsEdit(true)}} />
                   }
                 </div>

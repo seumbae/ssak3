@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import '../styles/PaymentEdit.css';
 import receiptImg from '../assets/images/receipt.jpg';
 import CheckModal from '../components/CheckModal';
+import InputModal from '../components/InputModal';
 
-function PaymentDetail({title, price, time, name, setIsEditFalse, categoryList}) {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+function PaymentEdit({title, price, time, name, setIsEditFalse, categoryList, addCatList}) {
+  const [isInputModalOpen, setIsInputModalOpen] = useState(false);
   const [isCancelModalOpen, setIsCancelModalOpen] = useState(false);
   
   const [checkCatBtn, setCheckCatBtn] = useState('술');
@@ -32,19 +33,19 @@ function PaymentDetail({title, price, time, name, setIsEditFalse, categoryList})
               <input
                 type="button"
                 onClick={() => {
-                  setIsModalOpen(true);
+                  setIsInputModalOpen(true);
                 }}
                 className="cat-plus"
                 value="+"
               ></input>
-                {isModalOpen && (
-                <CheckModal
-                  isOpen={isModalOpen}
-                  modalClose={() => setIsModalOpen(false)}
+                {isInputModalOpen && (
+                <InputModal
                   title="카테고리 추가"
                   content="만들어야함"
                   cancelMsg="취소"
-                  acceptMsg="확인" />)} 
+                  acceptMsg="확인"
+                  acceptFunc={(catItem) => {addCatList(catItem); setIsInputModalOpen(false)}}
+                  cancelFunc={() => setIsInputModalOpen(false)} />)} 
               </div>
           </div>
           <div className="body-content">
@@ -85,4 +86,4 @@ function PaymentDetail({title, price, time, name, setIsEditFalse, categoryList})
   )
 }
 
-export default PaymentDetail;
+export default PaymentEdit;
