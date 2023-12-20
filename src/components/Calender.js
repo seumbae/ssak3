@@ -5,9 +5,9 @@ import styles from '../styles/calendar.css';
 import moment from 'moment';
 import Record from './Record';
 import { getRecordList, createCategory } from '../services/service';
+import categoryColors from '../constants/cat';
 
 const dayList = [];
-//const [dayList, setDayList] = useState([]);
 
 function ReactCalendar({ curledger, recordList, newDateList }) {
   const [dayList, setDayList] = useState([]);
@@ -16,9 +16,7 @@ function ReactCalendar({ curledger, recordList, newDateList }) {
   const [catList, setCatList] = useState([]);
   const [isExpenseOpen, setExpenseOpen] = useState(false);
   const activeBtn = checked == '전체' ? styles.all : styles.one;
-  const [recordData, setRecordData] = useState([]);
-  console.log('curledger', curledger, recordList);
-
+  const [recordData, setRecordData] = useState(recordList.map((obj) => obj.tranYmd));
   // const handleChecked = () => {
   //   if (checked == '전체') {
   //     console.log('전체');
@@ -29,6 +27,38 @@ function ReactCalendar({ curledger, recordList, newDateList }) {
   //     console.log('지출');
   //   }
   // };
+
+  const handleTileContents = (date) => {
+    const formattedDate = moment(date).format('YYYY-MM-DD');
+    const occurrences = recordList.filter((val) => val.tranYmd === formattedDate).length;
+    const categories = recordList
+      .filter((val) => val.tranYmd === formattedDate)
+      .map((val) => val.categoryName)
+      .slice(0, 2);
+    if (occurrences >= 2) {
+      return (
+        <>
+          <div className="dot-box">
+            {categories.map((category, i) => {
+              return (
+                <div key={category + i} className="dot" style={{ backgroundColor: categoryColors[category] }}></div>
+              );
+            })}
+          </div>
+        </>
+      );
+    } else if (occurrences === 1) {
+      return (
+        <>
+          <div className="dot-box">
+            <div className="dot" style={{ backgroundColor: categoryColors[categories[0]] }}></div>
+          </div>
+        </>
+      ); // Hide if occurrences are more than 2 and date is selected
+    } else {
+      return <></>;
+    }
+  };
   function addContent({ date }) {
     const contents = [];
 
@@ -58,9 +88,6 @@ function ReactCalendar({ curledger, recordList, newDateList }) {
     });
     setCatList([new Set(tempList)]);
   }
-
-  console.log('nnn', newDateList);
-
   useEffect(() => {
     makeCatList();
   }, []);
@@ -127,7 +154,7 @@ function ReactCalendar({ curledger, recordList, newDateList }) {
           onChange={onChange}
           formatDay={(locale, date) => moment(date).format('DD')}
           value={value}
-          tileContent={addContent}
+          tileContent={({ date }) => handleTileContents(date)}
           showNeighboringMonth={true}
           next2Label={null}
           prev2Label={null}
