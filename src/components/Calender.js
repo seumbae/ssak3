@@ -5,6 +5,7 @@ import '../styles/calendar.css';
 import moment from 'moment';
 import Record from './Record';
 import categoryColors from '../constants/cat';
+import PaymentAdd from './PaymentAdd';
 
 function ReactCalendar({ curledger, recordList, newDateList, ledgerId, catList, setCatList }) {
   const [value, onChange] = useState(new Date()); // 초기값은 현재 날짜
@@ -165,7 +166,7 @@ function ReactCalendar({ curledger, recordList, newDateList, ledgerId, catList, 
         <div className="record-main-title mt-4 row">
           <div className="col-sm"></div>
           <div className="today col-sm">{moment(value).format('YYYY.MM.DD')}</div>
-          <div className="more-record-btn col-sm">{/* <PaymentAdd categoryList={['aa']} /> */}</div>
+          <div className="more-record-btn col-sm"></div>
         </div>
       </div>
       <PaymentAdd categoryList={['aa']} />
