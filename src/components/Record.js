@@ -59,63 +59,62 @@ function Record({ value, recordList, newDateList, catList }) {
   return (
     <div>
       <div className="accordion mt-4 mb-4" id="accordionPanelsStayOpenExample">
-        {listCount >= 3 && newDateList.includes(moment(value).format('YYYY-MM-DD')) ? (
-          recordList
-            .filter((record) => record.tranYmd === rDate)
-            .map((r, i) => (
-              <div className="accordion-item" key={i}>
-                <h2 className="accordion-header" id={`panelsStayOpen-heading${i}`}>
-                  <button
-                    className="accordion-button"
-                    type="button"
-                    key={i}
-                    data-bs-toggle="collapse"
-                    data-bs-target={`#panelsStayOpen-collapse${i}`}
-                    aria-expanded="true"
-                    aria-controls={`panelsStayOpen-collapse${i}`}
-                  >
-                    <div className="record-container">
-                      <div className="record-info-area">
-                        <div className="record-info">
-                          {r.tranTime} | {r.tranPlace}
-                        </div>
-                        <div className={`record-cat ${getColor(r.categoryName)}`}>{r.categoryName}</div>
-                      </div>
-
-                      <div className="record-title-area">
-                        <div className="record-title">
-                          <span className="record-title-name">{r.tranName}</span>
-                          <i className="bi bi-receipt"></i>
-                        </div>
-                        <div className="record-price">
-                          {r.isExpense === '1' ? '-' + r.tranAmount.toLocaleString() : r.tranAmount.toLocaleString()}원
-                        </div>
-                      </div>
-                      {/* <div className="line"></div> */}
-                    </div>
-                  </button>
-                </h2>
-                <div
-                  id={`panelsStayOpen-collapse${i}`}
-                  className="accordion-collapse collapse"
-                  aria-labelledby={`panelsStayOpen-heading${i}`}
+        {recordList
+          .filter((record) => record.tranYmd === moment(value).format('YYYY-MM-DD'))
+          .map((r, i) => (
+            <div className="accordion-item" key={i}>
+              <h2 className="accordion-header" id={`panelsStayOpen-heading${i}`}>
+                <button
+                  className="accordion-button"
+                  type="button"
+                  key={i}
+                  data-bs-toggle="collapse"
+                  data-bs-target={`#panelsStayOpen-collapse${i}`}
+                  aria-expanded="true"
+                  aria-controls={`panelsStayOpen-collapse${i}`}
                 >
-                  <div className="accordion-body">
-                    <div className="vertical">
-                      <div className="vertical-line"></div>
-                      <div className="vertical-body">
-                        <div className="body-cat">
-                          <div className="vertical-dot"></div>
+                  <div className="record-container">
+                    <div className="record-info-area">
+                      <div className="record-info">
+                        {r.tranTime} | {r.tranPlace}
+                      </div>
+                      <div className={`record-cat ${getColor(r.categoryName)}`}>{r.categoryName}</div>
+                    </div>
 
-                          <div className="my-btn">
-                            <input
-                              type="button"
-                              onClick={handleCatBtn}
-                              className={`cat-btn record-cat ${getColor(r.categoryName)}`}
-                              value={r.categoryName}
-                            ></input>
-                          </div>
-                          {/*
+                    <div className="record-title-area">
+                      <div className="record-title">
+                        <span className="record-title-name">{r.tranName}</span>
+                        <i className="bi bi-receipt"></i>
+                      </div>
+                      <div className="record-price">
+                        {r.isExpense === '1' ? '-' + r.tranAmount.toLocaleString() : r.tranAmount.toLocaleString()}원
+                      </div>
+                    </div>
+                    {/* <div className="line"></div> */}
+                  </div>
+                </button>
+              </h2>
+              <div
+                id={`panelsStayOpen-collapse${i}`}
+                className="accordion-collapse collapse"
+                aria-labelledby={`panelsStayOpen-heading${i}`}
+              >
+                <div className="accordion-body">
+                  <div className="vertical">
+                    <div className="vertical-line"></div>
+                    <div className="vertical-body">
+                      <div className="body-cat">
+                        <div className="vertical-dot"></div>
+
+                        <div className="my-btn">
+                          <input
+                            type="button"
+                            onClick={handleCatBtn}
+                            className={`cat-btn record-cat ${getColor(r.categoryName)}`}
+                            value={r.categoryName}
+                          ></input>
+                        </div>
+                        {/*
                     <div className="my-btn">
                       <input type="button" onClick={handleCatBtn} className="cat-btn cat-1" value="전체"></input>
                       {checkCatBtn === '전체' ? <i className="bi bi-check"></i> : ''}
@@ -154,94 +153,89 @@ function Record({ value, recordList, newDateList, catList }) {
                         ''
                       )} 
                       </div> */}
-                        </div>
-                        <div className="body-content">
-                          <div className="vertical-dot"></div>
-                          <span className="record-title-name">{r.tranName}</span>
-                        </div>
-                        <div className="body-price">
-                          <div className="vertical-dot"></div>
-                          <span className="record-price">
-                            {r.isExpense === '1' ? '-' + r.tranAmount.toLocaleString() : r.tranAmount.toLocaleString()}
-                            원
-                          </span>
-                        </div>
+                      </div>
+                      <div className="body-content">
+                        <div className="vertical-dot"></div>
+                        <span className="record-title-name">{r.tranName}</span>
+                      </div>
+                      <div className="body-price">
+                        <div className="vertical-dot"></div>
+                        <span className="record-price">
+                          {r.isExpense === '1' ? '-' + r.tranAmount.toLocaleString() : r.tranAmount.toLocaleString()}원
+                        </span>
+                      </div>
 
-                        <div className="body-receipt">
-                          <div className="vertical-dot"></div>
-                          <img className="receipt-img" src={receiptImg} alt="receipt" />
-                        </div>
-                        <div className="body-time">
-                          <div className="vertical-dot"></div>
-                          <span className="record-info">
-                            {r.tranTime} | {r.tranPlace}
-                          </span>
-                        </div>
+                      <div className="body-receipt">
+                        <div className="vertical-dot"></div>
+                        <img className="receipt-img" src={receiptImg} alt="receipt" />
+                      </div>
+                      <div className="body-time">
+                        <div className="vertical-dot"></div>
+                        <span className="record-info">
+                          {r.tranTime} | {r.tranPlace}
+                        </span>
                       </div>
                     </div>
-                    <div className="btn-container">
-                      <button
-                        className="del-btn"
-                        onClick={() => {
-                          setIsDelModalOpen(true);
-                        }}
-                      >
-                        삭제
-                      </button>
-                      {isDelModalOpen == true ? (
-                        <CheckModal
-                          isOpen={isDelModalOpen}
-                          modalClose={() => setIsDelModalOpen(false)}
-                          title="삭제하시겠습니까?"
-                          content="삭제하시면 가계부에서 거래내역이 보이지 않습니다."
-                          cancelMsg="취소"
-                          acceptMsg="삭제"
-                        />
-                      ) : (
-                        ''
-                      )}
-                      <button
-                        className="edit-btn"
-                        onClick={() => {
-                          setIsEditModalOpen(true);
-                        }}
-                      >
-                        수정
-                      </button>
-                    </div>
                   </div>
-                  {isEdit ? (
-                    <PaymentEdit
-                      categoryList={catList}
-                      title={r.title}
-                      price={r.price}
-                      time={r.time}
-                      name={r.name}
-                      setIsEditFalse={() => {
-                        setIsEdit(false);
+                  <div className="btn-container">
+                    <button
+                      className="del-btn"
+                      onClick={() => {
+                        setIsDelModalOpen(true);
                       }}
-                      addCatList={(catItem) => addCatList(catItem)}
-                    />
-                  ) : (
-                    <PaymentDetail
-                      title={r.title}
-                      price={r.price}
-                      time={r.time}
-                      name={r.name}
-                      setIsEditTrue={() => {
-                        setIsEdit(true);
+                    >
+                      삭제
+                    </button>
+                    {isDelModalOpen == true ? (
+                      <CheckModal
+                        isOpen={isDelModalOpen}
+                        modalClose={() => setIsDelModalOpen(false)}
+                        title="삭제하시겠습니까?"
+                        content="삭제하시면 가계부에서 거래내역이 보이지 않습니다."
+                        cancelMsg="취소"
+                        acceptMsg="삭제"
+                      />
+                    ) : (
+                      ''
+                    )}
+                    <button
+                      className="edit-btn"
+                      onClick={() => {
+                        setIsEditModalOpen(true);
                       }}
-                    />
-                  )}
+                    >
+                      수정
+                    </button>
+                  </div>
                 </div>
+                {isEdit ? (
+                  <PaymentEdit
+                    categoryList={catList}
+                    title={r.title}
+                    price={r.price}
+                    time={r.time}
+                    name={r.name}
+                    setIsEditFalse={() => {
+                      setIsEdit(false);
+                    }}
+                    addCatList={(catItem) => addCatList(catItem)}
+                  />
+                ) : (
+                  <PaymentDetail
+                    title={r.title}
+                    price={r.price}
+                    time={r.time}
+                    name={r.name}
+                    setIsEditTrue={() => {
+                      setIsEdit(true);
+                    }}
+                  />
+                )}
               </div>
-            ))
-            .slice(0, recordCount)
-        ) : (
-          <div className="none-info">해당 내역이 없습니다</div>
-        )}
-
-        {/* <CheckModal /> */}
+            </div>
+          ))
+          .slice(0, recordCount)}
+        : (<div className="none-info">해당 내역이 없습니다</div>){/* <CheckModal /> */}
         {recordList.filter((record) => record.tranYmd === moment(value).format('YYYY-MM-DD')).length > 3 &&
           recordCount < records.length && (
             <button className="more-btn" onClick={() => setRecordCount(recordList.length)}>
