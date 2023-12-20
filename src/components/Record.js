@@ -19,7 +19,7 @@ const records = [
   { time: '20:53', name: '다이소', cat: '장갑', title: '추워서 장갑삼', price: '2000' },
 ];
 
-function Record({ curledger, value, recordList, newDateList, catList, ledgerId }) {
+function Record({ setCatList, curledger, value, recordList, newDateList, catList, ledgerId }) {
   const listCount = recordList.length;
   const [recordCount, setRecordCount] = useState(3);
   const [checkCatBtn, setCheckCatBtn] = useState('술');
@@ -101,6 +101,7 @@ function Record({ curledger, value, recordList, newDateList, catList, ledgerId }
                         setIsEdit(false);
                       }}
                       addCatList={(catItem) => addCatList(catItem)}
+                      setCatList={setCatList}
                     />
                   ) : (
                     <PaymentDetail

@@ -6,7 +6,18 @@ import InputModal from '../components/InputModal';
 import categoryColors from '../constants/cat';
 import { createCategory } from '../services/service';
 
-function PaymentEdit({ curledger, title, price, time, name, setIsEditFalse, catName, categoryList, addCatList }) {
+function PaymentEdit({
+  setCatList,
+  curledger,
+  title,
+  price,
+  time,
+  name,
+  setIsEditFalse,
+  catName,
+  categoryList,
+  addCatList,
+}) {
   const [isInputModalOpen, setIsInputModalOpen] = useState(false);
   const [isCancelModalOpen, setIsCancelModalOpen] = useState(false);
 
@@ -60,10 +71,11 @@ function PaymentEdit({ curledger, title, price, time, name, setIsEditFalse, catN
                   cancelMsg="취소"
                   acceptMsg="확인"
                   acceptFunc={(catItem) => {
-                    addCatList(catItem);
                     createCategory({ ledgerId: curLedgerId, customCategoryName: catItem })
                       .then((res) => {
                         console.log('category create success!', res.data);
+                        setCatList((prev) => [...prev, catItem]);
+                        addCatList(catItem);
                       })
                       .catch(() => {
                         alert('서버와의 연결이 원활하지 않습니다.');
