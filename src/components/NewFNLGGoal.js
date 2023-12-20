@@ -55,6 +55,7 @@ function NewFNLGGoal({ setGoalShow, selectedTheme, monthBudget, monthExpense, is
           ref={goalInput}
           placeholder="ex) 삿포로 노천탕"
           onChange={handleInputChange} // 입력 변경 이벤트
+          autoComplete='off'
         ></input>
       </div>
       <img src={newlamu} alt="newlamu"></img>

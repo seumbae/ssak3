@@ -1,24 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from '@emotion/styled';
 
-function CheckModal({ cancelFunc, acceptFunc, title, content, cancelMsg, acceptMsg }) {
+function InputModal({ cancelFunc, acceptFunc, title, content, cancelMsg, acceptMsg }) {
+  const [inputCat, setInputCat] = useState('');
+
   return (
     <CheckModalDiv>
       <ModalArea>
         <TitleBox>{title}</TitleBox>
-        <ContentBox>{content}</ContentBox>
+        <ContentBox>
+          <InputBox className='inputBox' type="text" value={inputCat} onChange={(e) => { setInputCat(e.target.value) }} onKeyUp={(e) => {(e.key==='Enter') && acceptFunc(inputCat)}} />
+        </ContentBox>
         <ButtonBox>
-          <CancelMsg onClick={cancelFunc} role="presentation">
-            {cancelMsg}
-          </CancelMsg>
-          <AcceptMsg onClick={acceptFunc}>{acceptMsg}</AcceptMsg>
+          <CancelBtn onClick={cancelFunc}>{cancelMsg}</CancelBtn>
+          <AcceptBtn onClick={() => acceptFunc(inputCat)}>{acceptMsg}</AcceptBtn>
         </ButtonBox>
       </ModalArea>
     </CheckModalDiv>
   );
 }
 
-const AcceptMsg = styled.div`
+const AcceptBtn = styled.div`
   background-color: #ffcc00;
   width: 150px;
   height: 50px;
@@ -27,7 +29,7 @@ const AcceptMsg = styled.div`
   font-size: 20px;
   text-align: center;
 `;
-const CancelMsg = styled.div`
+const CancelBtn = styled.div`
   background-color: #d9d9d9;
   width: 150px;
   height: 50px;
@@ -53,6 +55,17 @@ const ContentBox = styled.div`
   padding: 20px 20px 10px 20px;
 `;
 
+const InputBox = styled.input`
+  background-color: #f1f1f1;
+  border: none;
+  border-radius: 15px;
+  padding: 0 0 0 10px;
+  width: 260px;
+  height: 30px;
+  font-family: KBTextB;
+  font-size: 16px;
+`
+
 const ButtonBox = styled.div`
   display: flex;
 `;
@@ -73,4 +86,4 @@ const ModalArea = styled.div`
   margin: 100px auto;
 `;
 
-export default CheckModal;
+export default InputModal;

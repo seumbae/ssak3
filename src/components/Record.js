@@ -3,6 +3,8 @@ import '../styles/record.css';
 import receiptImg from '../assets/images/receipt.jpg';
 import CheckModal from '../components/CheckModal';
 import moment from 'moment/moment';
+import PaymentEdit from './PaymentEdit';
+import PaymentDetail from './PaymentDetail';
 
 const records = [
   { time: '14:53', name: '홈플러스', cat: '술', title: '홈플에서 술삼', price: '30000' },
@@ -34,14 +36,20 @@ function getColor(val) {
   }
 }
 
-function Record({ value, recordList, newDateList }) {
+function Record({ value, recordList, newDateList, catList }) {
   const listCount = recordList.length;
   const [recordCount, setRecordCount] = useState(3);
   const [checkCatBtn, setCheckCatBtn] = useState('술');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isDelModalOpen, setIsDelModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
-  console.log('나는 레코드에서온레코드리스트', recordList);
+  const [isEdit, setIsEdit] = useState(false);
+  const newCatList = catList;
+
+  const addCatList = (catItem) => {
+    newCatList.push(catItem);
+  };
+
   const handleCatBtn = (e) => {
     setCheckCatBtn(e.target.value);
   };
@@ -202,6 +210,29 @@ function Record({ value, recordList, newDateList }) {
                       </button>
                     </div>
                   </div>
+                  {isEdit ? (
+                    <PaymentEdit
+                      categoryList={catList}
+                      title={r.title}
+                      price={r.price}
+                      time={r.time}
+                      name={r.name}
+                      setIsEditFalse={() => {
+                        setIsEdit(false);
+                      }}
+                      addCatList={(catItem) => addCatList(catItem)}
+                    />
+                  ) : (
+                    <PaymentDetail
+                      title={r.title}
+                      price={r.price}
+                      time={r.time}
+                      name={r.name}
+                      setIsEditTrue={() => {
+                        setIsEdit(true);
+                      }}
+                    />
+                  )}
                 </div>
               </div>
             ))

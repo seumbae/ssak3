@@ -21,6 +21,7 @@ function Home() {
   const [FNLG, setFNLG] = useState('');
   const [recordList, setRecordList] = useState([]);
   const [newDateList, setNewDateList] = useState([]);
+  const [curDate, setCurDate] = useState(new Date());
 
   useEffect(() => {
     getMyList({ userId: localStorage.getItem('userId') })
@@ -48,10 +49,6 @@ function Home() {
       });
   }, []);
 
-  // if (loading) {
-  //   return <Loading />;
-  // }
-
   return (
     <>
       {loading ? (
@@ -71,7 +68,13 @@ function Home() {
           <div className="emptyBox"></div>
           <BudgetBar use={curledger.monthExpense} budget={curledger.monthBudget} curledger={curledger} />
           <div className="emptyBox"></div>
-          <ReactCalendar curledger={curledger} recordList={recordList} newDateList={newDateList} />
+          <ReactCalendar
+            curledger={curledger}
+            recordList={recordList}
+            newDateList={newDateList}
+            curDate={curDate}
+            setCurDate={setCurDate}
+          />
           <div className="emptyBox"></div>
           <PredictMotive saveMoney={saveMoney} />
           <ServiceList />
