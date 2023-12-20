@@ -29,6 +29,7 @@ function PaymentEdit({
   const fileInputRef = useRef(null);
   const curLedgerId = curledger.ledgerId;
   // const [imgUrl, setImgUrl] = useState('');
+  
   const newData = {
     image: null,
     recordId: recordId,
@@ -38,23 +39,28 @@ function PaymentEdit({
       console.log('clicked!!');
       fileInputRef.current?.click();
     };
-
+    
     const uploadProfile = (e) => {
       const fileList = e.target.files;
       const length = fileList?.length;
       if (fileList && fileList[0]) {
-        const url = URL.createObjectURL(fileList[0]);
         const formData = new FormData();
+        const url = URL.createObjectURL(fileList[0]);
         // formData.append('image', url);
-        console.log(fileList[0]);
+        // console.log(fileList[0]);
+
+        console.log(1111111, e)
+        formData.append('recordId', recordId);
         formData.append('image', e.target.files);
-        console.log('formData', formData, fileList, url);
+        
         newData.image = formData;
-        setImageFile({
-          file: fileList[0],
-          thumbnail: formData,
-          type: fileList[0].type,
-        });
+        
+        setImageFile(formData);
+        // setImageFile({
+        //   file: fileList[0],
+        //   thumbnail: formData,
+        //   type: fileList[0].type,
+        // });
       }
     };
 
@@ -95,12 +101,12 @@ function PaymentEdit({
   };
 
   const handleEditBtn = () => {
-    const tmpdata = {
-      recordId: recordId,
-      image: imageFile.thumbnail,
-    };
-    console.log('11111231231', tmpdata);
-    uploadReceiptImg(tmpdata).then((res) => {
+    
+    for (let key in imageFile.keys()) {
+      console.log(key ,':', imageFile.get(key))
+    }
+
+    uploadReceiptImg(imageFile).then((res) => {
       console.log('upload', res, res.data);
     });
     editRecordList({
