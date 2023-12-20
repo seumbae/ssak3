@@ -60,6 +60,7 @@ function ReactCalendar({ curledger, recordList, newDateList }) {
   }
 
   console.log('nnn', newDateList);
+
   useEffect(() => {
     makeCatList();
   }, []);
@@ -154,7 +155,7 @@ function ReactCalendar({ curledger, recordList, newDateList }) {
         </div>
       </div>
 
-      <Record value={value} recordList={recordList} newDateList={newDateList} />
+      <Record value={value} recordList={recordList} newDateList={newDateList} catList={catList} />
     </div>
   );
 }
