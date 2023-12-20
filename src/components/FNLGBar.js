@@ -6,8 +6,9 @@ import iconUnderArrow from '../assets/images/iconUnderArrow.png';
 import iconX from '../assets/images/iconX.png';
 import Picker from "./Picker";
 import { useNavigate } from 'react-router-dom';
+import { getRecordList } from '../services/service';
 
-function FNLGBar({ FNLGList, getFNLG, defaultGoal, setCurledger, ledgers }) {
+function FNLGBar({ FNLGList, getFNLG, defaultGoal, setCurledger, ledgers, setRecordList }) {
   const navigate = useNavigate(); 
   const [show, setShow] = useState(false);
 
@@ -17,7 +18,13 @@ function FNLGBar({ FNLGList, getFNLG, defaultGoal, setCurledger, ledgers }) {
 
   const handleCheck = () => {
     getFNLG && getFNLG(selected);
-    setCurledger(ledgers.find((ledger) => ledger.theme.themeName === selected))
+    const curLedger = ledgers.find((ledger) => ledger.theme.themeName === selected);
+    setCurledger(curLedger)
+    
+    getRecordList({ ledgerId: curLedger.ledgerId }).then((res) => {
+      setRecordList(res.data.recordList);
+    });
+
     handleClose();
   }
 
