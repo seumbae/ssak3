@@ -33,63 +33,81 @@ function getColor(val) {
 }
 
 function Record({ value, recordList }) {
-  const listCount = recordList.length;
   const [recordCount, setRecordCount] = useState(3);
   const [isEdit, setIsEdit] = useState(false);
   const catList = ['술', '야식', '과자'];
 
   const addCatList = (catItem) => {
     catList.push(catItem);
-  }
+  };
 
   return (
     <div>
       <div className="accordion mt-4 mb-4" id="accordionPanelsStayOpenExample">
-        {listCount >= 3 &&
-          recordList
-            .filter((record) => record.tranYmd === moment(value).format('YYYY-MM-DD'))
-            .map((r, i) => (
-              <div className="accordion-item" key={i}>
-                <h2 className="accordion-header" id={`panelsStayOpen-heading${i}`}>
-                  <button
-                    className="accordion-button"
-                    type="button"
-                    key={i}
-                    data-bs-toggle="collapse"
-                    data-bs-target={`#panelsStayOpen-collapse${i}`}
-                    aria-expanded="true"
-                    aria-controls={`panelsStayOpen-collapse${i}`}
-                  >
-                    <div className="record-container">
-                      <div className="record-info-area">
-                        <div className="record-info">
-                          {r.tranTime} | {r.tranPlace}
-                        </div>
-                        <div className={`record-cat ${getColor(r.categoryName)}`}>{r.categoryName}</div>
-                      </div>
-
-                      <div className="record-title-area">
-                        <div className="record-title">
-                          <span className="record-title-name">{r.tranName}</span>
-                          <i className="bi bi-receipt"></i>
-                        </div>
-                        <div className="record-price">-{r.tranAmount}원</div>
-                      </div>
-                    </div>
-                  </button>
-                </h2>
-                <div
-                  id={`panelsStayOpen-collapse${i}`}
-                  className="accordion-collapse collapse"
-                  aria-labelledby={`panelsStayOpen-heading${i}`}
+        {recordList
+          .filter((record) => record.tranYmd === moment(value).format('YYYY-MM-DD'))
+          .map((r, i) => (
+            <div className="accordion-item" key={i}>
+              <h2 className="accordion-header" id={`panelsStayOpen-heading${i}`}>
+                <button
+                  className="accordion-button"
+                  type="button"
+                  key={i}
+                  data-bs-toggle="collapse"
+                  data-bs-target={`#panelsStayOpen-collapse${i}`}
+                  aria-expanded="true"
+                  aria-controls={`panelsStayOpen-collapse${i}`}
                 >
-                  { isEdit? <PaymentEdit categoryList={catList} title={r.title} price={r.price} time={r.time} name={r.name} setIsEditFalse={() => {setIsEdit(false)}} addCatList={(catItem) => addCatList(catItem)} /> :
-                    <PaymentDetail title={r.title} price={r.price} time={r.time} name={r.name} setIsEditTrue={() => {setIsEdit(true)}} />
-                  }
-                </div>
+                  <div className="record-container">
+                    <div className="record-info-area">
+                      <div className="record-info">
+                        {r.tranTime} | {r.tranPlace}
+                      </div>
+                      <div className={`record-cat ${getColor(r.categoryName)}`}>{r.categoryName}</div>
+                    </div>
+
+                    <div className="record-title-area">
+                      <div className="record-title">
+                        <span className="record-title-name">{r.tranName}</span>
+                        <i className="bi bi-receipt"></i>
+                      </div>
+                      <div className="record-price">-{r.tranAmount}원</div>
+                    </div>
+                  </div>
+                </button>
+              </h2>
+              <div
+                id={`panelsStayOpen-collapse${i}`}
+                className="accordion-collapse collapse"
+                aria-labelledby={`panelsStayOpen-heading${i}`}
+              >
+                {isEdit ? (
+                  <PaymentEdit
+                    categoryList={catList}
+                    title={r.title}
+                    price={r.price}
+                    time={r.time}
+                    name={r.name}
+                    setIsEditFalse={() => {
+                      setIsEdit(false);
+                    }}
+                    addCatList={(catItem) => addCatList(catItem)}
+                  />
+                ) : (
+                  <PaymentDetail
+                    title={r.title}
+                    price={r.price}
+                    time={r.time}
+                    name={r.name}
+                    setIsEditTrue={() => {
+                      setIsEdit(true);
+                    }}
+                  />
+                )}
               </div>
-            ))
-            .slice(0, recordCount)}
+            </div>
+          ))
+          .slice(0, recordCount)}
         {recordList.filter((record) => record.tranYmd === moment(value).format('YYYY-MM-DD')).length > 3 > 3 &&
           recordCount < records.length && (
             <button className="more-btn" onClick={() => setRecordCount(recordList.length)}>
