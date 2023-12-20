@@ -14,11 +14,18 @@ function ReactCalendar({ curledger, recordList, newDateList }) {
   const [dayList, setDayList] = useState([]);
   const [value, onChange] = useState(new Date()); // 초기값은 현재 날짜
   const [checked, setChecked] = useState('전체');
-  const [catList, setCatList] = useState([]);
   const [isExpenseOpen, setExpenseOpen] = useState(false);
+  const [incomeOpen, setIncomeOpen] = useState(false);
   const activeBtn = checked == '전체' ? styles.all : styles.one;
   const [recordData, setRecordData] = useState(recordList.map((obj) => obj.tranYmd));
 
+  const uniqueIncomeCat = [...new Set(recordList.filter((list) => list.isExpense === '0').map((list) => list.categoryName))];
+  const uniqueExpenseCat = [...new Set(recordList.filter((list) => list.isExpense === '1').map((list) => list.categoryName))];
+  const catList = [...new Set(recordList.map((list) => list.categoryName))];
+  
+  console.log('11111111', uniqueExpenseCat)
+  console.log('222222222222222', uniqueIncomeCat)
+  
   const handleTileContents = (date) => {
     const formattedDate = moment(date).format('YYYY-MM-DD');
     const occurrences = recordList.filter((val) => val.tranYmd === formattedDate).length;
@@ -92,6 +99,7 @@ function ReactCalendar({ curledger, recordList, newDateList }) {
           id="btn-check-outlined1"
           onClick={() => {
             setExpenseOpen(false);
+            setIncomeOpen(false);
             setChecked('전체');
           }}
         ></input>
@@ -104,8 +112,8 @@ function ReactCalendar({ curledger, recordList, newDateList }) {
           className="btn-check btn-check2"
           id="btn-check-outlined2"
           onClick={() => {
+            setIncomeOpen(!incomeOpen);
             setExpenseOpen(false);
-            setCatList(recordList.filter((obj) => obj.isExpense === '0').map((obj) => obj.categoryName));
             setChecked('수입');
           }}
         ></input>
@@ -118,7 +126,7 @@ function ReactCalendar({ curledger, recordList, newDateList }) {
           id="btn-check-outlined3"
           onClick={() => {
             setChecked('지출');
-            setCatList([...new Set(recordList.filter((obj) => obj.isExpense === '1').map((obj) => obj.categoryName))]);
+            setIncomeOpen(false);
             setExpenseOpen(!isExpenseOpen);
           }}
         ></input>
@@ -126,18 +134,35 @@ function ReactCalendar({ curledger, recordList, newDateList }) {
           지출
         </label>
       </div>
-      {isExpenseOpen && (
+      {isExpenseOpen && uniqueExpenseCat.length && (
         <div>
-          <div className="triangle"></div>
+          {/* <div className="triangle"></div> */}
           <div className="category-container">
-            {catList &&
-              catList.map((val, i) => (
+            {uniqueExpenseCat.map(
+              (val, i) => (
                 <div key={i}>
                   <div key={i} className={`cat-btn1`} style={{ backgroundColor: categoryColors[val] || '#808080' }}>
                     {val}
                   </div>
                 </div>
-              ))}
+              ),
+            )}
+          </div>
+        </div>
+      )}
+          {/* <div className="triangle"></div> */}
+      {incomeOpen && uniqueIncomeCat.length > 0 && (
+        <div>
+          <div className="category-container">
+            {uniqueIncomeCat.map(
+              (val, i) => (
+                <div key={i}>
+                  <div key={i} className={`cat-btn1`} style={{ backgroundColor: categoryColors[val] || '#808080' }}>
+                    {val}
+                  </div>
+                </div>
+              )
+            )}
           </div>
         </div>
       )}

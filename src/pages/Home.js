@@ -21,6 +21,7 @@ function Home() {
   const [recordList, setRecordList] = useState([]);
   const [newDateList, setNewDateList] = useState([]);
   const [curDate, setCurDate] = useState(new Date());
+  const [catList, setCatList] = useState([]);
 
   useEffect(() => {
     getMyList({ userId: localStorage.getItem('userId') })
@@ -30,9 +31,9 @@ function Home() {
         setFNLG(res.data[0].theme.themeName);
 
         getRecordList({ ledgerId: res.data[0].ledgerId }).then((res) => {
-          // console.log(res)
+          console.log(res);
           setRecordList(res.data.recordList);
-          setNewDateList(res.data.recordList.map((val) => val.tranYmd)); 
+          setNewDateList(res.data.recordList.map((val) => val.tranYmd));
         });
       })
       .then(() => {
@@ -44,7 +45,7 @@ function Home() {
         navigate('/');
       });
   }, []);
-  
+
   return (
     <>
       {loading ? (
@@ -72,6 +73,7 @@ function Home() {
             newDateList={newDateList}
             curDate={curDate}
             setCurDate={setCurDate}
+            catList={catList}
           />
           <div className="emptyBox"></div>
           <PredictMotive saveMoney={saveMoney} />
