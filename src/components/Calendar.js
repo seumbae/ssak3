@@ -6,18 +6,14 @@ import moment from 'moment';
 import Record from './Record';
 import { getRecordList, createCategory } from '../services/service';
 
-const dayList = [];
-//const [dayList, setDayList] = useState([]);
-
-function ReactCalendar({ curledger, recordList }) {
+function ReactCalendar({ curledger, recordList, curDate, setCurDate }) {
   const [dayList, setDayList] = useState([]);
-  const [value, onChange] = useState(new Date()); // 초기값은 현재 날짜
   const [checked, setChecked] = useState('전체');
   const [catList, setCatList] = useState([]);
   const [expenseOpen, setExpenseOpen] = useState(false);
   const activeBtn = checked == '전체' ? styles.all : styles.one;
-  const [recordData, setRecordData] = useState([]);
-
+  const [recordData, setRecordData] = useState([...new Set(recordList)]);
+  
   const handleChecked = () => {
     if (checked == '전체') {
       console.log('전체');
@@ -29,62 +25,21 @@ function ReactCalendar({ curledger, recordList }) {
     }
   };
 
-  function addContent({ date }) {
-    const contents = [];
-    recordList.find((val) => {
-      if (val.tranYmd === moment(date).format('YYYY-MM-DD')) {
-        contents.push(
-          <>
-            <div className="dot-box">
-              <div className="dot"></div>
-            </div>
-          </>,
-        );
-      }
-    });
-    //   if (dayList.find((day) => day === moment(date).format('YYYY-MM-DD'))) {
-    //     contents.push(
-    //       <>
-    //         <div className="dot-box">
-    //           <div className="dot"></div>
-    //         </div>
-    //       </>,
-    //     );
-    //   }
-    return <div>{contents}</div>;
-  }
-  // console.log(checked);
-  //   console.log(recordData);
-  //   useEffect(() => {
-  //     getRecordList({ ledgerId: '2', yearMonth: '2023-12' })
-  //       .then(({ data, status }) => {
-  //         if (status === 200) {
-  //           console.log(data);
-
-  //   data.recordList.map((val) => {
-  //     setDayList((prev) => [...prev, val.tranYmd]);
-  //     //setDayList((prev) => [...prev, val]);
-  //     //dayList.push(val.tranYmd);
-  //   });
-
-  //           data.recordList.map((val) => {
-  //             if (val.isExpense == '1') {
-  //               //   catList.push(val.categoryName);
-  //               setCatList((prev) => [...prev, val.categoryName]);
-  //             }
-  //           });
-  //           console.log('hey', dayList);
-  //           console.log(catList);
-  //         }
-
-  //         if (status === 404) {
-  //           throw new Error('서버와의 연결이 원활하지 않습니다.');
-  //         }
-  //       })
-  //       .catch(() => {
-  //         console.log('서버와의 연결이 원활하지 않습니다.');
-  //       });
-  //   }, []);
+  const onDateChange = (date) => {
+    setCurDate(date);
+  };
+  console.log(recordList)
+  const tileContentFunc = ({ date, view }) => {
+    if(recordData.find((x) => x === moment(date).moment("YYYY-MM-DD"))){
+      return (
+        <>
+          <div className="dot-box">
+            <div className="dot"></div>
+          </div>
+        </>
+      );
+    }
+  };
 
   return (
     <div>
@@ -128,18 +83,15 @@ function ReactCalendar({ curledger, recordList }) {
               </div>
             </div>
           ))}
-        {/* <div className="cat-btn1 cat-1">전체</div>
-        <div className="cat-btn1 cat-2">교통</div>
-        <div className="cat-btn1 cat-3">쇼핑</div>
-        <div className="cat-btn1 cat-4">술</div> */}
       </div>
       <div className="calendar-container">
         <Calendar
+          id="sibal"
           locale="kor"
-          onChange={onChange}
+          onChange={(date) => onDateChange(date)}
           formatDay={(locale, date) => moment(date).format('DD')}
-          value={value}
-          tileContent={addContent}
+          value={curDate}
+          tileContent={({ date, view }) => tileContentFunc(date, view)}
           showNeighboringMonth={true}
           next2Label={null}
           prev2Label={null}
@@ -160,14 +112,14 @@ function ReactCalendar({ curledger, recordList }) {
       <div className="title-container">
         <div className="record-main-title mt-4 row">
           <div className="col-sm"></div>
-          <div className="today col-sm">{moment(value).format('YYYY.MM.DD')}</div>
+          <div className="today col-sm">{moment(curDate).format('YYYY.MM.DD')}</div>
           <div className="more-record-btn col-sm">
             <span className="plus">+ 내역추가</span>
           </div>
         </div>
       </div>
-
-      <Record value={value} />
+      {/* TODO: 레코드 api 연결 */}
+      <Record value={curDate} />
     </div>
   );
 }
