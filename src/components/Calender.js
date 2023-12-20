@@ -61,25 +61,6 @@ function ReactCalendar({ curledger, recordList, newDateList }) {
       return <></>;
     }
   };
-  function addContent({ date }) {
-    const contents = [];
-
-    recordList.find((val, i) => {
-      if (val.tranYmd === moment(date).format('YYYY-MM-DD')) {
-        contents.push(
-          <>
-            <div className="dot-box">
-              <div className={`dot cat-${i + 1}`}></div>
-            </div>
-          </>,
-        );
-      }
-    });
-
-    // console.log('contents: ', moment(date).format('YYYY-MM-DD'), contents);\
-
-    return <div>{contents}</div>;
-  }
 
   function makeCatList() {
     var tempList = [];
