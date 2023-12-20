@@ -4,6 +4,7 @@ import receiptImg from '../assets/images/receipt.jpg';
 import CheckModal from '../components/CheckModal';
 import InputModal from '../components/InputModal';
 import categoryColors from '../constants/cat';
+import styled from '@emotion/styled';
 import { editRecordList, createCategory, uploadReceiptImg } from '../services/service';
 
 function PaymentEdit({
@@ -176,6 +177,7 @@ function PaymentEdit({
           </div>
           <div className="body-content">
             <div className="vertical-dot"></div>
+            <ClearBtn onClick={() => setInputTitle('')}>x</ClearBtn>
             <input
               className="inputBox"
               type="text"
@@ -187,6 +189,7 @@ function PaymentEdit({
           </div>
           <div className="body-price">
             <div className="vertical-dot"></div>
+            <ClearBtn onClick={() => setInputPrice('')}>x</ClearBtn>
             <input
               className="inputBox"
               type="text"
@@ -233,5 +236,20 @@ function PaymentEdit({
     </div>
   );
 }
+
+const ClearBtn = styled.div`
+  height: 1px;
+  width: 1px;
+  font-size: 16px;
+  font-family: KBTextB;
+  color: #aab0b8;
+  position: relative !important;
+  border-radius: 50%;
+  display: inline-block;
+  justify-content: center;
+  left: 265px;
+  top: -1px;
+  z-index: 0;
+`
 
 export default PaymentEdit;
