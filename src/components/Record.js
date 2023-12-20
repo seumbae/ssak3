@@ -42,8 +42,6 @@ function Record({ value, recordList }) {
     catList.push(catItem);
   }
 
-  console.log('value', value);
-  console.log('record', recordList);
   return (
     <div>
       <div className="accordion mt-4 mb-4" id="accordionPanelsStayOpenExample">
