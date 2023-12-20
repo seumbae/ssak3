@@ -32,7 +32,9 @@ function Home() {
 
         getRecordList({ ledgerId: res.data[0].ledgerId }).then((res) => {
           console.log(res);
+          console.log('ledgerId', res.data);
           setRecordList(res.data.recordList);
+          setNewDateList(res.data.recordList.map((val) => val.tranYmd));
           setNewDateList(res.data.recordList.map((val) => val.tranYmd));
         });
       })
@@ -45,7 +47,6 @@ function Home() {
         navigate('/');
       });
   }, []);
-
   return (
     <>
       {loading ? (
@@ -74,6 +75,7 @@ function Home() {
             curDate={curDate}
             setCurDate={setCurDate}
             catList={catList}
+            setCatList={setCatList}
           />
           <div className="emptyBox"></div>
           <PredictMotive saveMoney={saveMoney} />

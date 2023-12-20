@@ -19,7 +19,7 @@ const records = [
   { time: '20:53', name: '다이소', cat: '장갑', title: '추워서 장갑삼', price: '2000' },
 ];
 
-function Record({ value, recordList, newDateList, catList }) {
+function Record({ setCatList, curledger, value, recordList, newDateList, catList, ledgerId }) {
   const listCount = recordList.length;
   const [recordCount, setRecordCount] = useState(3);
   const [checkCatBtn, setCheckCatBtn] = useState('술');
@@ -38,7 +38,7 @@ function Record({ value, recordList, newDateList, catList }) {
   };
 
   const rDate = moment(value).format('YYYY-MM-DD');
-
+  console.log('record', catList);
   return (
     <div>
       <div className="accordion mt-4 mb-4" id="accordionPanelsStayOpenExample">
@@ -62,7 +62,10 @@ function Record({ value, recordList, newDateList, catList }) {
                         <div className="record-info">
                           {r.tranTime} | {r.tranPlace}
                         </div>
-                        <div className={`record-cat`} style={{ backgroundColor: categoryColors[r.categoryName] || '#808080' }}>
+                        <div
+                          className={`record-cat`}
+                          style={{ backgroundColor: categoryColors[r.categoryName] || '#808080' }}
+                        >
                           {r.categoryName}
                         </div>
                       </div>
@@ -92,10 +95,13 @@ function Record({ value, recordList, newDateList, catList }) {
                       price={r.tranAmount}
                       time={r.tranTime}
                       name={r.tranPlace}
+                      catName={r.categoryName}
+                      curledger={curledger}
                       setIsEditFalse={() => {
                         setIsEdit(false);
                       }}
                       addCatList={(catItem) => addCatList(catItem)}
+                      setCatList={setCatList}
                     />
                   ) : (
                     <PaymentDetail

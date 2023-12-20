@@ -10,7 +10,7 @@ import categoryColors from '../constants/cat';
 
 const dayList = [];
 
-function ReactCalendar({ curledger, recordList, newDateList }) {
+function ReactCalendar({ setCatList, curledger, recordList, newDateList, ledgerId }) {
   const [dayList, setDayList] = useState([]);
   const [value, onChange] = useState(new Date()); // 초기값은 현재 날짜
   const [checked, setChecked] = useState('전체');
@@ -19,13 +19,17 @@ function ReactCalendar({ curledger, recordList, newDateList }) {
   const activeBtn = checked == '전체' ? styles.all : styles.one;
   const [recordData, setRecordData] = useState(recordList.map((obj) => obj.tranYmd));
 
-  const uniqueIncomeCat = [...new Set(recordList.filter((list) => list.isExpense === '0').map((list) => list.categoryName))];
-  const uniqueExpenseCat = [...new Set(recordList.filter((list) => list.isExpense === '1').map((list) => list.categoryName))];
+  const uniqueIncomeCat = [
+    ...new Set(recordList.filter((list) => list.isExpense === '0').map((list) => list.categoryName)),
+  ];
+  const uniqueExpenseCat = [
+    ...new Set(recordList.filter((list) => list.isExpense === '1').map((list) => list.categoryName)),
+  ];
   const catList = [...new Set(recordList.map((list) => list.categoryName))];
-  
-  console.log('11111111', uniqueExpenseCat)
-  console.log('222222222222222', uniqueIncomeCat)
-  
+
+  console.log('11111111', uniqueExpenseCat);
+  console.log('222222222222222', uniqueIncomeCat);
+
   const handleTileContents = (date) => {
     const formattedDate = moment(date).format('YYYY-MM-DD');
     const occurrences = recordList.filter((val) => val.tranYmd === formattedDate).length;
@@ -138,31 +142,27 @@ function ReactCalendar({ curledger, recordList, newDateList }) {
         <div>
           {/* <div className="triangle"></div> */}
           <div className="category-container">
-            {uniqueExpenseCat.map(
-              (val, i) => (
-                <div key={i}>
-                  <div key={i} className={`cat-btn1`} style={{ backgroundColor: categoryColors[val] || '#808080' }}>
-                    {val}
-                  </div>
+            {uniqueExpenseCat.map((val, i) => (
+              <div key={i}>
+                <div key={i} className={`cat-btn1`} style={{ backgroundColor: categoryColors[val] || '#808080' }}>
+                  {val}
                 </div>
-              ),
-            )}
+              </div>
+            ))}
           </div>
         </div>
       )}
-          {/* <div className="triangle"></div> */}
+      {/* <div className="triangle"></div> */}
       {incomeOpen && uniqueIncomeCat.length > 0 && (
         <div>
           <div className="category-container">
-            {uniqueIncomeCat.map(
-              (val, i) => (
-                <div key={i}>
-                  <div key={i} className={`cat-btn1`} style={{ backgroundColor: categoryColors[val] || '#808080' }}>
-                    {val}
-                  </div>
+            {uniqueIncomeCat.map((val, i) => (
+              <div key={i}>
+                <div key={i} className={`cat-btn1`} style={{ backgroundColor: categoryColors[val] || '#808080' }}>
+                  {val}
                 </div>
-              )
-            )}
+              </div>
+            ))}
           </div>
         </div>
       )}
@@ -195,13 +195,19 @@ function ReactCalendar({ curledger, recordList, newDateList }) {
         <div className="record-main-title mt-4 row">
           <div className="col-sm"></div>
           <div className="today col-sm">{moment(value).format('YYYY.MM.DD')}</div>
-          <div className="more-record-btn col-sm">
-            <PaymentAdd categoryList={['aa']} />
-          </div>
+          <div className="more-record-btn col-sm">{/* <PaymentAdd categoryList={['aa']} /> */}</div>
         </div>
       </div>
-
-      <Record value={value} recordList={recordList} newDateList={newDateList} catList={catList} />
+      {/* <PaymentAdd categoryList={['aa']} /> */}
+      <Record
+        value={value}
+        recordList={recordList}
+        newDateList={newDateList}
+        catList={catList}
+        ledgerId={ledgerId}
+        curledger={curledger}
+        setCatList={setCatList}
+      />
     </div>
   );
 }
