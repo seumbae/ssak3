@@ -4,6 +4,7 @@ import 'react-calendar/dist/Calendar.css';
 import styles from '../styles/calendar.css';
 import moment from 'moment';
 import Record from './Record';
+import PaymentAdd from './PaymentAdd';
 import { getRecordList, createCategory } from '../services/service';
 import categoryColors from '../constants/cat';
 
@@ -180,7 +181,7 @@ function ReactCalendar({ curledger, recordList, newDateList }) {
           <div className="col-sm"></div>
           <div className="today col-sm">{moment(value).format('YYYY.MM.DD')}</div>
           <div className="more-record-btn col-sm">
-            <span className="plus">+ 내역추가</span>
+            <PaymentAdd categoryList={['aa']}/>
           </div>
         </div>
       </div>
