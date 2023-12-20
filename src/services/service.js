@@ -16,8 +16,6 @@ export const getUsers = async (data) => await API.post('/user', data);
 // parameters : isNewUser(Boolean), 유저 생성
 export const createUser = async (data) => await API.post('/user/create', data);
 
-// Ledger(임시)
-
 // parameters : None, 테마 목록 조회(가계부 생성 시)
 export const getThemeList = async () => await API.get('/ledger/theme/list');
 // parameters : userId(Integer), 나의 가계부 목록 조회
@@ -46,6 +44,6 @@ export const uploadReceiptImg = async (data) =>
 // parameters : categoryId(Integer), 카테고리 삭제(Category Id는 unique함)
 export const removeCategory = async (categoryId) => await API.delete(`/category/${categoryId}`);
 // parameters : ledgerId(Integer), 해당 가계부의 카테고리 목록 조회
-export const getCategories = async (data) => await API.post('/category', null, { params: data });
+export const getCategories = async (data) => await API.post('/category', data);
 // body : {"ledgerId": Integer, "customCategoryName : "string"}, 해당 카테고리 등록
 export const createCategory = async (data) => await API.post('/category/create', data);

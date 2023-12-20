@@ -1,11 +1,8 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState } from 'react';
 import '../styles/record.css';
-import receiptImg from '../assets/images/receipt.jpg';
-import CheckModal from '../components/CheckModal';
 import moment from 'moment/moment';
 import PaymentEdit from './PaymentEdit';
 import PaymentDetail from './PaymentDetail';
-import { getColor } from '../utils/common';
 import categoryColors from '../constants/cat';
 
 const records = [
@@ -20,25 +17,9 @@ const records = [
 ];
 
 function Record({ setCatList, curledger, value, recordList, newDateList, catList, ledgerId }) {
-  const listCount = recordList.length;
   const [recordCount, setRecordCount] = useState(3);
-  const [checkCatBtn, setCheckCatBtn] = useState('술');
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isDelModalOpen, setIsDelModalOpen] = useState(false);
-  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
-  const newCatList = catList;
 
-  const addCatList = (catItem) => {
-    newCatList.push(catItem);
-  };
-
-  const handleCatBtn = (e) => {
-    setCheckCatBtn(e.target.value);
-  };
-
-  const rDate = moment(value).format('YYYY-MM-DD');
-  console.log('record', catList);
   return (
     <div>
       <div className="accordion mt-4 mb-4" id="accordionPanelsStayOpenExample">
@@ -101,7 +82,6 @@ function Record({ setCatList, curledger, value, recordList, newDateList, catList
                       setIsEditFalse={() => {
                         setIsEdit(false);
                       }}
-                      addCatList={(catItem) => addCatList(catItem)}
                       setCatList={setCatList}
                     />
                   ) : (

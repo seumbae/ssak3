@@ -121,6 +121,7 @@ function PaymentEdit({
     setInputTitle(title);
     setInputPrice(price);
   }, [title, price]);
+
   return (
     <div className="accordion-body">
       <div className="vertical">
@@ -134,10 +135,10 @@ function PaymentEdit({
                   type="button"
                   onClick={handleCatBtn}
                   className={`cat-btn`}
-                  style={{ backgroundColor: categoryColors[item] || '#808080' }}
-                  value={item}
+                  style={{ backgroundColor: categoryColors[item.customCategoryName] || '#808080' }}
+                  value={item.customCategoryName}
                 ></input>
-                {checkCatBtn === item ? <i className="bi bi-check"></i> : ''}
+                {checkCatBtn === item.customCategoryName ? <i className="bi bi-check"></i> : ''}
               </div>
             ))}
             <div className="my-btn">
@@ -156,20 +157,16 @@ function PaymentEdit({
                   content="만들어야함"
                   cancelMsg="취소"
                   acceptMsg="확인"
-                  acceptFunc={(catItem) => {
-                    createCategory({ ledgerId: curLedgerId, customCategoryName: catItem })
+                  acceptFunc={(newCat) => {
+                    createCategory({ ledgerId: curLedgerId, customCategoryName: newCat })
                       .then((res) => {
+                        setCatList((prev) => [...prev, newCat]);
+                        console.log(categoryList);
                         console.log('category create success!', res.data);
-                        setCatList((prev) => [...prev, catItem]);
-                        addCatList(catItem);
                       })
                       .catch(() => {
                         alert('서버와의 연결이 원활하지 않습니다.');
                       });
-                    // console.log(res)
-                    // setRecordList(res.data.recordList);
-                    // setNewDateList(res.data.recordList.map((val) => val.tranYmd));
-
                     setIsInputModalOpen(false);
                   }}
                   cancelFunc={() => setIsInputModalOpen(false)}
