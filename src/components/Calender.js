@@ -86,11 +86,12 @@ function ReactCalendar({ curledger, recordList, newDateList }) {
         tempList.push(val.categoryName);
       }
     });
-    setCatList([new Set(tempList)]);
+    setCatList([...new Set(tempList)]);
   }
   useEffect(() => {
     makeCatList();
   }, []);
+  console.log('cc', catList);
   return (
     <div>
       <div className="toggle-container">

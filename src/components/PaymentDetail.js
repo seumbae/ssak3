@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import '../styles/record.css';
 import receiptImg from '../assets/images/receipt.jpg';
 import CheckModal from '../components/CheckModal';
-import { getColor } from '../utils/common';
+import categoryColors from '../constants/cat';
 
 function PaymentDetail({ title, price, time, name, isExpense, catName, setIsEditTrue }) {
   const [checkCatBtn, setCheckCatBtn] = useState('술');
@@ -27,7 +27,8 @@ function PaymentDetail({ title, price, time, name, isExpense, catName, setIsEdit
               <input
                 type="button"
                 onClick={handleCatBtn}
-                className={`record-cat ${getColor(catName)}`}
+                className={`record-cat`}
+                style={{ backgroundColor: categoryColors[catName] }}
                 value={catName}
               ></input>
             </div>
