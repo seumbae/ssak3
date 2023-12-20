@@ -11,7 +11,6 @@ function Forth() {
 
   const handleNextClick = () => {
     if (localStorage.getItem('userId') === null) {
-      try {
         createUser(true).then((res) => {
             localStorage.setItem('userId', res.data.userId);
             localStorage.setItem('kbPIN', res.data.kbPIN);
@@ -23,11 +22,15 @@ function Forth() {
           if (res.status === 404) {
             throw new Error('서버와의 연결이 원활하지 않습니다.');
           }
+        }).catch(() => {
+          alert('서버와의 연결이 원활하지 않습니다.');
+          navigate('/');
         });
-      } catch (error) {
-        alert('서버와의 연결이 원활하지 않습니다.');
-      }
     }
+    else {
+      navigate('/new');
+    }
+    
   };
 
   return (

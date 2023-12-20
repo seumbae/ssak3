@@ -41,18 +41,18 @@ function Third() {
         {records.map((r, i) => (
           <div className={styles.record_container} key={i}>
             <div className={styles.record_info_area}>
-              <div className={styles.record_info}>
+              <div className={i === 1 ? styles.record_info_inactive : styles.record_info}>
                 {r.time} | {r.name}
               </div>
               <div className={`${styles.record_cat} ${catClasses[i]}`}>{r.cat}</div>
             </div>
 
             <div className={styles.record_title_area}>
-              <div className={styles.record_title}>
+              <div className={i === 1 ? styles.record_title_inactive : styles.record_title}>
                 <span className={styles.record_title_name}>{r.title}</span>
                 <i className="bi bi-receipt"></i>
               </div>
-              <div className={styles.record_price}>-{r.price}원</div>
+              <div className={i === 1 ? styles.record_price_inactive : styles.record_price}>-{r.price}원</div>
             </div>
           </div>
         ))}
