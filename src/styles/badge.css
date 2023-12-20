@@ -1,0 +1,38 @@
+.treeImg {
+  width: 360px;
+}
+
+.badge-container {
+  /* background-image: url('../../src/assets/images/tree.png'); */
+  background-color: #ece7db;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  /* height: 100%; */
+  display: flex;
+  place-items: center;
+  margin: 0 auto;
+}
+
+.badge-save-container {
+  padding: 20px 20px;
+
+  h2 {
+    color: #000;
+    font-family: KBFG Display;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
+
+  h4 {
+    color: #333;
+    font-family: KBFG Display;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+  }
+}
