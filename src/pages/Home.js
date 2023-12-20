@@ -20,7 +20,8 @@ function Home() {
   const [curledger, setCurledger] = useState({});
   const [FNLG, setFNLG] = useState('');
   const [recordList, setRecordList] = useState([]);
-  const [curDate, setCurDate] = useState(new Date()); 
+  const [newDateList, setNewDateList] = useState([]);
+  const [curDate, setCurDate] = useState(new Date());
 
   useEffect(() => {
     getMyList({ userId: localStorage.getItem('userId') })
@@ -33,6 +34,9 @@ function Home() {
         // res.data[0].ledgerId
         getRecordList({ ledgerId: 15, yearMonth: moment(date).format('YYYY-MM') }).then((res) => {
           setRecordList(res.data.recordList);
+          res.data.recordList.map((val) => {
+            setNewDateList((prev) => [...prev, val.tranYmd]);
+          });
         });
       })
       .then(() => {
@@ -64,7 +68,13 @@ function Home() {
           <div className="emptyBox"></div>
           <BudgetBar use={curledger.monthExpense} budget={curledger.monthBudget} curledger={curledger} />
           <div className="emptyBox"></div>
-          <ReactCalendar curledger={curledger} recordList={recordList} curDate={curDate} setCurDate={setCurDate}/>
+          <ReactCalendar
+            curledger={curledger}
+            recordList={recordList}
+            newDateList={newDateList}
+            curDate={curDate}
+            setCurDate={setCurDate}
+          />
           <div className="emptyBox"></div>
           <PredictMotive saveMoney={saveMoney} />
           <ServiceList />

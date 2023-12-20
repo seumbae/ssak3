@@ -9,7 +9,7 @@ import { getRecordList, createCategory } from '../services/service';
 const dayList = [];
 //const [dayList, setDayList] = useState([]);
 
-function ReactCalendar({ curledger, recordList }) {
+function ReactCalendar({ curledger, recordList, newDateList }) {
   const [dayList, setDayList] = useState([]);
   const [value, onChange] = useState(new Date()); // 초기값은 현재 날짜
   const [checked, setChecked] = useState('전체');
@@ -18,6 +18,7 @@ function ReactCalendar({ curledger, recordList }) {
   const activeBtn = checked == '전체' ? styles.all : styles.one;
   const [recordData, setRecordData] = useState([]);
   console.log('curledger', curledger, recordList);
+
   // const handleChecked = () => {
   //   if (checked == '전체') {
   //     console.log('전체');
@@ -43,7 +44,8 @@ function ReactCalendar({ curledger, recordList }) {
       }
     });
 
-    console.log('contents: ', moment(date).format('YYYY-MM-DD'), contents);
+    // console.log('contents: ', moment(date).format('YYYY-MM-DD'), contents);\
+
     return <div>{contents}</div>;
   }
 
@@ -57,7 +59,7 @@ function ReactCalendar({ curledger, recordList }) {
     setCatList([new Set(tempList)]);
   }
 
-  console.log(catList);
+  console.log('nnn', newDateList);
 
   useEffect(() => {
     makeCatList();
@@ -153,7 +155,7 @@ function ReactCalendar({ curledger, recordList }) {
         </div>
       </div>
 
-      <Record value={value} recordList={recordList} />
+      <Record value={value} recordList={recordList} newDateList={newDateList} catList={catList} />
     </div>
   );
 }
