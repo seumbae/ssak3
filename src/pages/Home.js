@@ -9,7 +9,6 @@ import iconAvatar from '../assets/images/iconAvatar.png';
 import { getMyList, getRecordList, getUsers } from '../services/service';
 import { useNavigate } from 'react-router-dom';
 import Loading from '../components/Loading';
-import moment from 'moment';
 
 function Home() {
   const budget = 1000000;
@@ -32,9 +31,7 @@ function Home() {
 
         getRecordList({ ledgerId: res.data[0].ledgerId }).then((res) => {
           setRecordList(res.data.recordList);
-          res.data.recordList.map((val) => {
-            setNewDateList((prev) => [...prev, val.tranYmd]);
-          });
+          setNewDateList(res.data.recordList.map((val) => val.tranYmd)); 
         });
       })
       .then(() => {
@@ -46,7 +43,7 @@ function Home() {
         navigate('/');
       });
   }, []);
-  console.log(recordList)
+
   return (
     <>
       {loading ? (
@@ -63,6 +60,7 @@ function Home() {
             setCurledger={setCurledger}
             ledgers={ledgers}
             setRecordList={setRecordList}
+            setNewDateList={setNewDateList}
           />
           <div className="emptyBox"></div>
           <BudgetBar use={curledger.monthExpense} budget={curledger.monthBudget} curledger={curledger} />
