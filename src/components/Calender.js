@@ -118,7 +118,7 @@ function ReactCalendar({ curledger, recordList, newDateList }) {
           id="btn-check-outlined3"
           onClick={() => {
             setChecked('지출');
-            setCatList(recordList.filter((obj) => obj.isExpense === '1').map((obj) => obj.categoryName));
+            setCatList([...new Set(recordList.filter((obj) => obj.isExpense === '1').map((obj) => obj.categoryName))]);
             setExpenseOpen(!isExpenseOpen);
           }}
         ></input>
