@@ -47,14 +47,14 @@
 
 .progBar {
   width: 300px;
-  height: 10px;
+  height: 15px;
   background-color: #d9d9d9;
   border-radius: 15px;
   overflow: hidden;
 }
 
 .prog {
-  height: 10px;
+  height: 15px;
   width: var(--progWidth);
   background-color: #ff5454;
 }

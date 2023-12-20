@@ -60,8 +60,7 @@
 }
 .record-cat {
   border-radius: 3px;
-
-  width: 35.649px;
+  padding: 1px 5px;
   height: 15px;
   flex-shrink: 0;
   color: #000;
@@ -337,4 +336,18 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.none-info {
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #828181;
+  text-align: center;
+  font-family: KBFG Display;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
 }

@@ -286,6 +286,9 @@
   /* padding: 12px 32px; */
   abbr {
     /* color: #d10000; */
+    display: inline-block;
+    width: -webkit-fill-available;
+    text-align: center;
     font-size: 11px;
     font-weight: 500;
   }
@@ -378,14 +381,15 @@
 .dot-box {
   display: flex;
   justify-content: center;
+  align-items: center;
   margin-top: 5px;
+  gap: 2px;
 }
 
 .dot {
   height: 8px;
   width: 8px;
   position: relative !important;
-  /* background-color: #ffcc00; */
   border-radius: 50%;
   display: inline-block;
   justify-content: center;

@@ -20,6 +20,8 @@ function Home() {
   const [curledger, setCurledger] = useState({});
   const [FNLG, setFNLG] = useState('');
   const [recordList, setRecordList] = useState([]);
+  const [newDateList, setNewDateList] = useState([]);
+  const [curDate, setCurDate] = useState(new Date());
 
   useEffect(() => {
     getMyList({ userId: localStorage.getItem('userId') })
@@ -28,10 +30,11 @@ function Home() {
         setCurledger(res.data[0]);
         setFNLG(res.data[0].theme.themeName);
 
-        const date = new Date();
-        // res.data[0].ledgerId
-        getRecordList({ ledgerId: 15, yearMonth: moment(date).format('YYYY-MM') }).then((res) => {
+        getRecordList({ ledgerId: res.data[0].ledgerId }).then((res) => {
           setRecordList(res.data.recordList);
+          res.data.recordList.map((val) => {
+            setNewDateList((prev) => [...prev, val.tranYmd]);
+          });
         });
       })
       .then(() => {
@@ -43,11 +46,7 @@ function Home() {
         navigate('/');
       });
   }, []);
-
-  // if (loading) {
-  //   return <Loading />;
-  // }
-
+  console.log(recordList)
   return (
     <>
       {loading ? (
@@ -63,11 +62,18 @@ function Home() {
             defaultGoal={FNLG}
             setCurledger={setCurledger}
             ledgers={ledgers}
+            setRecordList={setRecordList}
           />
           <div className="emptyBox"></div>
           <BudgetBar use={curledger.monthExpense} budget={curledger.monthBudget} curledger={curledger} />
           <div className="emptyBox"></div>
-          <ReactCalendar curledger={curledger} recordList={recordList} />
+          <ReactCalendar
+            curledger={curledger}
+            recordList={recordList}
+            newDateList={newDateList}
+            curDate={curDate}
+            setCurDate={setCurDate}
+          />
           <div className="emptyBox"></div>
           <PredictMotive saveMoney={saveMoney} />
           <ServiceList />
