@@ -4,6 +4,7 @@ import 'react-calendar/dist/Calendar.css';
 import styles from '../styles/calendar.css';
 import moment from 'moment';
 import Record from './Record';
+import PaymentAdd from './PaymentAdd';
 import { getRecordList, createCategory } from '../services/service';
 import categoryColors from '../constants/cat';
 
@@ -35,13 +36,18 @@ function ReactCalendar({ curledger, recordList, newDateList }) {
       .filter((val) => val.tranYmd === formattedDate)
       .map((val) => val.categoryName)
       .slice(0, 2);
+
     if (occurrences >= 2) {
       return (
         <>
           <div className="dot-box">
             {categories.map((category, i) => {
               return (
-                <div key={category + i} className="dot" style={{ backgroundColor: categoryColors[category] }}></div>
+                <div
+                  key={category + i}
+                  className="dot"
+                  style={{ backgroundColor: categoryColors[category] || '#808080' }}
+                ></div>
               );
             })}
           </div>
@@ -91,7 +97,7 @@ function ReactCalendar({ curledger, recordList, newDateList }) {
   useEffect(() => {
     makeCatList();
   }, []);
-  console.log('cc', catList);
+
   return (
     <div>
       <div className="toggle-container">
@@ -137,6 +143,7 @@ function ReactCalendar({ curledger, recordList, newDateList }) {
         <div>
           <div className="triangle"></div>
           <div className="category-container">
+            {/* TODO: 무언가해야함 */}
             {catList &&
               catList.map((val, i) => (
                 <div key={i}>
@@ -178,7 +185,7 @@ function ReactCalendar({ curledger, recordList, newDateList }) {
           <div className="col-sm"></div>
           <div className="today col-sm">{moment(value).format('YYYY.MM.DD')}</div>
           <div className="more-record-btn col-sm">
-            <span className="plus">+ 내역추가</span>
+            <PaymentAdd categoryList={['aa']} />
           </div>
         </div>
       </div>
