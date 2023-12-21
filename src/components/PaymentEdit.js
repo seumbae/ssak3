@@ -5,6 +5,7 @@ import InputModal from '../components/InputModal';
 import categoryColors from '../constants/cat';
 import styled from '@emotion/styled';
 import PaymentDetail from './PaymentDetail';
+import receiptImg from '../assets/images/receipt.jpg';
 import { editRecordList, createCategory, uploadReceiptImg } from '../services/service';
 
 function PaymentEdit({
@@ -13,15 +14,17 @@ function PaymentEdit({
   title,
   price,
   time,
-  receiptUrl,
   name,
+  receiptUrl,
   setIsEditFalse,
   catName,
   categoryList,
   setIsEdit,
   recordId,
   setNewRecordData,
-  setEditState
+  setEditState,
+  setReceiptUrl,
+  recordList,
 }) {
   const [isInputModalOpen, setIsInputModalOpen] = useState(false);
   const [isCancelModalOpen, setIsCancelModalOpen] = useState(false);
@@ -36,10 +39,6 @@ function PaymentEdit({
   const [newImgUrl, setNewImgUrl] = useState('');
   const curLedgerId = curledger.ledgerId;
 
-  const newData = {
-    image: null,
-    recordId: recordId,
-  };
   const FileUpload = () => {
     const handleClickFileInput = () => {
       fileInputRef.current?.click();
@@ -53,7 +52,6 @@ function PaymentEdit({
         const url = URL.createObjectURL(fileList[0]);
         formData.append('recordId', new Blob([JSON.stringify({ recordId: recordId })], { type: 'application/json' }));
         formData.append('image', fileList[0]);
-        console.log('11111', fileList[0]);
         setImageFile({
           file: fileList[0],
           url: url,
@@ -64,40 +62,40 @@ function PaymentEdit({
       }
     };
 
+    // return (
+    //   <input
+    //     type="image"
+    //     className="ShowFileImage"
+    //     src={imageFile.url}
+    //     alt={imageFile.type}
+    //     onClick={handleClickFileInput}
+    //   ></input>
+    // );
+
     const showImage = useMemo(() => {
-      if (!imageFile || imageFile == null) {
-        return <img className="receipt-img" src={receiptUrl} alt="receipt" />;
+      if (!imageFile && imageFile == null) {
+        return <DefaultImg>+</DefaultImg>;
       }
-      return (
-        <input
-          type="image"
-          className="ShowFileImage"
-          src={imageFile.url}
-          alt={imageFile.type}
-          onClick={handleClickFileInput}
-        ></input>
-      );
+
+      return <>{receiptUrl ? <img src={receiptUrl} alt="inputReceipt" /> : <DefaultImg>+</DefaultImg>}</>;
     }, [imageFile]);
 
     return (
-      // <div className={'FileUploadContainer'}>
-      //   {showImage}
-
-      //   <div className="FileUploadForm">
-      //     <input className="FileInput" type="file" accept="image/jpeg" ref={fileInputRef} onChange={uploadProfile} />
-      //     {/* <button className="FileUploadButton" type="button" onClick={handleClickFileInput}>
-      //       파일 업로드
-      //     </button> */}
-      //   </div>
-      // </div>
-
       <AddImgBox>
         <label htmlFor="edit_file">
           <div className="addImg">
-            {imageFile ? <img src={imageFile} alt="inputReceipt" /> : <DefaultImg>+</DefaultImg>}
+            {showImage}
+            {/* {imageFile ? <img src={imageFile} alt="inputReceipt" /> : <DefaultImg>+</DefaultImg>} */}
           </div>
         </label>
-        <input type="file" id="edit_file" accept="image/jpeg" ref={fileInputRef} onChange={uploadProfile} />
+        <input
+          type="file"
+          id="edit_file"
+          accept="image/jpeg"
+          ref={fileInputRef}
+          onClick={handleClickFileInput}
+          onChange={uploadProfile}
+        />
       </AddImgBox>
     );
   };
@@ -106,21 +104,14 @@ function PaymentEdit({
     setCheckCatBtn(e.target.value);
   };
 
-  function handleOnChange(receipt) {
-    if (receipt) {
-      setImageFile(URL.createObjectURL(receipt));
-    }
-  }
-
   const handleEditBtn = () => {
     if (imageFile && imageFile != null) {
       uploadReceiptImg(imageFile.formData).then((res) => {
         console.log('upload', res, res.data);
         setNewImgUrl(res.data);
-        console.log('ressss', res.data, newImgUrl, hi);
+        setReceiptUrl(res.data);
       });
     }
-    console.log('recordlist 123123123');
     editRecordList({
       recordId: recordId,
       categoryName: checkCatBtn,
@@ -132,20 +123,28 @@ function PaymentEdit({
         setIsEditDone(true);
         setIsEdit(false);
         setEditState(false);
-        
-        setNewRecordData([
-          {
-            categoryName: res.data.categoryName,
-            isExpense: res.data.isExpense,
-            receiptUrl: newImgUrl,
-            recordId: res.data.recordId,
-            tranAmount: res.data.tranAmount,
-            tranName: res.data.tranName,
-            tranPlace: res.data.tranPlace,
-            tranTime: res.data.tranTime,
-            tranYmd: res.data.tranYmd,
-          },
-        ]);
+        // setReceiptUrl(newImgUrl);
+        setNewRecordData(
+          recordList.map((r) => {
+            if (r.recordId === recordId) {
+              return {
+                ...r,
+
+                categoryName: res.data.categoryName,
+                isExpense: res.data.isExpense,
+                receiptUrl: receiptUrl,
+                recordId: res.data.recordId,
+                tranAmount: res.data.tranAmount,
+                tranName: res.data.tranName,
+                tranPlace: res.data.tranPlace,
+                tranTime: res.data.tranTime,
+                tranYmd: res.data.tranYmd,
+              };
+            } else {
+              return r;
+            }
+          }),
+        );
       })
       .catch((err) => {
         alert('서버와의 연결이 원활하지 않습니다.123', err);
@@ -198,7 +197,6 @@ function PaymentEdit({
                       createCategory({ ledgerId: curLedgerId, customCategoryName: newCat })
                         .then((res) => {
                           setCatList((prev) => [...prev, newCat]);
-                          console.log(categoryList);
                           console.log('category create success!', res.data);
                         })
                         .catch(() => {
@@ -239,6 +237,7 @@ function PaymentEdit({
 
           <div className="body-receipt">
             <div className="vertical-dot"></div>
+
             <FileUpload />
           </div>
           <div className="body-time">
