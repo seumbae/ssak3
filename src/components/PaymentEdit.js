@@ -22,7 +22,7 @@ function PaymentEdit({
   setIsEdit,
   recordId,
   setNewRecordData,
-  setEditState
+  setEditState,
   setReceiptUrl,
   recordList,
 }) {
@@ -123,7 +123,7 @@ function PaymentEdit({
         setIsEditDone(true);
         setIsEdit(false);
         setEditState(false);
-                // setReceiptUrl(newImgUrl);
+        // setReceiptUrl(newImgUrl);
         setNewRecordData(
           recordList.map((r) => {
             if (r.recordId === recordId) {
