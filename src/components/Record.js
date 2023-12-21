@@ -16,7 +16,7 @@ const records = [
   { time: '20:53', name: '다이소', cat: '장갑', title: '추워서 장갑삼', price: '2000' },
 ];
 
-function Record({ setCatList, curledger, value, recordList, setRecordList, newDateList, catList, receiptUrl }) {
+function Record({ editState, setEditState, setCatList, curledger, value, recordList, setRecordList, newDateList, catList, receiptUrl }) {
   const [recordCount, setRecordCount] = useState(3);
 
   return (
@@ -82,6 +82,8 @@ function Record({ setCatList, curledger, value, recordList, setRecordList, newDa
                     catList={catList}
                     receiptUrl={receiptUrl}
                     setRecordList={setRecordList}
+                    setEditState={setEditState}
+                    editState={editState}
                   />
                 </div>
               </div>
