@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import '../styles/PaymentAdd.css';
 import styled from '@emotion/styled'
 import AccordionCheckModal from '../components/AccordionCheckModal';
 import InputModal from '../components/InputModal';
@@ -134,13 +133,15 @@ function PaymentAdd({date, categoryList}) {
             <BodyBox>
               <VerticalDot />
               카테고리
-              <MarginLeftBox px="10">
-                {categoryList.map((item, index) => (
-                  <div className="my-btn" key={index}>
-                    <CatBtn num={index + 1} type="button" onClick={handleCatBtn} value={item} />
-                    {(inputCategory === item) && <i className="bi bi-check"></i>}
-                  </div>
-                ))}
+              <CatBox>
+                <DefaultCatBox>
+                  {categoryList.map((item, index) => (
+                    <MyBtn key={index}>
+                      <CatBtn num={index + 1} type="button" onClick={handleCatBtn} value={item} />
+                      {(inputCategory === item) && <i className="bi bi-check"></i>}
+                    </MyBtn>
+                  ))}
+                </DefaultCatBox>
                 <div className="my-btn">
                   <CatPlusBtn type="button" onClick={() => setIsInputModalOpen(true)} value="+" />
                     {isInputModalOpen && (
@@ -151,7 +152,7 @@ function PaymentAdd({date, categoryList}) {
                       acceptFunc={() => setIsInputModalOpen(false)}
                       cancelFunc={() => setIsInputModalOpen(false)} />)} 
                   </div>
-              </MarginLeftBox>
+              </CatBox>
             </BodyBox>
             <BodyBox>
               <VerticalDot />
@@ -169,12 +170,12 @@ function PaymentAdd({date, categoryList}) {
               <VerticalDot />
               영수증<br/>
               <AddImgBox>
-                <label htmlFor="ex_file">
+                <label htmlFor="add_file">
                   <div className="addImg">
                     {inputReceipt ? <img src={inputReceipt} alt="inputReceipt" /> : <DefaultImg>+</DefaultImg>}
                   </div>
                 </label>
-                <input type="file" id="ex_file" accept="image/*" onChange={(e) => handleOnChange(e.target.files[0])}/>
+                <input type="file" id="add_file" accept="image/*" onChange={(e) => handleOnChange(e.target.files[0])}/>
               </AddImgBox>
             </BodyBox>
             <BodyBox>
@@ -212,6 +213,23 @@ function PaymentAdd({date, categoryList}) {
     </Accordion>
   )
 }
+
+const MyBtn = styled.div`
+  position: relative;
+  display: inline-block;
+  .bi-check {
+    position: absolute;
+    top: -4px;
+    right: -2px;
+    color: red;
+  }
+`
+
+const DefaultCatBox = styled.div`
+  overflow-x: scroll;
+  display: flex;
+  width: 260px;
+`
 
 const HiddenInput = styled.input`
   display: none;
@@ -378,8 +396,14 @@ const AddImgBox = styled.div`
   }
 `;
 
+const CatBox = styled.div`
+  margin-left: 10px;
+  display: flex;
+  justify-content: space-between;
+  width: 300px;
+`
 const MarginLeftBox = styled.div`
-  margin-left: ${props => `${props.px}px`};  
+  margin-left: ${props => `${props.px}px`};
 `
 
 export default PaymentAdd;

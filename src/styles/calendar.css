@@ -3,9 +3,10 @@
   margin-right: 5px;
   margin-top: 5px;
   align-items: center;
-
+  
   display: flex;
 }
+
 .whole-btn {
   border-radius: 15px;
   border: 1px solid #000;
@@ -167,9 +168,11 @@
   width: 100%;
   height: 30px;
   margin: 7px 0 12px 0;
+  padding: 0px 7px;
   display: flex;
   overflow-x: scroll;
   gap: 5px;
+  border-radius: 10px;
 }
 
 .cat-btn1 {
@@ -395,127 +398,10 @@
   background-color: #ffcc00;
 }
 
-#outerContainer {
-  display: block;
-  width: 100%;
-  height: 25px;
-  top: 24px;
-  left: 200px;
-  position: relative;
-  /* height: 100vh; */
-  /* display: flex;
-  justify-content: end; */
-  align-items: center;
-  padding-right: 19px;
-  color: #000;
-  text-align: center;
-  font-family: KBFG Display;
-  font-size: 10px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-  cursor: pointer;
-}
-
 .title-container {
   margin: auto;
   /* display: flex; */
   width: 100%;
-}
-#container {
-  position: relative;
-  width: 76px;
-  /* height: 25px; */
-  background-color: #e2e2e2;
-  border: 1px solid #e2e2e2;
-  margin: 0;
-  border-radius: 15px;
-  touch-action: none;
-
-  .select-left {
-    .left {
-      span {
-        opacity: 1;
-        color: white;
-      }
-    }
-  }
-
-  .select-right {
-    .right {
-      span {
-        opacity: 1;
-        color: white;
-      }
-    }
-  }
-}
-#item {
-  position: relative;
-  width: 76px;
-  height: 25px;
-  border-radius: 15px;
-  transition: all 0.05s cubic-bezier(0.04, 0.46, 0.36, 0.99);
-  touch-action: none;
-  user-select: none;
-
-  &:after {
-    position: absolute;
-    /* top: -5px; */
-    left: 0;
-    width: 50%;
-
-    border-radius: 15px;
-    height: calc(100%);
-    background-color: #ffffff;
-    content: '';
-  }
-}
-
-.left {
-  display: flex;
-  position: absolute;
-  justify-content: center;
-  align-items: center;
-  width: 50%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  pointer-events: none;
-  user-select: none;
-  /* background-color: white; */
-  span {
-    color: #000;
-    text-align: center;
-    font-family: KBFG Display;
-    font-size: 10px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-  }
-}
-
-.right {
-  display: flex;
-  position: absolute;
-  justify-content: center;
-  align-items: center;
-  width: 50%;
-  height: 100%;
-  top: 0;
-  right: 0;
-  pointer-events: none;
-  user-select: none;
-
-  span {
-    color: #000;
-    text-align: center;
-    font-family: KBFG Display;
-    font-size: 10px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-  }
 }
 
 /* WeeklyCalendar.module.css */

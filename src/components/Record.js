@@ -18,7 +18,6 @@ const records = [
 
 function Record({ setCatList, curledger, value, recordList, newDateList, catList, ledgerId }) {
   const [recordCount, setRecordCount] = useState(3);
-  const [isEdit, setIsEdit] = useState(false);
 
   return (
     <div>
@@ -69,34 +68,19 @@ function Record({ setCatList, curledger, value, recordList, newDateList, catList
                   className="accordion-collapse collapse"
                   aria-labelledby={`panelsStayOpen-heading${i}`}
                 >
-                  {isEdit ? (
-                    <PaymentEdit
-                      categoryList={catList}
-                      title={r.tranName}
-                      price={r.tranAmount}
-                      time={r.tranTime}
-                      name={r.tranPlace}
-                      catName={r.categoryName}
-                      curledger={curledger}
-                      recordId={r.recordId}
-                      setIsEditFalse={() => {
-                        setIsEdit(false);
-                      }}
-                      setCatList={setCatList}
-                    />
-                  ) : (
-                    <PaymentDetail
-                      title={r.tranName}
-                      price={r.tranAmount}
-                      time={r.tranTime}
-                      name={r.tranPlace}
-                      catName={r.categoryName}
-                      isExpense={r.isExpense}
-                      setIsEditTrue={() => {
-                        setIsEdit(true);
-                      }}
-                    />
-                  )}
+                <PaymentDetail
+                  key={i}
+                  title={r.tranName}
+                  price={r.tranAmount}
+                  time={r.tranTime}
+                  name={r.tranPlace}
+                  catName={r.categoryName}
+                  recordId={r.recordId}
+                  isExpense={r.isExpense}
+                  curledger={curledger}
+                  setCatList={setCatList}
+                  catList={catList}
+                />
                 </div>
               </div>
             ))
