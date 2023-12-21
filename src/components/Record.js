@@ -16,7 +16,7 @@ const records = [
   { time: '20:53', name: '다이소', cat: '장갑', title: '추워서 장갑삼', price: '2000' },
 ];
 
-function Record({ setCatList, curledger, value, recordList, newDateList, catList, ledgerId }) {
+function Record({ setCatList, curledger, value, recordList, setRecordList, newDateList, catList, receiptUrl }) {
   const [recordCount, setRecordCount] = useState(3);
 
   return (
@@ -68,19 +68,21 @@ function Record({ setCatList, curledger, value, recordList, newDateList, catList
                   className="accordion-collapse collapse"
                   aria-labelledby={`panelsStayOpen-heading${i}`}
                 >
-                <PaymentDetail
-                  key={i}
-                  title={r.tranName}
-                  price={r.tranAmount}
-                  time={r.tranTime}
-                  name={r.tranPlace}
-                  catName={r.categoryName}
-                  recordId={r.recordId}
-                  isExpense={r.isExpense}
-                  curledger={curledger}
-                  setCatList={setCatList}
-                  catList={catList}
-                />
+                  <PaymentDetail
+                    key={i}
+                    title={r.tranName}
+                    price={r.tranAmount}
+                    time={r.tranTime}
+                    name={r.tranPlace}
+                    catName={r.categoryName}
+                    recordId={r.recordId}
+                    isExpense={r.isExpense}
+                    curledger={curledger}
+                    setCatList={setCatList}
+                    catList={catList}
+                    receiptUrl={receiptUrl}
+                    setRecordList={setRecordList}
+                  />
                 </div>
               </div>
             ))
