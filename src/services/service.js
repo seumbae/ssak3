@@ -34,9 +34,8 @@ export const getRecordList = async (data) => await API.post('/record/list', data
 export const editRecordList = async (data) => await API.post('/record/edit', data);
 // 영수증등록
 export const uploadReceiptImg = async (data) =>
-  await API.post('/record/upload', data.image, {
+  await API.post('/record/upload', data, {
     headers: { 'Content-Type': 'multipart/form-data' },
-    params: { recordId: data.recordId },
   });
 
 // Category
