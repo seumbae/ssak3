@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import newlamu from '../assets/newlamu.png';
 import { getPreMonthExpense } from '../services/service';
-import moment from 'moment';
 
 function NewFNLGLastBudget({ setLastBudgetShow, setBudgetShow, setMonthExpense, selectedTheme, monthExpense }) {
   // 숫자를 1000단위로 콤마로 구분하는 함수
@@ -10,7 +9,6 @@ function NewFNLGLastBudget({ setLastBudgetShow, setBudgetShow, setMonthExpense, 
   };
 
   const lastBudgetNextClick = () => {
-    setMonthExpense(400500);
     setLastBudgetShow(false);
     setBudgetShow(true);
   };
@@ -26,7 +24,7 @@ function NewFNLGLastBudget({ setLastBudgetShow, setBudgetShow, setMonthExpense, 
     <div className="NewFNLGGoalDiv">
       <div>
         <div className="NewFNLGBudgetTitle">{formatNumber(monthExpense)}원</div>
-        <div className="NewFNLGBudgetText">지난 달 패션/쇼핑에 소비하신 금액이에요</div>
+        <div className="NewFNLGBudgetText">지난 달 {selectedTheme.themeName}에 소비하신 금액이에요</div>
       </div>
       <img src={newlamu} alt="newlamu"></img>
       <button className="next-btn-complete fs-2" onClick={lastBudgetNextClick}>
