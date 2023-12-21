@@ -16,9 +16,18 @@ const records = [
   { time: '20:53', name: '다이소', cat: '장갑', title: '추워서 장갑삼', price: '2000' },
 ];
 
-function Record({ setCatList, curledger, value, recordList, setRecordList, newDateList, catList, receiptUrl }) {
-  const [recordCount, setRecordCount] = useState(3);
+function Record({
+  setCatList,
 
+  curledger,
+  value,
+  recordList,
+  setRecordList,
+  newDateList,
+  catList,
+}) {
+  const [recordCount, setRecordCount] = useState(3);
+  const [receiptUrl, setReceiptUrl] = useState('');
   return (
     <div>
       <div className="accordion mt-4 mb-4" id="accordionPanelsStayOpenExample">
@@ -80,8 +89,9 @@ function Record({ setCatList, curledger, value, recordList, setRecordList, newDa
                     curledger={curledger}
                     setCatList={setCatList}
                     catList={catList}
-                    receiptUrl={receiptUrl}
+                    receiptUrl={r.receiptUrl}
                     setRecordList={setRecordList}
+                    recordList={recordList}
                   />
                 </div>
               </div>

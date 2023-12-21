@@ -7,12 +7,21 @@ import Record from './Record';
 import categoryColors from '../constants/cat';
 import PaymentAdd from './PaymentAdd';
 
-function ReactCalendar({ curledger, recordList, newDateList, ledgerId, catList, setCatList, setRecordList }) {
+function ReactCalendar({
+  curledger,
+  recordList,
+  setReceiptUrl,
+  newDateList,
+  ledgerId,
+  catList,
+  setCatList,
+  setRecordList,
+  receiptUrl,
+}) {
   const [value, onChange] = useState(new Date()); // 초기값은 현재 날짜
   const [checked, setChecked] = useState('전체');
   //TODO: 카테고리 선택할 수 있게 하고 handleTileContents에서 해당 카테고리만 보여주기 ㅇㅇ
 
-  console.log('sdsdsd',recordList)
   const handleTileContents = (date) => {
     const formattedDate = moment(date).format('YYYY-MM-DD');
     const occurrences = recordList.filter((val) => val.tranYmd === formattedDate).length;
@@ -164,6 +173,8 @@ function ReactCalendar({ curledger, recordList, newDateList, ledgerId, catList, 
         curledger={curledger}
         setCatList={setCatList}
         setRecordList={setRecordList}
+        setReceiptUrl={setReceiptUrl}
+        receiptUrl={receiptUrl}
       />
     </div>
   );
