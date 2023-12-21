@@ -36,7 +36,6 @@ function PaymentDetail({
     setIsEdit(true);
     setEditState(true);
   };
-
   useEffect(() => {
     setIsEdit(editState);
   }, [editState]);
@@ -57,7 +56,7 @@ function PaymentDetail({
       setEditState={setEditState}
       setNewRecordData={setRecordList}
       setReceiptUrl={setNewReceiptUrl}
-      receiptUrl={newReceiptUrl}
+      receiptUrl={newReceiptUrl} //이러케 하면 안됨.
       recordList={recordList}
     />
   ) : (
@@ -91,8 +90,8 @@ function PaymentDetail({
 
           <div className="body-receipt">
             <div className="vertical-dot"></div>
-            {newReceiptUrl ? (
-              <img className="receipt-img" src={newReceiptUrl} alt="receipt" />
+            {receiptUrl ? (
+              <img className="receipt-img" src={receiptUrl} alt="receipt" />
             ) : (
               <img className="receipt-img" src={receiptImg} alt="receipt" />
             )}
