@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../styles/record.css';
 import receiptImg from '../assets/images/receipt.jpg';
 import CheckModal from '../components/CheckModal';
@@ -19,6 +19,8 @@ function PaymentDetail({
   curledger,
   setCatList,
   catList,
+  editState,
+  setEditState,
 }) {
   const [checkCatBtn, setCheckCatBtn] = useState('술');
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -29,6 +31,14 @@ function PaymentDetail({
     setCheckCatBtn(e.target.value);
   };
 
+  const handleEditBtn = () => {
+    setIsEdit(true);
+    setEditState(true);
+  };
+
+  useEffect(() => {
+    setIsEdit(editState);
+  }, [editState]);
   return isEdit ? (
     <PaymentEdit
       key={key}
@@ -43,6 +53,7 @@ function PaymentDetail({
       setCatList={setCatList}
       setIsEditFalse={() => setIsEdit(false)}
       setIsEdit={setIsEdit}
+      setEditState={setEditState}
     />
   ) : (
     <div className="accordion-body">
@@ -104,7 +115,7 @@ function PaymentDetail({
             acceptMsg="삭제"
           />
         )}
-        <button className="edit-btn" onClick={() => setIsEdit(true)}>
+        <button className="edit-btn" onClick={handleEditBtn}>
           {' '}
           수정{' '}
         </button>

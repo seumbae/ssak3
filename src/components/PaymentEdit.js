@@ -21,6 +21,7 @@ function PaymentEdit({
   setIsEdit,
   recordId,
   setNewRecordData,
+  setEditState
 }) {
   const [isInputModalOpen, setIsInputModalOpen] = useState(false);
   const [isCancelModalOpen, setIsCancelModalOpen] = useState(false);
@@ -39,7 +40,6 @@ function PaymentEdit({
     image: null,
     recordId: recordId,
   };
-  console.log(newImgUrl);
   const FileUpload = () => {
     const handleClickFileInput = () => {
       fileInputRef.current?.click();
@@ -131,7 +131,8 @@ function PaymentEdit({
         console.log('edit', res, res.data);
         setIsEditDone(true);
         setIsEdit(false);
-
+        setEditState(false);
+        
         setNewRecordData([
           {
             categoryName: res.data.categoryName,
@@ -258,6 +259,7 @@ function PaymentEdit({
             acceptFunc={() => {
               setIsCancelModalOpen(false);
               setIsEditFalse();
+              setEditState(false);
             }}
             title="취소하시겠습니까?"
             content="취소하시면 모든 수정 내역이 취소됩니다."
