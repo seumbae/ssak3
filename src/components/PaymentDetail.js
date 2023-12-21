@@ -13,8 +13,6 @@ function PaymentDetail({ title, price, time, name, isExpense, catName, setIsEdit
     setCheckCatBtn(e.target.value);
   };
 
-  console.log('paymenttttt', catName);
-
   return (
     <div className="accordion-body">
       <div className="vertical">
