@@ -32,6 +32,8 @@ export const addLedger = async (data) => await API.post('/ledger/add', data);
 export const getRecordList = async (data) => await API.post('/record/list', data);
 // parameters : recordId, categoryId, categoryname, tranName, tranAmount 가계부 내역 수정
 export const editRecordList = async (data) => await API.post('/record/edit', data);
+// parameters : themeId, yearMonth(ex.2023-12) 전원 지출 합산 금액 조회
+export const getPreMonthExpense = async (data) => await API.get('ledger/theme/add/preMonthExpense', {params: data});
 // 영수증등록
 export const uploadReceiptImg = async (data) =>
   await API.post('/record/upload', data, {

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import '../styles/calendar.css';
@@ -6,13 +6,35 @@ import moment from 'moment';
 import Record from './Record';
 import categoryColors from '../constants/cat';
 import PaymentAdd from './PaymentAdd';
+import CheckModal from './CheckModal';
 
-function ReactCalendar({ curledger, recordList, newDateList, ledgerId, catList, setCatList, setRecordList }) {
-  const [value, onChange] = useState(new Date()); // 초기값은 현재 날짜
+function ReactCalendar({
+  curledger,
+  recordList,
+  setReceiptUrl,
+  newDateList,
+  ledgerId,
+  catList,
+  setCatList,
+  setRecordList,
+  receiptUrl,
+}) {
+  const [value, setValue] = useState(new Date()); // 초기값은 현재 날짜
   const [checked, setChecked] = useState('전체');
+  const [editState, setEditState] = useState(false);
+  const [isCancelModalOpen, setIsCancelModalOpen] = useState(false);
+  const [curDate, setCurDate] = useState(new Date());
   //TODO: 카테고리 선택할 수 있게 하고 handleTileContents에서 해당 카테고리만 보여주기 ㅇㅇ
 
-  console.log('sdsdsd',recordList)
+  const handleOnChange = (e) => {
+    setCurDate(e);
+    if (editState) {
+      setIsCancelModalOpen(true);
+    } else {
+      setValue(e);
+    }
+  };
+
   const handleTileContents = (date) => {
     const formattedDate = moment(date).format('YYYY-MM-DD');
     const occurrences = recordList.filter((val) => val.tranYmd === formattedDate).length;
@@ -138,7 +160,7 @@ function ReactCalendar({ curledger, recordList, newDateList, ledgerId, catList, 
       <div className="calendar-container mt-2">
         <Calendar
           locale="kor"
-          onChange={onChange}
+          onChange={handleOnChange}
           formatDay={(locale, date) => moment(date).format('DD')}
           value={value}
           tileContent={({ date }) => handleTileContents(date)}
@@ -164,7 +186,27 @@ function ReactCalendar({ curledger, recordList, newDateList, ledgerId, catList, 
         curledger={curledger}
         setCatList={setCatList}
         setRecordList={setRecordList}
+        setReceiptUrl={setReceiptUrl}
+        receiptUrl={receiptUrl}
+        setEditState={setEditState}
+        editState={editState}
       />
+      {isCancelModalOpen && (
+        <CheckModal
+          cancelFunc={() => {
+            setIsCancelModalOpen(false);
+          }}
+          acceptFunc={() => {
+            setIsCancelModalOpen(false);
+            setEditState(false);
+            setValue(curDate);
+          }}
+          title="경고"
+          content="수정 중 이동하시면 모든 수정 내역이 취소됩니다."
+          cancelMsg="취소"
+          acceptMsg="확인"
+        />
+      )}
     </div>
   );
 }

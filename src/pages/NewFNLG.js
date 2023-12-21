@@ -41,6 +41,7 @@ function NewFNLG() {
           setBudgetShow={setBudgetShow}
           selectedTheme={selectedTheme}
           setMonthExpense={setMonthExpense}
+          monthExpense={monthExpense}
         />
       )}
       {budgetShow && (

@@ -44,7 +44,7 @@ function NewFNLGTheme({ setThemeShow, setLastBudgetShow, themeList, selectedThem
       </button>
       <div>
         <div className="NewFNLGThemeText">
-          <div>&apos;테마&apos; 관련 항목</div>
+          <div>&apos;{selected}&apos; 관련 항목</div>
           <div> 가계부를 작성할게요.</div>
           <img src={newcoli} alt="newcoli"></img>
         </div>
