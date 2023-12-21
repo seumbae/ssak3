@@ -337,10 +337,8 @@
   font-weight: 900 !important;
   text-decoration: underline;
   border-radius: 10px;
-  /* display: flex; */
 
   width: 14px;
-  /* height: 40px; */
   justify-items: center;
   justify-content: center;
   align-items: center;
@@ -348,7 +346,6 @@
 /*hover, focus 시 */
 .react-calendar__tile--now:enabled:hover,
 .react-calendar__tile--now:enabled:focus {
-  background: none !important;
   color: #9647ff !important;
   font-weight: 900 !important;
   border-radius: 10px;
@@ -359,11 +356,10 @@
   align-items: center;
 }
 .react-calendar__tile--active {
-  background: none !important;
+  background: rgb(229,229,229,1) !important;
   color: black;
 }
 .react-calendar__month-view__days__day--weekend {
-  background: none !important;
   color: #d10000;
 }
 .react-calendar__tile

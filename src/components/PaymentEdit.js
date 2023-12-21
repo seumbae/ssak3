@@ -22,6 +22,7 @@ function PaymentEdit({
   setIsEdit,
   recordId,
   setNewRecordData,
+  setEditState
   setReceiptUrl,
   recordList,
 }) {
@@ -121,7 +122,8 @@ function PaymentEdit({
         console.log('edit', res, res.data);
         setIsEditDone(true);
         setIsEdit(false);
-        // setReceiptUrl(newImgUrl);
+        setEditState(false);
+                // setReceiptUrl(newImgUrl);
         setNewRecordData(
           recordList.map((r) => {
             if (r.recordId === recordId) {
@@ -256,6 +258,7 @@ function PaymentEdit({
             acceptFunc={() => {
               setIsCancelModalOpen(false);
               setIsEditFalse();
+              setEditState(false);
             }}
             title="취소하시겠습니까?"
             content="취소하시면 모든 수정 내역이 취소됩니다."

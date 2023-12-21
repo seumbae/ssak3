@@ -17,6 +17,8 @@ const records = [
 ];
 
 function Record({
+  editState,
+  setEditState,
   setCatList,
 
   curledger,
@@ -91,6 +93,8 @@ function Record({
                     catList={catList}
                     receiptUrl={r.receiptUrl}
                     setRecordList={setRecordList}
+                    setEditState={setEditState}
+                    editState={editState}
                     recordList={recordList}
                   />
                 </div>

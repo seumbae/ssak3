@@ -9,9 +9,9 @@ import iconAvatar from '../assets/images/iconAvatar.png';
 import { getCategories, getMyList, getRecordList, getUsers } from '../services/service';
 import { useNavigate } from 'react-router-dom';
 import Loading from '../components/Loading';
+import PushAlarm from '../components/PushAlarm';
 
 function Home() {
-  const budget = 1000000;
   const saveMoney = 3000;
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
@@ -22,6 +22,7 @@ function Home() {
   const [newDateList, setNewDateList] = useState([]);
   const [curDate, setCurDate] = useState(new Date());
   const [catList, setCatList] = useState([]);
+  const [isPushAlarm, setIsPushAlarm] = useState(false);
 
   useEffect(() => {
     getMyList({ userId: localStorage.getItem('userId') })
@@ -47,6 +48,7 @@ function Home() {
         setLoading(false);
         navigate('/');
       });
+      setTimeout(() => setIsPushAlarm(true), 3000)
   }, []);
   return (
     <>
@@ -54,6 +56,7 @@ function Home() {
         <Loading />
       ) : (
         <div className="paddingBox">
+          {isPushAlarm && <PushAlarm title="수고했어 오늘도~" content="오늘 하루 지출 내역을 가계부에 기록해보세요." />}
           <div className="emptyBox"></div>
           <UserBar userName={curledger.user.userName} userAvatar={iconAvatar} />
           <div className="emptyBox"></div>
