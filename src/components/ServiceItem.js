@@ -22,12 +22,13 @@ function ServiceItem({ title, desTop, desBottom, image, handleCardClick = { hand
 }
 
 const Title = styled.button`
-  appearance: none;
-  border: none;
-  background: none;
-  padding-left: 10px;
-  font-family: KBTitleM;
-  font-size: 22px;
+color: black;
+appearance: none;
+border: none;
+background: none;
+padding-left: 10px;
+font-family: KBTitleM;
+font-size: 22px;
 `
 
 const ServiceItemDiv = styled.div`

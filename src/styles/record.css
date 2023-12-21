@@ -36,6 +36,7 @@
 }
 
 .accordion-button {
+  color: black;
   background-color: white !important;
   border-color: white !important;
   /* box-shadow: none !important; */

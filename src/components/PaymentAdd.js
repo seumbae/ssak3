@@ -306,36 +306,38 @@ const BtnBox = styled.div`
 `
 
 const CancelBtn = styled.button`
-  border-radius: 30px;
-  background-color: #d9d9d9;
-  width: 103.594px;
-  height: 39.05px;
-  border: none;
-  font-family: KBTextM;
-  font-size: 16px;
-  margin: 0 10px 0 10px;
+color: black;
+border-radius: 30px;
+background-color: #d9d9d9;
+width: 103.594px;
+height: 39.05px;
+border: none;
+font-family: KBTextM;
+font-size: 16px;
+margin: 0 10px 0 10px;
 `
 
 const AddBtn = styled.button`
-  border-radius: 30px;
-  background-color: #fc0;
-  width: 103.594px;
-  height: 39.05px;
-  border: none;
-  font-family: KBTextM;
-  font-size: 16px;
-  margin: 0 10px 0 10px;
+color: black;
+border-radius: 30px;
+background-color: #fc0;
+width: 103.594px;
+height: 39.05px;
+border: none;
+font-family: KBTextM;
+font-size: 16px;
+margin: 0 10px 0 10px;
 `
 
 const InputBox = styled.input`
-  background-color: #f1f1f1;
-  border: none;
-  border-radius: 15px;
-  padding: 0 0 0 10px;
-  width: 300px;
-  height: 30px;
-  font-family: KBTextB;
-  font-size: 16px;
+background-color: #f1f1f1;
+border: none;
+border-radius: 15px;
+padding: 0 0 0 10px;
+width: 300px;
+height: 30px;
+font-family: KBTextB;
+font-size: 16px;
 `
 
 const CatBtn = styled.input`
