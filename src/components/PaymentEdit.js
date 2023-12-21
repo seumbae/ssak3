@@ -4,6 +4,7 @@ import receiptImg from '../assets/images/receipt.jpg';
 import CheckModal from '../components/CheckModal';
 import InputModal from '../components/InputModal';
 import categoryColors from '../constants/cat';
+import PaymentDetail from './PaymentDetail';
 import { editRecordList, createCategory, uploadReceiptImg } from '../services/service';
 
 function PaymentEdit({
@@ -12,12 +13,14 @@ function PaymentEdit({
   title,
   price,
   time,
+  receiptUrl,
   name,
   setIsEditFalse,
   catName,
   categoryList,
-  addCatList,
+  setIsEdit,
   recordId,
+  setNewRecordData,
 }) {
   const [isInputModalOpen, setIsInputModalOpen] = useState(false);
   const [isCancelModalOpen, setIsCancelModalOpen] = useState(false);
@@ -26,16 +29,20 @@ function PaymentEdit({
   const [inputTitle, setInputTitle] = useState(title);
   const [inputPrice, setInputPrice] = useState(price);
   const [imageFile, setImageFile] = useState(null);
+
+  const [isEditDone, setIsEditDone] = useState(false);
+  const [hi, setHi] = useState('ddddd');
+  const [newImgUrl, setNewImgUrl] = useState('');
   const fileInputRef = useRef(null);
   const curLedgerId = curledger.ledgerId;
-  // const [imgUrl, setImgUrl] = useState('');
+
   const newData = {
     image: null,
     recordId: recordId,
   };
+  console.log(newImgUrl);
   const FileUpload = () => {
     const handleClickFileInput = () => {
-      console.log('clicked!!');
       fileInputRef.current?.click();
     };
 
@@ -45,36 +52,33 @@ function PaymentEdit({
       if (fileList && fileList[0]) {
         const url = URL.createObjectURL(fileList[0]);
         const formData = new FormData();
-        // formData.append('image', url);
-        console.log(fileList[0]);
-        formData.append('image', e.target.files);
-        console.log('formData', formData, fileList, url);
+        formData.append('recordId', new Blob([JSON.stringify({ recordId: recordId })], { type: 'application/json' }));
+        formData.append('image', fileList[0]);
         newData.image = formData;
         setImageFile({
           file: fileList[0],
+          url: url,
           thumbnail: formData,
           type: fileList[0].type,
+          formData: formData,
         });
       }
     };
 
     const showImage = useMemo(() => {
       if (!imageFile || imageFile == null) {
-        console.log('No image file');
-        return <img className="receipt-img" src={receiptImg} alt="receipt" />;
+        return <img className="receipt-img" src={receiptUrl} alt="receipt" />;
       }
       return (
         <input
           type="image"
           className="ShowFileImage"
-          src={imageFile.thumbnail}
+          src={imageFile.url}
           alt={imageFile.type}
           onClick={handleClickFileInput}
         ></input>
       );
     }, [imageFile]);
-
-    console.log(imageFile);
 
     return (
       <div className={'FileUploadContainer'}>
@@ -95,14 +99,15 @@ function PaymentEdit({
   };
 
   const handleEditBtn = () => {
-    const tmpdata = {
-      recordId: recordId,
-      image: imageFile.thumbnail,
-    };
-    console.log('11111231231', tmpdata);
-    uploadReceiptImg(tmpdata).then((res) => {
-      console.log('upload', res, res.data);
-    });
+    if (imageFile && imageFile != null) {
+      uploadReceiptImg(imageFile.formData).then((res) => {
+        console.log('upload', res, res.data);
+        setNewImgUrl(res.data);
+        setHi('ffffff');
+        console.log('ressss', res.data, newImgUrl, hi);
+      });
+    }
+    console.log('recordlist 123123123');
     editRecordList({
       recordId: recordId,
       categoryName: checkCatBtn,
@@ -111,12 +116,27 @@ function PaymentEdit({
     })
       .then((res) => {
         console.log('edit', res, res.data);
+        setIsEditDone(true);
+        setIsEdit(false);
+
+        setNewRecordData([
+          {
+            categoryName: res.data.categoryName,
+            isExpense: res.data.isExpense,
+            receiptUrl: newImgUrl,
+            recordId: res.data.recordId,
+            tranAmount: res.data.tranAmount,
+            tranName: res.data.tranName,
+            tranPlace: res.data.tranPlace,
+            tranTime: res.data.tranTime,
+            tranYmd: res.data.tranYmd,
+          },
+        ]);
       })
       .catch(() => {
         alert('서버와의 연결이 원활하지 않습니다.');
       });
   };
-  console.log('addCat', curledger.ledgerId);
   useEffect(() => {
     setInputTitle(title);
     setInputPrice(price);
@@ -229,6 +249,21 @@ function PaymentEdit({
         <button className="edit-btn" onClick={handleEditBtn}>
           저장
         </button>
+        {/* {isEditDone ? (
+          <PaymentDetail
+            title={newRecordData.tranName}
+            price={newRecordData.tranAmount}
+            time={newRecordData.tranTime}
+            name={newRecordData.tranPlace}
+            catName={newRecordData.categoryName}
+            isExpense={newRecordData.isExpense}
+            setIsEditTrue={() => {
+              setIsEdit(false);
+            }}
+          />
+        ) : (
+          ''
+        )} */}
       </div>
     </div>
   );

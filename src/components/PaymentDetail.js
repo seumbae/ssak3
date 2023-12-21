@@ -4,7 +4,7 @@ import receiptImg from '../assets/images/receipt.jpg';
 import CheckModal from '../components/CheckModal';
 import categoryColors from '../constants/cat';
 
-function PaymentDetail({ title, price, time, name, isExpense, catName, setIsEditTrue }) {
+function PaymentDetail({ title, price, time, name, receiptUrl, isExpense, catName, setIsEditTrue }) {
   const [checkCatBtn, setCheckCatBtn] = useState('술');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isDelModalOpen, setIsDelModalOpen] = useState(false);
@@ -13,7 +13,7 @@ function PaymentDetail({ title, price, time, name, isExpense, catName, setIsEdit
     setCheckCatBtn(e.target.value);
   };
 
-  console.log('paymenttttt', catName);
+  console.log('paymenttttt', catName, receiptUrl);
 
   return (
     <div className="accordion-body">
@@ -46,7 +46,7 @@ function PaymentDetail({ title, price, time, name, isExpense, catName, setIsEdit
 
           <div className="body-receipt">
             <div className="vertical-dot"></div>
-            <img className="receipt-img" src={receiptImg} alt="receipt" />
+            <img className="receipt-img" src={receiptUrl} alt="receipt" />
           </div>
           <div className="body-time">
             <div className="vertical-dot"></div>

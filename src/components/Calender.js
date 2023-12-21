@@ -6,7 +6,7 @@ import moment from 'moment';
 import Record from './Record';
 import categoryColors from '../constants/cat';
 
-function ReactCalendar({ curledger, recordList, newDateList, ledgerId, catList, setCatList }) {
+function ReactCalendar({ curledger, recordList, newDateList, ledgerId, catList, setCatList, setRecordList }) {
   const [value, onChange] = useState(new Date()); // 초기값은 현재 날짜
   const [checked, setChecked] = useState('전체');
   //TODO: 카테고리 선택할 수 있게 하고 handleTileContents에서 해당 카테고리만 보여주기 ㅇㅇ
@@ -106,32 +106,28 @@ function ReactCalendar({ curledger, recordList, newDateList, ledgerId, catList, 
         <div className="category-container">
           {checked === '전체' &&
             catList.map((val, i) => (
-                <div
-                  key={i}
-                  className="cat-btn1"
-                  style={{ backgroundColor: categoryColors[val.customCategoryName] || '#808080' }}
-                >
-                  {val.customCategoryName}
-                </div>
+              <div
+                key={i}
+                className="cat-btn1"
+                style={{ backgroundColor: categoryColors[val.customCategoryName] || '#808080' }}
+              >
+                {val.customCategoryName}
+              </div>
             ))}
           {checked === '수입' &&
             [...new Set(recordList.filter((list) => list.isExpense === '0').map((list) => list.categoryName))].map(
               (val, i) => (
-                  <div
-                    key={val + i}
-                    className={`cat-btn1`}
-                    style={{ backgroundColor: categoryColors[val] || '#808080' }}
-                  >
-                    {val}
-                  </div>
+                <div key={val + i} className={`cat-btn1`} style={{ backgroundColor: categoryColors[val] || '#808080' }}>
+                  {val}
+                </div>
               ),
             )}
           {checked === '지출' &&
             [...new Set(recordList.filter((list) => list.isExpense === '1').map((list) => list.categoryName))].map(
               (val, i) => (
-                  <div key={i} className={`cat-btn1`} style={{ backgroundColor: categoryColors[val] || '#808080' }}>
-                    {val}
-                  </div>
+                <div key={i} className={`cat-btn1`} style={{ backgroundColor: categoryColors[val] || '#808080' }}>
+                  {val}
+                </div>
               ),
             )}
         </div>
@@ -168,7 +164,7 @@ function ReactCalendar({ curledger, recordList, newDateList, ledgerId, catList, 
           <div className="more-record-btn col-sm">{/* <PaymentAdd categoryList={['aa']} /> */}</div>
         </div>
       </div>
-      <PaymentAdd categoryList={['aa']} />
+      {/* <PaymentAdd categoryList={['aa']} /> */}
       <Record
         value={value}
         recordList={recordList}
@@ -177,6 +173,7 @@ function ReactCalendar({ curledger, recordList, newDateList, ledgerId, catList, 
         ledgerId={ledgerId}
         curledger={curledger}
         setCatList={setCatList}
+        setRecordList={setRecordList}
       />
     </div>
   );

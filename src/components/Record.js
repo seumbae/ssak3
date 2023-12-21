@@ -16,10 +16,13 @@ const records = [
   { time: '20:53', name: '다이소', cat: '장갑', title: '추워서 장갑삼', price: '2000' },
 ];
 
-function Record({ setCatList, curledger, value, recordList, newDateList, catList, ledgerId }) {
+function Record({ setCatList, curledger, value, recordList, setRecordList, newDateList, catList }) {
   const [recordCount, setRecordCount] = useState(3);
   const [isEdit, setIsEdit] = useState(false);
+  // const [newRecordData, setNewRecordData] = useState(recordList);
+  // console.log('newRecord', newRecordData, recordList);
 
+  console.log('isedit', isEdit);
   return (
     <div>
       <div className="accordion mt-4 mb-4" id="accordionPanelsStayOpenExample">
@@ -79,10 +82,13 @@ function Record({ setCatList, curledger, value, recordList, newDateList, catList
                       catName={r.categoryName}
                       curledger={curledger}
                       recordId={r.recordId}
+                      receiptUrl={r.receiptUrl}
                       setIsEditFalse={() => {
                         setIsEdit(false);
                       }}
+                      setIsEdit={setIsEdit}
                       setCatList={setCatList}
+                      setNewRecordData={setRecordList}
                     />
                   ) : (
                     <PaymentDetail
@@ -92,9 +98,12 @@ function Record({ setCatList, curledger, value, recordList, newDateList, catList
                       name={r.tranPlace}
                       catName={r.categoryName}
                       isExpense={r.isExpense}
+                      receiptUrl={r.receiptUrl}
                       setIsEditTrue={() => {
                         setIsEdit(true);
                       }}
+                      setIsEdit={setIsEdit}
+                      setNewRecordData={setRecordList}
                     />
                   )}
                 </div>
