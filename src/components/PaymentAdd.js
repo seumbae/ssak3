@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import '../styles/PaymentAdd.css';
 import styled from '@emotion/styled'
 import AccordionCheckModal from '../components/AccordionCheckModal';
 import InputModal from '../components/InputModal';
@@ -137,10 +136,10 @@ function PaymentAdd({date, categoryList}) {
               <CatBox>
                 <DefaultCatBox>
                   {categoryList.map((item, index) => (
-                    <div className="my-btn" key={index}>
+                    <MyBtn key={index}>
                       <CatBtn num={index + 1} type="button" onClick={handleCatBtn} value={item} />
                       {(inputCategory === item) && <i className="bi bi-check"></i>}
-                    </div>
+                    </MyBtn>
                   ))}
                 </DefaultCatBox>
                 <div className="my-btn">
@@ -215,10 +214,21 @@ function PaymentAdd({date, categoryList}) {
   )
 }
 
+const MyBtn = styled.div`
+  position: relative;
+  display: inline-block;
+  .bi-check {
+    position: absolute;
+    top: -4px;
+    right: -2px;
+    color: red;
+  }
+`
+
 const DefaultCatBox = styled.div`
   overflow-x: scroll;
   display: flex;
-  width: 250px;
+  width: 260px;
 `
 
 const HiddenInput = styled.input`

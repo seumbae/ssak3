@@ -79,7 +79,7 @@ function Record({ setCatList, curledger, value, recordList, newDateList, catList
                   isExpense={r.isExpense}
                   curledger={curledger}
                   setCatList={setCatList}
-                  catList={['aa']}
+                  catList={catList}
                 />
                 </div>
               </div>

@@ -136,49 +136,53 @@ function PaymentEdit({
         <div className="vertical-body">
           <div className="body-cat">
             <div className="vertical-dot"></div>
-            {categoryList.map((item, index) => (
-              <div className="my-btn" key={index}>
-                <input
-                  type="button"
-                  onClick={handleCatBtn}
-                  className={`cat-btn`}
-                  style={{ backgroundColor: categoryColors[item.customCategoryName] || '#808080' }}
-                  value={item.customCategoryName}
-                ></input>
-                {checkCatBtn === item.customCategoryName ? <i className="bi bi-check"></i> : ''}
+            <div className='catBox'>
+              <div className='defaultCatBox'>
+                {categoryList.map((item, index) => (
+                  <div className="my-btn" key={index}>
+                    <input
+                      type="button"
+                      onClick={handleCatBtn}
+                      className={`cat-btn`}
+                      style={{ backgroundColor: categoryColors[item.customCategoryName] || '#808080' }}
+                      value={item.customCategoryName}
+                    ></input>
+                    {checkCatBtn === item.customCategoryName ? <i className="bi bi-check"></i> : ''}
+                  </div>
+                ))}
               </div>
-            ))}
-            <div className="my-btn">
-              <button
-                type="button"
-                onClick={() => {
-                  setIsInputModalOpen(true);
-                }}
-                className="cat-plus"
-              >
-                +
-              </button>
-              {isInputModalOpen && (
-                <InputModal
-                  title="카테고리 추가"
-                  content="만들어야함"
-                  cancelMsg="취소"
-                  acceptMsg="확인"
-                  acceptFunc={(newCat) => {
-                    createCategory({ ledgerId: curLedgerId, customCategoryName: newCat })
-                      .then((res) => {
-                        setCatList((prev) => [...prev, newCat]);
-                        console.log(categoryList);
-                        console.log('category create success!', res.data);
-                      })
-                      .catch(() => {
-                        alert('서버와의 연결이 원활하지 않습니다.');
-                      });
-                    setIsInputModalOpen(false);
+              <div className="my-btn">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setIsInputModalOpen(true);
                   }}
-                  cancelFunc={() => setIsInputModalOpen(false)}
-                />
-              )}
+                  className="cat-plus"
+                >
+                  +
+                </button>
+                {isInputModalOpen && (
+                  <InputModal
+                    title="카테고리 추가"
+                    content="만들어야함"
+                    cancelMsg="취소"
+                    acceptMsg="확인"
+                    acceptFunc={(newCat) => {
+                      createCategory({ ledgerId: curLedgerId, customCategoryName: newCat })
+                        .then((res) => {
+                          setCatList((prev) => [...prev, newCat]);
+                          console.log(categoryList);
+                          console.log('category create success!', res.data);
+                        })
+                        .catch(() => {
+                          alert('서버와의 연결이 원활하지 않습니다.');
+                        });
+                      setIsInputModalOpen(false);
+                    }}
+                    cancelFunc={() => setIsInputModalOpen(false)}
+                  />
+                )}
+              </div>
             </div>
           </div>
           <div className="body-content">

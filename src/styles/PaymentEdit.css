@@ -7,6 +7,18 @@
   line-height: normal;
 }
 
+.defaultCatBox {
+  overflow-x: scroll;
+  width: 240px;
+  display: flex;
+  align-items: center;
+}
+
+.catBox {
+  display: flex;
+  justify-content: space-between;
+}
+
 .cat1 {
   background: #fdc453;
   border: none;
