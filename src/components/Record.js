@@ -69,6 +69,7 @@ function Record({ setCatList, curledger, value, recordList, newDateList, catList
                   aria-labelledby={`panelsStayOpen-heading${i}`}
                 >
                 <PaymentDetail
+                  key={i}
                   title={r.tranName}
                   price={r.tranAmount}
                   time={r.tranTime}

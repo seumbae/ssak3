@@ -134,13 +134,15 @@ function PaymentAdd({date, categoryList}) {
             <BodyBox>
               <VerticalDot />
               카테고리
-              <MarginLeftBox px="10">
-                {categoryList.map((item, index) => (
-                  <div className="my-btn" key={index}>
-                    <CatBtn num={index + 1} type="button" onClick={handleCatBtn} value={item} />
-                    {(inputCategory === item) && <i className="bi bi-check"></i>}
-                  </div>
-                ))}
+              <CatBox>
+                <DefaultCatBox>
+                  {categoryList.map((item, index) => (
+                    <div className="my-btn" key={index}>
+                      <CatBtn num={index + 1} type="button" onClick={handleCatBtn} value={item} />
+                      {(inputCategory === item) && <i className="bi bi-check"></i>}
+                    </div>
+                  ))}
+                </DefaultCatBox>
                 <div className="my-btn">
                   <CatPlusBtn type="button" onClick={() => setIsInputModalOpen(true)} value="+" />
                     {isInputModalOpen && (
@@ -151,7 +153,7 @@ function PaymentAdd({date, categoryList}) {
                       acceptFunc={() => setIsInputModalOpen(false)}
                       cancelFunc={() => setIsInputModalOpen(false)} />)} 
                   </div>
-              </MarginLeftBox>
+              </CatBox>
             </BodyBox>
             <BodyBox>
               <VerticalDot />
@@ -212,6 +214,12 @@ function PaymentAdd({date, categoryList}) {
     </Accordion>
   )
 }
+
+const DefaultCatBox = styled.div`
+  overflow-x: scroll;
+  display: flex;
+  width: 250px;
+`
 
 const HiddenInput = styled.input`
   display: none;
@@ -378,8 +386,14 @@ const AddImgBox = styled.div`
   }
 `;
 
+const CatBox = styled.div`
+  margin-left: 10px;
+  display: flex;
+  justify-content: space-between;
+  width: 300px;
+`
 const MarginLeftBox = styled.div`
-  margin-left: ${props => `${props.px}px`};  
+  margin-left: ${props => `${props.px}px`};
 `
 
 export default PaymentAdd;

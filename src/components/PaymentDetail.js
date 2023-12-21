@@ -5,7 +5,7 @@ import CheckModal from '../components/CheckModal';
 import categoryColors from '../constants/cat';
 import PaymentEdit from './PaymentEdit';
 
-function PaymentDetail({ title, price, time, name, isExpense, catName, setIsEditTrue, recordId, curledger, setCatList, catList }) {
+function PaymentDetail({ key, title, price, time, name, isExpense, catName, setIsEditTrue, recordId, curledger, setCatList, catList }) {
   const [checkCatBtn, setCheckCatBtn] = useState('술');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isDelModalOpen, setIsDelModalOpen] = useState(false);
@@ -15,11 +15,10 @@ function PaymentDetail({ title, price, time, name, isExpense, catName, setIsEdit
     setCheckCatBtn(e.target.value);
   };
 
-  console.log('paymenttttt', catName);
-
   return (
     isEdit? 
     <PaymentEdit
+      key={key}
       categoryList={catList}
       title={title}
       price={price}
@@ -29,6 +28,7 @@ function PaymentDetail({ title, price, time, name, isExpense, catName, setIsEdit
       curledger={curledger}
       recordId={recordId}
       setCatList={setCatList}
+      setIsEditFalse={() => setIsEdit(false)}
     /> :
     <div className="accordion-body">
       <div className="vertical">
