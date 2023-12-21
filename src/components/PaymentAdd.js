@@ -170,12 +170,12 @@ function PaymentAdd({date, categoryList}) {
               <VerticalDot />
               영수증<br/>
               <AddImgBox>
-                <label htmlFor="ex_file">
+                <label htmlFor="add_file">
                   <div className="addImg">
                     {inputReceipt ? <img src={inputReceipt} alt="inputReceipt" /> : <DefaultImg>+</DefaultImg>}
                   </div>
                 </label>
-                <input type="file" id="ex_file" accept="image/*" onChange={(e) => handleOnChange(e.target.files[0])}/>
+                <input type="file" id="add_file" accept="image/*" onChange={(e) => handleOnChange(e.target.files[0])}/>
               </AddImgBox>
             </BodyBox>
             <BodyBox>
