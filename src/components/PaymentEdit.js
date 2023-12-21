@@ -62,22 +62,40 @@ function PaymentEdit({
       }
     };
 
+    useEffect(() => {
+      console.log('왜안돼ㅐㅐㅐㅐㅐ', newImgUrl);
+    }, [newImgUrl]);
     // return (
-    //   <input
-    //     type="image"
-    //     className="ShowFileImage"
-    //     src={imageFile.url}
-    //     alt={imageFile.type}
-    //     onClick={handleClickFileInput}
-    //   ></input>
+    // <input
+    //   type="image"
+    //   className="ShowFileImage"
+    //   src={imageFile.url}
+    //   alt={imageFile.type}
+    //   onClick={handleClickFileInput}
+    // ></input>
     // );
 
     const showImage = useMemo(() => {
       if (!imageFile && imageFile == null) {
         return <DefaultImg>+</DefaultImg>;
       }
+      console.log(recordId, imageFile);
 
-      return <>{receiptUrl ? <img src={receiptUrl} alt="inputReceipt" /> : <DefaultImg>+</DefaultImg>}</>;
+      return (
+        <>
+          {imageFile ? (
+            <input
+              type="image"
+              className="ShowFileImage"
+              src={imageFile.url}
+              alt={imageFile.type}
+              onClick={handleClickFileInput}
+            ></input>
+          ) : (
+            <DefaultImg>+</DefaultImg>
+          )}
+        </>
+      );
     }, [imageFile]);
 
     return (
@@ -105,12 +123,16 @@ function PaymentEdit({
   };
 
   const handleEditBtn = () => {
-    if (imageFile && imageFile != null) {
-      uploadReceiptImg(imageFile.formData).then((res) => {
-        console.log('upload', res, res.data);
-        setNewImgUrl(res.data);
-        setReceiptUrl(res.data);
-      });
+    if (imageFile || imageFile != null) {
+      uploadReceiptImg(imageFile.formData)
+        .then((res) => {
+          console.log('upload', res, res.data);
+          setNewImgUrl(res.data);
+          setReceiptUrl(res.data);
+        })
+        .catch((err) => {
+          console.log('upload failed', err);
+        });
     }
     editRecordList({
       recordId: recordId,
@@ -127,12 +149,13 @@ function PaymentEdit({
         setNewRecordData(
           recordList.map((r) => {
             if (r.recordId === recordId) {
+              console.log('new Data', r);
               return {
                 ...r,
 
                 categoryName: res.data.categoryName,
                 isExpense: res.data.isExpense,
-                receiptUrl: receiptUrl,
+                receiptUrl: newImgUrl,
                 recordId: res.data.recordId,
                 tranAmount: res.data.tranAmount,
                 tranName: res.data.tranName,
@@ -238,7 +261,7 @@ function PaymentEdit({
           <div className="body-receipt">
             <div className="vertical-dot"></div>
 
-            <FileUpload />
+            <FileUpload key={recordId} />
           </div>
           <div className="body-time">
             <div className="vertical-dot"></div>

@@ -20,7 +20,6 @@ function Record({
   editState,
   setEditState,
   setCatList,
-
   curledger,
   value,
   recordList,
@@ -29,7 +28,6 @@ function Record({
   catList,
 }) {
   const [recordCount, setRecordCount] = useState(3);
-  const [receiptUrl, setReceiptUrl] = useState('');
   return (
     <div>
       <div className="accordion mt-4 mb-4" id="accordionPanelsStayOpenExample">
@@ -80,7 +78,7 @@ function Record({
                   aria-labelledby={`panelsStayOpen-heading${i}`}
                 >
                   <PaymentDetail
-                    key={i}
+                    key={r.recordId}
                     title={r.tranName}
                     price={r.tranAmount}
                     time={r.tranTime}
