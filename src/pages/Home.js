@@ -33,13 +33,13 @@ function Home() {
 
         getRecordList({ ledgerId: res.data[0].ledgerId }).then((res) => {
           setRecordList(res.data.recordList);
+          console.log(recordList);
           setNewDateList(res.data.recordList.map((val) => val.tranYmd));
           setNewDateList(res.data.recordList.map((val) => val.tranYmd));
-          
         });
         getCategories(res.data[0].ledgerId).then((res) => {
           setCatList(res.data.categoryList);
-        })
+        });
       })
       .then(() => {
         setLoading(false);
@@ -80,6 +80,7 @@ function Home() {
             curDate={curDate}
             setCurDate={setCurDate}
             catList={catList}
+            setRecordList={setRecordList}
           />
           <div className="emptyBox"></div>
           <PredictMotive saveMoney={saveMoney} />

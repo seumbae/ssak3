@@ -5,7 +5,21 @@ import CheckModal from '../components/CheckModal';
 import categoryColors from '../constants/cat';
 import PaymentEdit from './PaymentEdit';
 
-function PaymentDetail({ key, title, price, time, name, isExpense, catName, setIsEditTrue, recordId, curledger, setCatList, catList }) {
+function PaymentDetail({
+  key,
+  title,
+  price,
+  time,
+  name,
+  receiptUrl,
+  isExpense,
+  catName,
+  recordId,
+  curledger,
+  setCatList,
+  catList,
+  setRecordList,
+}) {
   const [checkCatBtn, setCheckCatBtn] = useState('술');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isDelModalOpen, setIsDelModalOpen] = useState(false);
@@ -15,8 +29,7 @@ function PaymentDetail({ key, title, price, time, name, isExpense, catName, setI
     setCheckCatBtn(e.target.value);
   };
 
-  return (
-    isEdit? 
+  return isEdit ? (
     <PaymentEdit
       key={key}
       categoryList={catList}
@@ -29,7 +42,10 @@ function PaymentDetail({ key, title, price, time, name, isExpense, catName, setI
       recordId={recordId}
       setCatList={setCatList}
       setIsEditFalse={() => setIsEdit(false)}
-    /> :
+      setIsEdit={setIsEdit}
+      setNewRecordData={setRecordList}
+    />
+  ) : (
     <div className="accordion-body">
       <div className="vertical">
         <div className="vertical-line"></div>
@@ -60,7 +76,11 @@ function PaymentDetail({ key, title, price, time, name, isExpense, catName, setI
 
           <div className="body-receipt">
             <div className="vertical-dot"></div>
-            <img className="receipt-img" src={receiptImg} alt="receipt" />
+            {receiptUrl ? (
+              <img className="receipt-img" src={receiptUrl} alt="receipt" />
+            ) : (
+              <img className="receipt-img" src={receiptImg} alt="receipt" />
+            )}
           </div>
           <div className="body-time">
             <div className="vertical-dot"></div>
