@@ -94,7 +94,7 @@
   height: 30px;
   flex-shrink: 0;
   margin: 7px 0 30px 0px;
-  padding-left: 20px;
+  /* padding-left: 20px; */
   z-index: auto;
   display: flex;
 }
