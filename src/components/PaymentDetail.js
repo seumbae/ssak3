@@ -36,9 +36,12 @@ function PaymentDetail({
     setIsEdit(true);
     setEditState(true);
   };
-  useEffect(() => {
-    setIsEdit(editState);
-  }, [editState]);
+  
+  // 일단 삭제하지말고 주석처리
+  // useEffect(() => {
+  //   setIsEdit(editState);
+  // }, [editState]);
+
   return isEdit ? (
     <PaymentEdit
       key={key}
