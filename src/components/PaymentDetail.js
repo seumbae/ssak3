@@ -36,9 +36,9 @@ function PaymentDetail({
     setIsEdit(true);
     setEditState(true);
   };
-  useEffect(() => {
-    setIsEdit(editState);
-  }, [editState]);
+  // useEffect(() => {
+  //   setIsEdit(editState);
+  // }, [editState]);
   return isEdit ? (
     <PaymentEdit
       key={key}
