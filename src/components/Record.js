@@ -18,9 +18,6 @@ const records = [
 
 function Record({ setCatList, curledger, value, recordList, setRecordList, newDateList, catList }) {
   const [recordCount, setRecordCount] = useState(3);
-  const [isEdit, setIsEdit] = useState(false);
-  // const [newRecordData, setNewRecordData] = useState(recordList);
-  // console.log('newRecord', newRecordData, recordList);
 
   console.log('isedit', isEdit);
   return (
@@ -72,40 +69,19 @@ function Record({ setCatList, curledger, value, recordList, setRecordList, newDa
                   className="accordion-collapse collapse"
                   aria-labelledby={`panelsStayOpen-heading${i}`}
                 >
-                  {isEdit ? (
-                    <PaymentEdit
-                      categoryList={catList}
-                      title={r.tranName}
-                      price={r.tranAmount}
-                      time={r.tranTime}
-                      name={r.tranPlace}
-                      catName={r.categoryName}
-                      curledger={curledger}
-                      recordId={r.recordId}
-                      receiptUrl={r.receiptUrl}
-                      setIsEditFalse={() => {
-                        setIsEdit(false);
-                      }}
-                      setIsEdit={setIsEdit}
-                      setCatList={setCatList}
-                      setNewRecordData={setRecordList}
-                    />
-                  ) : (
-                    <PaymentDetail
-                      title={r.tranName}
-                      price={r.tranAmount}
-                      time={r.tranTime}
-                      name={r.tranPlace}
-                      catName={r.categoryName}
-                      isExpense={r.isExpense}
-                      receiptUrl={r.receiptUrl}
-                      setIsEditTrue={() => {
-                        setIsEdit(true);
-                      }}
-                      setIsEdit={setIsEdit}
-                      setNewRecordData={setRecordList}
-                    />
-                  )}
+                  <PaymentDetail
+                    key={i}
+                    title={r.tranName}
+                    price={r.tranAmount}
+                    time={r.tranTime}
+                    name={r.tranPlace}
+                    catName={r.categoryName}
+                    recordId={r.recordId}
+                    isExpense={r.isExpense}
+                    curledger={curledger}
+                    setCatList={setCatList}
+                    catList={catList}
+                  />
                 </div>
               </div>
             ))

@@ -3,19 +3,47 @@ import '../styles/record.css';
 import receiptImg from '../assets/images/receipt.jpg';
 import CheckModal from '../components/CheckModal';
 import categoryColors from '../constants/cat';
+import PaymentEdit from './PaymentEdit';
 
-function PaymentDetail({ title, price, time, name, receiptUrl, isExpense, catName, setIsEditTrue }) {
+function PaymentDetail({
+  key,
+  title,
+  price,
+  time,
+  name,
+  receiptUrl,
+  isExpense,
+  catName,
+  setIsEditTrue,
+  recordId,
+  curledger,
+  setCatList,
+  catList,
+}) {
   const [checkCatBtn, setCheckCatBtn] = useState('술');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isDelModalOpen, setIsDelModalOpen] = useState(false);
+  const [isEdit, setIsEdit] = useState(false);
 
   const handleCatBtn = (e) => {
     setCheckCatBtn(e.target.value);
   };
 
-  console.log('paymenttttt', catName, receiptUrl);
-
-  return (
+  return isEdit ? (
+    <PaymentEdit
+      key={key}
+      categoryList={catList}
+      title={title}
+      price={price}
+      time={time}
+      name={name}
+      catName={catName}
+      curledger={curledger}
+      recordId={recordId}
+      setCatList={setCatList}
+      setIsEditFalse={() => setIsEdit(false)}
+    />
+  ) : (
     <div className="accordion-body">
       <div className="vertical">
         <div className="vertical-line"></div>
@@ -75,7 +103,7 @@ function PaymentDetail({ title, price, time, name, receiptUrl, isExpense, catNam
             acceptMsg="삭제"
           />
         )}
-        <button className="edit-btn" onClick={setIsEditTrue}>
+        <button className="edit-btn" onClick={() => setIsEdit(true)}>
           {' '}
           수정{' '}
         </button>

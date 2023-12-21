@@ -1,16 +1,13 @@
 import React, { useState } from 'react';
-import '../styles/PaymentAdd.css';
 import styled from '@emotion/styled'
-import CheckModal from '../components/CheckModal';
 import AccordionCheckModal from '../components/AccordionCheckModal';
 import InputModal from '../components/InputModal';
 import Accordion from 'react-bootstrap/Accordion';
 import { useAccordionButton } from 'react-bootstrap/AccordionButton';
 
-function PaymentAdd({date, categoryList, addCatList}) {
+function PaymentAdd({date, categoryList}) {
   const [isInputModalOpen, setIsInputModalOpen] = useState(false);
   const [isCancelModalOpen, setIsCancelModalOpen] = useState(false);
-  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   
   const [inputSort, setInputSort] = useState('지출');
   const [inputCategory, setInputCategory] = useState('');
@@ -19,6 +16,50 @@ function PaymentAdd({date, categoryList, addCatList}) {
   const [inputReceipt, setInputReceipt] = useState('');
   const [inputTime, setInputTime] = useState('');
   const [inputShopName, setInputShopName] = useState('');
+
+  const SortBtn = styled.label`
+    ${(props) => {
+      const text = props.children;
+      if (text === inputSort) {
+        return `
+          color: white;
+          background-color: #9647ff;
+        `;
+      } else {
+        return `
+          color: #9647ff;
+          background-color: white;
+        `
+      }
+    }}
+    border-radius: 15px;
+    border: 1px solid #9647ff;
+    text-align: center;
+    font-family: KBFG Text;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-right: 5px;
+
+    cursor: pointer;
+
+    width: 45px;
+    height: 25px;
+    line-height: 25px;
+    flex-shrink: 0;
+    align-items: center;
+  `
+
+  function initInput() {
+    setInputSort('지출');
+    setInputCategory('');
+    setInputTitle('');
+    setInputPrice('');
+    setInputReceipt('');
+    setInputTime('');
+    setInputShopName('');
+  }
 
   function handleOnChange(receipt) {
     if (receipt) {
@@ -32,10 +73,22 @@ function PaymentAdd({date, categoryList, addCatList}) {
       <button
         type="button"
         style={{ fontFamily: 'KBTitleB', color: '#818181', border: 'none', backgroundColor: 'white' }}
-        onClick={decoratedOnClick}
+        onClick={() => {decoratedOnClick(); initInput();}}
       >
         {children}
       </button>
+    );
+  }
+
+  function AccordionAddBtn({ children, eventKey }) {
+    const decoratedOnClick = useAccordionButton(eventKey);
+    return (
+      <AddBtn
+        type="button"
+        onClick={() => {decoratedOnClick(); initInput();}}
+      >
+        {children}
+      </AddBtn>
     );
   }
 
@@ -55,40 +108,40 @@ function PaymentAdd({date, categoryList, addCatList}) {
               <VerticalDot />
               분류
               <MarginLeftBox px="8">
-                <input
-                  type="checkbox"
-                  className="btn-check btn-check2"
-                  id="btn-check-outlined2"
-                  onClick={() => {
-                    inputSort('수입');
-                  }}
-                  ></input>
-                <label className={`income-btn ${inputSort == '수입' ? 'active2' : ''}`} htmlFor="btn-check-outlined2">
-                  수입
-                </label>
-                <input
-                  type="checkbox"
-                  className="btn-check btn-check2"
-                  id="btn-check-outlined3"
-                  onClick={() => {
-                    inputSort('지출');
-                  }}
-                  ></input>
-                <label className={`income-btn ${inputSort == '지출' ? 'active3' : ''}`} htmlFor="btn-check-outlined3">
-                  지출
-                </label>
+              <HiddenInput
+                type="checkbox"
+                id="inputIncome"
+                onClick={() => {
+                  setInputSort('수입');
+                }}
+              ></HiddenInput>
+              <SortBtn htmlFor="inputIncome">
+                수입
+              </SortBtn>
+              <HiddenInput
+                type="checkbox"
+                id="inputOutgoing"
+                onClick={() => {
+                  setInputSort('지출');
+                }}
+              ></HiddenInput>
+              <SortBtn htmlFor="inputOutgoing">
+                지출
+              </SortBtn>
               </MarginLeftBox>
             </BodyBox>
             <BodyBox>
               <VerticalDot />
               카테고리
-              <MarginLeftBox px="10">
-                {categoryList.map((item, index) => (
-                  <div className="my-btn" key={index}>
-                    <CatBtn num={index + 1} type="button" onClick={handleCatBtn} value={item} />
-                    {(inputCategory === item) && <i className="bi bi-check"></i>}
-                  </div>
-                ))}
+              <CatBox>
+                <DefaultCatBox>
+                  {categoryList.map((item, index) => (
+                    <MyBtn key={index}>
+                      <CatBtn num={index + 1} type="button" onClick={handleCatBtn} value={item} />
+                      {(inputCategory === item) && <i className="bi bi-check"></i>}
+                    </MyBtn>
+                  ))}
+                </DefaultCatBox>
                 <div className="my-btn">
                   <CatPlusBtn type="button" onClick={() => setIsInputModalOpen(true)} value="+" />
                     {isInputModalOpen && (
@@ -96,10 +149,10 @@ function PaymentAdd({date, categoryList, addCatList}) {
                       title="카테고리 추가"
                       cancelMsg="취소"
                       acceptMsg="확인"
-                      acceptFunc={(catItem) => {addCatList(catItem); setIsInputModalOpen(false)}}
+                      acceptFunc={() => setIsInputModalOpen(false)}
                       cancelFunc={() => setIsInputModalOpen(false)} />)} 
                   </div>
-              </MarginLeftBox>
+              </CatBox>
             </BodyBox>
             <BodyBox>
               <VerticalDot />
@@ -117,12 +170,12 @@ function PaymentAdd({date, categoryList, addCatList}) {
               <VerticalDot />
               영수증<br/>
               <AddImgBox>
-                <label htmlFor="ex_file">
+                <label htmlFor="add_file">
                   <div className="addImg">
                     {inputReceipt ? <img src={inputReceipt} alt="inputReceipt" /> : <DefaultImg>+</DefaultImg>}
                   </div>
                 </label>
-                <input type="file" id="ex_file" accept="image/*" onChange={(e) => handleOnChange(e.target.files[0])}/>
+                <input type="file" id="add_file" accept="image/*" onChange={(e) => handleOnChange(e.target.files[0])}/>
               </AddImgBox>
             </BodyBox>
             <BodyBox>
@@ -136,35 +189,58 @@ function PaymentAdd({date, categoryList, addCatList}) {
               상호명<br/>
               <ClearBtn onClick={() => setInputShopName('')}>x</ClearBtn>
               <InputBox type="text" value={inputShopName} onChange={(e) => { setInputShopName(e.target.value) }} />
+              
             </BodyBox>
+            <Notice>
+              거래시각, 상호명은 변경할 수 없습니다.
+            </Notice>
           </VerticalLineBox>
           <BtnBox>
             <CancelBtn onClick={() => setIsCancelModalOpen(true)}>취소</CancelBtn>
             {isCancelModalOpen && (
               <AccordionCheckModal
                 cancelFunc={() => setIsCancelModalOpen(false)}
-                acceptFunc={() => {setIsCancelModalOpen(false);}}
+                acceptFunc={() => {initInput(); setIsCancelModalOpen(false);}}
                 title="취소하시겠습니까?"
                 content="취소하시면 모든 작성 내역이 취소됩니다."
                 cancelMsg="취소"
                 acceptMsg="확인"
               />)}
-            <AddBtn type="button" onClick={() => setIsAddModalOpen(true)}>작성</AddBtn>
-            {isAddModalOpen && (
-              <AccordionCheckModal
-                cancelFunc={() => setIsAddModalOpen(false)}
-                acceptFunc={() => {setIsAddModalOpen(false);}}
-                title="작성하시겠습니까?"
-                content="거래시각, 상호명은 변경할 수 없습니다."
-                cancelMsg="취소"
-                acceptMsg="확인"
-              />)}
+            <AccordionAddBtn type="button">작성</AccordionAddBtn>
           </BtnBox>
         </div>
       </Accordion.Collapse>
     </Accordion>
   )
 }
+
+const MyBtn = styled.div`
+  position: relative;
+  display: inline-block;
+  .bi-check {
+    position: absolute;
+    top: -4px;
+    right: -2px;
+    color: red;
+  }
+`
+
+const DefaultCatBox = styled.div`
+  overflow-x: scroll;
+  display: flex;
+  width: 260px;
+`
+
+const HiddenInput = styled.input`
+  display: none;
+`
+
+const Notice = styled.div`
+  margin-left: 10px;
+  font-family: KBTextB;
+  font-size: 12px; 
+  color: red;
+`
 
 const DefaultImg = styled.div`
   width: 80px;
@@ -283,7 +359,6 @@ const CatPlusBtn = styled.input`
   border: dotted 1px #000;
   border-radius: 3px;
   width: 35.649px;
-  height: 15px;
   flex-shrink: 0;
   color: #000;
   text-align: center;
@@ -291,8 +366,9 @@ const CatPlusBtn = styled.input`
   font-size: 11px;
   font-style: normal;
   font-weight: 500;
-  line-height: 15px;
+  line-height: 13px;
   margin-right: 7px;
+  padding: 0 10px;
 `
 
 const AddImgBox = styled.div`
@@ -320,8 +396,14 @@ const AddImgBox = styled.div`
   }
 `;
 
+const CatBox = styled.div`
+  margin-left: 10px;
+  display: flex;
+  justify-content: space-between;
+  width: 300px;
+`
 const MarginLeftBox = styled.div`
-  margin-left: ${props => `${props.px}px`};  
+  margin-left: ${props => `${props.px}px`};
 `
 
 export default PaymentAdd;

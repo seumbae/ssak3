@@ -7,6 +7,18 @@
   line-height: normal;
 }
 
+.defaultCatBox {
+  overflow-x: scroll;
+  width: 240px;
+  display: flex;
+  align-items: center;
+}
+
+.catBox {
+  display: flex;
+  justify-content: space-between;
+}
+
 .cat1 {
   background: #fdc453;
   border: none;
@@ -140,14 +152,6 @@
   margin-right: 7px;
   border: none;
   padding: 0 10px;
-}
-
-.record-price {
-  color: #000;
-  font-family: KBFG Text;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 700;
 }
 
 .receipt-img {

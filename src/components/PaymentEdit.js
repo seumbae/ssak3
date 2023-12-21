@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useRef, useMemo, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../styles/PaymentEdit.css';
-import receiptImg from '../assets/images/receipt.jpg';
 import CheckModal from '../components/CheckModal';
 import InputModal from '../components/InputModal';
 import categoryColors from '../constants/cat';
+import styled from '@emotion/styled';
 import PaymentDetail from './PaymentDetail';
 import { editRecordList, createCategory, uploadReceiptImg } from '../services/service';
 
@@ -33,9 +33,7 @@ function PaymentEdit({
   const [isEditDone, setIsEditDone] = useState(false);
   const [hi, setHi] = useState('ddddd');
   const [newImgUrl, setNewImgUrl] = useState('');
-  const fileInputRef = useRef(null);
   const curLedgerId = curledger.ledgerId;
-  // const [imgUrl, setImgUrl] = useState('');
 
   const newData = {
     image: null,
@@ -104,6 +102,12 @@ function PaymentEdit({
     setCheckCatBtn(e.target.value);
   };
 
+  function handleOnChange(receipt) {
+    if (receipt) {
+      setImageFile(URL.createObjectURL(receipt));
+    }
+  }
+
   const handleEditBtn = () => {
     if (imageFile && imageFile != null) {
       uploadReceiptImg(imageFile.formData).then((res) => {
@@ -155,53 +159,58 @@ function PaymentEdit({
         <div className="vertical-body">
           <div className="body-cat">
             <div className="vertical-dot"></div>
-            {categoryList.map((item, index) => (
-              <div className="my-btn" key={index}>
-                <input
-                  type="button"
-                  onClick={handleCatBtn}
-                  className={`cat-btn`}
-                  style={{ backgroundColor: categoryColors[item.customCategoryName] || '#808080' }}
-                  value={item.customCategoryName}
-                ></input>
-                {checkCatBtn === item.customCategoryName ? <i className="bi bi-check"></i> : ''}
+            <div className="catBox">
+              <div className="defaultCatBox">
+                {categoryList.map((item, index) => (
+                  <div className="my-btn" key={index}>
+                    <input
+                      type="button"
+                      onClick={handleCatBtn}
+                      className={`cat-btn`}
+                      style={{ backgroundColor: categoryColors[item.customCategoryName] || '#808080' }}
+                      value={item.customCategoryName}
+                    ></input>
+                    {checkCatBtn === item.customCategoryName ? <i className="bi bi-check"></i> : ''}
+                  </div>
+                ))}
               </div>
-            ))}
-            <div className="my-btn">
-              <button
-                type="button"
-                onClick={() => {
-                  setIsInputModalOpen(true);
-                }}
-                className="cat-plus"
-              >
-                +
-              </button>
-              {isInputModalOpen && (
-                <InputModal
-                  title="카테고리 추가"
-                  content="만들어야함"
-                  cancelMsg="취소"
-                  acceptMsg="확인"
-                  acceptFunc={(newCat) => {
-                    createCategory({ ledgerId: curLedgerId, customCategoryName: newCat })
-                      .then((res) => {
-                        setCatList((prev) => [...prev, newCat]);
-                        console.log(categoryList);
-                        console.log('category create success!', res.data);
-                      })
-                      .catch(() => {
-                        alert('서버와의 연결이 원활하지 않습니다.');
-                      });
-                    setIsInputModalOpen(false);
+              <div className="my-btn">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setIsInputModalOpen(true);
                   }}
-                  cancelFunc={() => setIsInputModalOpen(false)}
-                />
-              )}
+                  className="cat-plus"
+                >
+                  +
+                </button>
+                {isInputModalOpen && (
+                  <InputModal
+                    title="카테고리 추가"
+                    content="만들어야함"
+                    cancelMsg="취소"
+                    acceptMsg="확인"
+                    acceptFunc={(newCat) => {
+                      createCategory({ ledgerId: curLedgerId, customCategoryName: newCat })
+                        .then((res) => {
+                          setCatList((prev) => [...prev, newCat]);
+                          console.log(categoryList);
+                          console.log('category create success!', res.data);
+                        })
+                        .catch(() => {
+                          alert('서버와의 연결이 원활하지 않습니다.');
+                        });
+                      setIsInputModalOpen(false);
+                    }}
+                    cancelFunc={() => setIsInputModalOpen(false)}
+                  />
+                )}
+              </div>
             </div>
           </div>
           <div className="body-content">
             <div className="vertical-dot"></div>
+            <ClearBtn onClick={() => setInputTitle('')}>x</ClearBtn>
             <input
               className="inputBox"
               type="text"
@@ -213,6 +222,7 @@ function PaymentEdit({
           </div>
           <div className="body-price">
             <div className="vertical-dot"></div>
+            <ClearBtn onClick={() => setInputPrice('')}>x</ClearBtn>
             <input
               className="inputBox"
               type="text"
@@ -225,7 +235,21 @@ function PaymentEdit({
 
           <div className="body-receipt">
             <div className="vertical-dot"></div>
-            <FileUpload />
+            <AddImgBox>
+              <label htmlFor="edit_file">
+                <div className="addImg">
+                  {imageFile ? <img src={imageFile} alt="inputReceipt" /> : <DefaultImg>+</DefaultImg>}
+                </div>
+              </label>
+              <input
+                type="file"
+                id="edit_file"
+                accept="image/*"
+                onChange={(e) => {
+                  handleOnChange(e.target.files[0]);
+                }}
+              />
+            </AddImgBox>
           </div>
           <div className="body-time">
             <div className="vertical-dot"></div>
@@ -274,5 +298,50 @@ function PaymentEdit({
     </div>
   );
 }
+const DefaultImg = styled.div`
+  width: 80px;
+  height: 120px;
+  border: dotted;
+  line-height: 120px;
+  text-align: center;
+`;
+const AddImgBox = styled.div`
+  margin: 0 8px 0 8px;
+  img {
+    width: 80px;
+    height: 120px;
+  }
+  label {
+    display: inline-block;
+    font-size: inherit;
+    line-height: normal;
+    vertical-align: middle;
+    cursor: pointer;
+  }
+  input[type='file'] {
+    position: absolute;
+    width: 0;
+    height: 0;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+  }
+`;
+const ClearBtn = styled.div`
+  height: 1px;
+  width: 1px;
+  font-size: 16px;
+  font-family: KBTextB;
+  color: #aab0b8;
+  position: relative !important;
+  border-radius: 50%;
+  display: inline-block;
+  justify-content: center;
+  left: 265px;
+  top: -1px;
+  z-index: 0;
+`;
 
 export default PaymentEdit;
