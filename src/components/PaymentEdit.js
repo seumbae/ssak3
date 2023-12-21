@@ -5,6 +5,7 @@ import InputModal from '../components/InputModal';
 import categoryColors from '../constants/cat';
 import styled from '@emotion/styled';
 import PaymentDetail from './PaymentDetail';
+import receiptImg from '../assets/images/receipt.jpg';
 import { editRecordList, createCategory, uploadReceiptImg } from '../services/service';
 
 function PaymentEdit({
@@ -65,8 +66,8 @@ function PaymentEdit({
     };
 
     const showImage = useMemo(() => {
-      if (!imageFile || imageFile == null) {
-        return <img className="receipt-img" src={receiptUrl} alt="receipt" />;
+      if (!imageFile && imageFile == null) {
+        return <DefaultImg>+</DefaultImg>;
       }
       return (
         <input
@@ -80,21 +81,11 @@ function PaymentEdit({
     }, [imageFile]);
 
     return (
-      // <div className={'FileUploadContainer'}>
-      //   {showImage}
-
-      //   <div className="FileUploadForm">
-      //     <input className="FileInput" type="file" accept="image/jpeg" ref={fileInputRef} onChange={uploadProfile} />
-      //     {/* <button className="FileUploadButton" type="button" onClick={handleClickFileInput}>
-      //       파일 업로드
-      //     </button> */}
-      //   </div>
-      // </div>
-
       <AddImgBox>
         <label htmlFor="edit_file">
           <div className="addImg">
-            {imageFile ? <img src={imageFile} alt="inputReceipt" /> : <DefaultImg>+</DefaultImg>}
+            {showImage}
+            {/* {imageFile ? <img src={showImage} alt="inputReceipt" /> : <DefaultImg>+</DefaultImg>} */}
           </div>
         </label>
         <input type="file" id="edit_file" accept="image/jpeg" ref={fileInputRef} onChange={uploadProfile} />
@@ -105,12 +96,6 @@ function PaymentEdit({
   const handleCatBtn = (e) => {
     setCheckCatBtn(e.target.value);
   };
-
-  function handleOnChange(receipt) {
-    if (receipt) {
-      setImageFile(URL.createObjectURL(receipt));
-    }
-  }
 
   const handleEditBtn = () => {
     if (imageFile && imageFile != null) {

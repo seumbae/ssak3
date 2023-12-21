@@ -14,11 +14,11 @@ function PaymentDetail({
   receiptUrl,
   isExpense,
   catName,
-  setIsEditTrue,
   recordId,
   curledger,
   setCatList,
   catList,
+  setRecordList,
 }) {
   const [checkCatBtn, setCheckCatBtn] = useState('술');
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -43,6 +43,7 @@ function PaymentDetail({
       setCatList={setCatList}
       setIsEditFalse={() => setIsEdit(false)}
       setIsEdit={setIsEdit}
+      setNewRecordData={setRecordList}
     />
   ) : (
     <div className="accordion-body">
@@ -75,7 +76,11 @@ function PaymentDetail({
 
           <div className="body-receipt">
             <div className="vertical-dot"></div>
-            <img className="receipt-img" src={receiptUrl} alt="receipt" />
+            {receiptUrl ? (
+              <img className="receipt-img" src={receiptUrl} alt="receipt" />
+            ) : (
+              <img className="receipt-img" src={receiptImg} alt="receipt" />
+            )}
           </div>
           <div className="body-time">
             <div className="vertical-dot"></div>
