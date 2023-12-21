@@ -42,6 +42,7 @@ function PaymentDetail({
       recordId={recordId}
       setCatList={setCatList}
       setIsEditFalse={() => setIsEdit(false)}
+      setIsEdit={setIsEdit}
     />
   ) : (
     <div className="accordion-body">

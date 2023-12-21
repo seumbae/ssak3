@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import '../styles/PaymentEdit.css';
 import CheckModal from '../components/CheckModal';
 import InputModal from '../components/InputModal';
@@ -29,7 +29,7 @@ function PaymentEdit({
   const [inputTitle, setInputTitle] = useState(title);
   const [inputPrice, setInputPrice] = useState(price);
   const [imageFile, setImageFile] = useState(null);
-
+  const fileInputRef = useRef(null);
   const [isEditDone, setIsEditDone] = useState(false);
   const [hi, setHi] = useState('ddddd');
   const [newImgUrl, setNewImgUrl] = useState('');
@@ -51,21 +51,16 @@ function PaymentEdit({
       if (fileList && fileList[0]) {
         const formData = new FormData();
         const url = URL.createObjectURL(fileList[0]);
-        // formData.append('image', url);
-        // console.log(fileList[0]);
-
-        console.log(1111111, e);
-        formData.append('recordId', recordId);
-        formData.append('image', e.target.files);
-
-        newData.image = formData;
-
-        setImageFile(formData);
-        // setImageFile({
-        //   file: fileList[0],
-        //   thumbnail: formData,
-        //   type: fileList[0].type,
-        // });
+        formData.append('recordId', new Blob([JSON.stringify({ recordId: recordId })], { type: 'application/json' }));
+        formData.append('image', fileList[0]);
+        console.log('11111', fileList[0]);
+        setImageFile({
+          file: fileList[0],
+          url: url,
+          thumbnail: formData,
+          type: fileList[0].type,
+          formData: formData,
+        });
       }
     };
 
@@ -85,16 +80,25 @@ function PaymentEdit({
     }, [imageFile]);
 
     return (
-      <div className={'FileUploadContainer'}>
-        {showImage}
+      // <div className={'FileUploadContainer'}>
+      //   {showImage}
 
-        <div className="FileUploadForm">
-          <input className="FileInput" type="file" accept="image/jpeg" ref={fileInputRef} onChange={uploadProfile} />
-          {/* <button className="FileUploadButton" type="button" onClick={handleClickFileInput}>
-            파일 업로드
-          </button> */}
-        </div>
-      </div>
+      //   <div className="FileUploadForm">
+      //     <input className="FileInput" type="file" accept="image/jpeg" ref={fileInputRef} onChange={uploadProfile} />
+      //     {/* <button className="FileUploadButton" type="button" onClick={handleClickFileInput}>
+      //       파일 업로드
+      //     </button> */}
+      //   </div>
+      // </div>
+
+      <AddImgBox>
+        <label htmlFor="edit_file">
+          <div className="addImg">
+            {imageFile ? <img src={imageFile} alt="inputReceipt" /> : <DefaultImg>+</DefaultImg>}
+          </div>
+        </label>
+        <input type="file" id="edit_file" accept="image/jpeg" ref={fileInputRef} onChange={uploadProfile} />
+      </AddImgBox>
     );
   };
 
@@ -113,7 +117,6 @@ function PaymentEdit({
       uploadReceiptImg(imageFile.formData).then((res) => {
         console.log('upload', res, res.data);
         setNewImgUrl(res.data);
-        setHi('ffffff');
         console.log('ressss', res.data, newImgUrl, hi);
       });
     }
@@ -143,8 +146,8 @@ function PaymentEdit({
           },
         ]);
       })
-      .catch(() => {
-        alert('서버와의 연결이 원활하지 않습니다.');
+      .catch((err) => {
+        alert('서버와의 연결이 원활하지 않습니다.123', err);
       });
   };
   useEffect(() => {
@@ -235,21 +238,7 @@ function PaymentEdit({
 
           <div className="body-receipt">
             <div className="vertical-dot"></div>
-            <AddImgBox>
-              <label htmlFor="edit_file">
-                <div className="addImg">
-                  {imageFile ? <img src={imageFile} alt="inputReceipt" /> : <DefaultImg>+</DefaultImg>}
-                </div>
-              </label>
-              <input
-                type="file"
-                id="edit_file"
-                accept="image/*"
-                onChange={(e) => {
-                  handleOnChange(e.target.files[0]);
-                }}
-              />
-            </AddImgBox>
+            <FileUpload />
           </div>
           <div className="body-time">
             <div className="vertical-dot"></div>
