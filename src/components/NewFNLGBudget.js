@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import newlamu from '../assets/newlamu.png';
 
-function NewFNLGBudget({ setBudgetShow, setGoalShow, setMonthBudget }) {
+function NewFNLGBudget({ monthExpense, setBudgetShow, setGoalShow, setMonthBudget }) {
   const budgetInput = useRef(350000);
   const [budgetInputShow, setBudgetInputShow] = useState(false);
   const [currentBudget, setCurrentBudget] = useState(budgetInput.current);
@@ -60,7 +60,7 @@ function NewFNLGBudget({ setBudgetShow, setGoalShow, setMonthBudget }) {
       )}
         <div className="NewFNLGBudgetText">
           <div>저희가 추천하는 패션/쇼핑 예산이에요</div>
-          <div>지난 달보다 {formatNumber(400500 - currentBudget)}원을 아낄 수 있어요</div>
+          <div>지난 달보다 {formatNumber(monthExpense - currentBudget)}원을 아낄 수 있어요</div>
         </div>
       </div>
       <img src={newlamu} alt="newlamu" width="217" height="245"></img>
