@@ -35,6 +35,7 @@ function PaymentEdit({
   const [newImgUrl, setNewImgUrl] = useState('');
   const fileInputRef = useRef(null);
   const curLedgerId = curledger.ledgerId;
+  // const [imgUrl, setImgUrl] = useState('');
 
   const newData = {
     image: null,
@@ -50,18 +51,23 @@ function PaymentEdit({
       const fileList = e.target.files;
       const length = fileList?.length;
       if (fileList && fileList[0]) {
-        const url = URL.createObjectURL(fileList[0]);
         const formData = new FormData();
-        formData.append('recordId', new Blob([JSON.stringify({ recordId: recordId })], { type: 'application/json' }));
-        formData.append('image', fileList[0]);
+        const url = URL.createObjectURL(fileList[0]);
+        // formData.append('image', url);
+        // console.log(fileList[0]);
+
+        console.log(1111111, e);
+        formData.append('recordId', recordId);
+        formData.append('image', e.target.files);
+
         newData.image = formData;
-        setImageFile({
-          file: fileList[0],
-          url: url,
-          thumbnail: formData,
-          type: fileList[0].type,
-          formData: formData,
-        });
+
+        setImageFile(formData);
+        // setImageFile({
+        //   file: fileList[0],
+        //   thumbnail: formData,
+        //   type: fileList[0].type,
+        // });
       }
     };
 
