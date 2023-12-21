@@ -21,16 +21,17 @@ function PaymentDetail({
   editState,
   setEditState,
   setRecordList,
+
+  recordList,
 }) {
   const [checkCatBtn, setCheckCatBtn] = useState('술');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isDelModalOpen, setIsDelModalOpen] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
-
+  const [newReceiptUrl, setNewReceiptUrl] = useState(receiptUrl);
   const handleCatBtn = (e) => {
     setCheckCatBtn(e.target.value);
   };
-
   const handleEditBtn = () => {
     setIsEdit(true);
     setEditState(true);
@@ -55,6 +56,9 @@ function PaymentDetail({
       setIsEdit={setIsEdit}
       setEditState={setEditState}
       setNewRecordData={setRecordList}
+      setReceiptUrl={setNewReceiptUrl}
+      receiptUrl={newReceiptUrl}
+      recordList={recordList}
     />
   ) : (
     <div className="accordion-body">
@@ -87,8 +91,8 @@ function PaymentDetail({
 
           <div className="body-receipt">
             <div className="vertical-dot"></div>
-            {receiptUrl ? (
-              <img className="receipt-img" src={receiptUrl} alt="receipt" />
+            {newReceiptUrl ? (
+              <img className="receipt-img" src={newReceiptUrl} alt="receipt" />
             ) : (
               <img className="receipt-img" src={receiptImg} alt="receipt" />
             )}

@@ -33,7 +33,6 @@ function Home() {
 
         getRecordList({ ledgerId: res.data[0].ledgerId }).then((res) => {
           setRecordList(res.data.recordList);
-          console.log(recordList);
           setNewDateList(res.data.recordList.map((val) => val.tranYmd));
           setNewDateList(res.data.recordList.map((val) => val.tranYmd));
         });
