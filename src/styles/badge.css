@@ -5,12 +5,14 @@
   place-items: center;
   display: block;
   margin: auto;
+  position: relative;
 }
 
 .badge-container {
   /* background-image: url('../../src/assets/images/tree.png'); */
   background-color: #ece7db;
   width: 100%;
+  height: 55%;
   /* align-items: center;
   justify-content: center;
   text-align: center; */
@@ -119,50 +121,56 @@
 
 .location1 {
   position: relative;
-  top: -110px;
-  left: -250px;
   /* top: 125px;
   left: 143px; */
-
-  display: inline-block;
+  top: -325px;
+  left: 113px;
+  width: 50px;
 }
 
 .location2 {
-  position: fixed;
-  top: -110px;
-  left: -123px;
+  position: relative;
+  top: -305px;
+  left: 163px;
+  width: 40px;
 }
 
 .location3 {
-  position: fixed;
-  top: 225px;
-  left: 103px;
+  position: relative;
+  top: -225px;
+  left: -13px;
+  width: 55px;
 }
 .location4 {
-  position: fixed;
-  top: 255px;
-  left: 213px;
+  position: relative;
+  top: -220px;
+  left: 23px;
+  width: 70px;
 }
 
 .location5 {
-  position: fixed;
-  top: 325px;
-  left: 123px;
+  position: relative;
+  top: -190px;
+  left: 43px;
+  width: 45px;
 }
 
 .location6 {
-  position: fixed;
-  top: 335px;
-  left: 263px;
+  position: relative;
+  top: -140px;
+  left: -215px;
+  width: 65px;
 }
 
 .location7 {
-  position: fixed;
-  top: 385px;
-  left: 33px;
+  position: relative;
+  top: -205px;
+  left: 143px;
+  width: 65px;
 }
 .location8 {
-  position: fixed;
-  top: 405px;
-  left: 193px;
+  position: relative;
+  top: -195px;
+  left: 173px;
+  width: 65px;
 }

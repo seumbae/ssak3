@@ -79,60 +79,51 @@ function BadgePage() {
     <>
       <div className="badge-container">
         <img className="treeImg mt-3" src={tree} alt="tree" />
-        <div className="badge-location">
-          <div className="badge1">
-            <img className="location1" src={badge1} alt="badge1" />
-          </div>
-          <div className="badge2">
-            <img className=" location2" src={badge2} alt="badge2" />
-          </div>
-          <div className="badge3">
-            <img className="location3" src={badge8} alt="badge8" />
-          </div>
-          <div className="badge4">
-            <img className="location4" src={badge4} alt="badge4" />
-          </div>
-          <div className="badge5">
-            <img className="location5" src={badge5} alt="badge5" />
-          </div>
-          <div className="badge6">
-            <img className="location6" src={badge6} alt="badge6" />
-          </div>
-          <div className="badge7">
-            <img className="location7" src={badge7} alt="badge7" />
-          </div>
-          <div className="badge8">
-            <img className="location8" src={badge3} alt="badge3" />
-          </div>
-        </div>
+        {/* <div className="badge1"> */}
+        <img className="location1" src={badge1} alt="badge1" />
+        {/* </div> */}
+        {/* <div className="badge2"> */}
+        <img className=" location2" src={badge2} alt="badge2" />
+        {/* </div> */}
+        {/* <div className="badge3"> */}
+        <img className="location3" src={badge8} alt="badge8" />
+        {/* </div> */}
+        {/* <div className="badge4"> */}
+        <img className="location4" src={badge4} alt="badge4" />
+        {/* </div> */}
+        {/* <div className="badge5"> */}
+        <img className="location5" src={badge5} alt="badge5" />
+        {/* </div> */}
+        {/* <div className="badge6"> */}
+        <img className="location6" src={badge6} alt="badge6" />
+        {/* </div> */}
+        {/* <div className="badge7"> */}
+        <img className="location7" src={badge7} alt="badge7" />
+        {/* </div>
+        <div className="badge8"> */}
+        <img className="location8" src={badge3} alt="badge3" />
+        {/* </div> */}
+        <div className="badge-location"></div>
       </div>
       <div className="badge-save-container">
         <h2>배지 보관함</h2>
         <h4>획득한 배지를 클릭하여 트리를 꾸며보세요!</h4>
         <div className="badge-wrapper">
-          {badgeList.map((val, i) => (
-            <>
-              <div className={`badge-common badge${val.originBadgeId}`}>
-                <img
-                  className={`badgeStatus${val.originBadgeId}`}
-                  src={badge + `${i + 1}`}
-                  alt={`badge${val.originBadgeId}`}
-                />
-                <p>{val.badgeName}</p>
-              </div>
-            </>
-          ))}
-          {/* <div className="badge-common badge2">
+          <div className="badge-common badge1">
+            <img className="badgeStatus1" src={badge1} alt="badge1" />
+            <p>최초 가계부 생성</p>
+          </div>
+          <div className="badge-common badge2">
             <img className="badgeStatus2" src={badge2} alt="badge2" />
             <p>최초 가계부내역&nbsp; 추가</p>
           </div>
           <div className="badge-common badge3">
             <img className="badgeStatus3" src={badge8} alt="badge8" />
-            <p>7일 연속 출석</p>
+            <p>일주일 연속 출석</p>
           </div>
           <div className="badge-common badge4">
             <img className="badgeStatus4" src={badge4} alt="badge4" />
-            <p>30일 연속 출석</p>
+            <p>한 달 연속 출석</p>
           </div>
           <div className="badge-common badge5">
             <img className="badgeStatus6" src={badge5} alt="badge5" />
@@ -141,16 +132,16 @@ function BadgePage() {
           <div className="badge-common badge6">
             {' '}
             <img className="badgeStatus6" src={badge6} alt="badge6" />
-            <p>다른 사람 가계부 저장</p>
+            <p>두번째 가계부 생성</p>
           </div>
           <div className="badge-common badge7">
             <img className="badgeStatus7" src={badge7} alt="badge7" />
-            <p>2번째 가계부 생성</p>
+            <p>3명의 친구 초대</p>
           </div>
           <div className="badge-common badge8">
             <img className="badgeStatus8" src={badge3} alt="badge3" />
-            <p>3명 친구 초대</p>
-          </div> */}
+            <p>푸시 알림 동의</p>
+          </div>
         </div>
       </div>
     </>
