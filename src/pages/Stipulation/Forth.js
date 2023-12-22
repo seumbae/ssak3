@@ -37,9 +37,9 @@ function Forth() {
     <div className={`${styles.body_relative} ${styles.flex}`}>
       <div className="body-container height-inherit">
         <img src={Step4} alt="step4" />
-        <div className="fs-1 fw-bold mt-5 mb-3">시작해볼까요?</div>
+        <div className={styles.title2}>시작해볼까요?</div>
         <div className={`${styles.contents_wrapper2} fs-5`}>
-          <div>
+          <div className={styles.contents}>
             <div>가계부를 만들고 지출을 줄여 보아요!</div>
           </div>
           <img className={styles.img_pad} src={mainImg2} alt="mainImg2" />
