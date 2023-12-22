@@ -213,23 +213,24 @@ function PaymentEdit({
                 {isInputModalOpen && (
                   <InputModal
                     title="카테고리 추가"
-                    content="만들어야함"
                     cancelMsg="취소"
                     acceptMsg="확인"
                     acceptFunc={(newCat) => {
-                      createCategory({ ledgerId: curLedgerId, customCategoryName: newCat })
-                        .then((res) => {
-                          setCatList((prev) => [...prev, newCat]);
-                          console.log('category create success!', res.data);
-                        })
-                        .catch(() => {
-                          alert('서버와의 연결이 원활하지 않습니다.');
-                        });
-                      setIsInputModalOpen(false);
+                      if (categoryList.some(item => item.customCategoryName === newCat)){
+                        alert('중복된 카테고리 이름입니다.');
+                      }else{
+                        createCategory({ ledgerId: curLedgerId, customCategoryName: newCat })
+                          .then((res) => {
+                            setCatList([...categoryList, {"customCategoryName": newCat, "customCategoryId": res.data.categoryId}]);
+                          })
+                          .catch(() => {
+                            alert('서버와의 연결이 원활하지 않습니다.');
+                          });
+                        setIsInputModalOpen(false);
+                      }
                     }}
-                    cancelFunc={() => setIsInputModalOpen(false)}
-                  />
-                )}
+                    cancelFunc={() => setIsInputModalOpen(false)} 
+                  />)}
               </div>
             </div>
           </div>

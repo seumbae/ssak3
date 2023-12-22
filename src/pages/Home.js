@@ -6,7 +6,7 @@ import BudgetBar from '../components/BudgetBar';
 import PredictMotive from '../components/PredictMotive';
 import ServiceList from '../components/ServiceList';
 import iconAvatar from '../assets/images/iconAvatar.png';
-import { getCategories, getMyList, getRecordList, getUsers } from '../services/service';
+import { getCategories, getMyList, getRecordList } from '../services/service';
 import { useNavigate } from 'react-router-dom';
 import Loading from '../components/Loading';
 import PushAlarm from '../components/PushAlarm';
@@ -80,6 +80,7 @@ function Home() {
             setCurDate={setCurDate}
             catList={catList}
             setRecordList={setRecordList}
+            setCatList={setCatList}
           />
           <div className="emptyBox"></div>
           <PredictMotive saveMoney={saveMoney} />

@@ -176,7 +176,7 @@ function ReactCalendar({
           <div className="more-record-btn col-sm"></div>
         </div>
       </div>
-      <PaymentAdd categoryList={['aa', 'aasda', 'asadada', 'aaa', 'aaasd', 'aadasdsa', 'aadsa', 'aasad']} />
+      <PaymentAdd date={moment(value).format('YYYY-MM-DD')} categoryList={catList} ledgerId={curledger.ledgerId} setCatList={setCatList} />
       <Record
         value={value}
         recordList={recordList}

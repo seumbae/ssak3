@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import '../styles/record.css';
-import receiptImg from '../assets/images/receipt.jpg';
 import CheckModal from '../components/CheckModal';
 import categoryColors from '../constants/cat';
 import PaymentEdit from './PaymentEdit';
+import styled from '@emotion/styled';
 
 function PaymentDetail({
-  key,
   title,
   price,
   time,
@@ -85,9 +84,7 @@ function PaymentDetail({
             <div className="vertical-dot"></div>
             {receiptUrl ? (
               <img className="receipt-img" src={receiptUrl} alt="receipt" />
-            ) : (
-              <img className="receipt-img" src={receiptImg} alt="receipt" />
-            )}
+            ) : <DefaultImg></DefaultImg>}
           </div>
           <div className="body-time">
             <div className="vertical-dot"></div>
@@ -124,5 +121,12 @@ function PaymentDetail({
     </div>
   );
 }
-
+const DefaultImg = styled.div`
+  margin-left: 5px;
+  width: 80px;
+  height: 120px;
+  border: dotted;
+  line-height: 120px;
+  text-align: center;
+`
 export default PaymentDetail;
