@@ -9,17 +9,23 @@ function FriendPage() {
   const handleNextClick = (e) => {
     e.preventDefault();
     navigate(-1);
-  }
+  };
 
   return (
     <>
       <Modal show={true} animation={false} centered>
         <div className={styles.modal_wrapper}>
-          <div className={styles.title}>고객님 죄송합니다.</div>
-          <div>· 통신 중 일시적인 오류가 발생했습니다.</div>
-          <div>· 이용하시던 업무의 처리결과를 반드시 확인하신 후 다시 이용해주시기 바랍니다.</div>
+          <div className={styles.title}>페이지 준비중입니다.</div>
+          <div className={'mb-2'} style={{ color: 'red' }}>
+            응답코드(DG001)
+          </div>
+          {/* <br></br> */}
+          <div>· 이용에 불편을 드려 죄송합니다.</div>
+          <div>· 보다 나은 서비스를 빠른 시일내에 준비하여 찾아뵙겠습니다.</div>
         </div>
-        <button className={styles.btn} onClick={handleNextClick}>확인</button>
+        <button className={styles.btn} onClick={handleNextClick}>
+          확인
+        </button>
       </Modal>
     </>
   );
