@@ -13,7 +13,7 @@ function NewFNLG() {
   const [goalShow, setGoalShow] = useState(false);
 
   const [monthBudget, setMonthBudget] = useState(0); // 월 예산
-  const [monthExpense, setMonthExpense] = useState(0); // 월 사용 금액
+  const [monthExpense, setMonthExpense] = useState(0); // 지난달 사용 금액
   const [isPublic, setIsPublic] = useState('1'); // 공개 여부
   const [themeList, setThemeList] = useState([]);
   const [selectedTheme, setSelectedTheme] = useState({ themeId: 1, themeName: '전체' });
@@ -45,7 +45,7 @@ function NewFNLG() {
         />
       )}
       {budgetShow && (
-        <NewFNLGBudget setBudgetShow={setBudgetShow} setGoalShow={setGoalShow} setMonthBudget={setMonthBudget} />
+        <NewFNLGBudget setBudgetShow={setBudgetShow} setGoalShow={setGoalShow} setMonthBudget={setMonthBudget} selectedTheme={selectedTheme} monthExpense={monthExpense} />
       )}
       {goalShow && (
         <NewFNLGGoal

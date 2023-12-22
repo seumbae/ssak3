@@ -1,9 +1,6 @@
 import React, { useState } from 'react';
 import newcoli from '../assets/newcoli.png';
 import { ChevronDown } from 'react-bootstrap-icons';
-import newarrow from '../assets/newarrow.png';
-import NextBtnInComplete from './NextBtnIncomplete';
-import NextBtnComplete from './NextBtnComplete';
 import { Offcanvas } from 'react-bootstrap';
 import iconX from '../assets/images/iconX.png';
 import Picker from './Picker';

@@ -84,6 +84,7 @@ function Home() {
           <div className="emptyBox"></div>
           <PredictMotive saveMoney={saveMoney} />
           <ServiceList />
+          <div className='emptyBox'></div>
         </div>
       )}
     </>

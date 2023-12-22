@@ -24,14 +24,9 @@ function PaymentDetail({
 
   recordList,
 }) {
-  const [checkCatBtn, setCheckCatBtn] = useState('술');
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [isDelModalOpen, setIsDelModalOpen] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
   const [newReceiptUrl, setNewReceiptUrl] = useState(receiptUrl);
-  const handleCatBtn = (e) => {
-    setCheckCatBtn(e.target.value);
-  };
   const handleEditBtn = () => {
     setIsEdit(true);
     setEditState(true);
@@ -41,7 +36,6 @@ function PaymentDetail({
   // }, [editState]);
   return isEdit ? (
     <PaymentEdit
-      key={key}
       categoryList={catList}
       title={title}
       price={price}
@@ -70,7 +64,6 @@ function PaymentDetail({
             <div className="my-btn">
               <input
                 type="button"
-                onClick={handleCatBtn}
                 className={`record-cat`}
                 style={{ backgroundColor: categoryColors[catName] }}
                 value={catName}

@@ -37,6 +37,7 @@
 }
 
 .next-btn-complete {
+    color: black;
     appearance: none;
     border: none;
     width: 390px;
@@ -52,6 +53,7 @@
 }
 
 .next-btn-incomplete {
+    color: black;
     appearance: none;
     border: none;
     width: 390px;

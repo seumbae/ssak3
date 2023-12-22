@@ -63,6 +63,7 @@ function FNLGBar({ FNLGList, getFNLG, defaultGoal, setCurledger, ledgers, setRec
 }
 
 const AddBtn = styled.button`
+  color: black;
   appearance: none;
   border: none;
   background-color: white;
@@ -121,6 +122,7 @@ const SelectTitle = styled.div`
   display: flex;
   justify-content: space-between;
   button {
+    color: black;
     border: none;
     background-color: white;
     align-items: center;
