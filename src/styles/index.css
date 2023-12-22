@@ -204,3 +204,13 @@ html {
   --box-not-gray: #DDE1E4;
   --font-not-gray: #AAB0B8;
 }
+
+.carousel-indicators {
+  bottom: 5px !important;
+}
+
+.carousel-indicators [data-bs-target] {
+  width: 10px !important;
+  height: 10px !important;
+  border-radius: 50%;
+}

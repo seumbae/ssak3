@@ -45,7 +45,7 @@ function Picker({ list, getSelected }) {
       <ListCenter />
       {newList.map((item, index) => (
         <ListItem key={index} isSelected={index === selected} ref={(el) => (itemRefs.current[index] = el)}
-        onClick={()=>{if(item) handleClick(index)}}>
+        onClick={()=>handleClick(index)}>
           {item}
         </ListItem>
       ))}

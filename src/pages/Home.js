@@ -3,7 +3,7 @@ import ReactCalendar from '../components/Calender';
 import UserBar from '../components/UserBar';
 import FNLGBar from '../components/FNLGBar';
 import BudgetBar from '../components/BudgetBar';
-import PredictMotive from '../components/PredictMotive';
+import Banners from '../components/Banners';
 import ServiceList from '../components/ServiceList';
 import iconAvatar from '../assets/images/iconAvatar.png';
 import { getCategories, getMyList, getRecordList } from '../services/service';
@@ -12,7 +12,6 @@ import Loading from '../components/Loading';
 import PushAlarm from '../components/PushAlarm';
 
 function Home() {
-  const saveMoney = 3000;
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const [ledgers, setLedgers] = useState([]);
@@ -71,7 +70,6 @@ function Home() {
           />
           <div className="emptyBox"></div>
           <BudgetBar use={curledger.monthExpense} budget={curledger.monthBudget} curledger={curledger} />
-          <div className="emptyBox"></div>
           <ReactCalendar
             curledger={curledger}
             recordList={recordList}
@@ -83,7 +81,7 @@ function Home() {
             setCatList={setCatList}
           />
           <div className="emptyBox"></div>
-          <PredictMotive saveMoney={saveMoney} />
+          <Banners />
           <ServiceList />
           <div className='emptyBox'></div>
         </div>

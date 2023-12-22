@@ -21,8 +21,8 @@ function Main() {
     <div className={styles.main_container}>
       <div className={styles.title_container}>
         <div>
-          <div className={styles.sub_title}>돈기부여 되는 가계부</div>
-          <div className={styles.title}>KB 돈기브업</div>
+          <div className={styles.sub_title}>동기부여 되는 테마 가계부</div>
+          <div className={styles.title}>KB돈기브업</div>
         </div>
         <div className={styles.sub_title}>Don&apos;t give up</div>
       </div>
