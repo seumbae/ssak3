@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
 import styled from '@emotion/styled'
 import AccordionCheckModal from '../components/AccordionCheckModal';
 import InputModal from '../components/InputModal';
 import Accordion from 'react-bootstrap/Accordion';
 import { useAccordionButton } from 'react-bootstrap/AccordionButton';
-import { addPayment, createCategory } from '../services/service';
+import { addPayment, createCategory, uploadReceiptImg } from '../services/service';
 
 function PaymentAdd({date, categoryList, ledgerId, setCatList, recordList, setRecordList }) {
 
@@ -18,6 +18,74 @@ function PaymentAdd({date, categoryList, ledgerId, setCatList, recordList, setRe
   const [inputReceipt, setInputReceipt] = useState('');
   const [inputTime, setInputTime] = useState('');
   const [inputShopName, setInputShopName] = useState('');
+  const [imageFile, setImageFile] = useState(null);
+  const [newImgUrl, setNewImgUrl] = useState('');
+  const [recordId, setRecordId] = useState('');
+
+  const fileInputRef = useRef(null);
+
+  const FileUpload = () => {
+    const handleClickFileInput = () => {
+      fileInputRef.current?.click();
+    };
+
+    const uploadProfile = (e) => {
+      const fileList = e.target.files;
+      if (fileList && fileList[0]) {
+        const formData = new FormData();
+        const url = URL.createObjectURL(fileList[0]);
+        formData.append('recordId', new Blob([JSON.stringify({ recordId: recordId })], { type: 'application/json' }));
+        formData.append('image', fileList[0]);
+        setImageFile({
+          file: fileList[0],
+          url: url,
+          thumbnail: formData,
+          type: fileList[0].type,
+          formData: formData,
+        });
+      }
+    };
+
+    const showImage = useMemo(() => {
+      if (!imageFile && imageFile == null) {
+        return <DefaultImg>+</DefaultImg>;
+      }
+
+      return (
+        <>
+          {imageFile ? (
+            <input
+              type="image"
+              className="ShowFileImage"
+              src={imageFile.url}
+              alt={imageFile.type}
+              onClick={handleClickFileInput}
+            ></input>
+          ) : (
+            <DefaultImg>+</DefaultImg>
+          )}
+        </>
+      );
+    }, [imageFile]);
+
+    return (
+      <AddImgBox>
+        <label htmlFor="edit_file">
+          <div className="addImg">
+            {showImage}
+          </div>
+        </label>
+        <input
+          type="file"
+          id="edit_file"
+          accept="image/jpeg"
+          ref={fileInputRef}
+          onClick={handleClickFileInput}
+          onChange={uploadProfile}
+        />
+      </AddImgBox>
+    );
+  };
   
   function handleAddBtn() {
     const data = { 
@@ -31,8 +99,20 @@ function PaymentAdd({date, categoryList, ledgerId, setCatList, recordList, setRe
       isExpense: (inputSort === "지출") ? "1" : "0" ,
       receiptUrl: inputReceipt
     }
-    addPayment(data).then(() => {
+    addPayment(data).then((res) => {
+      setRecordId(res.data.recordId);
       setRecordList([...recordList, data])
+      if (imageFile || imageFile != null) {
+        uploadReceiptImg(imageFile.formData)
+          .then((res) => {
+            setNewImgUrl(res.data);
+          })
+          .catch((err) => {
+            console.log('upload failed', err);
+          });
+      }
+      }).then((res) => {
+        console.log(res.data)
       }).catch(() => {
       alert('서버와의 연결이 원활하지 않습니다.');
       });
@@ -208,14 +288,7 @@ function PaymentAdd({date, categoryList, ledgerId, setCatList, recordList, setRe
             <BodyBox>
               <VerticalDot />
               영수증<br/>
-              <AddImgBox>
-                <label htmlFor="add_file">
-                  <div className="addImg">
-                    {inputReceipt ? <img src={inputReceipt} alt="inputReceipt" /> : <DefaultImg>+</DefaultImg>}
-                  </div>
-                </label>
-                <input type="file" id="add_file" accept="image/*" onChange={(e) => handleOnChange(e.target.files[0])}/>
-              </AddImgBox>
+              <FileUpload key={recordId} />
             </BodyBox>
             <BodyBox>
               <VerticalDot />

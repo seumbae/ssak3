@@ -18,10 +18,8 @@ function PaymentDetail({
   curledger,
   setCatList,
   catList,
-  editState,
   setEditState,
   setRecordList,
-  
   recordList,
 }) {
   const [isDelModalOpen, setIsDelModalOpen] = useState(false);
@@ -31,7 +29,6 @@ function PaymentDetail({
     setIsEdit(true);
     setEditState(true);
   };
-  console.log(recordId);
   // useEffect(() => {
   //   setIsEdit(editState);
   // }, [editState]);
