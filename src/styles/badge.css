@@ -12,7 +12,7 @@
   /* background-image: url('../../src/assets/images/tree.png'); */
   background-color: #ece7db;
   width: 100%;
-  height: 55%;
+  height: 50%;
   /* align-items: center;
   justify-content: center;
   text-align: center; */
@@ -62,7 +62,7 @@
   img {
     width: 55px;
     opacity: 0.2;
-    cursor: pointer;
+    /* cursor: pointer; */
   }
 
   p {
@@ -88,34 +88,34 @@
 }
 .badge3 {
   img {
-    width: 55px;
+    width: 45px;
   }
 }
 
 .badge4 {
   img {
-    width: 70px;
+    width: 55px;
   }
 }
 .badge5 {
   img {
-    width: 45px;
+    width: 35px;
   }
 }
 
 .badge6 {
   img {
-    width: 65px;
+    width: 50px;
   }
 }
 .badge7 {
   img {
-    width: 65px;
+    width: 55px;
   }
 }
 .badge8 {
   img {
-    width: 65px;
+    width: 52px;
   }
 }
 
@@ -126,6 +126,7 @@
   top: -325px;
   left: 113px;
   width: 50px;
+  visibility: hidden;
 }
 
 .location2 {
@@ -133,6 +134,7 @@
   top: -305px;
   left: 163px;
   width: 40px;
+  visibility: hidden;
 }
 
 .location3 {
@@ -140,12 +142,14 @@
   top: -225px;
   left: -13px;
   width: 55px;
+  visibility: hidden;
 }
 .location4 {
   position: relative;
   top: -220px;
   left: 23px;
   width: 70px;
+  visibility: hidden;
 }
 
 .location5 {
@@ -153,6 +157,7 @@
   top: -190px;
   left: 43px;
   width: 45px;
+  visibility: hidden;
 }
 
 .location6 {
@@ -160,6 +165,7 @@
   top: -140px;
   left: -215px;
   width: 65px;
+  visibility: hidden;
 }
 
 .location7 {
@@ -167,10 +173,35 @@
   top: -205px;
   left: 143px;
   width: 65px;
+  visibility: hidden;
 }
 .location8 {
   position: relative;
   top: -195px;
   left: 173px;
   width: 65px;
+  visibility: hidden;
+}
+
+.badge-button {
+  border: none;
+  background: none;
+  pointer-events: none;
+  width: 60px;
+  height: 70px;
+}
+
+.complete-btn {
+  width: 392px;
+  height: 59px;
+  flex-shrink: 0;
+  background: #fc0;
+  border: none;
+  color: #000;
+  text-align: center;
+  font-family: KBFG Text;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
 }

@@ -40,7 +40,9 @@ export const uploadReceiptImg = async (data) =>
     headers: { 'Content-Type': 'multipart/form-data' },
   });
 //전체 배지 목록 조회
-export const getBadgeList = async (data) => await API.get('/ledger/badge', data);
+export const getBadgeList = async (data) => await API.get('/badge/list', data);
+export const editBadgeList = async (data) => await API.post('/badge/modify', data);
+
 // Category
 
 // parameters : categoryId(Integer), 카테고리 삭제(Category Id는 unique함)
