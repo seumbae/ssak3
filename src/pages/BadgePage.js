@@ -179,30 +179,14 @@ function BadgePage() {
   }
 
   function handleCompleteBtn() {
-    editBadgeList({ badgeId: '1', isFixed: badgeStatus1 }).then((res) => {
-      console.log('new', res.data);
-    });
-    editBadgeList({ badgeId: '2', isFixed: badgeStatus2 }).then((res) => {
-      console.log('new', res.data);
-    });
-    editBadgeList({ badgeId: '3', isFixed: badgeStatus3 }).then((res) => {
-      console.log('new', res.data);
-    });
-    editBadgeList({ badgeId: '4', isFixed: badgeStatus4 }).then((res) => {
-      console.log('new', res.data);
-    });
-    editBadgeList({ badgeId: '5', isFixed: badgeStatus5 }).then((res) => {
-      console.log('new', res.data);
-    });
-    editBadgeList({ badgeId: '6', isFixed: badgeStatus6 }).then((res) => {
-      console.log('new', res.data);
-    });
-    editBadgeList({ badgeId: '7', isFixed: badgeStatus7 }).then((res) => {
-      console.log('new', res.data);
-    });
-    editBadgeList({ badgeId: '8', isFixed: badgeStatus8 }).then((res) => {
-      console.log('new', res.data);
-    });
+    editBadgeList({ badgeId: '1', isFixed: badgeStatus1 });
+    editBadgeList({ badgeId: '2', isFixed: badgeStatus2 });
+    editBadgeList({ badgeId: '3', isFixed: badgeStatus3 });
+    editBadgeList({ badgeId: '4', isFixed: badgeStatus4 });
+    editBadgeList({ badgeId: '5', isFixed: badgeStatus5 });
+    editBadgeList({ badgeId: '6', isFixed: badgeStatus6 });
+    editBadgeList({ badgeId: '7', isFixed: badgeStatus7 });
+    editBadgeList({ badgeId: '8', isFixed: badgeStatus8 });
     navigate('/home');
   }
   useEffect(() => {
