@@ -1,17 +1,24 @@
 .treeImg {
   width: 360px;
+  /* width: 90%;
+  height: 60%; */
+  place-items: center;
+  display: block;
+  margin: auto;
+  position: relative;
 }
 
 .badge-container {
   /* background-image: url('../../src/assets/images/tree.png'); */
   background-color: #ece7db;
   width: 100%;
-  align-items: center;
+  height: 50%;
+  /* align-items: center;
   justify-content: center;
-  text-align: center;
+  text-align: center; */
   /* height: 100%; */
-  display: flex;
-  place-items: center;
+  /* display: flex; */
+  /* place-items: center; */
   margin: 0 auto;
 }
 
@@ -35,4 +42,166 @@
     font-weight: 300;
     line-height: normal;
   }
+}
+
+.badge-wrapper {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 105px;
+}
+
+.badge-common {
+  /* border: solid 1px #000; */
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+  padding: 0 auto;
+  vertical-align: baseline;
+  img {
+    width: 55px;
+    opacity: 0.2;
+    /* cursor: pointer; */
+  }
+
+  p {
+    color: #595858;
+    font-family: KBFG Display;
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin-bottom: 5px;
+  }
+}
+.badge1 {
+  img {
+    /* opacity: 0.2; */
+    width: 50px;
+  }
+}
+.badge2 {
+  img {
+    width: 40px;
+  }
+}
+.badge3 {
+  img {
+    width: 45px;
+  }
+}
+
+.badge4 {
+  img {
+    width: 55px;
+  }
+}
+.badge5 {
+  img {
+    width: 35px;
+  }
+}
+
+.badge6 {
+  img {
+    width: 50px;
+  }
+}
+.badge7 {
+  img {
+    width: 55px;
+  }
+}
+.badge8 {
+  img {
+    width: 52px;
+  }
+}
+
+.location1 {
+  position: relative;
+  /* top: 125px;
+  left: 143px; */
+  top: -325px;
+  left: 113px;
+  width: 50px;
+  visibility: hidden;
+}
+
+.location2 {
+  position: relative;
+  top: -305px;
+  left: 163px;
+  width: 40px;
+  visibility: hidden;
+}
+
+.location3 {
+  position: relative;
+  top: -225px;
+  left: -13px;
+  width: 55px;
+  visibility: hidden;
+}
+.location4 {
+  position: relative;
+  top: -220px;
+  left: 23px;
+  width: 70px;
+  visibility: hidden;
+}
+
+.location5 {
+  position: relative;
+  top: -190px;
+  left: 43px;
+  width: 45px;
+  visibility: hidden;
+}
+
+.location6 {
+  position: relative;
+  top: -140px;
+  left: -215px;
+  width: 65px;
+  visibility: hidden;
+}
+
+.location7 {
+  position: relative;
+  top: -205px;
+  left: 143px;
+  width: 65px;
+  visibility: hidden;
+}
+.location8 {
+  position: relative;
+  top: -195px;
+  left: 173px;
+  width: 65px;
+  visibility: hidden;
+}
+
+.badge-button {
+  border: none;
+  background: none;
+  pointer-events: none;
+  width: 60px;
+  height: 70px;
+}
+
+.complete-btn {
+  width: 392px;
+  height: 59px;
+  flex-shrink: 0;
+  background: #fc0;
+  border: none;
+  color: #000;
+  text-align: center;
+  font-family: KBFG Text;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
 }
