@@ -4,8 +4,6 @@ import CheckModal from '../components/CheckModal';
 import InputModal from '../components/InputModal';
 import categoryColors from '../constants/cat';
 import styled from '@emotion/styled';
-import PaymentDetail from './PaymentDetail';
-import receiptImg from '../assets/images/receipt.jpg';
 import { editRecordList, createCategory, uploadReceiptImg } from '../services/service';
 
 function PaymentEdit({

@@ -31,20 +31,9 @@ function PaymentAdd({date, categoryList, ledgerId, setCatList }) {
       isExpense: (inputSort === "지출") ? "1" : "0" ,
       receiptUrl: inputReceipt
     }).then((res) => {
-        console.log({ 
-          ledgerId: ledgerId,
-          categoryName: inputCategory,
-          tranName: inputTitle,
-          tranAmount: inputPrice,
-          tranYmd: date,
-          tranTime: inputTime,
-          tranPlace: inputShopName,
-          isExpense: (inputSort === "지출") ? "1" : "0" ,
-          receiptUrl: inputReceipt
-        });
-        console.log(res);
+      console.log(res);
       }).catch(() => {
-        alert('서버와의 연결이 원활하지 않습니다.');
+      alert('서버와의 연결이 원활하지 않습니다.');
       });
   }
 

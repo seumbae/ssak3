@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import '../styles/record.css';
+import { deleteRecordList } from '../services/service';
 import CheckModal from '../components/CheckModal';
 import categoryColors from '../constants/cat';
 import PaymentEdit from './PaymentEdit';
@@ -20,7 +21,7 @@ function PaymentDetail({
   editState,
   setEditState,
   setRecordList,
-
+  
   recordList,
 }) {
   const [isDelModalOpen, setIsDelModalOpen] = useState(false);
@@ -30,6 +31,7 @@ function PaymentDetail({
     setIsEdit(true);
     setEditState(true);
   };
+  console.log(recordId);
   // useEffect(() => {
   //   setIsEdit(editState);
   // }, [editState]);
@@ -106,7 +108,15 @@ function PaymentDetail({
         {isDelModalOpen && (
           <CheckModal
             cancelFunc={() => setIsDelModalOpen(false)}
-            acceptFunc={() => setIsDelModalOpen(false)}
+            acceptFunc={() => {
+              setIsDelModalOpen(false)
+              deleteRecordList({ recordId: recordId
+              }).then((res) => {
+                console.log(res);
+                }).catch(() => {
+                alert('서버와의 연결이 원활하지 않습니다.');
+                });
+            }}
             title="삭제하시겠습니까?"
             content="삭제하시면 가계부에서 거래내역이 보이지 않습니다."
             cancelMsg="취소"
