@@ -1,8 +1,9 @@
 import React from 'react';
 import '../styles//BudgetBar.css'
+import ProgressBar from 'react-bootstrap/ProgressBar';
 
 function BudgetBar(props) {
-  document.documentElement.style.setProperty("--progWidth", props.use/props.budget*100+"%");
+  // document.documentElement.style.setProperty("--progWidth", props.use/props.budget*100+"%");
   return (
     <div className='BudgetBar'>
       <div className='leftBox'>
@@ -10,9 +11,10 @@ function BudgetBar(props) {
       </div>
       <div className='rightBox'>
         <div className='goal'>{props.curledger.goal}</div>
-        <div className='progStat'>{props.use.toLocaleString()}/{props.budget.toLocaleString()}</div>
+        <div className='progStat'>{props.use.toLocaleString()} / {props.budget.toLocaleString()}</div>
         <div className='progBar'>
-          <div className='prog'></div>
+          {/* <div className='prog'></div> */}
+          <ProgressBar animated variant="danger" now={(props.budget - props.use) / props.budget * 100} />;
         </div>
       </div>
     </div>
