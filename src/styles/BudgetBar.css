@@ -1,5 +1,6 @@
 :root {
-  --progWidth: 0%;
+  --progWidthPercent: 100%;
+  --progWidth: 100;
 }
 
 .BudgetBar {
@@ -55,6 +56,6 @@
 
 .prog {
   height: 15px;
-  width: var(--progWidth);
+  width: var(--progWidthPercent);
   background-color: #ff5454;
 }

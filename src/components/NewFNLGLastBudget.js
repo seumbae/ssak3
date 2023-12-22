@@ -10,7 +10,6 @@ function NewFNLGLastBudget({ setLastBudgetShow, setBudgetShow, setMonthExpense, 
   };
 
   const lastBudgetNextClick = () => {
-    setMonthExpense(400500);
     setLastBudgetShow(false);
     setBudgetShow(true);
   };
@@ -26,7 +25,7 @@ function NewFNLGLastBudget({ setLastBudgetShow, setBudgetShow, setMonthExpense, 
     <div className="NewFNLGGoalDiv">
       <div>
         <div className="NewFNLGBudgetTitle">{formatNumber(monthExpense)}원</div>
-        <div className="NewFNLGBudgetText">지난 달 패션/쇼핑에 소비하신 금액이에요</div>
+        <div className="NewFNLGBudgetText">지난 달 {selectedTheme.themeName}에 소비하신 금액이에요</div>
       </div>
       <img src={newlamu} alt="newlamu"></img>
       <button className="next-btn-complete fs-2" onClick={lastBudgetNextClick}>
