@@ -3,8 +3,9 @@ import '../styles//BudgetBar.css'
 
 function BudgetBar({use, budget, curledger}) {
   const canUse = budget - use;
-  document.documentElement.style.setProperty("--progWidthPercent", canUse/budget*100+"%");
-  document.documentElement.style.setProperty("--progWidth", canUse/budget*100);
+  const progWidth = (canUse > 0) ? canUse/budget * 100 : 0;
+  document.documentElement.style.setProperty("--progWidthPercent", progWidth+"%");
+  document.documentElement.style.setProperty("--progWidth", progWidth);
   return (
     <div className='BudgetBar'>
       <div className='leftBox'>

@@ -6,7 +6,7 @@ import Accordion from 'react-bootstrap/Accordion';
 import { useAccordionButton } from 'react-bootstrap/AccordionButton';
 import { addPayment, createCategory } from '../services/service';
 
-function PaymentAdd({date, categoryList, ledgerId, setCatList }) {
+function PaymentAdd({date, categoryList, ledgerId, setCatList, recordList, setRecordList }) {
 
   const [isInputModalOpen, setIsInputModalOpen] = useState(false);
   const [isCancelModalOpen, setIsCancelModalOpen] = useState(false);
@@ -20,7 +20,7 @@ function PaymentAdd({date, categoryList, ledgerId, setCatList }) {
   const [inputShopName, setInputShopName] = useState('');
   
   function handleAddBtn() {
-    addPayment({ 
+    const data = { 
       ledgerId: ledgerId,
       categoryName: inputCategory,
       tranName: inputTitle,
@@ -30,8 +30,9 @@ function PaymentAdd({date, categoryList, ledgerId, setCatList }) {
       tranPlace: inputShopName,
       isExpense: (inputSort === "지출") ? "1" : "0" ,
       receiptUrl: inputReceipt
-    }).then((res) => {
-      console.log(res);
+    }
+    addPayment(data).then(() => {
+      setRecordList([...recordList, data])
       }).catch(() => {
       alert('서버와의 연결이 원활하지 않습니다.');
       });

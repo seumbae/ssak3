@@ -111,8 +111,8 @@ function PaymentDetail({
             acceptFunc={() => {
               setIsDelModalOpen(false)
               deleteRecordList({ recordId: recordId
-              }).then((res) => {
-                console.log(res);
+              }).then(() => {
+                setRecordList(recordList.filter(item => item.recordId !== recordId))
                 }).catch(() => {
                 alert('서버와의 연결이 원활하지 않습니다.');
                 });
