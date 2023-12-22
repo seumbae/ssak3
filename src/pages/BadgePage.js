@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getBadgeList, editBadgeList } from '../services/service';
 import tree from '../assets/images/tree.png';
-import badge from '../assets/images/badge.png';
+import { useNavigate } from 'react-router-dom';
 import badge1 from '../assets/images/badge1.png';
 import badge2 from '../assets/images/badge2.png';
 import badge3 from '../assets/images/badge3.png';
@@ -12,18 +12,7 @@ import badge7 from '../assets/images/badge7.png';
 import badge8 from '../assets/images/badge8.png';
 import '../styles/badge.css';
 function BadgePage() {
-  //const [badgesStatus, setBadgesStatus] = useState([]);
-  const [badgesStatus, setBadgesStatus] = useState({
-    badge1: '0',
-    badge2: '0',
-    badge3: '0',
-    badge4: '0',
-    badge5: '0',
-    badge6: '0',
-    badge7: '0',
-    badge8: '0',
-  });
-
+  const navigate = useNavigate();
   const [badgeList, setBadgeList] = useState([]);
   const [badgeStatus1, setBadgeStatus1] = useState('0');
   const [badgeStatus2, setBadgeStatus2] = useState('0');
@@ -214,6 +203,7 @@ function BadgePage() {
     editBadgeList({ badgeId: '8', isFixed: badgeStatus8 }).then((res) => {
       console.log('new', res.data);
     });
+    navigate('/home');
   }
   useEffect(() => {
     getBadgeList()
