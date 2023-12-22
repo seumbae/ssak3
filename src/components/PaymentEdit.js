@@ -21,9 +21,9 @@ function PaymentEdit({
   categoryList,
   setIsEdit,
   recordId,
-  setNewRecordData,
+  setRecordList,
   setEditState,
-  setReceiptUrl,
+  // setReceiptUrl,
   recordList,
 }) {
   const [isInputModalOpen, setIsInputModalOpen] = useState(false);
@@ -36,7 +36,6 @@ function PaymentEdit({
   const fileInputRef = useRef(null);
   const [isEditDone, setIsEditDone] = useState(false);
   const [hi, setHi] = useState('ddddd');
-  const [newImgUrl, setNewImgUrl] = useState('');
   const curLedgerId = curledger.ledgerId;
 
   const FileUpload = () => {
@@ -62,24 +61,10 @@ function PaymentEdit({
       }
     };
 
-    useEffect(() => {
-      console.log('왜안돼ㅐㅐㅐㅐㅐ', newImgUrl);
-    }, [newImgUrl]);
-    // return (
-    // <input
-    //   type="image"
-    //   className="ShowFileImage"
-    //   src={imageFile.url}
-    //   alt={imageFile.type}
-    //   onClick={handleClickFileInput}
-    // ></input>
-    // );
-
     const showImage = useMemo(() => {
       if (!imageFile && imageFile == null) {
         return <DefaultImg>+</DefaultImg>;
       }
-      console.log(recordId, imageFile);
 
       return (
         <>
@@ -103,7 +88,6 @@ function PaymentEdit({
         <label htmlFor="edit_file">
           <div className="addImg">
             {showImage}
-            {/* {imageFile ? <img src={imageFile} alt="inputReceipt" /> : <DefaultImg>+</DefaultImg>} */}
           </div>
         </label>
         <input
@@ -122,18 +106,7 @@ function PaymentEdit({
     setCheckCatBtn(e.target.value);
   };
 
-  const handleEditBtn = () => {
-    if (imageFile || imageFile != null) {
-      uploadReceiptImg(imageFile.formData)
-        .then((res) => {
-          console.log('upload', res, res.data);
-          setNewImgUrl(res.data);
-          setReceiptUrl(res.data);
-        })
-        .catch((err) => {
-          console.log('upload failed', err);
-        });
-    }
+  const postEditRecordList = (url) => {
     editRecordList({
       recordId: recordId,
       categoryName: checkCatBtn,
@@ -141,21 +114,18 @@ function PaymentEdit({
       tranAmount: Number(inputPrice),
     })
       .then((res) => {
-        console.log('edit', res, res.data);
         setIsEditDone(true);
         setIsEdit(false);
         setEditState(false);
         // setReceiptUrl(newImgUrl);
-        setNewRecordData(
+        setRecordList(
           recordList.map((r) => {
             if (r.recordId === recordId) {
-              console.log('new Data', r);
               return {
                 ...r,
-
                 categoryName: res.data.categoryName,
                 isExpense: res.data.isExpense,
-                receiptUrl: newImgUrl,
+                receiptUrl: url || r.receiptUrl,
                 recordId: res.data.recordId,
                 tranAmount: res.data.tranAmount,
                 tranName: res.data.tranName,
@@ -172,7 +142,23 @@ function PaymentEdit({
       .catch((err) => {
         alert('서버와의 연결이 원활하지 않습니다.123', err);
       });
+  }
+
+  const handleEditBtn = () => {
+    if (imageFile || imageFile !== null) {
+      uploadReceiptImg(imageFile.formData)
+        .then((res) => {
+          postEditRecordList(res.data);
+        })
+        .catch((err) => {
+          alert('upload failed', err);
+        });
+    }
+    else{
+      postEditRecordList();
+    }
   };
+
   useEffect(() => {
     setInputTitle(title);
     setInputPrice(price);
@@ -220,7 +206,6 @@ function PaymentEdit({
                       createCategory({ ledgerId: curLedgerId, customCategoryName: newCat })
                         .then((res) => {
                           setCatList((prev) => [...prev, newCat]);
-                          console.log('category create success!', res.data);
                         })
                         .catch(() => {
                           alert('서버와의 연결이 원활하지 않습니다.');
@@ -292,21 +277,6 @@ function PaymentEdit({
         <button className="edit-btn" onClick={handleEditBtn}>
           저장
         </button>
-        {/* {isEditDone ? (
-          <PaymentDetail
-            title={newRecordData.tranName}
-            price={newRecordData.tranAmount}
-            time={newRecordData.tranTime}
-            name={newRecordData.tranPlace}
-            catName={newRecordData.categoryName}
-            isExpense={newRecordData.isExpense}
-            setIsEditTrue={() => {
-              setIsEdit(false);
-            }}
-          />
-        ) : (
-          ''
-        )} */}
       </div>
     </div>
   );

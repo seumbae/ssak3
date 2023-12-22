@@ -21,14 +21,12 @@ function PaymentDetail({
   editState,
   setEditState,
   setRecordList,
-
   recordList,
 }) {
   const [checkCatBtn, setCheckCatBtn] = useState('술');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isDelModalOpen, setIsDelModalOpen] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
-  const [newReceiptUrl, setNewReceiptUrl] = useState(receiptUrl);
   const handleCatBtn = (e) => {
     setCheckCatBtn(e.target.value);
   };
@@ -57,9 +55,7 @@ function PaymentDetail({
       setIsEditFalse={() => setIsEdit(false)}
       setIsEdit={setIsEdit}
       setEditState={setEditState}
-      setNewRecordData={setRecordList}
-      setReceiptUrl={setNewReceiptUrl}
-      receiptUrl={newReceiptUrl} //이러케 하면 안됨.
+      setRecordList={setRecordList}
       recordList={recordList}
     />
   ) : (
@@ -93,11 +89,7 @@ function PaymentDetail({
 
           <div className="body-receipt">
             <div className="vertical-dot"></div>
-            {receiptUrl ? (
-              <img className="receipt-img" src={receiptUrl} alt="receipt" />
-            ) : (
-              <img className="receipt-img" src={receiptImg} alt="receipt" />
-            )}
+              <img className="receipt-img" src={receiptUrl ? receiptUrl : receiptImg} alt="receipt" />
           </div>
           <div className="body-time">
             <div className="vertical-dot"></div>
