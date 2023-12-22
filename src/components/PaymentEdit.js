@@ -19,9 +19,9 @@ function PaymentEdit({
   categoryList,
   setIsEdit,
   recordId,
-  setNewRecordData,
+  setRecordList,
   setEditState,
-  setReceiptUrl,
+  // setReceiptUrl,
   recordList,
 }) {
   const [isInputModalOpen, setIsInputModalOpen] = useState(false);
@@ -57,15 +57,10 @@ function PaymentEdit({
       }
     };
 
-    useEffect(() => {
-      console.log(newImgUrl);
-    }, [newImgUrl]);
-
     const showImage = useMemo(() => {
       if (!imageFile && imageFile == null) {
         return <DefaultImg>+</DefaultImg>;
       }
-      console.log(recordId, imageFile);
 
       return (
         <>
@@ -107,18 +102,7 @@ function PaymentEdit({
     setCheckCatBtn(e.target.value);
   };
 
-  const handleEditBtn = () => {
-    if (imageFile || imageFile != null) {
-      uploadReceiptImg(imageFile.formData)
-        .then((res) => {
-          console.log('upload', res, res.data);
-          setNewImgUrl(res.data);
-          setReceiptUrl(res.data);
-        })
-        .catch((err) => {
-          console.log('upload failed', err);
-        });
-    }
+  const postEditRecordList = (url) => {
     editRecordList({
       recordId: recordId,
       categoryName: checkCatBtn,
@@ -126,20 +110,17 @@ function PaymentEdit({
       tranAmount: Number(inputPrice),
     })
       .then((res) => {
-        console.log('edit', res, res.data);
         setIsEdit(false);
         setEditState(false);
         // setReceiptUrl(newImgUrl);
-        setNewRecordData(
+        setRecordList(
           recordList.map((r) => {
             if (r.recordId === recordId) {
-              console.log('new Data', r);
               return {
                 ...r,
-
                 categoryName: res.data.categoryName,
                 isExpense: res.data.isExpense,
-                receiptUrl: newImgUrl,
+                receiptUrl: url || r.receiptUrl,
                 recordId: res.data.recordId,
                 tranAmount: res.data.tranAmount,
                 tranName: res.data.tranName,
@@ -156,7 +137,23 @@ function PaymentEdit({
       .catch((err) => {
         alert('서버와의 연결이 원활하지 않습니다.123', err);
       });
+  }
+
+  const handleEditBtn = () => {
+    if (imageFile || imageFile !== null) {
+      uploadReceiptImg(imageFile.formData)
+        .then((res) => {
+          postEditRecordList(res.data);
+        })
+        .catch((err) => {
+          alert('upload failed', err);
+        });
+    }
+    else{
+      postEditRecordList();
+    }
   };
+
   useEffect(() => {
     setInputTitle(title);
     setInputPrice(price);

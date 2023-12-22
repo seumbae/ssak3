@@ -29,9 +29,12 @@ function PaymentDetail({
     setIsEdit(true);
     setEditState(true);
   };
+  
+  // 일단 삭제하지말고 주석처리
   // useEffect(() => {
   //   setIsEdit(editState);
   // }, [editState]);
+
   return isEdit ? (
     <PaymentEdit
       categoryList={catList}
@@ -46,9 +49,7 @@ function PaymentDetail({
       setIsEditFalse={() => setIsEdit(false)}
       setIsEdit={setIsEdit}
       setEditState={setEditState}
-      setNewRecordData={setRecordList}
-      setReceiptUrl={setNewReceiptUrl}
-      receiptUrl={newReceiptUrl} //이러케 하면 안됨.
+      setRecordList={setRecordList}
       recordList={recordList}
     />
   ) : (
