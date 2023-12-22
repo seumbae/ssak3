@@ -14,7 +14,7 @@ function Header() {
   };
 
   useEffect(() => {
-    switch(path){
+    switch (path) {
       case 'chart':
         setHeaderName('통계');
         break;
@@ -28,7 +28,7 @@ function Header() {
         setHeaderName('활동 배지');
         break;
       case 'savings':
-        setHeaderName('적금');
+        setHeaderName('상품');
         break;
       case 'friend':
         setHeaderName('친구');
@@ -37,8 +37,7 @@ function Header() {
         setHeaderName('돈기브업');
         break;
     }
-  },[path])
-
+  }, [path]);
 
   return (
     <>
