@@ -45,7 +45,13 @@ function NewFNLG() {
         />
       )}
       {budgetShow && (
-        <NewFNLGBudget setBudgetShow={setBudgetShow} setGoalShow={setGoalShow} setMonthBudget={setMonthBudget} selectedTheme={selectedTheme} monthExpense={monthExpense} />
+        <NewFNLGBudget
+          setBudgetShow={setBudgetShow}
+          setGoalShow={setGoalShow}
+          setMonthBudget={setMonthBudget}
+          monthExpense={monthExpense}
+          selectedTheme={selectedTheme}
+        />
       )}
       {goalShow && (
         <NewFNLGGoal

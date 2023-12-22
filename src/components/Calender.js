@@ -26,6 +26,8 @@ function ReactCalendar({
   const [curDate, setCurDate] = useState(new Date());
   //TODO: 카테고리 선택할 수 있게 하고 handleTileContents에서 해당 카테고리만 보여주기 ㅇㅇ
 
+  console.log(recordList);
+
   const handleOnChange = (e) => {
     setCurDate(e);
     if (editState) {
@@ -176,7 +178,7 @@ function ReactCalendar({
           <div className="more-record-btn col-sm"></div>
         </div>
       </div>
-      <PaymentAdd categoryList={['aa', 'aasda', 'asadada', 'aaa', 'aaasd', 'aadasdsa', 'aadsa', 'aasad']} />
+      <PaymentAdd date={moment(value).format('YYYY-MM-DD')} recordList={recordList} setRecordList={setRecordList} categoryList={catList} ledgerId={curledger.ledgerId} setCatList={setCatList} />
       <Record
         value={value}
         recordList={recordList}

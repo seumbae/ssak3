@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import '../styles/record.css';
-import receiptImg from '../assets/images/receipt.jpg';
+import { deleteRecordList } from '../services/service';
 import CheckModal from '../components/CheckModal';
 import categoryColors from '../constants/cat';
 import PaymentEdit from './PaymentEdit';
+import styled from '@emotion/styled';
 
 function PaymentDetail({
-  key,
   title,
   price,
   time,
@@ -31,9 +31,12 @@ function PaymentDetail({
     setIsEdit(true);
     setEditState(true);
   };
+  
+  // 일단 삭제하지말고 주석처리
   // useEffect(() => {
   //   setIsEdit(editState);
   // }, [editState]);
+
   return isEdit ? (
     <PaymentEdit
       categoryList={catList}
@@ -48,9 +51,7 @@ function PaymentDetail({
       setIsEditFalse={() => setIsEdit(false)}
       setIsEdit={setIsEdit}
       setEditState={setEditState}
-      setNewRecordData={setRecordList}
-      setReceiptUrl={setNewReceiptUrl}
-      receiptUrl={newReceiptUrl} //이러케 하면 안됨.
+      setRecordList={setRecordList}
       recordList={recordList}
     />
   ) : (
@@ -85,9 +86,7 @@ function PaymentDetail({
             <div className="vertical-dot"></div>
             {receiptUrl ? (
               <img className="receipt-img" src={receiptUrl} alt="receipt" />
-            ) : (
-              <img className="receipt-img" src={receiptImg} alt="receipt" />
-            )}
+            ) : <DefaultImg></DefaultImg>}
           </div>
           <div className="body-time">
             <div className="vertical-dot"></div>
@@ -109,7 +108,15 @@ function PaymentDetail({
         {isDelModalOpen && (
           <CheckModal
             cancelFunc={() => setIsDelModalOpen(false)}
-            acceptFunc={() => setIsDelModalOpen(false)}
+            acceptFunc={() => {
+              setIsDelModalOpen(false)
+              deleteRecordList({ recordId: recordId
+              }).then(() => {
+                setRecordList(recordList.filter(item => item.recordId !== recordId))
+                }).catch(() => {
+                alert('서버와의 연결이 원활하지 않습니다.');
+                });
+            }}
             title="삭제하시겠습니까?"
             content="삭제하시면 가계부에서 거래내역이 보이지 않습니다."
             cancelMsg="취소"
@@ -124,5 +131,12 @@ function PaymentDetail({
     </div>
   );
 }
-
+const DefaultImg = styled.div`
+  margin-left: 5px;
+  width: 80px;
+  height: 120px;
+  border: dotted;
+  line-height: 120px;
+  text-align: center;
+`
 export default PaymentDetail;

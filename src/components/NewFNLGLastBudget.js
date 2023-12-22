@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import newlamu from '../assets/newlamu.png';
 import { getPreMonthExpense } from '../services/service';
-import moment from 'moment';
 
 function NewFNLGLastBudget({ setLastBudgetShow, setBudgetShow, setMonthExpense, selectedTheme, monthExpense }) {
   // 숫자를 1000단위로 콤마로 구분하는 함수

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import '../styles/record.css';
 import moment from 'moment/moment';
-import PaymentEdit from './PaymentEdit';
 import PaymentDetail from './PaymentDetail';
 import categoryColors from '../constants/cat';
 
@@ -62,7 +61,7 @@ function Record({
                       <div className="record-title-area">
                         <div className="record-title">
                           <span className="record-title-name">{r.tranName}</span>
-                          <i className="bi bi-receipt"></i>
+                          {r.receiptUrl&&<i className="bi bi-receipt"></i>}
                         </div>
                         <div className="record-price">
                           {r.isExpense === '1' ? '-' + r.tranAmount.toLocaleString() : r.tranAmount.toLocaleString()}원

@@ -29,39 +29,43 @@ function NewFNLGBudget({ setBudgetShow, setGoalShow, setMonthBudget, selectedThe
   };
   const budgetNextClick = () => {
     setMonthBudget(currentBudget);
-    if(budgetInputShow) {
+    if (budgetInputShow) {
       setBudgetInputShow(false);
     }
     setBudgetShow(false);
     setGoalShow(true);
   };
-
   return (
     <div className="NewFNLGGoalDiv">
       <div>
-        <div className='NewFNLGBudgetTop'>
+        <div className="NewFNLGBudgetTop">
           <div className="NewFNLGBudgetTitle">{formatNumber(currentBudget)}원</div>
           <button className="EditButton" onClick={handleEditClick}>
             수정
           </button>
         </div>
         {budgetInputShow && (
-        <div className="EditBox">
-          <input
-            className="customBudgetInput"
-            name="budgetInput"
-            ref={budgetInput}
-            value={formatNumber(currentBudget)}
-            onChange={handleInputChange}
-          ></input>
-          <button className="EditButton" onClick={handleCompleteClick}>
-            완료
-          </button>
-        </div>
-      )}
+          <div className="EditBox">
+            <input
+              className="customBudgetInput"
+              name="budgetInput"
+              ref={budgetInput}
+              value={formatNumber(currentBudget)}
+              onChange={handleInputChange}
+              maxLength={8}
+            ></input>
+            <button className="EditButton" onClick={handleCompleteClick}>
+              완료
+            </button>
+          </div>
+        )}
         <div className="NewFNLGBudgetText">
           <div>저희가 추천하는 {selectedTheme.themeName} 예산이에요</div>
-          <div>지난 달보다 {formatNumber(monthExpense - currentBudget)}원을 아낄 수 있어요</div>
+          {currentBudget >= monthExpense ? (
+            <div>지난 달보다 {formatNumber(currentBudget - monthExpense)}원을 더 사용하게 됩니다.</div>
+          ) : (
+            <div>지난 달보다 {formatNumber(monthExpense - currentBudget)}원을 아낄 수 있어요</div>
+          )}
         </div>
       </div>
       <img src={newlamu} alt="newlamu" width="217" height="245"></img>

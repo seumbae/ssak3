@@ -4,8 +4,10 @@ import AccordionCheckModal from '../components/AccordionCheckModal';
 import InputModal from '../components/InputModal';
 import Accordion from 'react-bootstrap/Accordion';
 import { useAccordionButton } from 'react-bootstrap/AccordionButton';
+import { addPayment, createCategory } from '../services/service';
 
-function PaymentAdd({date, categoryList}) {
+function PaymentAdd({date, categoryList, ledgerId, setCatList, recordList, setRecordList }) {
+
   const [isInputModalOpen, setIsInputModalOpen] = useState(false);
   const [isCancelModalOpen, setIsCancelModalOpen] = useState(false);
   
@@ -16,6 +18,25 @@ function PaymentAdd({date, categoryList}) {
   const [inputReceipt, setInputReceipt] = useState('');
   const [inputTime, setInputTime] = useState('');
   const [inputShopName, setInputShopName] = useState('');
+  
+  function handleAddBtn() {
+    const data = { 
+      ledgerId: ledgerId,
+      categoryName: inputCategory,
+      tranName: inputTitle,
+      tranAmount: inputPrice,
+      tranYmd: date,
+      tranTime: inputTime,
+      tranPlace: inputShopName,
+      isExpense: (inputSort === "지출") ? "1" : "0" ,
+      receiptUrl: inputReceipt
+    }
+    addPayment(data).then(() => {
+      setRecordList([...recordList, data])
+      }).catch(() => {
+      alert('서버와의 연결이 원활하지 않습니다.');
+      });
+  }
 
   const SortBtn = styled.label`
     ${(props) => {
@@ -85,7 +106,11 @@ function PaymentAdd({date, categoryList}) {
     return (
       <AddBtn
         type="button"
-        onClick={() => {decoratedOnClick(); initInput();}}
+        onClick={() => {
+          handleAddBtn();
+          decoratedOnClick(); 
+          initInput();
+        }}
       >
         {children}
       </AddBtn>
@@ -137,8 +162,8 @@ function PaymentAdd({date, categoryList}) {
                 <DefaultCatBox>
                   {categoryList.map((item, index) => (
                     <MyBtn key={index}>
-                      <CatBtn num={index + 1} type="button" onClick={handleCatBtn} value={item} />
-                      {(inputCategory === item) && <i className="bi bi-check"></i>}
+                      <CatBtn num={index + 1} type="button" onClick={handleCatBtn} value={item.customCategoryName} />
+                      {(inputCategory === item.customCategoryName) && <i className="bi bi-check"></i>}
                     </MyBtn>
                   ))}
                 </DefaultCatBox>
@@ -149,9 +174,23 @@ function PaymentAdd({date, categoryList}) {
                       title="카테고리 추가"
                       cancelMsg="취소"
                       acceptMsg="확인"
-                      acceptFunc={() => setIsInputModalOpen(false)}
-                      cancelFunc={() => setIsInputModalOpen(false)} />)} 
-                  </div>
+                      acceptFunc={(newCat) => {
+                        if (categoryList.some(item => item.customCategoryName === newCat)){
+                          alert('중복된 카테고리 이름입니다.');
+                        }else{
+                          createCategory({ ledgerId: ledgerId, customCategoryName: newCat })
+                            .then((res) => {
+                              setCatList([...categoryList, {"customCategoryName": newCat, "customCategoryId": res.data.categoryId}]);
+                            })
+                            .catch(() => {
+                              alert('서버와의 연결이 원활하지 않습니다.');
+                            });
+                          setIsInputModalOpen(false);
+                        }
+                      }}
+                      cancelFunc={() => setIsInputModalOpen(false)} 
+                    />)}
+                </div>
               </CatBox>
             </BodyBox>
             <BodyBox>
