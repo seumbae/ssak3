@@ -1,0 +1,17 @@
+.h1 {
+    font-family: 'KBTitleB';
+    font-size: 16px;
+}
+.h2{
+    font-family: 'KBTitleM';
+    font-size: 15px;
+    color: #676666;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 20px 0px;
+    margin-left: 5px;
+}
