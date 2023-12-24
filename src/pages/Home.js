@@ -55,7 +55,7 @@ function Home() {
         <Loading />
       ) : (
         <div className="paddingBox">
-          {isPushAlarm && <PushAlarm title="수고했어 오늘도~" content="오늘 하루 지출 내역을 가계부에 기록해보세요." />}
+          {isPushAlarm && <PushAlarm title="수고했어 오늘도~♫" content="오늘 하루 지출 내역을 가계부에 기록해보세요." />}
           <div className="emptyBox"></div>
           <UserBar userName={curledger.user.userName} userAvatar={iconAvatar} />
           <div className="emptyBox"></div>
