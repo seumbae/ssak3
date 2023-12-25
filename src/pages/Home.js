@@ -49,7 +49,6 @@ function Home() {
         setLoading(false);
         navigate('/');
       });
-      // setTimeout(() => setIsPushAlarm(true), 1000)
   }, []);
   return (
     <>

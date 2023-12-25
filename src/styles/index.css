@@ -136,37 +136,37 @@ table {
 @font-face {
   font-family: 'KBTitleB';
   font-weight: bold;
-  src: url('../assets/fonts/KBFGDisplayB.ttf') format('truetype');
+  src: url('../assets/fonts/KBFGDisplayB.woff2') format('woff2');
 }
 
 @font-face {
   font-family: 'KBTitleM';
   font-weight: normal;
-  src: url('../assets/fonts/KBFGDisplayM.ttf') format('truetype');
+  src: url('../assets/fonts/KBFGDisplayM.woff2') format('woff2');
 }
 
 @font-face {
   font-family: 'KBTitleL';
   font-weight: 100;
-  src: url('../assets/fonts/KBFGDisplayL.ttf') format('truetype');
+  src: url('../assets/fonts/KBFGDisplayL.woff2') format('woff2');
 }
 
 @font-face {
   font-family: 'KBTextB';
   font-weight: 100;
-  src: url('../assets/fonts/KBFGTextB.ttf') format('truetype');
+  src: url('../assets/fonts/KBFGTextB.woff2') format('woff2');
 }
 
 @font-face {
   font-family: 'KBTextM';
   font-weight: 100;
-  src: url('../assets/fonts/KBFGTextM.ttf') format('truetype');
+  src: url('../assets/fonts/KBFGTextM.woff2') format('woff2');
 }
 
 @font-face {
   font-family: 'KBTextL';
   font-weight: 100;
-  src: url('../assets/fonts/KBFGTextL.ttf') format('truetype');
+  src: url('../assets/fonts/KBFGTextL.woff2') format('woff2');
 }
 
 ol,

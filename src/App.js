@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { RootLayout, Root } from './components/RootLayout';
 import Home from './pages/Home';
 import NewFNLG from './pages/NewFNLG';
@@ -29,7 +29,7 @@ function App() {
         <Route path="/" element={<Main />} />
         <Route element={<RootLayout />}>
           <Route element={<Header />}>
-            <Route path='/stip' element={<Stipulation />} />
+            <Route path="/stip" element={<Stipulation />} />
             <Route path="/home" element={<Home />} />
             <Route path="/new" element={<NewFNLG />} />
             <Route path="/chart" element={<ChartPage />} />

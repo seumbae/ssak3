@@ -24,7 +24,7 @@ function ReactCalendar({
   const [editState, setEditState] = useState(false);
   const [isCancelModalOpen, setIsCancelModalOpen] = useState(false);
   const [curDate, setCurDate] = useState(new Date());
-  //TODO: 카테고리 선택할 수 있게 하고 handleTileContents에서 해당 카테고리만 보여주기
+  //TODO: 카테고리 선택할 수 있게 하고 handleTileContents에서 해당 카테고리만 보여주기 ㅇㅇ
 
   const handleOnChange = (e) => {
     setCurDate(e);

@@ -23,16 +23,16 @@ function Third() {
     <div className={`${styles.body_relative} ${styles.flex}`}>
       <div className="body-container">
         <img src={Step3} alt="step1" />
-        <div className="fs-1 fw-bold mt-5 mb-3">테마란?</div>
+        <div className={styles.title2}>테마란?</div>
         <div className={`${styles.contents_wrapper} fs-5`}>
-          <div>
+          <div className={styles.contents}>
             <div>기록하고 싶은 지출 분야를 말해요.</div>
           </div>
-          <div>
+          <div className={styles.contents}>
             <div>선택한 분야의 내역만 가계부에</div>
             <div>보여드릴게요.</div>
           </div>
-          <div>
+          <div className={styles.contents}>
             <div>식비 테마를 선택했다면</div>
             <div>식비 지출만 관리할 수 있도록 도와줄게요.</div>
           </div>

@@ -166,3 +166,38 @@ background: #fdc453;
     font-style: normal;
     font-weight: 700;
 }
+
+.title {
+    font-family: "KBTitleB";
+    font-weight: bold;
+    font-size: 22px;
+    margin-top: 42px;
+}
+
+.title2{
+    font-family: "KBTitleB";
+    font-weight: bold;
+    font-size: 36px;
+    margin-top: 42px;
+}
+.sub_title {
+    font-family: "KBTitleM";
+    font-size: 22px;
+}
+
+.contents {
+    font-family: "KBTextL";
+    font-size: 20px;
+}
+
+.img_container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 40px
+}
+
+.strong {
+    font-size: 22px;
+    font-weight: bold;
+}
