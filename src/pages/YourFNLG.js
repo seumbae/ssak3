@@ -1,5 +1,5 @@
 import React from 'react';
-import yours from '../assets/images/yours.png';
+import yours from '../assets/images/yours.webp';
 
 function YourFNLG() {
   return (

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import styled from '@emotion/styled';
-import iconAddFNLG from '../assets/images/iconAddFNLG.png';
-import iconUnderArrow from '../assets/images/iconUnderArrow.png';
-import iconX from '../assets/images/iconX.png';
+import iconAddFNLG from '../assets/images/iconAddFNLG.webp';
+import iconUnderArrow from '../assets/images/iconUnderArrow.webp';
+import iconX from '../assets/images/iconX.webp';
 import Picker from './Picker';
 import { useNavigate } from 'react-router-dom';
 import { getRecordList } from '../services/service';

@@ -1,9 +1,9 @@
 import React from 'react';
 import '../styles//PredictMotive.css';
 import Carousel from 'react-bootstrap/Carousel';
-import banner1 from '../assets/images/banner1.png';
-import banner2 from '../assets/images/banner2.png';
-import banner3 from '../assets/images/banner3.png';
+import banner1 from '../assets/images/banner1.webp';
+import banner2 from '../assets/images/banner2.webp';
+import banner3 from '../assets/images/banner3.webp';
 
 function Banners() {
   return (

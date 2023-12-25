@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from "@emotion/styled";
-import iconAlarmBell from '../assets/images/iconAlarmBell.png'
-import iconSettings from '../assets/images/iconSettings.png'
+import iconAlarmBell from '../assets/images/iconAlarmBell.webp'
+import iconSettings from '../assets/images/iconSettings.webp'
 
 function UserBar({userName, userAvatar}) {
   return (

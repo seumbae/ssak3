@@ -5,7 +5,7 @@ import FNLGBar from '../components/FNLGBar';
 import BudgetBar from '../components/BudgetBar';
 import Banners from '../components/Banners';
 import ServiceList from '../components/ServiceList';
-import iconAvatar from '../assets/images/iconAvatar.png';
+import iconAvatar from '../assets/images/iconAvatar.webp';
 import { getCategories, getMyList, getRecordList } from '../services/service';
 import { useNavigate } from 'react-router-dom';
 import Loading from '../components/Loading';
@@ -49,6 +49,16 @@ function Home() {
         setLoading(false);
         navigate('/');
       });
+    // setTimeout(() => setIsPush(false), 10000)
+    const pushOccurred = localStorage.getItem('isPushOccurred');
+
+    if (!pushOccurred) {
+      const timeout = setTimeout(() => {
+        setIsPushAlarm(true);
+        localStorage.setItem('isPushOccurred', true);
+      }, 7000);
+      return () =>clearTimeout(timeout);
+    }
   }, []);
   return (
     <>
@@ -85,7 +95,7 @@ function Home() {
           <div className="emptyBox"></div>
           <Banners />
           <ServiceList />
-          <div className='emptyBox'></div>
+          <div className="emptyBox"></div>
         </div>
       )}
     </>

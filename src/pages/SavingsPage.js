@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import saving from '../assets/images/productPage.png';
+import saving from '../assets/images/productPage.webp';
 import styles from '../styles/saving.module.css';
 
 function SavingsPage() {

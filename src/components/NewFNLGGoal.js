@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import newlamu from '../assets/newlamu.png';
+import newlamu from '../assets/newlamu.webp';
 import { addLedger } from '../services/service';
 import { useNavigate } from 'react-router-dom';
 
@@ -60,7 +60,7 @@ function NewFNLGGoal({ setGoalShow, selectedTheme, monthBudget, monthExpense, is
       </div>
       <img src={newlamu} alt="newlamu"></img>
       {!goalNextBtnShow && (
-        <button className="next-btn-incomplete fs-2" onClick={goalNextClick}>
+        <button className="next-btn-incomplete fs-2" disabled>
           완료
         </button>
       )}
