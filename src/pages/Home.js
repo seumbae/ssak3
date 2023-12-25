@@ -94,8 +94,8 @@ function Home() {
 
 const PushAlarmTrigger = styled.div`
 position: fixed;
-top: 310px;
-left: 180px;
+top: 500px;
+left: 185px;
 width: 20px;
 height: 20px;
 z-index: 1000;
