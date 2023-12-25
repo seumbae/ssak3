@@ -1,9 +1,9 @@
 import React from 'react';
-import Step2 from '../../assets/images/stipulationStep2.png';
+import Step2 from '../../assets/images/stipulationStep2.webp';
 import NextBtnComplete from '../../components/NextBtnComplete';
 import { useNavigate } from 'react-router-dom';
 import styles from '../../styles/stipuldation.module.css';
-import bibi from '../../assets/images/bibi.png';
+import bibi from '../../assets/images/bibi.webp';
 import Figure from 'react-bootstrap/Figure';
 
 function Second() {

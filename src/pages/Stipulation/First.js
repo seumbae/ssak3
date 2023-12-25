@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import Step1 from '../../assets/images/stipulationStep1.png';
+import Step1 from '../../assets/images/stipulationStep1.webp';
 import NextBtnComplete from '../../components/NextBtnComplete';
-import UnCheckedBtn from '../../assets/images/ucButton.png';
-import CheckedBtn from '../../assets/images/cButton.png';
+import UnCheckedBtn from '../../assets/images/ucButton.webp';
+import CheckedBtn from '../../assets/images/cButton.webp';
 import HorizonLine from '../../components/HorizonLine';
 import NextBtnInComplete from '../../components/NextBtnIncomplete';
 import { useNavigate } from 'react-router-dom';

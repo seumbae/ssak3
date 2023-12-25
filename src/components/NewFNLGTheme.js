@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import newcoli from '../assets/newcoli.png';
+import newcoli from '../assets/newcoli.webp';
 import { ChevronDown } from 'react-bootstrap-icons';
 import { Offcanvas } from 'react-bootstrap';
-import iconX from '../assets/images/iconX.png';
+import iconX from '../assets/images/iconX.webp';
 import Picker from './Picker';
 import '../styles/NewFNLG.css'
 

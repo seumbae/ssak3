@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import newlamu from '../assets/newlamu.png';
+import newlamu from '../assets/newlamu.webp';
 import { getPreMonthExpense } from '../services/service';
 
 function NewFNLGLastBudget({ setLastBudgetShow, setBudgetShow, setMonthExpense, selectedTheme, monthExpense }) {

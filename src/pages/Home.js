@@ -5,7 +5,7 @@ import FNLGBar from '../components/FNLGBar';
 import BudgetBar from '../components/BudgetBar';
 import Banners from '../components/Banners';
 import ServiceList from '../components/ServiceList';
-import iconAvatar from '../assets/images/iconAvatar.png';
+import iconAvatar from '../assets/images/iconAvatar.webp';
 import { getCategories, getMyList, getRecordList } from '../services/service';
 import { useNavigate } from 'react-router-dom';
 import Loading from '../components/Loading';
@@ -47,7 +47,16 @@ function Home() {
         setLoading(false);
         navigate('/');
       });
-      setTimeout(() => setIsPushAlarm(true), 3000)
+    // setTimeout(() => setIsPush(false), 10000)
+    const pushOccurred = localStorage.getItem('isPushOccurred');
+
+    if (!pushOccurred) {
+      const timeout = setTimeout(() => {
+        setIsPushAlarm(true);
+        localStorage.setItem('isPushOccurred', true);
+      }, 7000);
+      return () =>clearTimeout(timeout);
+    }
   }, []);
   return (
     <>
@@ -55,7 +64,9 @@ function Home() {
         <Loading />
       ) : (
         <div className="paddingBox">
-          {isPushAlarm && <PushAlarm title="수고했어 오늘도~♫" content="오늘 하루 지출 내역을 가계부에 기록해보세요." />}
+          {isPushAlarm && (
+            <PushAlarm title="수고했어 오늘도~♫" content="오늘 하루 지출 내역을 가계부에 기록해보세요." />
+          )}
           <div className="emptyBox"></div>
           <UserBar userName={curledger.user.userName} userAvatar={iconAvatar} />
           <div className="emptyBox"></div>
@@ -83,7 +94,7 @@ function Home() {
           <div className="emptyBox"></div>
           <Banners />
           <ServiceList />
-          <div className='emptyBox'></div>
+          <div className="emptyBox"></div>
         </div>
       )}
     </>

@@ -1,12 +1,12 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import ServiceItem from './ServiceItem';
-import iconStat from '../assets/images/iconStat.png';
-import iconYourFNLG from '../assets/images/iconYourFNLG.png';
-import iconPaymentRecord from '../assets/images/iconPaymentRecord.png';
-import iconBadge from '../assets/images/iconBadge.png';
-import iconAd from '../assets/images/iconAd.png';
-import iconFriend from '../assets/images/iconFriend.png';
+import iconStat from '../assets/images/iconStat.webp';
+import iconYourFNLG from '../assets/images/iconYourFNLG.webp';
+import iconPaymentRecord from '../assets/images/iconPaymentRecord.webp';
+import iconBadge from '../assets/images/iconBadge.webp';
+import iconAd from '../assets/images/iconAd.webp';
+import iconFriend from '../assets/images/iconFriend.webp';
 import { useNavigate } from 'react-router-dom';
 
 function ServiceList() {

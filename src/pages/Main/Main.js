@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from "../../styles/main.module.css";
-import mainImage from '../../assets/images/main.png';
+import mainImage from '../../assets/images/main.webp';
 import { useNavigate } from 'react-router-dom';
 
 function Main() {

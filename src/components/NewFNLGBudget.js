@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import newlamu from '../assets/newlamu.png';
+import newlamu from '../assets/newlamu.webp';
 
 function NewFNLGBudget({ setBudgetShow, setGoalShow, setMonthBudget, selectedTheme, monthExpense }) {
   const budget = Math.ceil(monthExpense * 0.9 / 100) * 100;
