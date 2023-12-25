@@ -50,15 +50,15 @@ function Home() {
         navigate('/');
       });
     // setTimeout(() => setIsPush(false), 10000)
-    const pushOccurred = localStorage.getItem('isPushOccurred');
+    // const pushOccurred = localStorage.getItem('isPushOccurred');
 
-    if (!pushOccurred) {
-      const timeout = setTimeout(() => {
-        setIsPushAlarm(true);
-        localStorage.setItem('isPushOccurred', true);
-      }, 7000);
-      return () =>clearTimeout(timeout);
-    }
+    // if (!pushOccurred) {
+    //   const timeout = setTimeout(() => {
+    //     setIsPushAlarm(true);
+    //     localStorage.setItem('isPushOccurred', true);
+    //   }, 7000);
+    //   return () =>clearTimeout(timeout);
+    // }
   }, []);
   return (
     <>
