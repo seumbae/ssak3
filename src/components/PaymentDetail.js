@@ -18,10 +18,8 @@ function PaymentDetail({
   curledger,
   setCatList,
   catList,
-  editState,
   setEditState,
   setRecordList,
-
   recordList,
 }) {
   const [isDelModalOpen, setIsDelModalOpen] = useState(false);

@@ -32,8 +32,7 @@ function PaymentEdit({
   const [inputPrice, setInputPrice] = useState(price);
   const [imageFile, setImageFile] = useState(null);
   const fileInputRef = useRef(null);
-  const [isEditDone, setIsEditDone] = useState(false);
-  const [hi, setHi] = useState('ddddd');
+  const [newImgUrl, setNewImgUrl] = useState('');
   const curLedgerId = curledger.ledgerId;
 
   const FileUpload = () => {
@@ -43,7 +42,6 @@ function PaymentEdit({
 
     const uploadProfile = (e) => {
       const fileList = e.target.files;
-      const length = fileList?.length;
       if (fileList && fileList[0]) {
         const formData = new FormData();
         const url = URL.createObjectURL(fileList[0]);
@@ -112,7 +110,6 @@ function PaymentEdit({
       tranAmount: Number(inputPrice),
     })
       .then((res) => {
-        setIsEditDone(true);
         setIsEdit(false);
         setEditState(false);
         setRecordList(
