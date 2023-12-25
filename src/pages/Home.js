@@ -10,6 +10,7 @@ import { getCategories, getMyList, getRecordList } from '../services/service';
 import { useNavigate } from 'react-router-dom';
 import Loading from '../components/Loading';
 import PushAlarm from '../components/PushAlarm';
+import styled from '@emotion/styled';
 
 function Home() {
   const navigate = useNavigate();
@@ -22,6 +23,7 @@ function Home() {
   const [curDate, setCurDate] = useState(new Date());
   const [catList, setCatList] = useState([]);
   const [isPushAlarm, setIsPushAlarm] = useState(false);
+  const [pushToggle, setPushToggle] = useState(true);
 
   useEffect(() => {
     getMyList({ userId: localStorage.getItem('userId') })
@@ -47,7 +49,7 @@ function Home() {
         setLoading(false);
         navigate('/');
       });
-      setTimeout(() => setIsPushAlarm(true), 3000)
+      // setTimeout(() => setIsPushAlarm(true), 1000)
   }, []);
   return (
     <>
@@ -56,6 +58,7 @@ function Home() {
       ) : (
         <div className="paddingBox">
           {isPushAlarm && <PushAlarm title="수고했어 오늘도~" content="오늘 하루 지출 내역을 가계부에 기록해보세요." />}
+          {pushToggle && <PushAlarmTrigger onClick={() => {setPushToggle(false); setIsPushAlarm(true)}} />}
           <div className="emptyBox"></div>
           <UserBar userName={curledger.user.userName} userAvatar={iconAvatar} />
           <div className="emptyBox"></div>
@@ -89,5 +92,15 @@ function Home() {
     </>
   );
 }
+
+const PushAlarmTrigger = styled.div`
+position: fixed;
+top: 310px;
+left: 180px;
+width: 20px;
+height: 20px;
+z-index: 1000;
+opacity: 0;
+`
 
 export default Home;

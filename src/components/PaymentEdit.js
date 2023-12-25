@@ -115,7 +115,6 @@ function PaymentEdit({
         setIsEditDone(true);
         setIsEdit(false);
         setEditState(false);
-        // setReceiptUrl(newImgUrl);
         setRecordList(
           recordList.map((r) => {
             if (r.recordId === recordId) {
