@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import chartImg from '../assets/images/chatPage.png';
+import chartImg from '../assets/images/chatPage.webp';
 
 function ChartPage() {
   return (

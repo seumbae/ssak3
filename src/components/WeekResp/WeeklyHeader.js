@@ -18,26 +18,26 @@ const CalendarHeaderComponent = ({
         <button style={styles.iconContainer} onClick={onPressArrowLeft}>
           <img
             style={[styles.icon, styles.leftIcon]}
-            src={require('../assets/images/right-arrow.png')}
+            src={require('../assets/images/right-arrow.webp')}
             alt="Left Arrow"
           />
         </button>
         <button style={styles.iconContainer} onClick={onPressArrowRight}>
-          <img style={styles.icon} src={require('../assets/images/right-arrow.png')} alt="Right Arrow" />
+          <img style={styles.icon} src={require('../assets/images/right-arrow.webp')} alt="Right Arrow" />
         </button>
         <button
           style={[styles.iconContainer, { opacity: horizontal ? 0.2 : 1 }]}
           onClick={onPressListView}
           disabled={horizontal}
         >
-          <img style={styles.icon} src={require('../assets/images/right-arrow.png')} alt="List View" />
+          <img style={styles.icon} src={require('../assets/images/right-arrow.webp')} alt="List View" />
         </button>
         <button
           style={[styles.iconContainer, { opacity: horizontal ? 1 : 0.2 }]}
           onClick={onPressGridView}
           disabled={!horizontal}
         >
-          <img style={styles.icon} src={require('../assets/images/right-arrow.png')} alt="Grid View" />
+          <img style={styles.icon} src={require('../assets/images/right-arrow.webp')} alt="Grid View" />
         </button>
       </div>
       {!horizontal && (

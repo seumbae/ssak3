@@ -1,5 +1,5 @@
 import React from 'react';
-import Step3 from '../../assets/images/stipulationStep3.png';
+import Step3 from '../../assets/images/stipulationStep3.webp';
 import NextBtnComplete from '../../components/NextBtnComplete';
 import { useNavigate } from 'react-router-dom';
 import styles from '../../styles/stipuldation.module.css';

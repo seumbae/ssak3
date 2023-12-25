@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import Step4 from '../../assets/images/stipulationStep4.png';
+import Step4 from '../../assets/images/stipulationStep4.webp';
 import NextBtnComplete from '../../components/NextBtnComplete';
 import { useNavigate } from 'react-router-dom';
-import mainImg2 from '../../assets/images/main2.png';
+import mainImg2 from '../../assets/images/main2.webp';
 import styles from '../../styles/stipuldation.module.css';
 import { createUser } from '../../services/service';
 
