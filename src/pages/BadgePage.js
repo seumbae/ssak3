@@ -218,7 +218,7 @@ function BadgePage() {
   }, []);
 
   return (
-    <>
+    <div className='badge-div'>
       <div className="badge-container">
         <img className="treeImg mt-3" src={tree} alt="tree" />
         {/* <div className="badge1"> */}
@@ -304,7 +304,7 @@ function BadgePage() {
       <button className="complete-btn" onClick={handleCompleteBtn}>
         완료
       </button>
-    </>
+    </div>
   );
 }
 
