@@ -13,7 +13,6 @@ function PaymentEdit({
   price,
   time,
   name,
-  receiptUrl,
   setIsEditFalse,
   catName,
   categoryList,
@@ -21,7 +20,6 @@ function PaymentEdit({
   recordId,
   setRecordList,
   setEditState,
-  // setReceiptUrl,
   recordList,
 }) {
   const [isInputModalOpen, setIsInputModalOpen] = useState(false);
@@ -32,14 +30,13 @@ function PaymentEdit({
   const [inputPrice, setInputPrice] = useState(price);
   const [imageFile, setImageFile] = useState(null);
   const fileInputRef = useRef(null);
-  const [newImgUrl, setNewImgUrl] = useState('');
   const curLedgerId = curledger.ledgerId;
 
   const FileUpload = () => {
     const handleClickFileInput = () => {
       fileInputRef.current?.click();
     };
-
+    
     const uploadProfile = (e) => {
       const fileList = e.target.files;
       if (fileList && fileList[0]) {
@@ -112,6 +109,7 @@ function PaymentEdit({
       .then((res) => {
         setIsEdit(false);
         setEditState(false);
+        // setReceiptUrl(newImgUrl);
         setRecordList(
           recordList.map((r) => {
             if (r.recordId === recordId) {
@@ -134,7 +132,7 @@ function PaymentEdit({
         );
       })
       .catch((err) => {
-        alert('서버와의 연결이 원활하지 않습니다.123', err);
+        alert('서버와의 연결이 원활하지 않습니다.', err);
       });
   }
 
@@ -241,7 +239,6 @@ function PaymentEdit({
 
           <div className="body-receipt">
             <div className="vertical-dot"></div>
-
             <FileUpload key={recordId} />
           </div>
           <div className="body-time">

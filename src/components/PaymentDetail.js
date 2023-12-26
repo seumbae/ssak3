@@ -5,6 +5,7 @@ import CheckModal from '../components/CheckModal';
 import categoryColors from '../constants/cat';
 import PaymentEdit from './PaymentEdit';
 import styled from '@emotion/styled';
+import defaultImg from '../assets/images/receipt.jpg';
 
 function PaymentDetail({
   title,
@@ -82,9 +83,7 @@ function PaymentDetail({
 
           <div className="body-receipt">
             <div className="vertical-dot"></div>
-            {receiptUrl ? (
-              <img className="receipt-img" src={receiptUrl} alt="receipt" />
-            ) : <DefaultImg></DefaultImg>}
+            <img className="receipt-img" src={receiptUrl ? receiptUrl : defaultImg} alt="receipt" />
           </div>
           <div className="body-time">
             <div className="vertical-dot"></div>
