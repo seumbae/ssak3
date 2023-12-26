@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { getBadgeList, editBadgeList } from '../services/service';
-import tree from '../assets/images/tree.webp';
+import tree from '../assets/images/tree.png';
 import { useNavigate } from 'react-router-dom';
-import badge1 from '../assets/images/badge1.webp';
-import badge2 from '../assets/images/badge2.webp';
-import badge3 from '../assets/images/badge3.webp';
-import badge4 from '../assets/images/badge4.webp';
-import badge5 from '../assets/images/badge5.webp';
-import badge6 from '../assets/images/badge6.webp';
-import badge7 from '../assets/images/badge7.webp';
-import badge8 from '../assets/images/badge8.webp';
+import badge1 from '../assets/images/badge1.png';
+import badge2 from '../assets/images/badge2.png';
+import badge3 from '../assets/images/badge3.png';
+import badge4 from '../assets/images/badge4.png';
+import badge5 from '../assets/images/badge5.png';
+import badge6 from '../assets/images/badge6.png';
+import badge7 from '../assets/images/badge7.png';
+import badge8 from '../assets/images/badge8.png';
 import '../styles/badge.css';
 function BadgePage() {
   const navigate = useNavigate();
