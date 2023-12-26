@@ -22,70 +22,70 @@ function PaymentAdd({date, categoryList, ledgerId, setCatList, recordList, setRe
   const [newImgUrl, setNewImgUrl] = useState('');
   const [recordId, setRecordId] = useState('');
 
-  const fileInputRef = useRef(null);
+  const fileInputRefbuf = useRef(null);
 
-  const FileUpload = () => {
-    const handleClickFileInput = () => {
-      fileInputRef.current?.click();
-    };
+  // const FileUpload = () => {
+  //   const handleClickFileInput = () => {
+  //     fileInputRefbuf.current?.click();
+  //   };
 
-    const uploadProfile = (e) => {
-      const fileList = e.target.files;
-      if (fileList && fileList[0]) {
-        const formData = new FormData();
-        const url = URL.createObjectURL(fileList[0]);
-        formData.append('recordId', new Blob([JSON.stringify({ recordId: recordId })], { type: 'application/json' }));
-        formData.append('image', fileList[0]);
-        setImageFile({
-          file: fileList[0],
-          url: url,
-          thumbnail: formData,
-          type: fileList[0].type,
-          formData: formData,
-        });
-      }
-    };
+  //   const uploadProfile = (e) => {
+  //     const fileList = e.target.files;
+  //     if (fileList && fileList[0]) {
+  //       const formData = new FormData();
+  //       const url = URL.createObjectURL(fileList[0]);
+  //       formData.append('recordId', new Blob([JSON.stringify({ recordId: recordId })], { type: 'application/json' }));
+  //       formData.append('image', fileList[0]);
+  //       setImageFile({
+  //         file: fileList[0],
+  //         url: url,
+  //         thumbnail: formData,
+  //         type: fileList[0].type,
+  //         formData: formData,
+  //       });
+  //     }
+  //   };
 
-    const showImage = useMemo(() => {
-      if (!imageFile && imageFile == null) {
-        return <DefaultImg>+</DefaultImg>;
-      }
+  //   const showImage = useMemo(() => {
+  //     if (!imageFile && imageFile == null) {
+  //       return <DefaultImg>+</DefaultImg>;
+  //     }
 
-      return (
-        <>
-          {imageFile ? (
-            <input
-              type="image"
-              className="ShowFileImage"
-              src={imageFile.url}
-              alt={imageFile.type}
-              onClick={handleClickFileInput}
-            ></input>
-          ) : (
-            <DefaultImg>+</DefaultImg>
-          )}
-        </>
-      );
-    }, [imageFile]);
+  //     return (
+  //       <>
+  //         {imageFile ? (
+  //           <input
+  //             type="image"
+  //             className="ShowFileImage"
+  //             src={imageFile.url}
+  //             alt={imageFile.type}
+  //             onClick={handleClickFileInput}
+  //           ></input>
+  //         ) : (
+  //           <DefaultImg>+</DefaultImg>
+  //         )}
+  //       </>
+  //     );
+  //   }, [imageFile]);
 
-    return (
-      <AddImgBox>
-        <label htmlFor="edit_file">
-          <div className="addImg">
-            {showImage}
-          </div>
-        </label>
-        <input
-          type="file"
-          id="edit_file"
-          accept="image/jpeg"
-          ref={fileInputRef}
-          onClick={handleClickFileInput}
-          onChange={uploadProfile}
-        />
-      </AddImgBox>
-    );
-  };
+  //   return (
+  //     <AddImgBox>
+  //       <label htmlFor="edit_file">
+  //         <div className="addImg">
+  //           {showImage}
+  //         </div>
+  //       </label>
+  //       <input
+  //         type="file"
+  //         id="edit_file"
+  //         accept="image/jpeg"
+  //         ref={fileInputRefbuf}
+  //         onClick={handleClickFileInput}
+  //         onChange={uploadProfile}
+  //       />
+  //     </AddImgBox>
+  //   );
+  // };
   
   function handleAddBtn() {
     const data = { 
@@ -99,10 +99,11 @@ function PaymentAdd({date, categoryList, ledgerId, setCatList, recordList, setRe
       isExpense: (inputSort === "지출") ? "1" : "0" ,
       receiptUrl: inputReceipt
     }
+    
     addPayment(data).then((res) => {
       setRecordId(res.data.recordId);
       setRecordList([...recordList, data])
-      if (imageFile || imageFile != null) {
+      if (imageFile || imageFile !== null) {
         uploadReceiptImg(imageFile.formData)
           .then((res) => {
             setNewImgUrl(res.data);
@@ -111,8 +112,6 @@ function PaymentAdd({date, categoryList, ledgerId, setCatList, recordList, setRe
             console.log('upload failed', err);
           });
       }
-      }).then((res) => {
-        console.log(res.data)
       }).catch(() => {
       alert('서버와의 연결이 원활하지 않습니다.');
       });
@@ -285,11 +284,11 @@ function PaymentAdd({date, categoryList, ledgerId, setCatList, recordList, setRe
                 <ClearBtn onClick={() => setInputPrice('')}>x</ClearBtn>
                 <InputBox type="text" value={inputPrice} onChange={(e) => { setInputPrice(e.target.value) }} />
             </BodyBox>
-            <BodyBox>
+            {/* <BodyBox>
               <VerticalDot />
               영수증<br/>
-              <FileUpload key={recordId} />
-            </BodyBox>
+              <FileUpload />
+            </BodyBox> */}
             <BodyBox>
               <VerticalDot />
               거래시각<br/>
